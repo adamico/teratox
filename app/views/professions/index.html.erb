@@ -1,0 +1,19 @@
+<h1>Liste des professions</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% @professions.each do |profession| %>
+  <tr class="<%= cycle("even", "odd") -%>">
+    <td><%= h profession.id %></td>
+    <td><%= h profession.name %></td>
+    <td><%= link_to 'Modifier', edit_profession_path(profession) %></td>
+    <td><%= link_to 'Detruire', profession, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nouvelle profession', new_profession_path %>

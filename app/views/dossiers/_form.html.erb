@@ -1,0 +1,264 @@
+<% javascript :defaults, 'delegate' %>
+
+<%= error_messages_for :dossier %>
+
+<% form_for @dossier do |f| %>
+
+  <% content_for :jstemplates do -%>
+    <%= "var exposition='#{generate_template(f, :expositions)}'" %>
+  <% end -%>
+
+  <p>
+    <%= f.label :date_appel %>
+    <%= f.date_select :date_appel, :start_year => 1998, :order => [:day, :month, :year], :label => "Date d'appel : " %>
+  </p>
+
+  <p>
+    <%= f.label :nom %>
+    <%= f.text_field :nom, :size => 20%>
+    <%= f.label :prenom, "Prénom" %>
+    <%= f.text_field :prenom, :size => 20%>
+    <%= f.label :age %>
+    <%= f.text_field :age, :size => 3%>
+  </p>
+  <p>
+    <%= f.label "Profession" %>
+    <%= f.collection_select(:profession_id, Profession.all, :id, :name) %>
+  </p>
+
+  <h3>Antécédents / facteurs de risque</h3>
+  <div id="infoatcd">
+    <table>
+      <tr>
+        <td id="right">
+          <%= f.label :af_id, "Antécédents familiaux" %><br />
+          <%= f.label :af_id, "Oui" %>
+          <%= f.radio_button( "af_id", "0" ) %><br />
+          <%= f.label :af_id, "Non" %>
+          <%= f.radio_button( "af_id", "1") %><br />
+          <%= f.label :af_id, "Inconnu" %>
+          <%= f.radio_button( "af_id", "2") %><br />
+        </td>
+        <td>
+          <%= f.text_area :comm_af, :size => "40x5"%>
+        </td>
+        <td>
+          <%= f.label :tabac, "Tabac (cigarettes/j)"%><br />
+          <%= f.radio_button( "tabac", "0") %>
+          <%= f.label :tabac, "0" %><br />
+          <%= f.radio_button( "tabac", "1") %>
+          <%= f.label :tabac, "0 à 5" %>
+          <%= f.radio_button( "tabac", "2") %>
+          <%= f.label :tabac, "5 à 10" %>
+          <%= f.radio_button( "tabac", "3") %>
+          <%= f.label :tabac, "Sup. à 10" %><br />
+          <%= f.radio_button( "tabac", "4") %>
+          <%= f.label :tabac, "Inconnu" %>
+        </td>
+      </tr>
+      <tr>
+        <td id="right">
+          <%= f.label :ap_id, "Antécédents personnels"%><br />
+          <%= f.label :ap_id, "Oui" %>
+          <%= f.radio_button( "ap_id", "0")%><br />
+          <%= f.label :ap_id, "Non" %>
+          <%= f.radio_button( "ap_id", "1")%><br />
+          <%= f.label :ap_id, "Inconnu" %>
+          <%= f.radio_button( "ap_id", "2")%><br />
+        </td>
+        <td>
+          <%= f.text_area :comm_ap, :size => "40x5" %>
+        </td>
+        <td>
+          <%= f.label :alcool, "Alcool (verres/j)"%><br />
+          <%= f.radio_button( "alcool", "0") %>
+          <%= f.label :alcool, "0" %><br />
+          <%= f.radio_button( "alcool", "1") %>
+          <%= f.label :alcool, "\<= 2" %><br />
+          <%= f.radio_button( "alcool", "2") %>
+          <%= f.label :alcool, "\> 2" %><br />
+          <%= f.radio_button( "alcool", "3") %>
+          <%= f.label :alcool, "Inconnu" %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <h3>Grossesse</h3>
+  <div id="infogrs">
+    <table class="goleft">
+      <tr>
+        <th colspan="2">
+          Grossesses antérieures : <%= @dossier.grsant %>
+        </th>
+      </tr>
+      <tr>
+        <td id="right">
+          <%= f.label :fcs %>
+          <%= f.text_field :fcs, :size => "1"%>
+        </td>
+        <td id="right">
+          <%= f.label :geu %>
+          <%= f.text_field :geu, :size => "1"%>
+        </td>
+      </tr>
+      <tr>
+      <td id="right">
+        <%= f.label :miu %>
+          <%= f.text_field :miu, :size => "1" %>
+        </td>
+        <td id="right">
+          <%= f.label :ivg %>
+          <%= f.text_field :ivg, :size => "1" %>
+        </td>
+      </tr>
+      <tr>
+        <td id="right">
+          <%= f.label :img %>
+          <%= f.text_field :img, :size => "1" %>
+        </td>
+        <td id="right">
+          <%= f.label :nai %>
+          <%= f.text_field :nai, :size => "1" %>
+        </td>
+      </tr>
+    </table>
+    <table class="goleft" style="margin-left:1em">
+      <tr>
+        <td id="right">
+          <%= f.label :sa, "Terme : " %>
+        </td>
+        <td>
+          <%= f.text_field :sa, :size => "1" %>
+          SA
+        </td>
+      </tr>
+      <tr>
+        <td id="right">
+          <%= f.label :dg, "Debut de grossesse : " %>
+        </td>
+        <td>
+          <%= f.text_field :dg_string, :size => 8 %>
+        </td>
+      </tr>
+      <tr>
+        <td id="right">
+          <%= f.label :dap, "Accouchement prévu : " %>
+        </td>
+        <td>
+          <%= f.date_select :dap, :order => [:day, :month, :year] %>
+        </td>
+      </tr>
+      <tr>
+        <td id="right">
+          <%= f.label :ddr,  "DDR : " %>
+        </td>
+        <td>
+          <%= f.date_select :ddr, :order => [:day, :month, :year] %>
+        </td>
+      </tr>
+    </table>
+    <p class="goleft">
+      <%= f.label :assmedproc_id, "Assistance médicale à la procréation" %><br />
+      <%= f.radio_button( "assmedproc_id", "0") %>
+      <%= f.label :assmedproc_id, "Oui" %><br />
+      <%= f.radio_button( "assmedproc_id", "1") %>
+      <%= f.label :assmedproc_id, "Non" %><br />
+      <%= f.radio_button( "assmedproc_id", "2") %>
+      <%= f.label :assmedproc_id, "Ne sait pas" %><br />
+    </p>
+  </div>
+
+  <h3 class="clear">Exposition</h3>
+  <div id="infoexpo">
+    <div id="expositions">
+      <% f.fields_for :expositions do |expo_form| %>
+        <%= render :partial => 'exposition', :locals => { :f => expo_form} %>
+      <% end %> 
+    </div>
+    <p>
+      <%= link_to 'Rajouter une exposition', '#exposition', :class => "add_nested_item", :rel => "expositions" %>
+    </p>
+    <p>
+      <%= f.text_area :comm_expo, :class => "commentaire_100" %>
+    </p>
+  </div>
+  <h3>Évolution</h3>
+  <div id="infoevol">
+    <div class="goleft">
+      <table class="evol">
+        <tr>
+          <th colspan="2">
+            Type
+          </th>
+        </tr>
+        <% @acctypes.in_groups_of(2, false) do |row_at| %>
+          <tr>
+            <% for acctype in row_at %>
+              <td>
+                <%= f.radio_button "acctype_id", acctype.id %>
+                <%= f.label :acctype_id, "#{acctype.abbrev}" %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="goleft" style="margin-left:1em">
+      <table class="evol">
+        <tr>
+          <th>
+            Modalité
+          </th>
+        </tr>
+        <% @accmods.each do |am| %>
+          <tr>
+            <td>
+              <%= f.radio_button "accmod_id", am.id %>
+              <%= f.label :accmod_id, am.abbr %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="goleft" style="margin-left:1em">
+      <table class="evol">
+        <tr>
+          <th>
+            Pathologie maternelle
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <%= f.radio_button "path_mat", "0" %>
+            <%= f.label :path_mat, "Oui" %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.radio_button "path_mat", "1" %>
+            <%= f.label :path_mat, "Non" %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+          <%= f.radio_button "path_mat", "2" %>
+          <%= f.label :path_mat, "inconnu" %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <p class="clear" style="margin-top:1em">
+      <%= f.label :terme %>
+      <%= f.text_field :terme, :size => 1 %>
+      <%= f.label :dra, "Date d'accouchement" %>
+      <%= f.date_select :dra, :start_year => 1998, :order => [:day, :month, :year] %>
+    </p>
+    <p>
+      <%= f.text_area :comm_evol, :class => "commentaire_100" %>
+      * Compléter le champ malformation dans la section nouveau-né si examen anatomo-pathologique interprétable
+    </p>
+  </div>
+  <p>
+    <%= f.submit 'Sauvegarder' %>
+  </p>
+<% end %>

@@ -1,0 +1,47 @@
+TODO:
+*****
+
+Implementare Admin/User
+
+Dossier :
+  - table
+    * cercare cosa indica ncode 
+    * spurgare le colonne ddr, dap, dg
+  - view :
+    * show :
+      - fare in modo che cliccando sui titoli delle diverse sezioni ciascuna
+          di queste si espanda
+      - sezione Evolution
+        * acctype_id
+        * accmod_id (0-3 => creare termini corrispondenti, vedere screenshot)
+        * path_mat (0-1 + campo commentaire comm_evol)
+      - sezione bebe
+        * commentaire général bebes
+    * _form : 
+      - creare una funzione javascript:
+          aggiornare il valore di grossesse antérieures dinamicamente
+
+Bebe :
+  - table => ok? 
+
+Correspondant :
+  - vedere se utile tenere questa tabella
+
+Produit :
+  - table
+    * estrarre la lista dei solvants 
+    * creare categorie solvants + autres
+    * creare produits libéllés "A CREER"
+
+Pathologie :
+
+Malformation :
+
+DONE:
+*****
+Riimportare tabella accmods
+
+sezione antécédents
+  * 0-1 => oui, non
+MAYBE:
+*****

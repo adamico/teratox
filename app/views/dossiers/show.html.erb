@@ -1,0 +1,122 @@
+<% title ( "Dossier " + h( @dossier.n_sicap.to_s )) %>
+
+<%= link_to 'Modifier', edit_dossier_path(@dossier) %>
+
+<p id="time"><%= h @dossier.date_appel.to_s(:date_appel) %></p>
+
+<div id="infoperso">
+  <table>
+    <tr>
+      <th id="right">Patiente : </th>
+      <td><%= h @dossier.short_name %></td>
+      <th id="right">Age : </th>
+      <td><%= h @dossier.age %></td>
+    </tr>
+    <tr>
+      <th>
+        Profession :
+      </th>
+      <td>
+        <%= h @dossier.profession.name rescue "Non renseign\ée" %>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<h3>Antécédents/facteurs de risque</h3>
+<div id="infoatcd">
+  <p>Antécédents personnels : <%= h @dossier.atcdp %></p>
+  <p>Antécédents familiaux : <%= h @dossier.atcdf %></p>
+  <p>Tabac : <%= h @dossier.cigarettes %></p>
+  <p>Alcool : <%= h @dossier.boisson %></p>
+</div>
+
+<h3>Grossesse</h3>
+<div id="infogrs">
+  <p>
+    Gestité : G<%= @dossier.gestite %><br /> 
+    Parité : P<%= @dossier.nai %>
+  </p>
+  <p>
+    Debut de grossesse :
+    <%= @dossier.dg.to_s(:date_appel) %>
+  </p>
+ </div> 
+
+<h3>Exposition</h3>
+<div id="infoexpo">
+  <table class="latex">
+    <tr>
+      <th>Nom du produit</th>
+      <th>Niveau</th>
+    </tr>
+    <% @dossier.expositions.each do |expo| %>
+      <tr>
+        <td><%= h expo.produit.name %></td>
+        <td><%= h expo.niveau.name %></td>
+      </tr>
+    <% end %>
+  </table>
+  <% unless @dossier.comm_expo.empty? %>
+    <p class="commentaire">
+      <%= h @dossier.comm_expo %>
+    </p>
+  <% end %>
+</div>
+
+<h3>Evolution</h3>
+<div id="infoevol">
+  <p>
+    <%= h @dossier.evolution %>
+  </p>
+  
+  <table>
+    <tr>
+      <td>
+        <%= h @dossier.date_acc %>
+      </td>
+    </tr>
+  </table>
+  <% unless @dossier.comm_evol.empty? %>
+    <p class="commentaire">
+      <%= h @dossier.comm_evol %>
+    </p>
+  <% end %>
+</div>
+
+<h3>Nouveaux-nés ( <%= @dossier.bebes.count %> )</h3>
+<div id="infonn">
+  <table class="latex">
+    <tr>
+      <th>Sexe</th>
+      <th>Apgar (1 min)</th>
+      <th>Apgar (5 min)</th>
+      <th>Poids</th>
+      <th>Taille</th>
+      <th>PC</th>
+      <th>Malformations</th>
+      <th>Pathologies</th>
+    </tr>
+    <% @dossier.bebes.each do |bebe| %>
+      <tr>
+        <td><%= h bebe.sex %></td>
+        <td><%= h bebe.apgar1 %></td>
+        <td><%= h bebe.apgar5 %></td>
+        <td><%= h bebe.poids %></td>
+        <td><%= h bebe.taille %></td>
+        <td><%= h bebe.pc %></td>
+        <td><%= h bebe.malf %></td>
+        <td><%= h bebe.path%></td>
+      </tr>
+    <% end %>
+  </table>
+  <% unless @dossier.comm_bebe.empty? %>
+    <p class="commentaire">
+      <%= h @dossier.comm_bebe %>
+    </p>
+  <% end %> 
+</div>
+
+<p>
+  <%= link_to "Retour \à la liste", dossiers_path %>
+</p>

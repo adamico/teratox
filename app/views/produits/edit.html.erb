@@ -1,0 +1,16 @@
+<h1>Editing produit</h1>
+
+<% form_for(@produit) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @produit %> |
+<%= link_to 'Back', produits_path %>
