@@ -1,5 +1,6 @@
 class Dossier < ActiveRecord::Base
   require 'chronic'
+  # TODO create a setter to build n_sicap => LP0 + input value
   validates_presence_of :n_sicap
   validates_uniqueness_of :n_sicap
   validates_presence_of :nom, :prenom, :age
@@ -19,9 +20,11 @@ class Dossier < ActiveRecord::Base
     :reject_if => proc { |attrs| attrs['produit_id'].blank? } 
 
   has_many :bebes, :dependent => :destroy
+  # TODO add a :reject_if condition 
   accepts_nested_attributes_for :bebes, :allow_destroy => true
 
   # virtual attributes
+  #
   def short_name
     "#{nom.upcase} #{prenom.first}."
   end
@@ -41,10 +44,6 @@ class Dossier < ActiveRecord::Base
     else comm_af
     end
   end
-
-  # cigarettes and alcool virtual attributes may be made 'more DRY'
-  # and thus used in _form as radio_button labels
-  # and maybe use a helper for the show view
 
   def cigarettes
     cigJour = [ 
@@ -98,6 +97,7 @@ class Dossier < ActiveRecord::Base
     end
   end
 
+  # this is to be able to enter dates in text form
   def dg_string
     dg.to_s
   end

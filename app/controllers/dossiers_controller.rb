@@ -5,16 +5,17 @@ class DossiersController < ApplicationController
   end
 
   def show
+    # TODO correct the eager loading of this (do i need :expositions? )
     @dossier = Dossier.find(params[:id], :include => [ :profession, { :expositions => :niveau }, :produits, :bebes ])
   end
 
   def new
     @dossier = Dossier.new
-    @dossier.expositions.build
-    @dossier.bebes.build
+    # nested models moved to a helper
+    #@dossier.expositions.build
+    #@dossier.bebes.build
 
     @professions = Profession.all
-    #@produits = Produit.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
     @niveaux = Niveau.all
     @acctypes = Acctype.all
     @accmods = Accmod.all
@@ -33,9 +34,7 @@ class DossiersController < ApplicationController
 
   def edit
     @dossier = Dossier.find(params[:id], :include => [ :profession, { :expositions => :niveau }, :produits, :bebes ])
-    @dossier.expositions.build
     @professions = Profession.all
-    #@produits = Produit.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
     @niveaux = Niveau.all
     @acctypes = Acctype.all
     @accmods = Accmod.all
