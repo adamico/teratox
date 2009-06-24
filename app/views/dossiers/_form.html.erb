@@ -2,7 +2,7 @@
 
 <%= error_messages_for :dossier %>
 
-<% form_for setup_dossier(@dossier) do |f| %>
+<% form_for @dossier do |f| %>
 
   <% content_for :jstemplates do -%>
     <%= "var exposition='#{generate_template(f, :expositions)}'" %>
@@ -12,10 +12,12 @@
     <%= f.label :n_sicap, "Numéro dossier SICAP" %>
     <%= f.text_field :n_sicap %>
   </p>
+
   <p>
     <%= f.label :date_appel %>
     <%= f.date_select :date_appel, :start_year => 1998, :order => [:day, :month, :year], :label => "Date d'appel : " %>
   </p>
+
   <p>
     <%= f.label :nom %>
     <%= f.text_field :nom, :size => 20%>
