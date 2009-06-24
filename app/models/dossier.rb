@@ -16,7 +16,7 @@ class Dossier < ActiveRecord::Base
 
   has_many :expositions, :dependent => :destroy
   accepts_nested_attributes_for :expositions, :allow_destroy => true,
-    :reject_if => proc { |attrs| attrs['produit_id'].blank? } 
+    :reject_if => proc { |attrs| attrs['produit_name'].blank? } 
 
   has_many :bebes, :dependent => :destroy
   accepts_nested_attributes_for :bebes, :allow_destroy => true
