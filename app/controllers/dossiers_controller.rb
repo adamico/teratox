@@ -14,7 +14,7 @@ class DossiersController < ApplicationController
     @dossier.bebes.build
 
     @professions = Profession.all
-    @produits = Produit.all
+    #@produits = Produit.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
     @niveaux = Niveau.all
   end
 
@@ -31,8 +31,9 @@ class DossiersController < ApplicationController
 
   def edit
     @dossier = Dossier.find(params[:id], :include => [ :profession, { :expositions => :niveau }, :produits, :bebes ])
+    @dossier.expositions.build
     @professions = Profession.all
-    @produits = Produit.all
+    #@produits = Produit.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
     @niveaux = Niveau.all
     @acctypes = Acctype.all
     @accmods = Accmod.all

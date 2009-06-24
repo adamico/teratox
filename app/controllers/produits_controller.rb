@@ -2,12 +2,7 @@ class ProduitsController < ApplicationController
   # GET /produits
   # GET /produits.xml
   def index
-    @produits = Produit.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @produits }
-    end
+    @produits = Produit.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
   end
 
   # GET /produits/1

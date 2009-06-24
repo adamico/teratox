@@ -1,4 +1,4 @@
-body { background-color: #fff; color: #333; }
+body { background-color: #ccc; color: #333; }
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -139,8 +139,10 @@ label {
   float:left;
 }
 
-.odd {
-  background-color
+.even {
+  background-color:#ddd
 }
 
-.even
+.odd {
+  background-color:white
+}
