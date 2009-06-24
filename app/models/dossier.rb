@@ -1,6 +1,10 @@
 class Dossier < ActiveRecord::Base
   require 'chronic'
+  validates_presence_of :n_sicap
+  validates_uniqueness_of :n_sicap
   validates_presence_of :nom, :prenom, :age
+  validates_presence_of :fcs, :ivg, :img, :miu, :geu, :nai
+  validates_numericality_of :fcs, :ivg, :img, :miu, :geu, :nai
   validates_numericality_of :age, :less_than => 55 
   validates_numericality_of :sa, :less_than => 40 
 

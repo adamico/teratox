@@ -39,7 +39,7 @@
   </p>
   <p>
     Debut de grossesse :
-    <%= @dossier.dg.to_s(:date_appel) %>
+    <%= @dossier.dg.to_s(:date_appel) rescue "Non reinsegn\é" %>
   </p>
  </div> 
 
@@ -57,7 +57,7 @@
       </tr>
     <% end %>
   </table>
-  <% unless @dossier.comm_expo.empty? %>
+  <% unless @dossier.comm_expo.blank? %>
     <p class="commentaire">
       <%= h @dossier.comm_expo %>
     </p>
@@ -77,7 +77,7 @@
       </td>
     </tr>
   </table>
-  <% unless @dossier.comm_evol.empty? %>
+  <% unless @dossier.comm_evol.blank? %>
     <p class="commentaire">
       <%= h @dossier.comm_evol %>
     </p>
@@ -110,7 +110,7 @@
       </tr>
     <% end %>
   </table>
-  <% unless @dossier.comm_bebe.empty? %>
+  <% unless @dossier.comm_bebe.blank? %>
     <p class="commentaire">
       <%= h @dossier.comm_bebe %>
     </p>

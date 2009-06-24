@@ -9,6 +9,11 @@
   <% end -%>
 
   <p>
+    <%= f.label :n_sicap, "Numéro dossier SICAP" %>
+    <%= f.text_field :n_sicap %>
+  </p>
+
+  <p>
     <%= f.label :date_appel %>
     <%= f.date_select :date_appel, :start_year => 1998, :order => [:day, :month, :year], :label => "Date d'appel : " %>
   </p>
@@ -88,7 +93,7 @@
     <table class="goleft">
       <tr>
         <th colspan="2">
-          Grossesses antérieures : <%= @dossier.grsant %>
+          Grossesses antérieures : <%= @dossier.grsant rescue "0" %>
         </th>
       </tr>
       <tr>
@@ -137,7 +142,7 @@
           <%= f.label :dg, "Debut de grossesse : " %>
         </td>
         <td>
-          <%= f.text_field :dg_string, :size => 8 %>
+          <%= f.text_field :dg_string, :size => 15 %>
         </td>
       </tr>
       <tr>
@@ -251,7 +256,7 @@
       <%= f.label :terme %>
       <%= f.text_field :terme, :size => 1 %>
       <%= f.label :dra, "Date d'accouchement" %>
-      <%= f.date_select :dra, :start_year => 1998, :order => [:day, :month, :year] %>
+      <%= f.date_select :dra, :start_year => 1998, :order => [:day, :month, :year], :prompt => true %>
     </p>
     <p>
       <%= f.text_area :comm_evol, :class => "commentaire_100" %>

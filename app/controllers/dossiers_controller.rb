@@ -16,6 +16,8 @@ class DossiersController < ApplicationController
     @professions = Profession.all
     #@produits = Produit.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
     @niveaux = Niveau.all
+    @acctypes = Acctype.all
+    @accmods = Accmod.all
   end
 
   def create
