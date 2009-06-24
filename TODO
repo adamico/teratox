@@ -11,18 +11,10 @@ Dossier :
     * show :
       - fare in modo che cliccando sui titoli delle diverse sezioni ciascuna
           di queste si espanda
-      - sezione Evolution
-        * acctype_id
-        * accmod_id (0-3 => creare termini corrispondenti, vedere screenshot)
-        * path_mat (0-1 + campo commentaire comm_evol)
-      - sezione bebe
-        * commentaire général bebes
     * _form : 
       - creare una funzione javascript:
           aggiornare il valore di grossesse antérieures dinamicamente
-
-Bebe :
-  - table => ok? 
+      - creare la sezione bebes
 
 Correspondant :
   - vedere se utile tenere questa tabella

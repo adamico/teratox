@@ -89,22 +89,22 @@
   <table class="latex">
     <tr>
       <th>Sexe</th>
-      <th>Apgar (1 min)</th>
-      <th>Apgar (5 min)</th>
       <th>Poids</th>
       <th>Taille</th>
       <th>PC</th>
-      <th>Malformations</th>
-      <th>Pathologies</th>
+      <th>Apgar (1')</th>
+      <th>Apgar (5')</th>
+      <th>Malformation</th>
+      <th>Pathologie</th>
     </tr>
     <% @dossier.bebes.each do |bebe| %>
       <tr>
         <td><%= h bebe.sex %></td>
-        <td><%= h bebe.apgar1 %></td>
-        <td><%= h bebe.apgar5 %></td>
         <td><%= h bebe.poids %></td>
         <td><%= h bebe.taille %></td>
         <td><%= h bebe.pc %></td>
+        <td><%= h bebe.apgar1 %></td>
+        <td><%= h bebe.apgar5 %></td>
         <td><%= h bebe.malf %></td>
         <td><%= h bebe.path%></td>
       </tr>

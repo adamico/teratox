@@ -6,6 +6,7 @@
 
   <% content_for :jstemplates do -%>
     <%= "var exposition='#{generate_template(f, :expositions)}'" %>
+    <%= "var bebe='#{generate_template(f, :bebes)}'" %>
   <% end -%>
 
   <p>
@@ -263,6 +264,22 @@
       * Compléter le champ malformation dans la section nouveau-né si examen anatomo-pathologique interprétable
     </p>
   </div>
+  <h3>Nouveaux-nés</h3>
+  <div id="infonn">
+    <div id="bebes">
+      <% f.fields_for :bebes do |bebe_form| %>
+        <%= render :partial => 'bebe', :locals => { :f => bebe_form} %>
+      <% end %>
+    </div>
+    <p>
+      <%= link_to 'Rajouter un nouveau-né', '#bebe', :class => "add_nested_item", :rel => "bebes" %>
+    </p>
+    <p>
+      <%= f.text_area :comm_bebe, :class => "commentaire_100" %>
+    </p>
+  </div>
+</div>
+  
   <p>
     <%= f.submit 'Sauvegarder' %>
   </p>

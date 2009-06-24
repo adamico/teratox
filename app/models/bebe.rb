@@ -3,6 +3,8 @@ class Bebe < ActiveRecord::Base
   has_and_belongs_to_many :pathologies
   has_and_belongs_to_many :malformations
 
+  #TODO add validations for poids, taille, pc, apgar1 et apgar5
+
   def sex
     case sexe
     when 0; "inconnu"
