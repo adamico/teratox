@@ -1,6 +1,9 @@
 <% title ( "Dossier " + h( @dossier.n_sicap.to_s )) %>
 
-<%= link_to 'Modifier', edit_dossier_path(@dossier) %>
+<p>
+  <%= link_to 'Modifier', edit_dossier_path(@dossier) %> |
+  <%= link_to "Retour \à la liste", dossiers_path %>
+</p>
 
 <p id="time"><%= h @dossier.date_appel.to_s(:date_appel) %></p>
 
@@ -118,5 +121,6 @@
 </div>
 
 <p>
+  <%= link_to 'Modifier', edit_dossier_path(@dossier) %> |
   <%= link_to "Retour \à la liste", dossiers_path %>
 </p>

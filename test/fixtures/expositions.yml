@@ -2,12 +2,12 @@
 
 one:
   produit_id: 1
-  n_sicap: MyString
+  dossier_id: 1
   terme_id: 1
-  niveau: MyString
+  niveau_id: 1
 
 two:
-  produit_id: 1
-  n_sicap: MyString
-  terme_id: 1
-  niveau: MyString
+  produit_id: 2
+  dossier_id: 2
+  terme_id: 2
+  niveau_id: 2

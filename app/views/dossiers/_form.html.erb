@@ -16,7 +16,7 @@
 
   <p>
     <%= f.label :date_appel %>
-    <%= f.date_select :date_appel, :start_year => 1998, :order => [:day, :month, :year], :label => "Date d'appel : " %>
+    <%= f.date_select :date_appel, :start_year => 1998, :order => [:day, :month, :year] %>
   </p>
 
   <p>
@@ -197,7 +197,7 @@
             Type
           </th>
         </tr>
-        <% @acctypes.in_groups_of(2, false) do |row_at| %>
+        <% Acctype.all.in_groups_of(2, false) do |row_at| %>
           <tr>
             <% for acctype in row_at %>
               <td>
@@ -216,7 +216,7 @@
             Modalité
           </th>
         </tr>
-        <% @accmods.each do |am| %>
+        <% Accmod.all.each do |am| %>
           <tr>
             <td>
               <%= f.radio_button "accmod_id", am.id %>
@@ -278,8 +278,6 @@
       <%= f.text_area :comm_bebe, :class => "commentaire_100" %>
     </p>
   </div>
-</div>
-  
   <p>
     <%= f.submit 'Sauvegarder' %>
   </p>

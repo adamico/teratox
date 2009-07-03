@@ -1,15 +1,15 @@
 <% title ( "Liste des dossiers (" + h( @dossiers.count.to_s ) + ")" ) %>
 
-<table>
+<table class="latex">
   <% @dossier_years.each do |year, dossiers| %>
     <tr>
-      <td colspan="2"><h2>Année <%= year.strftime("%Y") %> (<%= h dossiers.count.to_s %>)</h2>
-        
-      </td>
+      <th colspan="2"><h2>Année <%= year.strftime("%Y") %> (<%= h dossiers.count.to_s %>)</h2>
+      </th>
     </tr>
     <tr>
       <th>Dossier</th>
       <th>Patiente</th>
+      <th>Exposition</th>
       <th>Evolution</th>
     </tr>
     <% dossiers.each do |dossier| %>
@@ -17,6 +17,11 @@
         <td><%= link_to h(dossier.n_sicap), dossier %></td>
         <td><%= dossier.short_name %></td>
         <td><%= dossier.acctype.name %></td>
+        <td>
+          <% dossier.produits.all.each do |p| %>
+            <%= p.name %><br />
+          <% end %>
+        </td>
         <td><%= link_to 'Modifier', edit_dossier_path(dossier) %></td>
         <td><%= link_to 'Detruire', dossier, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
       </tr>

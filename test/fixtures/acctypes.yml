@@ -1,7 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  nom: MyString
+  abbr: GEU
+  name: grossesse_extra_uterine
 
 two:
-  nom: MyString
+  abbr: MIU
+  name: mort_in_utero

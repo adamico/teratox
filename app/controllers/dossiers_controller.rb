@@ -1,11 +1,11 @@
 class DossiersController < ApplicationController
   def index
-    @dossiers = Dossier.all(:order => "date_appel DESC")
+    @dossiers = Dossier.all(:order => "date_appel DESC", :include => [ :acctype, :produits, :expositions ] )
     @dossier_years = @dossiers.group_by { |d| d.date_appel.beginning_of_year }
   end
 
   def show
-    @dossier = Dossier.find(params[:id], :include => [ :profession, { :expositions => :niveau }, :produits, :bebes ])
+    @dossier = Dossier.find(params[:id], :include => [ :profession, :acctype, :accmod, { :expositions => :niveau }, :produits, :bebes ])
   end
 
   def new
@@ -31,7 +31,7 @@ class DossiersController < ApplicationController
   end
 
   def edit
-    @dossier = Dossier.find(params[:id], :include => [ :profession, { :expositions => :niveau }, :produits, :bebes ])
+    @dossier = Dossier.find(params[:id], :include => [ :profession, :acctype, :accmod, { :expositions => :niveau }, :produits, :bebes ])
     @professions = Profession.all
     @niveaux = Niveau.all
     @acctypes = Acctype.all
