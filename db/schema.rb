@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090615124451) do
+ActiveRecord::Schema.define(:version => 20090703111401) do
 
   create_table "accmods", :force => true do |t|
     t.string "abbr"
@@ -89,6 +89,16 @@ ActiveRecord::Schema.define(:version => 20090615124451) do
 
   create_table "professions", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "searches", :force => true do |t|
+    t.integer  "produit_id"
+    t.string   "n_sicap"
+    t.datetime "min_date"
+    t.datetime "max_date"
+    t.integer  "acctype_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

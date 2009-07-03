@@ -1,0 +1,28 @@
+<% title "New Search" %>
+
+<% form_for @search do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :produit_id %><br />
+    <%= f.collection_select(:produit_id, Produit.all, :id, :name, :include_blank => true) %>
+  </p>
+  <p>
+    <%= f.label :n_sicap %><br />
+    <%= f.text_field :n_sicap %>
+  </p>
+  <p>
+    <%= f.label :min_date %><br />
+    <%= f.date_select :min_date, :start_year => 1998, :order => [:day, :month, :year] %>
+  </p>
+  <p>
+    <%= f.label :max_date %><br />
+    <%= f.date_select :max_date, :order => [:day, :month, :year] %>
+  </p>
+  <p>
+    <%= f.label :acctype_id, 'Évolution' %><br />
+    <%= f.collection_select(:acctype_id, Acctype.all, :id, :name, :include_blank => true ) %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
+
+

@@ -16,12 +16,12 @@
       <tr class="<%= cycle("even", "odd") -%>">
         <td><%= link_to h(dossier.n_sicap), dossier %></td>
         <td><%= dossier.short_name %></td>
-        <td><%= dossier.acctype.name %></td>
         <td>
           <% dossier.produits.all.each do |p| %>
             <%= p.name %><br />
           <% end %>
         </td>
+        <td><%= dossier.acctype.name %></td>
         <td><%= link_to 'Modifier', edit_dossier_path(dossier) %></td>
         <td><%= link_to 'Detruire', dossier, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
       </tr>

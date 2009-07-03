@@ -1,0 +1,13 @@
+<tr class="<%= cycle("even", "odd") -%>">
+  <td><%= h dossier.date_appel.year %></td>
+  <td><%= link_to h(dossier.n_sicap), dossier %></td>
+  <td><%= dossier.short_name %></td>
+  <td>
+    <% dossier.produits.all.each do |p| %>
+      <%= p.name %><br />
+    <% end %>
+  </td>
+  <td><%= dossier.acctype.name %></td>
+</tr>
+
+

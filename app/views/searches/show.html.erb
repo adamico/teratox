@@ -1,0 +1,19 @@
+<% title "Search" %>
+
+<p><%= @search.dossiers.count %> dossiers correspondant au critères :</p>
+<ul>
+  <li>Numéro Sicap: <%= h @search.n_sicap %></li>
+  <li>Interval de temps: <%= h @search.min_date.strftime('%d/%m/%Y') %> - <%= h @search.max_date.strftime('%d/%m/%Y') %></li>
+  <li>Evolution: <%= h Acctype.find(@search.acctype_id).name unless @search.acctype_id.blank? %></li>
+</ul>
+
+<table class="latex">
+  <tr>
+    <th>Année</th>
+    <th>Dossier</th>
+    <th>Patiente</th>
+    <th>Exposition</th>
+    <th>Evolution</th>
+  </tr>
+  <%= render :partial => @search.dossiers %>
+</table>

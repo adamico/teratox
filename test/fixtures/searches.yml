@@ -1,0 +1,13 @@
+one:
+  produit_id: 1
+  n_sicap: MyText
+  min_date: 2009-07-03 13:14:01
+  max_date: 2009-07-03 13:14:01
+  acctype_id: 1
+
+two:
+  produit_id: 1
+  n_sicap: MyText
+  min_date: 2009-07-03 13:14:01
+  max_date: 2009-07-03 13:14:01
+  acctype_id: 1
