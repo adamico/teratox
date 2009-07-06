@@ -30,8 +30,10 @@ Pathologie :
 Malformation :
   - creare table
 
+Search:
+  - aggiungere altri campi?
+
 Exploitation
-  (usare dei named scope?)
   - statistiques:
     * nombre dossiers (total, par année, par solvants/non solvants)
     * nombre evolution par type
@@ -39,4 +41,6 @@ Exploitation
     * nombre malformations/pathologie
     * epidémiologie varié (age moyenne, etc.)
 
-    http://railscasts.com/episodes/111-advanced-search-form
+Pagine fisse (about, disclaimer etc.)
+  - creare un controller (Info) 
+  - creare un resource (model, controller)

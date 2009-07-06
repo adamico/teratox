@@ -24,7 +24,7 @@ class Dossier < ActiveRecord::Base
   # named scopes
   named_scope :fausse_couche, :conditions => { :acctype_id => 1 }
   named_scope :solvants, :include => :produits, :conditions => { 'produits.name' => 'SOLVANT(S)' } 
-  named_scope :with_produit_id, :include => :produits, :conditions => lambda { |value| {:conditions => }}
+
   # virtual attributes
   def short_name
     "#{nom.upcase} #{prenom.first}."
