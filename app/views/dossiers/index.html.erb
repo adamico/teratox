@@ -1,4 +1,8 @@
 <% title ( "Liste des dossiers (" + h( @dossiers.count.to_s ) + ")" ) %>
+<a name="top"></a> 
+<p>
+  <%= link_to "Retour à l'accueil", root_path %>
+</p>
 
 <table class="latex">
   <% @dossier_years.each do |year, dossiers| %>
@@ -31,3 +35,5 @@
 
 <br />
 <%= link_to 'Nouveau dossier', new_dossier_path %>
+
+<a href="#top">Remonter</a>

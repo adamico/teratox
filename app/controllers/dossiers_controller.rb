@@ -2,6 +2,13 @@ class DossiersController < ApplicationController
   def index
     @dossiers = Dossier.all(:order => "date_appel DESC", :include => [ :acctype, :produits, :expositions ] )
     @dossier_years = @dossiers.group_by { |d| d.date_appel.beginning_of_year }
+    #respond_to do |wants|
+      #wants.html { @dossiers = @dossiers.paginate(:page => params[:page], :per_page => 10) }
+    #end
+  end
+
+  def evoluer
+    @dossiers = Dossier.incomplets
   end
 
   def show
