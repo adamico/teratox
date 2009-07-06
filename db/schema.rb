@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090706135755) do
+ActiveRecord::Schema.define(:version => 20090703111401) do
 
   create_table "accmods", :force => true do |t|
     t.string "abbr"
@@ -81,14 +81,6 @@ ActiveRecord::Schema.define(:version => 20090706135755) do
 
   create_table "niveaux", :force => true do |t|
     t.string "name"
-  end
-
-  create_table "pages", :force => true do |t|
-    t.string   "name"
-    t.string   "permalink"
-    t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "produits", :force => true do |t|

@@ -42,6 +42,5 @@ Exploitation
     * epidémiologie varié (age moyenne, etc.)
 
 Pagine fisse (about, disclaimer etc.)
-  http://railscasts.com/episodes/117-semi-static-pages
-
-
+  - creare un controller (Info) 
+  - creare un resource (model, controller)

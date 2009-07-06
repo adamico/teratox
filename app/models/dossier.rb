@@ -23,8 +23,7 @@ class Dossier < ActiveRecord::Base
 
   # named scopes
   named_scope :fausse_couche, :conditions => { :acctype_id => 1 }
-  named_scope :solvants, :include => :produits, :conditions => { 'produits.name' => 'SOLVANT(S)' }
-  named_scope :incomplets, :conditions => { :acctype_id => 6 } # evolution inconnue
+  named_scope :solvants, :include => :produits, :conditions => { 'produits.name' => 'SOLVANT(S)' } 
 
   # virtual attributes
   def short_name
