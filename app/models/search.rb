@@ -6,10 +6,13 @@ class Search < ActiveRecord::Base
   private
 
   def find_dossiers
+    cons = {
+      :min_date => ["dossiers.date_appel >= ?", min_date],
+      :max_date => ["dossiers.date_appel <= ?", max_date],
+      :acctype_id => ["dossiers.acctype_id = ?", acctype_id]
+    }
     scope = Dossier.scoped({})
-    scope = scope.conditions "dossiers.date_appel >= ?", min_date unless min_date.blank?
-    scope = scope.conditions "dossiers.date_appel <= ?", max_date unless max_date.blank?
-    scope = scope.conditions "dossiers.acctype_id = ?", acctype_id unless acctype_id.blank?
+    cons.each { |attribute, carray| scope = scope.conditions carray[0], carray[1] unless send(attribute).blank?}
     scope
   end
 end
