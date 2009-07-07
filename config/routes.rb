@@ -1,9 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :pages
-  map.resources :searches
-  map.resources :produits
+  map.resources :pages, :searches, :produits, :professions
   map.resources :dossiers, :collection => { :evoluer => :get }
-  map.resources :professions
 
   #map.root :dossiers #change this to my home when ready
   map.root :controller => 'pages', :action => 'home'

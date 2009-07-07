@@ -25,6 +25,7 @@ class Dossier < ActiveRecord::Base
   named_scope :fausse_couche, :conditions => { :acctype_id => 1 }
   named_scope :solvants, :include => :produits, :conditions => { 'produits.name' => 'SOLVANT(S)' }
   named_scope :incomplets, :conditions => { :acctype_id => 6 } # evolution inconnue
+  named_scope :with_n_sicap, lambda { |n_sicap| {:conditions => ['n_sicap = ?', n_sicap] } }
 
   # virtual attributes
   def short_name
