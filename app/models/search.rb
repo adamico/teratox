@@ -13,6 +13,7 @@ class Search < ActiveRecord::Base
     }
     scope = Dossier.scoped({})
     cons.each { |attribute, carray| scope = scope.conditions carray[0], carray[1] unless send(attribute).blank?}
+    scope = scope.scoped :include => :produits, :conditions => ['produits.id = ?', produit_id ]
     scope
   end
 end
