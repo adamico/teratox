@@ -6,6 +6,20 @@ class DossiersController < ApplicationController
 
   def evoluer
     @dossiers = Dossier.incomplets
+    if @dossiers.empty?
+      flash[:notice] = "Tous les évolutions ont été faites."
+      redirect_to :back
+    end
+  end
+
+  def search
+    @result = Dossier.find_by_n_sicap(params[:n_sicap])
+    if @result.nil?
+      flash[:notice] = "No record found for #{params[:n_sicap]}"
+      redirect_to :back
+    else
+      redirect_to :action => "show", :id => @result.id
+    end
   end
 
   def show

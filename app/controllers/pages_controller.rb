@@ -1,6 +1,12 @@
 class PagesController < ApplicationController
 
   def home
+    @dossiers ||= Dossier.all(:include => :bebes )
+    @last = Dossier.last
+    @solvants = Dossier.solvants
+    @produits ||= Produit.all
+    @bebes ||= Bebe.all
+    @evolutions ||= Acctype.all
   end
 
   def index

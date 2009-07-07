@@ -5,6 +5,7 @@ Implementare Admin/User
 
 Dossier :
   - table
+    * controllare evoluzioni MIU vs FCS => adapter stats impression
     * cercare cosa indica ncode
     * spurgare le colonne ddr, dap, dg
   - view :
@@ -16,7 +17,7 @@ Dossier :
         creare la possibilità di inserire patologie e malformazioni
 
 Correspondant :
-  - vedere se utile tenere questa tabella
+  - importare
 
 Produit :
   - table
@@ -31,17 +32,16 @@ Malformation :
   - creare table
 
 Search:
-  - aggiungere altri campi?
+  - aggiungere altri campi => stats fiche imprimée
+  - controllare cosa non va nel parametro exposition
 
 Exploitation
   - statistiques:
-    * nombre dossiers (total, par année, par solvants/non solvants)
-    * nombre evolution par type
-    * nombre enfants
     * nombre malformations/pathologie
-    * epidémiologie varié (age moyenne, etc.)
+    * epidémiologie => autre?
 
-Pagine fisse (about, disclaimer etc.)
-  http://railscasts.com/episodes/117-semi-static-pages
+Pagine fisse
+  - aggiungere about, disclaimer, tutorial (e altro?)
 
+Relance automatique
 

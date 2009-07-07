@@ -1,12 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :pages, :searches, :produits, :professions
   map.resources :dossiers, :collection => { :evoluer => :get }
+  map.resources :dossiers, :collection => { :search => :get }
 
   #map.root :dossiers #change this to my home when ready
   map.root :controller => 'pages', :action => 'home'
   
   map.static ':permalink', :controller => 'pages', :action => 'show'
 
+  map.connect ':controller/:action/:id'
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
