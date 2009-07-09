@@ -1,6 +1,11 @@
 TODO:
 *****
 
+Refactoring
+  * dare un'occhiata a http://asciicasts.com/episodes/166-metric-fu
+  * utilizzare il metodo try (http://asciicasts.com/episodes/152-rails-2-3-extras) per evitare i rescue in caso di record blank
+  * usare scoped_by al posto dei named scope
+
 Implementare Admin/User
 
 Dossier :
@@ -12,6 +17,8 @@ Dossier :
     * show :
       - fare in modo che cliccando sui titoli delle diverse sezioni ciascuna di queste si espanda
     * _form : 
+      - implementare un virtual attribute per generare il code SICAP del dossier LP0 + numero a 6 cifre => http://asciicasts.com/episodes/167-more-on-virtual-attributes
+      - tradurre le date in francese
       - creare una funzione javascript per aggiornare il valore di grossesse antérieures dinamicamente
       - sezione bebes
         creare la possibilità di inserire patologie e malformazioni
@@ -33,6 +40,7 @@ Malformation :
 
 Search:
   - aggiungere altri campi => stats fiche imprimée
+  - tradurre le date in francese
 
 Exploitation
   - statistiques:
