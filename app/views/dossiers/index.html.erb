@@ -13,7 +13,7 @@
     <tr>
       <th>Dossier</th>
       <th>Patiente</th>
-      <th>Exposition</th>
+      <th colspan="2">Exposition</th>
       <th>Evolution</th>
     </tr>
     <% dossiers.each do |dossier| %>
@@ -21,9 +21,14 @@
         <td><%= link_to h(dossier.n_sicap), dossier %></td>
         <td><%= dossier.short_name %></td>
         <td>
-          <% dossier.produits.all.each do |p| %>
+          <% dossier.produits.each do |p| %>
             <%= p.name %><br />
           <% end %>
+        </td>
+        <td>
+          <% dossier.expositions.each do |e| -%>
+            <%= e.niveau.name %><br />
+          <% end -%>
         </td>
         <td><%= dossier.acctype.name %></td>
         <td><%= link_to 'Modifier', edit_dossier_path(dossier) %></td>

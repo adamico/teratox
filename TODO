@@ -38,14 +38,26 @@ Pathologie :
 Malformation :
   - creare table
 
+Creare modello "Conduite à tenir préconisée"
+
 Search:
   - aggiungere altri campi => stats fiche imprimée
   - tradurre le date in francese
 
 Exploitation
+  - changer le nom en => Bilan
   - statistiques:
+    * Grossesse :
+      - age moyen en SA lors de l'appel
+    * Exposition
+      - nombre par niveau
+    * Enfants : 
+      - nombre total
+      - nombre avec malformations
+    * Profession
+      
     * nombre malformations/pathologie
-    * epidémiologie => autre?
+    * nature du correspondant (spécialité et qualité)
 
 Pagine fisse
   - aggiungere about, disclaimer, tutorial (e altro?)

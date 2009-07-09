@@ -1,6 +1,6 @@
 class DossiersController < ApplicationController
   def index
-    @dossiers = Dossier.all(:order => "date_appel DESC", :include => [ :acctype, :produits, :expositions ] )
+    @dossiers = Dossier.all(:order => "date_appel DESC", :include => [ :acctype, :produits, { :expositions => :niveau } ] )
     @dossier_years = @dossiers.group_by { |d| d.date_appel.beginning_of_year }
   end
 
