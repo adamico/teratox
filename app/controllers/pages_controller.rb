@@ -1,13 +1,12 @@
 class PagesController < ApplicationController
 
   def home
-    @dossiers ||= Dossier.all(:order => "date_appel DESC", :include => [ :acctype, :produits, :bebes, { :expositions => :niveau } ] )
+    @dossiers ||= Dossier.all(:include => :bebes )
     @last = Dossier.last
-    @solvants ||= Dossier.solvants
+    @solvants = Dossier.solvants
     @produits ||= Produit.all
     @bebes ||= Bebe.all
     @evolutions ||= Acctype.all
-    @niveaux ||= Niveau.all
   end
 
   def index

@@ -41,54 +41,15 @@
   </p>
   <p><%= f.submit "Submit" %></p>
 <% end %>
-<h3>Bilan :</h3>
+<h3>Statistiques :</h3>
 <h4>Données générales</h4>
 <p>
   Dossier plus récent : <%= link_to h(@last.n_sicap), dossier_path(@last) %>, du <%= @last.date_appel.to_s(:date_appel) %>
 </p> 
-
 <h4>Exposition</h4>
-<table class="latex">
-  <tr>
-    <th>&nbsp;</th>
-    <th colspan="2">
-      Groupe Solvants<br />
-      n = <%= @solvants.count %>
-    </th>
-    <th colspan="2">
-      Groupe Produits divers<br />
-      n = <%= @dossiers.count - @solvants.count %>
-    </th>
-  </tr>
-  <tr>
-    <th>
-      Âge moyenne <br />
-      de la mère
-    </th>
-    <td colspan="4">
-      <%= Dossier.average('age').round(1) %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Niveau expo
-    </td>
-    <td>
-      <% @niveaux.each do |n| -%>
-        <%= n.name %><br />
-      <% end -%>
-    </td>
-    <td>
-    </td>
-    <td>
-      <% @niveaux.each do |n| -%>
-        <%= n.name %><br />
-      <% end -%>
-    </td>
-  </tr>
-</table>
-
-
+<p>
+  <strong><%= @dossiers.count %></strong> dossiers, dont <strong><%= @solvants.count %></strong> exposés aux solvants.
+</p>
 <h4>Évolution</h4>
 <table>
   <% @evolutions.each do |e| %>
@@ -104,4 +65,5 @@
 </p>
 <h4>Épidémiologie</h4>
 <p>
+  Âge moyenne : <%= Dossier.average('age').round(1) %> ans.
 </p>
