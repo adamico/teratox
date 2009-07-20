@@ -1,9 +1,9 @@
 *.*swp
-log/*.log
-tmp/**/*
-config/database.yml
-db/*.sqlite3
 *~
 *.*~
-*.csv
-*.copy
+log/*.log
+tmp/**/*
+private/*
+private/*.*
+config/database.yml
+db/*.sqlite3
