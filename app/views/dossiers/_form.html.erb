@@ -175,6 +175,10 @@
 
   <h3 class="clear">Exposition</h3>
   <div id="infoexpo">
+  <p>
+    <%= f.label "Niveau global d'exposition" %>
+    <%= f.collection_select(:niveau_id, Niveau.all, :id, :name) %>
+  </p>
     <div id="expositions">
       <% f.fields_for :expositions do |expo_form| %>
         <%= render :partial => 'exposition', :locals => { :f => expo_form } %>

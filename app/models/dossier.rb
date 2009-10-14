@@ -11,6 +11,7 @@ class Dossier < ActiveRecord::Base
   belongs_to :profession
   belongs_to :acctype
   belongs_to :accmod
+  belongs_to :niveau
 
   has_many :produits, :through => :expositions
 
