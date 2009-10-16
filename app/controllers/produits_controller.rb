@@ -1,12 +1,8 @@
 class ProduitsController < ApplicationController
-  # GET /produits
-  # GET /produits.xml
   def index
     @produits = Produit.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
   end
 
-  # GET /produits/1
-  # GET /produits/1.xml
   def show
     @produit = Produit.find(params[:id])
 
@@ -16,8 +12,6 @@ class ProduitsController < ApplicationController
     end
   end
 
-  # GET /produits/new
-  # GET /produits/new.xml
   def new
     @produit = Produit.new
 
@@ -27,13 +21,10 @@ class ProduitsController < ApplicationController
     end
   end
 
-  # GET /produits/1/edit
   def edit
     @produit = Produit.find(params[:id])
   end
 
-  # POST /produits
-  # POST /produits.xml
   def create
     @produit = Produit.new(params[:produit])
 
@@ -49,8 +40,6 @@ class ProduitsController < ApplicationController
     end
   end
 
-  # PUT /produits/1
-  # PUT /produits/1.xml
   def update
     @produit = Produit.find(params[:id])
 
@@ -66,8 +55,6 @@ class ProduitsController < ApplicationController
     end
   end
 
-  # DELETE /produits/1
-  # DELETE /produits/1.xml
   def destroy
     @produit = Produit.find(params[:id])
     @produit.destroy
