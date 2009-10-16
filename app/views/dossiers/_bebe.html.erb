@@ -1,0 +1,30 @@
+<div class="bebe">
+  <table class="latex">
+    <tr>
+      <th><%= f.label :sexe %></th>
+      <th><%= f.label :poids %></th>
+      <th><%= f.label :taille %></th>
+      <th><%= f.label :pc, "PC" %></th>
+      <th><%= f.label :apgar1, "Apgar (1\')" %></th>
+      <th><%= f.label :apgar5, "Apgar (5\')" %></th>
+      <th><%= f.label :malformation %></th>
+      <th><%= f.label :pathologie %></th>
+    </tr>
+    <tr>
+      <td><%= f.select(:sexe, [['Inconnu', 0], ['Garçon', 1], ['Fille', 2]]) %></td>
+      <td><%= f.text_field :poids, :size => 2 %></td>
+      <td><%= f.text_field :taille, :size => 1 %></td>
+      <td><%= f.text_field :pc, :size => 1 %></td>
+      <td><%= f.text_field :apgar1, :size => 1 %></td>
+      <td><%= f.text_field :apgar5, :size => 1 %></td>
+      <td><%= f.select(:malformation, [['Non', 0], ['Oui', 1], ['NSP', 2]]) %></td>
+      <td><%= f.select(:pathologie, [['Non', 0], ['Oui', 1], ['NSP', 2]]) %></td>
+      <% unless f.object.new_record? %>
+        <td>
+          <%= f.label :_delete, "Effacer:" %>
+          <%= f.check_box :_delete %>
+        </td>
+      <% end %>
+    </tr>
+  </table>
+</div>
