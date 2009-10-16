@@ -1,28 +1,43 @@
 class Dossier < ActiveRecord::Base
   require 'chronic'
+
+  # Validations
   validates_presence_of :n_sicap
   validates_uniqueness_of :n_sicap
-  validates_presence_of :nom, :prenom, :age
+  validates_presence_of :nom
   validates_presence_of :fcs, :ivg, :img, :miu, :geu, :nai
   validates_numericality_of :fcs, :ivg, :img, :miu, :geu, :nai
-  validates_numericality_of :age, :less_than => 55 
   validates_numericality_of :sa, :less_than => 40 
 
+  # Associations
   belongs_to :profession
   belongs_to :acctype
   belongs_to :accmod
   belongs_to :niveau
 
   has_many :produits, :through => :expositions
-
   has_many :expositions, :dependent => :destroy
-  accepts_nested_attributes_for :expositions, :allow_destroy => true,
-    :reject_if => proc { |attrs| attrs['produit_name'].blank? } 
+  accepts_nested_attributes_for :expositions, :allow_destroy => true, :reject_if => proc { |attrs| attrs['produit_name'].blank? } 
 
   has_many :bebes, :dependent => :destroy
   accepts_nested_attributes_for :bebes, :allow_destroy => true
 
-  # virtual attributes
+  # Named Scopes
+  named_scope :solvants, :include => :produits, :conditions => { 'produits.name' => 'SOLVANT(S)' }
+  named_scope :autres, :include => :produits, :conditions => [ 'produits.name NOT LIKE ?', 'SOLVANT(S)']
+  named_scope :incomplets, :conditions => { :acctype_id => 6 } # evolution inconnue
+
+  # Custom Methods
+
+  def expotype
+    prnames = produits.collect { |p| p.name }
+    if prnames.include? "SOLVANT(S)"
+      "SOLVANT(S)"
+    else
+      "AUTRES"
+    end
+  end
+
   def short_name
     "#{nom.upcase} #{prenom.first}."
   end

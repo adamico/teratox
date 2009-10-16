@@ -4,6 +4,14 @@ class DossiersController < ApplicationController
     @dossier_years = @dossiers.group_by { |d| d.date_appel.beginning_of_year }
   end
 
+  def evoluer
+    @dossiers = Dossier.incomplets
+    if @dossiers.empty?
+      flash[:notice] = "Toutes les évolutions ont été faites."
+      redirect_to :back
+    end
+  end
+
   def show
     @dossier = Dossier.find(params[:id], :include => [ :profession, :acctype, :accmod, { :expositions => :niveau }, :produits, :bebes ])
   end
