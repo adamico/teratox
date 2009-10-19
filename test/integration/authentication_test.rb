@@ -6,7 +6,8 @@ class AuthenticationTest < ActionController::IntegrationTest
     visit login_url
     fill_in "Utilisateur", :with => "ada"
     fill_in "Mot de passe", :with => "secret"
-    click_button "Connecter"
+    click_button "Se connecter"
     assert_contain "Utilisateur connecté avec succès."
   end
+
 end

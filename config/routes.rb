@@ -1,11 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :produits
 
   map.resources :dossiers
-  map.resources :professions
+  map.resources :produits
+  map.resources :sessions
+  map.login 'login', :controller => 'sessions', :action => 'new'
 
-
-  map.root :controller => "dossiers"
+  map.root :controller => "home"
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

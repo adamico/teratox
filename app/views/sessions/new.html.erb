@@ -1,0 +1,16 @@
+<h1>Sessions#new</h1>
+<% form_tag sessions_path do %>
+  <ol class="formList">
+    <li>
+      <%= label_tag :username, "Utilisateur" %>
+      <%= text_field_tag :username %>
+    </li>
+    <li>
+      <%= label_tag :password, "Mot de passe" %>
+      <%= text_field_tag :password %>
+    </li>
+    <li>
+      <%= submit_tag "Se connecter" %>
+    </li>
+  </ol>
+<% end -%>

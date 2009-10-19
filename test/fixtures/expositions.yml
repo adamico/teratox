@@ -2,12 +2,10 @@
 
 one:
   produit_id: 1
-  n_sicap: MyString
   terme_id: 1
   niveau: MyString
 
 two:
   produit_id: 1
-  n_sicap: MyString
   terme_id: 1
   niveau: MyString
