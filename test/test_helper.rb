@@ -35,8 +35,14 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  #
+
+  setup do |session|
+    session.host! "localhost:3001"
+  end
+
   Webrat.configure do |config|
-    config.mode = :rails
+    config.mode = :selenium
   end
 end
 
