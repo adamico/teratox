@@ -32,7 +32,7 @@ class DossiersController < ApplicationController
 
     if @dossier.save
       flash[:notice] = "Dossier was successfully created."
-      redirect_to @dossier
+      redirect_to dossiers_path
     else
       render :action => 'new'
     end
