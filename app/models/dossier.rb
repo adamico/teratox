@@ -23,7 +23,6 @@ class Dossier < ActiveRecord::Base
 
   # Named Scopes
   named_scope :solvants, :include => :produits, :conditions => { 'produits.name' => 'SOLVANT(S)' }
-  named_scope :autres, :include => :produits, :conditions => [ 'produits.name NOT LIKE ?', 'SOLVANT(S)' ]
   named_scope :incomplets, :conditions => { :acctype_id => 6 } # evolution inconnue
 
   # custom methods

@@ -1,7 +1,5 @@
 class Bebe < ActiveRecord::Base
   belongs_to :dossier
-  #has_and_belongs_to_many :pathologies
-  #has_and_belongs_to_many :malformations
 
   def sex
     case sexe
