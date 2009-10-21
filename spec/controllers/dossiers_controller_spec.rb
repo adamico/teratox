@@ -1,28 +1,54 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe DossiersController, "creating a new dossier" do
-  integrate_views
-  fixtures :dossiers
+describe DossiersController, "POST create" do
 
-  it "should redirect to show with a notice on successful save" do
-    Dossier.any_instance.stubs(:valid?).returns(true)
-    post 'create'
-    assigns[:dossier].should_not be_new_record
-    flash[:notice].should_not be_nil
-    response.should redirect_to(dossiers_path)
+  before(:each) do
+    @dossier = mock_model(Dossier, :save =>nil)
+    Dossier.stub!(:new).and_return(@dossier)
   end
 
-  it "should re-render new template on failed save" do
-    Dossier.any_instance.stubs(:valid?).returns(false)
-    post 'create'
-    assigns[:dossier].should be_new_record
-    flash[:notice].should be_nil
-    response.should render_template('new')
+  it "should build a new dossier" do
+    Dossier.should_receive(:new).
+      with("n_sicap" => "LP9999997", "nom" => "Martin").
+      and_return(@dossier)
+    post :create, :dossier => {"n_sicap" => "LP9999997", "nom" => "Martin"}
   end
 
-  it "should pass params to dossier" do
-    post 'create', :dossier => { :nom => 'Pinco' }
-    assigns[:dossier].nom.should == 'Pinco'
+  it "should save the dossier" do
+    @dossier.should_receive(:save)
+    post :create
   end
 
+  context "when the dossier saves successfully" do
+    before(:each) do
+      @dossier.stub!(:save).and_return true
+    end
+
+    it "should set a flash[:notice] message" do
+      post :create
+      flash[:notice] = "The dossier was saved successfully."
+    end
+
+    it "should redirect to the dossier index" do
+      post :create
+      response.should redirect_to(dossiers_path)
+    end
+  end
+
+  context "when the dossier fails to save" do
+    before(:each) do
+      @dossier.stub!(:save).and_return false
+    end
+
+    it "should assign @dossier" do
+      post :create
+      assigns[:dossier].should == @dossier
+    end
+
+    it "should render the new template" do
+      post :create
+      response.should render_template(:new)
+    end
+
+  end
 end

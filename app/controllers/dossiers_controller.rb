@@ -31,7 +31,7 @@ class DossiersController < ApplicationController
     @dossier = Dossier.new(params[:dossier])
 
     if @dossier.save
-      flash[:notice] = "Dossier was successfully created."
+      flash[:notice] = "The dossier was saved successfully."
       redirect_to dossiers_path
     else
       render :action => 'new'
