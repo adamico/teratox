@@ -1,4 +1,7 @@
 class DossiersController < ApplicationController
+
+  before_filter :login_required
+
   def index
     @dossiers = Dossier.all(:order => "date_appel DESC")
     @dossier_years = @dossiers.group_by { |d| d.date_appel.beginning_of_year }
@@ -32,7 +35,7 @@ class DossiersController < ApplicationController
 
     if @dossier.save
       flash[:notice] = "The dossier was saved successfully."
-      redirect_to dossiers_path
+      redirect_to dossier_path(@dossier)
     else
       render :action => 'new'
     end
@@ -64,4 +67,5 @@ class DossiersController < ApplicationController
     flash[:notice] = "Successfully destroyed dossier."
     redirect_to dossiers_path
   end
+
 end
