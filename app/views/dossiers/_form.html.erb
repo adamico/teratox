@@ -183,7 +183,7 @@
     <div id="expositions">
       <% f.fields_for :expositions do |expo_form| %>
         <%= render :partial => 'exposition', :locals => { :f => expo_form } %>
-      <% end %> 
+      <% end %>
     </div>
     <p>
       <%= link_to 'Rajouter une exposition', '#exposition', :class => "add_nested_item", :rel => "expositions" %>

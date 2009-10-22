@@ -52,3 +52,19 @@ Spec::Runner.configure do |config|
   #
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
 end
+
+module Spec::Mocks::Methods
+  def stub_association!(association_name, methods_to_be_stubbed ={})
+    mock_assn = Spec::Mocks::Mock.new(association_name.to_s)
+    stub_association_with(association_name, mock_assn, methods_to_be_stubbed)
+  end
+
+  def stub_association_with(association_name, values, methods_to_be_stubbed ={})
+    methods_to_be_stubbed.each do |meth, return_value|
+      values.stub!(meth).and_return(return_value)
+    end
+    yield(values) if block_given?
+
+    self.stub!(association_name).and_return(values)
+  end
+end
