@@ -8,16 +8,4 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
-  protected
-
-  def login_required
-    unless current_user
-      redirect_to login_path
-      false
-    end
-  end
-
-  def current_user
-  end
-
 end

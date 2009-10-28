@@ -1,7 +1,5 @@
 class DossiersController < ApplicationController
 
-  before_filter :login_required
-
   def index
     @dossiers = Dossier.all(:order => "date_appel DESC")
     @dossier_years = @dossiers.group_by { |d| d.date_appel.beginning_of_year }
@@ -21,8 +19,6 @@ class DossiersController < ApplicationController
 
   def new
     @dossier = Dossier.new
-    #@dossier.expositions.build
-    #@dossier.bebes.build
 
     @professions = Profession.all
     @niveaux = Niveau.all

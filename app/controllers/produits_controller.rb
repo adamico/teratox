@@ -1,7 +1,5 @@
 class ProduitsController < ApplicationController
 
-  before_filter :login_required
-
   def index
     @produits = Produit.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
   end
@@ -33,7 +31,7 @@ class ProduitsController < ApplicationController
 
     respond_to do |format|
       if @produit.save
-        flash[:notice] = 'Produit was successfully created.'
+        flash[:notice] = 'The produit was saved successfully.'
         format.html { redirect_to(@produit) }
         format.xml  { render :xml => @produit, :status => :created, :location => @produit }
       else
