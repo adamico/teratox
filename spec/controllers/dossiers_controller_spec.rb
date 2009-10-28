@@ -3,18 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe DossiersController do
 
   describe "GET new" do
-
-    describe "anonymous user" do
-      it "should redirect to the login page" do
-        get :new
-        response.should redirect_to(login_path)
-      end
-
-      it "should not call the #new action" do
-        controller.should_not_receive(:new)
-        get :new
-      end
-    end
+    should_require_login :get, :new
 
     describe "authenticated user" do
       before(:each) do
@@ -42,18 +31,7 @@ describe DossiersController do
 
   describe "POST create" do
 
-    describe "anonymous user" do
-
-      it "should redirect to the login page" do
-        post :create
-        response.should redirect_to(login_path)
-      end
-
-      it "should not execute the #create action" do
-        controller.should_not_receive(:create)
-        post :create
-      end
-    end
+    should_require_login :post, :create
 
     describe "authenticated user" do
 

@@ -28,3 +28,6 @@ config.action_mailer.delivery_method = :test
 # config.active_record.schema_format = :sql
 #
 config.gem "webrat", :version => ">=0.4.4"
+config.gem "rspec", :lib => false
+config.gem "rspec-rails", :lib => false
+config.gem "remarkable_rails",  :lib => false

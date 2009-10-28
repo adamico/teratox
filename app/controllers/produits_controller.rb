@@ -1,4 +1,7 @@
 class ProduitsController < ApplicationController
+
+  before_filter :login_required
+
   def index
     @produits = Produit.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
   end
