@@ -1,94 +1,42 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe DossiersController do
+  mock_models :dossier
 
-  describe "GET new" do
+  describe :get => :new do
     should_require_login :get, :new
 
     describe "authenticated user" do
       before(:each) do
         login_as_user
-        @dossier = mock_model(Dossier)
-        Dossier.stub!(:new).and_return @dossier
       end
-
-      it "should build a dossier" do
-        Dossier.should_receive(:new)
-        get :new
-      end
-
-      it "should assign @dossier" do
-        get :new
-        assigns[:dossier].should == @dossier
-      end
-
-      it "should render the new template" do
-        get :new
-        response.should render_template(:new)
-      end
+      expects :new, :on => Dossier
+      should_assign_to :dossier
+      should_render_template 'new'
     end
   end
 
-  describe "POST create" do
-
+  describe :post => :create, :dossier => { :these => 'params' } do
     should_require_login :post, :create
 
     describe "authenticated user" do
-
       before(:each) do
         login_as_user
-        @dossier = mock_model(Dossier, :save =>nil)
-        Dossier.stub!(:new).and_return(@dossier)
       end
-
-      it "should build a new dossier" do
-        Dossier.should_receive(:new).
-          with("n_sicap" => "LP9999997", "nom" => "Martin").
-          and_return(@dossier)
-        post :create, :dossier => {"n_sicap" => "LP9999997", "nom" => "Martin"}
-      end
-
-      it "should save the dossier" do
-        @dossier.should_receive(:save)
-        post :create
-      end
+      expects :new, :on => Dossier, :with => {"these" => "params"}, :returns => dossier_proc
 
       context "when the dossier saves successfully" do
-        before(:each) do
-          @dossier.stub!(:save).and_return true
-        end
-
-        it "should set a flash[:notice] message" do
-          post :create
-          flash[:notice] = "The dossier was saved successfully."
-        end
-
-        it "should redirect to the created dossier" do
-          post :create
-          response.should redirect_to(dossier_path(@dossier))
-        end
+        expects :save, :on => dossier_proc, :returns => true
+        should_assign_to :dossier, :with => dossier_proc
+        should_set_the_flash :notice, :to => "The dossier was saved successfully."
+        should_redirect_to { dossier_url(@dossier)}
       end
 
       context "when the dossier fails to save" do
-
-        before(:each) do
-          @dossier.stub!(:save).and_return false
-        end
-
-        it "should assign @dossier" do
-          post :create
-          assigns[:dossier].should == @dossier
-        end
-
-        it "should render the new template" do
-          post :create
-          response.should render_template(:new)
-        end
-
+        expects :save, :on => dossier_proc, :returns => false
+        should_assign_to :dossier, :with => dossier_proc
+        should_render_template 'new'
       end
-
     end
-
   end
-
 end
