@@ -1,14 +1,7 @@
 <% title ( "Liste des dossiers (" + h( @dossiers.count.to_s ) + ")" ) %>
 
 <table>
-  <% @dossier_years.each do |year, dossiers| %>
-    <tr>
-      <td><h2>Année <%= year.strftime("%Y") %></h2></td>
-      <td>
-        (<%= h dossiers.count.to_s %> dossiers)
-      </td>
-    </tr>
-    <% dossiers.each do |dossier| %>
+    <% @dossiers.each do |dossier| %>
       <tr class="<%= cycle("even", "odd") -%>">
         <td><%= link_to h(dossier.n_sicap), dossier %></td>
         <td><%= dossier.short_name %></td>
@@ -16,7 +9,6 @@
         <td><%= link_to 'Detruire', dossier, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
       </tr>
     <% end %>
-  <% end %>
 </table>
 
 <br />

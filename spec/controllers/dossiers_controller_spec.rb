@@ -3,12 +3,12 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe DossiersController do
   mock_models :dossier
 
-  describe "get index" do
-    it "should render index template"
-  end
-
-  describe :get => :show, :id => '1' do
-    it "should render show template" 
+  describe :get => :index do
+    expects :all, :on => Dossier, :returns => dossiers_proc
+    #expects :date_appel, :on => dossier_proc, :returns => dossier_proc
+    #expects :beginning_of_year, :on => dossier_proc, :returns => dossier_proc
+    should_assign_to :dossiers, :with => dossiers_proc
+    should_render_template 'index'
   end
 
   describe :get => :new do
