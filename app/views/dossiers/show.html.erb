@@ -2,7 +2,7 @@
 
 <%= link_to 'Modifier', edit_dossier_path(@dossier) %>
 
-<p id="time"><%= h @dossier.date_appel %></p>
+<p id="time"><%= l @dossier.date_appel, :format => :jjmmaaaa %></p>
 
 <div id="infoperso">
   <table>

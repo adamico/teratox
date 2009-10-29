@@ -2,7 +2,7 @@ Feature: Browse dossiers in database
 
   So that I can modify dossiers in the database
   As a teratox user
-  I want to list and modify dossiers
+  I want to list dossiers and access singularly
 
   Background:
     Given I have a dossier numbered LP9999999
@@ -15,4 +15,3 @@ Feature: Browse dossiers in database
     Given I am on the list of dossiers
     When I follow "LP9999999"
     Then I should see "LP9999999"
-
