@@ -22,6 +22,7 @@ Feature: user access the home page
       And I press "Rechercher"
     Then I should see "Liste des dossiers (1)"
       And I should see "LP9999999"
+
 @focus
   Scenario: Link to bilan/statistiques
     When I follow "Bilan/statistiques"

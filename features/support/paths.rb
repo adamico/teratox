@@ -22,6 +22,8 @@ module NavigationHelpers
       dossiers_path
     when /dossier/
       dossier_path(Dossier.first)
+    when /bilan/
+      bilan_path
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
         "Now, go and add a mapping in #{__FILE__}"

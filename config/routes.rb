@@ -1,8 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.resources :dossiers, :produits
+  map.resources :home, :dossiers, :produits
+  map.resources :dossiers, :collection => { :evoluer => :get }
 
   map.root :controller => "home"
+
+  map.with_options :controller => 'home' do |page|
+    page.bilan 'bilan', :action => 'bilan'
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
