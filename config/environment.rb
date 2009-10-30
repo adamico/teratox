@@ -23,6 +23,7 @@ Rails::Initializer.run do |config|
     :lib     => 'formtastic', 
     :source  => 'http://gems.github.com'
   config.gem "webrat", :version => ">=0.4.4"
+  config.gem "searchlogic"
   config.gem "thoughtbot-factory_girl",
              :lib    => "factory_girl",
              :source => "http://gems.github.com"

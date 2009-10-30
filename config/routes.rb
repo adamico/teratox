@@ -1,15 +1,16 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.resources :home, :produits
-  map.resources :dossiers, :collection => { :search => :get }
   map.resources :dossiers, :collection => { :evoluer => :get }
+  map.resources :dossiers, :collection => { :search => :get }
 
-  map.root :controller => "home"
+  map.root :controller => "home", :action => 'index'
 
   map.with_options :controller => 'home' do |page|
     page.bilan 'bilan', :action => 'bilan'
   end
 
+  #map.connect ':controller/:action/:id'
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -49,6 +50,5 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing the them or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  #map.connect ':controller/:action/:id.:format'
 end
