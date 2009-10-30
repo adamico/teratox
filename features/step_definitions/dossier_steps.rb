@@ -1,11 +1,8 @@
-Given /^I have a? dossier? numbered (.+)$/ do |numbers|
-  numbers.split(', ').each do |number|
-   @dossier = Factory.create(:dossier, :n_sicap => number)
+Given /^the following (.+) records?$/ do |factory, table|
+  # table is a Cucumber::Ast::Table
+  table.hashes.each do |hash|
+    Factory(factory, hash)
   end
-end
-
-Given /^the patient name is (.+)$/ do |name|
-  @dossier.nom == name
 end
 
 Given /^I should have (\d+) incomplete dossier$/ do |count|
