@@ -23,7 +23,11 @@ Feature: user access the home page
     Then I should see "Liste des dossiers (1)"
       And I should see "LP9999999"
 
-@focus
   Scenario: Link to bilan/statistiques
     When I follow "Bilan/statistiques"
     Then I should be on bilan page
+
+@focus
+  Scenario: Link to evolution
+    When I follow "Une évolution"
+    Then I should be on dossiers page
