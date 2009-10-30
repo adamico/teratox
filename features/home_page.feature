@@ -1,4 +1,4 @@
-Feature: user access the home page
+Feature: Home page functions
 
   As a user
   I want to choose an action from the home page
@@ -6,7 +6,6 @@ Feature: user access the home page
 
   Background:
     Given I am on the homepage
-      And I have a dossier numbered "LP9999999"
 
   Scenario: Link to new dossier
     When I follow "Un nouveau dossier"
@@ -16,7 +15,6 @@ Feature: user access the home page
     When I follow "Tous les dossiers"
     Then I should see "Liste des dossiers"
 
-@search
   Scenario: Search for a dossier by n_sicap
     When I fill in "search[n_sicap_like]" with "LP9999999"
       And I press "Rechercher"
@@ -28,6 +26,6 @@ Feature: user access the home page
     Then I should be on bilan page
 
 @focus
-  Scenario: Link to evolution
+  Scenario: Link to evoluer
     When I follow "Une évolution"
-    Then I should be on dossiers page
+    Then I should be on evoluer page

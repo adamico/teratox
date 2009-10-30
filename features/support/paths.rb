@@ -20,6 +20,8 @@ module NavigationHelpers
       produits_path
     when /dossiers/
       dossiers_path
+    when /evoluer/
+      evoluer_dossiers_path
     when /dossier/
       dossier_path(Dossier.first)
     when /bilan/

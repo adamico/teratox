@@ -7,10 +7,6 @@ class DossiersController < ApplicationController
 
   def evoluer
     @dossiers = Dossier.incomplets
-    if @dossiers.empty?
-      flash[:notice] = "Toutes les évolutions ont été faites."
-      redirect_to :back
-    end
   end
 
   def show
