@@ -1,9 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.resources :dossiers
-  map.resources :produits
-  map.resources :sessions
-  map.login '/login', :controller => 'sessions', :action => 'new'
+  map.resources :dossiers, :produits
 
   map.root :controller => "home"
   # The priority is based upon order of creation: first created -> highest priority.
