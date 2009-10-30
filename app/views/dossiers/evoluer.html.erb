@@ -1,0 +1,16 @@
+<% if @dossiers.empty? %>
+  <p><h2>Tous les dossiers ont été évolués</h2></p>
+<% else %>
+  <% title ( "Dossier à évoluer (" + h( @dossiers.count.to_s ) + ")" ) %>
+  <table class="latex">
+    <tr>
+      <th>Année</th>
+      <th>Dossier</th>
+      <th>Patiente</th>
+      <th>Exposition</th>
+      <th>Evolution</th>
+    </tr>
+    <%= render :partial => @dossiers %>
+  </table>
+<% end %>
+<%= link_to "Retour à l'Accueil", root_path %>
