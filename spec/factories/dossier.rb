@@ -1,5 +1,5 @@
 Factory.define :dossier do |d|
-  d.n_sicap 'LP9999999'
+  d.sequence(:n_sicap) { |n| "LP#{n}" }
   d.nom 'Martin'
   d.prenom 'Martine'
   d.age '27'

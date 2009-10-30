@@ -6,10 +6,10 @@ Feature: Manage dossiers
 
   Background:
     Given the following dossier records
-    | n_sicap| nom|
-    | LP9999999| Martin|
-    | LP9999998| Machin|
-    | LP9999997| Machine|
+    | n_sicap   | nom     |
+    | LP9999999 | Martin  |
+    | LP9999998 | Machin  |
+    | LP9999997 | Machine |
       And I am on the list of dossiers
 
   Scenario: show a dossier from the list
@@ -25,7 +25,7 @@ Feature: Manage dossiers
     Then I should see "Liste des dossiers (<count>)"
       And I should see "<dossier1>"
       And I should see "<dossier2>"
-  
+
     Examples:
       | pattern | count | dossier1  | dossier2  |
       | mar     | 1     | LP9999999 |           |
