@@ -4,6 +4,10 @@ Given /^I have a? dossier? numbered (.+)$/ do |numbers|
   end
 end
 
+Given /^the patient name is (.+)$/ do |name|
+  @dossier.nom == name
+end
+
 Given /^I should have (\d+) incomplete dossier$/ do |count|
   incompleti = Dossier.incomplets
   incompleti << @dossier
