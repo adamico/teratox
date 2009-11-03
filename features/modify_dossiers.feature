@@ -10,3 +10,13 @@ Feature: Manage dossiers
       And another dossier exists with nom: "Machine", n_sicap: "LP3"
     Then a dossier should exist with nom: "Machin"
       And 3 dossiers should exist
+
+  Scenario: expositions
+    Given a produit: "SOLVANT(S)" exists
+      And another produit: "PLOMB" exists
+      And a dossier exists with n_sicap: "LP1"
+      And another dossier exists with n_sicap: "LP2"
+      And an exposition exists with dossier: the first dossier, produit: the first produit
+      And an exposition exists with dossier: the 2nd dossier, produit: the 2nd produit
+    Then the first dossier should be one of produit: "SOLVANT(S)"'s dossiers
+      And the 2nd dossier should be one of produit: "PLOMB"'s dossiers
