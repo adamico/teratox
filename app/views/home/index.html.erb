@@ -1,0 +1,20 @@
+<% title "TeraTox - Accueil" %>
+<h2>Que voulez-vous faire ?</h2>
+<h3>Saisir :</h3>
+<ul>
+  <li><%= link_to "Un nouveau dossier", new_dossier_path %></li>
+  <li><%= link_to "Une évolution", evoluer_dossiers_path %></li>
+</ul>
+<h3>Afficher :</h3>
+<ul>
+  <li><%= link_to "Tous les dossiers", dossiers_path %></li>
+  <li>
+    <% form_tag dossiers_path, :method => :get do %>
+      <%= label_tag :search, "Un dossier par son numéro SICAP : LP" %>
+      <%= text_field_tag "search[n_sicap_like]", params[:search][:n_sicap_like], :maxlength => 9, :size => 7 %>
+      <%= submit_tag  "Rechercher", :name => nil %>
+    <% end -%>
+  </li>
+</ul>
+<hr />
+<p><%= link_to "Bilan/Statistiques", bilan_path %></p>

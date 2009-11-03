@@ -1,0 +1,56 @@
+<% title 'Bilan/statistiques' %>
+<h3>Données générales</h3>
+<p>
+  Dossier plus récent : <%= link_to h(@last.n_sicap), dossier_path(@last) %>, du <%= @last.date_appel.to_s(:date_appel) %>
+</p> 
+
+<h3>Exposition</h3>
+<table class="latex">
+  <tr>
+    <th>&nbsp;</th>
+    <th>
+      Groupe Solvants<br />
+      n = <%= @solvants.count %>
+    </th>
+    <th>
+      Groupe Produits divers<br />
+      n = <%= @autres_nr %>
+    </th>
+  </tr>
+  <tr>
+    <th>
+      Âge moyenne <br />
+      de la mère
+    </th>
+    <td><%= @solvants.average(:age).round(1) %></td>
+    <td><%= @autres_age_moyen.to_f %></td>
+  </tr>
+  <% @niveaux.each do |n| %>
+    <tr>
+      <th style="text-align: right;">
+        <%= n.name %>
+      </th>
+      <td>
+        <%= n.dossiers.solvants.count %>
+      </td>
+      <td>
+        <%= n.dossiers.count - n.dossiers.solvants.count %>
+      </td>
+    </tr>
+  <% end %>
+</table><h3>Évolution</h3>
+<table>
+  <% @evolutions.each do |e| %>
+    <tr>
+      <td><%= e.name %></td>
+      <td id="right"><%= e.dossiers.count %></td>
+    </tr>
+  <% end %>
+</table>
+<h3>Enfants</h3>
+<p>
+  Nombre total d'enfants : <%= @bebes.count %> 
+</p>
+<h3>Épidémiologie</h3>
+<p>
+</p>

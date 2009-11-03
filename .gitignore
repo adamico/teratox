@@ -3,7 +3,6 @@
 *.*~
 log/*.log
 tmp/**/*
-private/*
 private/*.*
 config/database.yml
 db/*.sqlite3

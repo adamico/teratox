@@ -5,7 +5,7 @@
   <%= link_to "Retour à l'accueil", root_path %>
 </p>
 
-<p id="time"><%= h @dossier.date_appel.to_s(:date_appel) %></p>
+<p id="time"><%= l @dossier.date_appel, :format => :jjmmaaaa %></p>
 
 <div id="infoperso">
   <table>
@@ -48,6 +48,7 @@
 
 <h3>Exposition</h3>
 <div id="infoexpo">
+  <p>Niveau global d'exposition : <%= @dossier.niveau.name %></p>
   <table class="latex">
     <tr>
       <th>Nom du produit</th>

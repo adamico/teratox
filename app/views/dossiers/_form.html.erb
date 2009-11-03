@@ -151,7 +151,7 @@
           <%= f.label :dap, "Accouchement prévu : " %>
         </td>
         <td>
-          <%= f.date_select :dap, :order => [:day, :month, :year] %>
+          <%= f.date_select :dap, :order => [:day, :month, :year], :prompt => true %>
         </td>
       </tr>
       <tr>
@@ -159,7 +159,7 @@
           <%= f.label :ddr,  "DDR : " %>
         </td>
         <td>
-          <%= f.date_select :ddr, :order => [:day, :month, :year] %>
+          <%= f.date_select :ddr, :order => [:day, :month, :year], :prompt => true %>
         </td>
       </tr>
     </table>
@@ -174,12 +174,16 @@
     </p>
   </div>
 
-  <h3 class="clear">Exposition</h3>
+  <h3 class="clear">Expositions</h3>
   <div id="infoexpo">
+    <p>
+      <%= f.label "Niveau global d'exposition : " %>
+      <%= f.collection_select(:niveau_id, Niveau.all, :id, :name) %>
+    </p>
     <div id="expositions">
       <% f.fields_for :expositions do |expo_form| %>
         <%= render :partial => 'exposition', :locals => { :f => expo_form } %>
-      <% end %> 
+      <% end %>
     </div>
     <p>
       <%= link_to 'Rajouter une exposition', '#exposition', :class => "add_nested_item", :rel => "expositions" %>

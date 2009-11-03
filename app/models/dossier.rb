@@ -1,37 +1,49 @@
 class Dossier < ActiveRecord::Base
   require 'chronic'
+
+  # Validations
   validates_presence_of :n_sicap
   validates_uniqueness_of :n_sicap
-  validates_presence_of :nom, :age
-  validates_presence_of :fcs, :ivg, :img, :miu, :geu, :nai
-  validates_numericality_of :fcs, :ivg, :img, :miu, :geu, :nai
-  validates_numericality_of :age, :less_than => 55 
-  validates_numericality_of :sa, :less_than => 40 
+  validates_presence_of :nom
+  #validates_numericality_of :fcs, :ivg, :img, :miu, :geu, :nai
+  #validates_numericality_of :sa, :less_than => 40 
 
+  # Associations
   belongs_to :profession
   belongs_to :acctype
   belongs_to :accmod
-
   has_many :produits, :through => :expositions
-
   has_many :expositions, :dependent => :destroy
-  accepts_nested_attributes_for :expositions, :allow_destroy => true,
-    :reject_if => proc { |attrs| attrs['produit_name'].blank? } 
+  accepts_nested_attributes_for :expositions, :allow_destroy => true, :reject_if => proc { |attrs| attrs['produit_name'].blank? }
 
   has_many :bebes, :dependent => :destroy
   accepts_nested_attributes_for :bebes, :allow_destroy => true
 
-  # named scopes
-  named_scope :fausse_couche, :conditions => { :acctype_id => 1 }
+  belongs_to :niveau
+
+  # Named Scopes
   named_scope :solvants, :include => :produits, :conditions => { 'produits.name' => 'SOLVANT(S)' }
   named_scope :incomplets, :conditions => { :acctype_id => 6 } # evolution inconnue
-  named_scope :with_n_sicap, lambda { |n_sicap| {:conditions => ['n_sicap = ?', n_sicap] } }
 
-  # virtual attributes
-  def short_name
-    "#{nom.upcase} #{prenom.first}."
+  # custom methods
+
+  def expotype
+    prnames = produits.collect { |p| p.name }
+    if prnames.include? "SOLVANT(S)"
+      "SOLVANT(S)"
+    else
+      "AUTRES"
+    end
   end
-  
+
+  def short_name
+    [nom.upcase, initiale_prenom].compact.join(' ')
+  end
+
+  def initiale_prenom
+    "#{prenom.first}." unless prenom.blank?
+  end
+
   def atcdp
     case ap_id
     when 1; "aucun"
@@ -93,13 +105,14 @@ class Dossier < ActiveRecord::Base
       d
     else
       c = %w{ fcs geu miu ivg img nai }
-      d+= b.to_s + " (dont "
+      d = b.to_s + " (dont"
       for i in 0..4
         if a[i]==0
           next
         end
-        d+= a[i].to_s + " " + c[i].to_s + ")"
+        d+= " " + a[i].to_s + " " + c[i].to_s
       end
+      d+= ")"
       d
     end
   end
@@ -117,7 +130,7 @@ class Dossier < ActiveRecord::Base
   def validate
     errors.add(:dg, "La date de debut de grossesse n'est pas valide") if @dg_invalid
   end
-  
+
   # info sur l'évolution
   def date_acc
     "Date d'accouchement : #{dra.strftime("%d-%m-%Y")}" unless dra.nil?

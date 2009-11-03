@@ -1,15 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  nom: MyString
-  prenom: MyString
-  age: 1
-  profession: MyString
-  commentaire: MyText
+  n_sicap: LP9999999
+  nom: Pinco
 
 two:
-  nom: MyString
-  prenom: MyString
-  age: 1
-  profession: MyString
-  commentaire: MyText
+  n_sicap: LP9999998
+  nom: Pallino
