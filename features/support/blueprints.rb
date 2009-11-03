@@ -32,8 +32,8 @@ Dossier.blueprint do
   af_id '0'
   assmedproc_id '0'
   #associations
-  niveau { Niveau.make }
-  acctype { Acctype.make }
+  niveau
+  acctype
 end
 
 Niveau.blueprint do
@@ -43,4 +43,9 @@ end
 Acctype.blueprint do
   abbr 'NAI'
   name 'naissance'
+end
+
+Exposition.blueprint do
+  dossier
+  produit
 end
