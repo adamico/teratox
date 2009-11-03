@@ -30,8 +30,8 @@ Factory.define :dossier do |d|
   d.assmedproc_id '0'
   #d.commmentaire 'blabla'
   # associations
-  d.niveau {|n| n.association(:niveau)}
   d.acctype {|a| a.association(:acctype)}
+  d.niveau {|n| n.association(:niveau)}
   d.profession {|p| p.association(:profession)}
   d.accmod {|am| am.association(:accmod)}
 end

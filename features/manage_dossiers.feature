@@ -18,7 +18,6 @@ Feature: Manage dossiers
       And I should see "Patiente :"
       And I should see "MARTIN"
 
-@focus
   Scenario Outline: search dossiers by patient name
     When I fill in "search[nom_like]" with "<pattern>"
       And I press "Rechercher"
@@ -31,3 +30,8 @@ Feature: Manage dossiers
       | mar     | 1     | LP9999999 |           |
       | mac     | 2     | LP9999998 | LP9999997 |
       | gap     | 0     |           |           |
+
+@focus
+    Scenario: search dossiers by evolution type
+
+    Scenario: search dossiers by exposition

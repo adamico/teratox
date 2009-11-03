@@ -16,16 +16,12 @@ Feature: Home page functions
     Then I should see "Liste des dossiers"
 
   Scenario: Search for a dossier by n_sicap
+    Given I have a dossier numbered LP9999999
     When I fill in "search[n_sicap_like]" with "LP9999999"
       And I press "Rechercher"
     Then I should see "Liste des dossiers (1)"
       And I should see "LP9999999"
 
   Scenario: Link to bilan/statistiques
-    When I follow "Bilan/statistiques"
-    Then I should be on bilan page
 
-@focus
   Scenario: Link to evoluer
-    When I follow "Une évolution"
-    Then I should be on evoluer page

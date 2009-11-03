@@ -1,8 +1,7 @@
-Given /^the following (.+) records?$/ do |factory, table|
-  # table is a Cucumber::Ast::Table
-  table.hashes.each do |hash|
-    Factory(factory, hash)
-  end
+Then /^I should see dossiers table$/ do |expected_table|
+  html_table = table_at("#dossiers").to_a
+  html_table.map! { |r| r.map! { |c| c.gsub(/<.+?>/, '')}}
+  expected_table.diff!(html_table)
 end
 
 Given /^I should have (\d+) incomplete dossier$/ do |count|

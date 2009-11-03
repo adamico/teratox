@@ -11,7 +11,7 @@
   <%= f.submit "Rechercher", :name => nil %>
 <% end %>
 
-<table>
+<table id="dossiers">
     <% @dossiers.each do |dossier| %>
       <tr class="<%= cycle("even", "odd") -%>">
         <td><%= link_to h(dossier.n_sicap), dossier %></td>

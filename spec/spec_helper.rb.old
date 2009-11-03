@@ -1,16 +1,20 @@
 # This file is copied to ~/spec when you run 'ruby script/generate rspec'
 # from the project root directory.
 ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path(File.join(File.dirname(__FILE__),'..','config','environment'))
+require File.dirname(__FILE__) + "/factories"  
+require File.dirname(__FILE__) + "/../config/environment" unless defined?(RAILS_ROOT)
 require 'spec/autorun'
 require 'spec/rails'
-
-# Uncomment the next line to use webrat's matchers
-#require 'webrat/integrations/rspec-rails'
+require 'remarkable_rails'
+require 'webrat'
+require 'webrat/core/matchers/have_tag'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
-Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
+
+Dir["#{File.dirname(__FILE__)}/spec_helpers/**/*.rb"].each {|f| require f}
+
 
 Spec::Runner.configure do |config|
   # If you're not using ActiveRecord you should remove these
@@ -19,6 +23,11 @@ Spec::Runner.configure do |config|
   config.use_transactional_fixtures = true
   config.use_instantiated_fixtures  = false
   config.fixture_path = RAILS_ROOT + '/spec/fixtures/'
+  config.include Webrat::Matchers, :type => :view
+  config.include Webrat::HaveTagMatcher, :type => :view
+  config.include ControllerHelpers, :type => :controller
+  config.extend ControllerMacros, :type => :controller
+
 
   # == Fixtures
   #

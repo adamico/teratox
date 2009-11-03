@@ -5,8 +5,8 @@ class Dossier < ActiveRecord::Base
   validates_presence_of :n_sicap
   validates_uniqueness_of :n_sicap
   validates_presence_of :nom
-  validates_numericality_of :fcs, :ivg, :img, :miu, :geu, :nai
-  validates_numericality_of :sa, :less_than => 40 
+  #validates_numericality_of :fcs, :ivg, :img, :miu, :geu, :nai
+  #validates_numericality_of :sa, :less_than => 40 
 
   # Associations
   belongs_to :profession
