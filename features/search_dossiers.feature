@@ -1,22 +1,16 @@
-Feature: Manage dossiers
+Feature: Search dossiers
 
-  So that I can find evidence on teratogen products
+  So that I can do stuff to specific dossiers
   As a teratox user
-  I want to manage dossiers
+  I want to search dossiers by different fields
 
   Background:
-    Given the following dossier records
+    Given the following dossiers exist
     | n_sicap   | nom     |
     | LP9999999 | Martin  |
     | LP9999998 | Machin  |
     | LP9999997 | Machine |
-      And I am on the list of dossiers
-
-  Scenario: show a dossier from the list
-    When I follow "LP9999999"
-    Then I should see "LP9999999"
-      And I should see "Patiente :"
-      And I should see "MARTIN"
+    And I am on the dossiers page
 
   Scenario Outline: search dossiers by patient name
     When I fill in "search[nom_like]" with "<pattern>"

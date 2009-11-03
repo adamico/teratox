@@ -17,7 +17,6 @@ Feature: Manage dossiers
     Then I should see "LP1"
     And I should see "MARTIN"
 
-@focus
   Scenario: list dossiers
     Given the following dossiers exist
       | n_sicap   | nom     |
@@ -29,21 +28,3 @@ Feature: Manage dossiers
       | LP9999999 | MARTIN  |
       | LP9999998 | MACHIN  |
       | LP9999997 | MACHINE |
-
-  Scenario Outline: search dossiers by patient name
-    When I go to path "/dossiers"
-      And I fill in "search[nom_like]" with "<pattern>"
-      And I press "Rechercher"
-    Then I should see "Liste des dossiers (<count>)"
-      And I should see "<dossier1>"
-      And I should see "<dossier2>"
-
-    Examples:
-      | pattern | count | dossier1  | dossier2  |
-      | mar     | 1     | LP9999999 |           |
-      | mac     | 2     | LP9999998 | LP9999997 |
-      | gap     | 0     |           |           |
-
-    Scenario: search dossiers by evolution type
-
-    Scenario: search dossiers by exposition
