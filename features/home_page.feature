@@ -22,6 +22,9 @@ Feature: Home page functions
     Then I should see "Liste des dossiers (1)"
       And I should see "LP9999999"
 
-  Scenario: Link to bilan/statistiques
+@focus
+  Scenario: Link to bilan statistiques
+    When I follow "Bilan - Statistiques"
+    Then I should be at bilan page
 
   Scenario: Link to evoluer

@@ -4,6 +4,7 @@ class Dossier < ActiveRecord::Base
   # Validations
   validates_presence_of :n_sicap
   validates_presence_of :nom
+  validates_presence_of :acctype_id
   validates_uniqueness_of :n_sicap
   validates_numericality_of :fcs, :ivg, :img, :miu, :geu, :nai, :allow_blank => true
   validates_numericality_of :sa, :less_than => 40, :allow_blank => true
@@ -103,9 +104,9 @@ class Dossier < ActiveRecord::Base
 
   def gestite
     a = [fcs, geu, miu, ivg, img, nai]
-    b = a.sum
+    b = a.sum + 1
     d = b.to_s
-    if b==nai
+    if b == ( nai + 1 )
       d
     else
       c = %w{ fcs geu miu ivg img nai }
