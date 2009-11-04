@@ -7,25 +7,25 @@
 <% form_for @search do |f| %>
   <%= f.label :nom_like, "Nom : " %><%= f.text_field :nom_like %><br />
   <%= f.label "Exposition : " %><%= f.collection_select :produits_id_equals, Produit.all, :id, :name, :include_blank => true %><br />
-  <%= f.label "Evolution : " %><%= f.collection_select :acctype_id_equals, Acctype.all, :id, :name, :include_blank => true  %><br />
+  <%= f.label "Evolution : " %><%= f.collection_select :acctype_id_equals, Acctype.all, :id, :name, :include_blank => true %><br />
   <%= f.submit "Rechercher", :name => nil %>
 <% end %>
-
+<p>Trier par <%= order @search, :by => :date_appel %> | <%= order @search, :by => :nom %></p>
 <table id="dossiers">
-    <% @dossiers.each do |dossier| %>
-      <tr class="<%= cycle("even", "odd") -%>">
-        <td><%= link_to h(dossier.n_sicap), dossier %></td>
-        <td><%= dossier.short_name %></td>
-        <td>
-          <% dossier.produits.all.each do |p| %>
-            <%= p.name %><br />
-          <% end %>
-        </td>
-        <td><%= dossier.acctype.name unless dossier.acctype.nil? %></td>
-        <td><%= link_to 'Modifier', edit_dossier_path(dossier) %></td>
-        <td><%= link_to 'Detruire', dossier, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
-      </tr>
-    <% end %>
+  <% @dossiers.each do |dossier| %>
+    <tr class="<%= cycle("even", "odd") -%>">
+      <td><%= link_to h(dossier.n_sicap), dossier %></td>
+      <td><%= dossier.short_name %></td>
+      <td>
+        <% dossier.produits.all.each do |p| %>
+          <%= p.name %><br />
+        <% end %>
+      </td>
+      <td><%= dossier.acctype.name unless dossier.acctype.nil? %></td>
+      <td><%= link_to 'Modifier', edit_dossier_path(dossier) %></td>
+      <td><%= link_to 'Detruire', dossier, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
+    </tr>
+  <% end %>
 </table>
 
 <br />

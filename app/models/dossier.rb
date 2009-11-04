@@ -5,8 +5,8 @@ class Dossier < ActiveRecord::Base
   validates_presence_of :n_sicap
   validates_uniqueness_of :n_sicap
   validates_presence_of :nom
-  validates_numericality_of :fcs, :ivg, :img, :miu, :geu, :nai
-  validates_numericality_of :sa, :less_than => 40 
+  validates_numericality_of :fcs, :ivg, :img, :miu, :geu, :nai, :allow_blank => true
+  validates_numericality_of :sa, :less_than => 40, :allow_blank => true
 
   # Associations
   belongs_to :profession
@@ -26,6 +26,10 @@ class Dossier < ActiveRecord::Base
   named_scope :incomplets, :conditions => { :acctype_id => 6 } # evolution inconnue
 
   # custom methods
+
+  def year
+    date_appel.year
+  end
 
   def expotype
     prnames = produits.collect { |p| p.name }
