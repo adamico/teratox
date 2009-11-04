@@ -56,9 +56,9 @@ require 'pickle/path/world'
 
 # settings for machinist
 
-require "#{RAILS_ROOT}/features/support/blueprints" # load blueprints
+#require "#{RAILS_ROOT}/features/support/blueprints" # load blueprints
 # original setting
-Before { Sham.reset } # reset Sham in between scenarios
+#Before { Sham.reset } # reset Sham in between scenarios
 # might want to switch to:
 # Before { Sham.reset(:before_each) }
 # and should we have one for :before_all (see related entry in machinist readme)

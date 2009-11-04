@@ -1,4 +1,4 @@
-Feature: Manage dossiers
+Feature: Modify dossiers
 
   So that I can operate on the right dossier
   As a teratox user
