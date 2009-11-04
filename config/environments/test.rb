@@ -30,5 +30,7 @@ config.action_mailer.delivery_method = :test
 config.gem "webrat", :version => ">=0.5.3"
 config.gem "cucumber", :lib => false, :version => ">=0.4.3"
 config.gem "pickle", :lib => false, :version => ">=0.1.21"
-config.gem "remarkable_rails",  :lib => false
+config.gem "rspec", :lib => false
+config.gem "rspec-rails", :lib => false
+config.gem "remarkable_rails", :lib => false
 config.gem "thoughtbot-factory_girl", :lib => "factory_girl", :source => "http://gems.github.com"

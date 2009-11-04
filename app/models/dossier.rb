@@ -17,7 +17,7 @@ class Dossier < ActiveRecord::Base
   accepts_nested_attributes_for :expositions, :allow_destroy => true, :reject_if => proc { |attrs| attrs['produit_name'].blank? }
 
   has_many :bebes, :dependent => :destroy
-  accepts_nested_attributes_for :bebes, :allow_destroy => true
+  accepts_nested_attributes_for :bebes, :allow_destroy => true, :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? }}
 
   belongs_to :niveau
 
