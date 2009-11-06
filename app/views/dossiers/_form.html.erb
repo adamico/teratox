@@ -2,7 +2,7 @@
 
 <%= error_messages_for :dossier %>
 
-<% form_for :dossier do |f| %>
+<% form_for @dossier do |f| %>
 
   <% content_for :jstemplates do -%>
     <%= "var exposition='#{generate_template(f, :expositions)}'" %>

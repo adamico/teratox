@@ -1,6 +1,7 @@
 class ProduitsController < ApplicationController
 
   def index
+    params[:search] ||= {}
     @produits = Produit.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
   end
 
