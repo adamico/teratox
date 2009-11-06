@@ -23,7 +23,8 @@ class Dossier < ActiveRecord::Base
   belongs_to :niveau
 
   # Named Scopes
-  named_scope :solvants, :include => :produits, :conditions => { 'produits.name' => 'SOLVANT(S)' }
+  #named_scope :solvants, :include => :produits, :conditions => { 'produits.name' => 'SOLVANT(S)' }
+  alias_scope :solvants, lambda { produits_name_like('solvant') }
   
   named_scope :incomplets, :conditions => { :acctype_id => 6 } # evolution inconnue
 
