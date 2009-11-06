@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   def bilan
     @dossiers = Dossier.all
     @last = Dossier.last
-    @solvants ||= Dossier.solvants
+    @solvants ||= Dossier.produits_name_like('solvant')
     @autres_nr = @dossiers.count - @solvants.count
     @autres_age_total = Dossier.sum(:age) - @solvants.sum(:age)
     @autres_age_moyen ||= @autres_age_total / @autres_nr
