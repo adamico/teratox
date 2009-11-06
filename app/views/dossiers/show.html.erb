@@ -2,7 +2,7 @@
 
 <p>
   <%= link_to 'Modifier', edit_dossier_path(@dossier) %> |
-  <%= link_to "Retour à l'accueil", root_path %>
+  <%= link_to "Retour à l'accueil", root_path %> | <%= link_to "Saisir un nouveau dossier", new_dossier_path %>
 </p>
 
 <p id="time"><%= l @dossier.date_appel, :format => :jjmmaaaa %></p>

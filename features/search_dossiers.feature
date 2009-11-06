@@ -23,7 +23,6 @@ Feature: Search dossiers
       | mac     | 2     | LP9999998 | LP9999997 |
       | gap     | 0     |           |           |
 
-@focus
   Scenario: search dossiers by evolution type
     Given an acctype: "nai" exists with name: "naissance"
       And an acctype: "fcs" exists with name: "fausse couche spontanée"

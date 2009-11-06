@@ -30,7 +30,16 @@ Factory.define :dossier do |d|
   d.assmedproc_id '0'
   #d.commmentaire 'blabla'
   # associations
+
+  class << d
+    def default_acctype
+      @default_acctype ||= Factory(:acctype)
+    end
+  end
+  d.acctype_id { d.default_acctype.id }
+
   d.acctype {|a| a.association(:acctype)}
+  d.expositions {|e| [e.association(:exposition)]}
   d.niveau {|n| n.association(:niveau)}
   d.profession {|p| p.association(:profession)}
   d.accmod {|am| am.association(:accmod)}

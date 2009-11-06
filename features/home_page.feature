@@ -16,15 +16,8 @@ Feature: Home page functions
     Then I should see "Liste des dossiers"
 
   Scenario: Search for a dossier by n_sicap
-    Given I have a dossier numbered LP9999999
+    Given a dossier exists with n_sicap: "LP9999999"
     When I fill in "search[n_sicap_like]" with "LP9999999"
       And I press "Rechercher"
     Then I should see "Liste des dossiers (1)"
       And I should see "LP9999999"
-
-@focus
-  Scenario: Link to bilan statistiques
-    When I follow "Bilan - Statistiques"
-    Then I should be at bilan page
-
-  Scenario: Link to evoluer

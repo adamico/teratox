@@ -10,14 +10,15 @@ Feature: Display dossiers
     Then I should see "LP1"
     And I should see "MARTIN"
 
+@focus
   Scenario: list dossiers
     Given the following dossiers exist
-      | n_sicap   | nom     |
-      | LP9999999 | Martin  |
-      | LP9999998 | Machin  |
-      | LP9999997 | Machine |
+      | n_sicap   | nom     | prenom  |
+      | LP9999999 | Martin  | Marie   |
+      | LP9999998 | Machin  | Laure   |
+      | LP9999997 | Machine | Laurie  |
     When I go to the dossiers page
     Then I should see dossiers table
-      | LP9999999 | MARTIN  |
-      | LP9999998 | MACHIN  |
-      | LP9999997 | MACHINE |
+      | LP9999999 | MARTIN M. |
+      | LP9999998 | MACHIN L. |
+      | LP9999997 | MACHINE L. |

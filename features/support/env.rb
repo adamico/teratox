@@ -48,10 +48,10 @@ end
 require 'pickle/world'
 # Example of configuring pickle:
 #
-# Pickle.configure do |config|
-#   config.adapters = [:machinist]
+Pickle.configure do |config|
+  config.adapters = [:factory_girl]
 #   config.map 'I', 'myself', 'me', 'my', :to => 'user: "me"'
-# end
+end
 require 'pickle/path/world'
 
 # settings for machinist

@@ -4,13 +4,7 @@ Feature: Modify dossiers
   As a teratox user
   I want to browse dossiers and see detailed information
 
-  Scenario: creating and asserting
-    Given a dossier exists with nom: "Martin", n_sicap: "LP1"
-      And another dossier exists with nom: "Machin", n_sicap: "LP2"
-      And another dossier exists with nom: "Machine", n_sicap: "LP3"
-    Then a dossier should exist with nom: "Machin"
-      And 3 dossiers should exist
-
+@focus
   Scenario: expositions
     Given a produit: "SOLVANT(S)" exists
       And another produit: "PLOMB" exists
@@ -20,3 +14,10 @@ Feature: Modify dossiers
       And an exposition exists with dossier: the 2nd dossier, produit: the 2nd produit
     Then the first dossier should be one of produit: "SOLVANT(S)"'s dossiers
       And the 2nd dossier should be one of produit: "PLOMB"'s dossiers
+
+  Scenario: links in dossier page
+    Given a dossier exists with nom: "Martin", n_sicap: "LP1"
+    When I go to the dossier's page
+    Then I should see "Modifier"
+      And I should see "Saisir un nouveau dossier"
+      And I should see "Retour à l'accueil"
