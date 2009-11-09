@@ -21,6 +21,7 @@ class Dossier < ActiveRecord::Base
   accepts_nested_attributes_for :bebes, :allow_destroy => true, :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? }}
 
   belongs_to :niveau
+  belongs_to :correspondant
 
   # Named Scopes
   #named_scope :solvants, :include => :produits, :conditions => { 'produits.name' => 'SOLVANT(S)' }

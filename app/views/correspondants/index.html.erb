@@ -1,0 +1,29 @@
+<% title "Correspondants" %>
+
+<table>
+  <tr>
+    <th>Nom</th>
+    <th>Adresse</th>
+    <th>Cp</th>
+    <th>Ville</th>
+    <th>Tel</th>
+    <th>Fax</th>
+    <th>Poste</th>
+    <th>Email</th>
+  </tr>
+  <% for correspondant in @correspondants %>
+    <tr>
+      <td><%=h correspondant.nom %></td>
+      <td><%=h correspondant.adresse %></td>
+      <td><%=h correspondant.cp %></td>
+      <td><%=h correspondant.ville %></td>
+      <td><%=h correspondant.tel %></td>
+      <td><%=h correspondant.fax %></td>
+      <td><%=h correspondant.poste %></td>
+      <td><%=h correspondant.email %></td>
+      <td><%= link_to "Edit", edit_correspondant_path(correspondant) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Correspondant", new_correspondant_path %></p>

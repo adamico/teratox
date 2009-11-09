@@ -16,15 +16,25 @@
       <td><%= h @dossier.age %></td>
     </tr>
     <tr>
-      <th>
+      <th id="right">
         Profession :
       </th>
       <td>
         <%= h @dossier.profession.name rescue "Non renseign\ée" %>
       </td>
     </tr>
+    <tr>
+      <th id="right">
+        Correspondant :
+      </th>
+      <td>
+        <%= h @dossier.correspondant.nom rescue "Non renseign\é" %>
+      </td>
+    </tr>
   </table>
 </div>
+
+<p>
 
 <h3>Antécédents/facteurs de risque</h3>
 <div id="infoatcd">

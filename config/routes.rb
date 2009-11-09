@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :correspondants
+
   map.resources :home, :produits
   map.resources :dossiers, :collection => { :evoluer => :get }
 
