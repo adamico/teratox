@@ -15,6 +15,8 @@ class DossiersController < ApplicationController
 
   def new
     @dossier = Dossier.new
+    @dossier.expositions.build
+    @dossier.bebes.build
 
     @professions = Profession.all
     @niveaux = Niveau.all
@@ -26,7 +28,7 @@ class DossiersController < ApplicationController
     @dossier = Dossier.new(params[:dossier])
 
     if @dossier.save
-      flash[:notice] = "The dossier was saved successfully."
+      flash[:notice] = "Dossier créé avec succès."
       redirect_to dossier_path(@dossier)
     else
       render :action => 'new'
@@ -35,6 +37,8 @@ class DossiersController < ApplicationController
 
   def edit
     @dossier = Dossier.find(params[:id], :include => [ :profession, :acctype, :accmod, { :expositions => :niveau }, :produits, :bebes ])
+    @dossier.expositions.build
+    @dossier.bebes.build
     @professions = Profession.all
     @niveaux = Niveau.all
     @acctypes = Acctype.all
@@ -45,7 +49,7 @@ class DossiersController < ApplicationController
     @dossier = Dossier.find(params[:id])
     @dossier.attributes = params[:dossier]
     if @dossier.save
-      flash[:notice] = "Successfully updated dossier."
+      flash[:notice] = "Dossier mis à jour avec succès."
       redirect_to @dossier
     else
        render :action => 'edit'
@@ -55,7 +59,7 @@ class DossiersController < ApplicationController
   def destroy
     @dossier = Dossier.find(params[:id])
     @dossier.destroy
-    flash[:notice] = "Successfully destroyed dossier."
+    flash[:notice] = "Dossier détruit."
     redirect_to dossiers_path
   end
 
