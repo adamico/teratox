@@ -28,7 +28,7 @@ Factory.define :dossier do |d|
   d.ap_id '0'
   d.af_id '0'
   d.assmedproc_id '0'
-  #d.commmentaire 'blabla'
+  d.commentaire 'Le commentaire'
   # associations
 
   class << d
@@ -37,7 +37,8 @@ Factory.define :dossier do |d|
     end
   end
   d.acctype_id { d.default_acctype.id }
-
+  
+  d.correspondant {|c| c.association(:correspondant)}
   d.acctype {|a| a.association(:acctype)}
   d.expositions {|e| [e.association(:exposition)]}
   d.niveau {|n| n.association(:niveau)}

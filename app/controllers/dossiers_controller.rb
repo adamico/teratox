@@ -16,7 +16,6 @@ class DossiersController < ApplicationController
   def new
     @dossier = Dossier.new
     @dossier.expositions.build
-    @dossier.bebes.build
 
     @professions = Profession.all
     @niveaux = Niveau.all
@@ -39,7 +38,6 @@ class DossiersController < ApplicationController
   def edit
     @dossier = Dossier.find(params[:id], :include => [ :profession, :acctype, :accmod, { :expositions => :niveau }, :produits, :bebes ])
     @dossier.expositions.build
-    @dossier.bebes.build
     @professions = Profession.all
     @niveaux = Niveau.all
     @acctypes = Acctype.all

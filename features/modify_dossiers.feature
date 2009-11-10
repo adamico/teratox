@@ -4,7 +4,6 @@ Feature: Modify dossiers
   As a teratox user
   I want to browse dossiers and see detailed information
 
-@focus
   Scenario: expositions
     Given a produit: "SOLVANT(S)" exists
       And another produit: "PLOMB" exists
@@ -21,3 +20,13 @@ Feature: Modify dossiers
     Then I should see "Modifier"
       And I should see "Saisir un nouveau dossier"
       And I should see "Retour à l'accueil"
+
+  Scenario: add an existing correspondant to dossier
+    Given a correspondant exists
+      And a dossier exists
+    When I go to the dossier's edit page
+      And I select "Toubib" from "dossier[correspondant_id]"
+      And I press "Sauvegarder"
+      And I should see "Correspondant :"
+      And I should see "Toubib"
+

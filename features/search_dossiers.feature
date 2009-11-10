@@ -48,3 +48,10 @@ Feature: Search dossiers
     Then I should see "Liste des dossiers (2)"
       And I should see "LP1"
       And I should see "LP2"
+
+  Scenario: search dossier by words in commentaire
+    Given a dossier exists with commentaire: "Un petit test"
+    When I am on the dossiers page
+      And I fill in "search[commentaire_like_any]" with "test"
+      And I press "Rechercher"
+    Then I should see "Liste des dossiers (1)"

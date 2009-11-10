@@ -22,7 +22,6 @@ Feature: Display dossiers
       | LP9999998 | MACHIN L. |
       | LP9999997 | MACHINE L. |
 
-@focus
   Scenario: show correspondant fields in dossier
     Given a correspondant: "toubib" exists with nom: "Toubib", adresse: "99, rue des Foldingues", ville: "Paranoia", cp: "99999"
       And another correspondant: "partic" exists with nom: "Particulier", adresse: "1, rue des Lilas", ville: "Lyon", cp: "11111"
@@ -35,3 +34,9 @@ Feature: Display dossiers
       And I should see "99, rue des Foldingues"
       And I should see "Paranoia"
       And I should see "99999"
+
+  Scenario: show dossier global commentaire
+    Given a dossier exists with commentaire: "Ceci est un commentaire"
+    When I go to the dossier's page
+    Then I should see "Commentaire"
+      And I should see "Ceci est un commentaire"

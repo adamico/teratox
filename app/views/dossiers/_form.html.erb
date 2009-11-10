@@ -31,7 +31,10 @@
     <%= f.label "Profession" %>
     <%= f.collection_select(:profession_id, Profession.all, :id, :name) %>
   </p>
-
+  <p>
+    <%= f.label 'Correspondant' %>
+    <%= f.collection_select(:correspondant_id, Correspondant.all, :id, :nom) %>
+  </p>
   <h3>Antécédents / facteurs de risque</h3>
   <div id="infoatcd">
     <table>
@@ -282,6 +285,10 @@
       <%= f.text_area :comm_bebe, :class => "commentaire_100" %>
     </p>
   </div>
+  <h3>Commentaire</h3>
+  <p>
+    <%= f.text_area :commentaire, :class => "commentaire_100" %>
+  </p>
   <p>
     <%= f.submit 'Sauvegarder' %>
   </p>

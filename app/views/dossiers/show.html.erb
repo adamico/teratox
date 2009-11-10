@@ -5,7 +5,7 @@
   <%= link_to "Retour à l'accueil", root_path %> | <%= link_to "Saisir un nouveau dossier", new_dossier_path %>
 </p>
 
-<p id="time"><%= l @dossier.date_appel, :format => :jjmmaaaa %></p>
+<p id="time">Inclusion : <%= l @dossier.date_appel, :format => :jjmmaaaa %></p>
 
 <div id="infoperso">
   <table>
@@ -23,25 +23,25 @@
         <%= h @dossier.profession.name rescue "Non renseign\ée" %>
       </td>
     </tr>
-    <tr>
-      <th id="right">
-        Correspondant :
-      </th>
-      <td>
-        <%= h @dossier.correspondant.nom rescue "Non renseign\é" %>
-      </td>
-      <td>
-        <%= h @dossier.correspondant.adresse %>
-        &nbsp;
-        <%= h @dossier.correspondant.ville %>
-        &nbsp;
-        <%= h @dossier.correspondant.cp %>
-      </td>
-    </tr>
   </table>
+  <% unless @dossier.correspondant_id.nil? %>
+    <table>
+      <tr>
+        <th id="right">
+          Correspondant :
+        </th>
+        <td>
+          <%= h @dossier.correspondant.nom %><br />
+          <%= h @dossier.correspondant.specialite.libelle %>&nbsp;
+          <%= h @dossier.correspondant.qualite %><br />
+          <%= h @dossier.correspondant.adresse %><br />
+          <%= h @dossier.correspondant.cp %>&nbsp;
+          <%= h @dossier.correspondant.ville %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
 </div>
-
-<p>
 
 <h3>Antécédents/facteurs de risque</h3>
 <div id="infoatcd">
@@ -54,14 +54,13 @@
 <h3>Grossesse</h3>
 <div id="infogrs">
   <p>
+    Terme à l'inclusion : <%= @dossier.sa %> SA
+  </p>
+  <p>
     Gestité : G<%= @dossier.gestite %><br /> 
     Parité : P<%= @dossier.nai %>
   </p>
-  <p>
-    Debut de grossesse :
-    <%= @dossier.dg.to_s(:date_appel) rescue "Non renseign\é" %>
-  </p>
- </div> 
+</div>
 
 <h3>Exposition</h3>
 <div id="infoexpo">
@@ -105,19 +104,20 @@
   <% end %>
 </div>
 
-<h3>Nouveaux-nés ( <%= @dossier.bebes.count %> )</h3>
-<div id="infonn">
-  <table class="latex">
-    <tr>
-      <th>Sexe</th>
-      <th>Poids</th>
-      <th>Taille</th>
-      <th>PC</th>
-      <th>Apgar (1')</th>
-      <th>Apgar (5')</th>
-      <th>Malformation</th>
-      <th>Pathologie</th>
-    </tr>
+<% unless @dossier.bebes.empty? %>
+  <h3>Nouveaux-nés ( <%= @dossier.bebes.count %> )</h3>
+  <div id="infonn">
+    <table class="latex">
+      <tr>
+        <th>Sexe</th>
+        <th>Poids</th>
+        <th>Taille</th>
+        <th>PC</th>
+        <th>Apgar (1')</th>
+        <th>Apgar (5')</th>
+        <th>Malformation</th>
+        <th>Pathologie</th>
+      </tr>
     <% @dossier.bebes.each do |bebe| %>
       <tr>
         <td><%= h bebe.sex %></td>
@@ -137,6 +137,14 @@
     </p>
   <% end %> 
 </div>
+<% end %>
+
+<% unless @dossier.commentaire.blank? %>
+  <h3>Commentaire</h3>
+  <p class="commentaire">
+    <%= h @dossier.commentaire %>
+  </p>
+<% end %>
 
 <p>
   <%= link_to 'Modifier', edit_dossier_path(@dossier) %> |
