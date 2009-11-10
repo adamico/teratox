@@ -49,9 +49,12 @@ Feature: Search dossiers
       And I should see "LP1"
       And I should see "LP2"
 
-  Scenario: search dossier by words in commentaire
-    Given a dossier exists with commentaire: "Un petit test"
+  @focus
+  Scenario: search dossiers by profession
+    Given a profession: "techlabo" exists with name: "Technicienne de laboratoire"
+      And a dossier exists with n_sicap: "LP1", profession: profession "techlabo"
     When I am on the dossiers page
-      And I fill in "search[commentaire_like_any]" with "test"
+      And I select "Technicienne de laboratoire" from "search[profession_id_equals]"
       And I press "Rechercher"
     Then I should see "Liste des dossiers (1)"
+      And I should see "LP1"
