@@ -30,6 +30,13 @@
       <td>
         <%= h @dossier.correspondant.nom rescue "Non renseign\é" %>
       </td>
+      <td>
+        <%= h @dossier.correspondant.adresse %>
+        &nbsp;
+        <%= h @dossier.correspondant.ville %>
+        &nbsp;
+        <%= h @dossier.correspondant.cp %>
+      </td>
     </tr>
   </table>
 </div>

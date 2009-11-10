@@ -10,7 +10,6 @@ Feature: Display dossiers
     Then I should see "LP1"
     And I should see "MARTIN"
 
-@focus
   Scenario: list dossiers
     Given the following dossiers exist
       | n_sicap   | nom     | prenom  |
@@ -22,3 +21,17 @@ Feature: Display dossiers
       | LP9999999 | MARTIN M. |
       | LP9999998 | MACHIN L. |
       | LP9999997 | MACHINE L. |
+
+@focus
+  Scenario: show correspondant fields in dossier
+    Given a correspondant: "toubib" exists with nom: "Toubib", adresse: "99, rue des Foldingues", ville: "Paranoia", cp: "99999"
+      And another correspondant: "partic" exists with nom: "Particulier", adresse: "1, rue des Lilas", ville: "Lyon", cp: "11111"
+      And a dossier exists with n_sicap: "LP1", nom: "Martin", correspondant: correspondant: "toubib"
+      And another dossier exists with n_sicap: "LP2", nom: "Machin", correspondant: correspondant: "partic"
+    When I go to the first dossier's page
+    Then I should see "LP1"
+      And I should see "Correspondant :"
+      And I should see "Toubib"
+      And I should see "99, rue des Foldingues"
+      And I should see "Paranoia"
+      And I should see "99999"
