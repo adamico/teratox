@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091110182752) do
+ActiveRecord::Schema.define(:version => 20091111000253) do
 
   create_table "accmods", :force => true do |t|
     t.string "abbr"
@@ -18,6 +18,10 @@ ActiveRecord::Schema.define(:version => 20091110182752) do
 
   create_table "acctypes", :force => true do |t|
     t.string "abbr"
+    t.string "name"
+  end
+
+  create_table "answers", :force => true do |t|
     t.string "name"
   end
 
@@ -37,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20091110182752) do
     t.integer "specialite_id"
     t.integer "qualite_id"
     t.integer "formule_id"
-    t.string  "nom"
+    t.string  "name"
     t.text    "adresse"
     t.integer "cp"
     t.string  "ville"

@@ -22,9 +22,12 @@ class Dossier < ActiveRecord::Base
 
   belongs_to :niveau
   belongs_to :correspondant
+  accepts_nested_attributes_for :correspondant
+
+  belongs_to :ap, :class_name => "Answer"
+  belongs_to :af, :class_name => "Answer"
 
   # Named Scopes
-  #named_scope :solvants, :include => :produits, :conditions => { 'produits.name' => 'SOLVANT(S)' }
   alias_scope :solvants, lambda { produits_name_like('solvant') }
   
   named_scope :incomplets, :conditions => { :acctype_id => 6 } # evolution inconnue
