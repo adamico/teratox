@@ -1,6 +1,6 @@
 <% javascript :defaults, 'delegate' %>
 
-<%= error_messages_for :dossier %>
+<a name="top"></a>
 
 <% semantic_form_for @dossier do |form| %>
 
@@ -9,92 +9,45 @@
     <%= "var bebe='#{generate_template(form, :bebes)}'" %>
   <% end -%>
 
-  <% form.inputs :name => "Info SICAP", :id => "sicap" do %>
+  <% form.inputs :id => "sicap" do %>
     <%= form.input :n_sicap, :label => "Numéro SICAP", :input_html => { :size => '6' } %>
-    <%= form.input :date_appel, :as => :string, :start_year => 1998, :input_html => { :size => '6' } %>
+    <%= form.input :date_appel, :as => :date, :start_year => 1998 %>
   <% end %>
-  <% form.inputs :name => "Info patiente", :id => "patiente" do %>
+  <% form.inputs :name => "Données de la patiente", :id => "patiente" do %>
     <%= form.input :nom %>
-    <%= form.input :prenom, :label => "Prénom", :required => false %>
+    <%= form.input :prenom, :label => "Prénom" %>
     <%= form.input :age, :input_html => { :size => '3' } %>
-    <%= form.input :profession, :required => false %>
+    <%= form.input :profession, :include_blank => false %>
   <% end %>
-  <% form.inputs :name => "Choisir un correspondant", :id => "correspondant" do %>
-    <%= form.input :correspondant, :required => false, :label => "Nom" %>
+  <% form.inputs :name => "Correspondant" do %>
+    <%= form.input :correspondant, :label => "Nom", :hint => "Choisir dans la liste ou saisir un nouveau correspondant ci dessous" %>
   <% end %>
   <% @dossier.build_correspondant unless @dossier.correspondant %>
-  <% form.inputs :name => "Ou saisir un nouveau", :for => :correspondant do |corr_form| %>
+  <% form.inputs :for => :correspondant do |corr_form| %>
     <%= corr_form.input :name, :label => "Nom", :input_html => { :size => '20' } %>
     <%= corr_form.input :specialite, :label => "Specialité" %>
     <%= corr_form.input :qualite, :label => "Qualité" %>
-    <%= corr_form.input :adresse, :input_html => { :cols => '15', :rows => '4' } %>
+    <%= corr_form.input :adresse, :input_html => { :size => '15x1' } %>
     <%= corr_form.input :cp, :input_html => { :size => '3' } %>
-    <%= corr_form.input :ville, :input_html => { :size => '10' }%><br />
+    <%= corr_form.input :ville, :input_html => { :size => '10' }%>
     <%= corr_form.input :tel, :input_html => { :size => '10' } %>
     <%= corr_form.input :fax, :input_html => { :size => '10' } %>
     <%= corr_form.input :poste, :input_html => { :size => '4' } %>
     <%= corr_form.input :email %>
   <% end %>
+  <%= link_to "Patiente", "#top" %>
+
+  <a name="atcds"></a>
   <% form.inputs :name => "Antécédents / facteurs de risque", :id => "info_atcd" do %>
-    <%= form.input :af, :label => "Atcds familiaux", :as => :radio %>
-    <%= form.input :comm_af, :input_html => { :size => '40x5'} %><br />
-    <%= form.input :ap, :label => "Atcds personnels", :as => :radio %>
-    <%= form.input :comm_ap, :input_html => { :size => '40x5'} %>
-    <table>
-      <tr>
-        <td id="right">
-          <%= form.label :af_id, "Antécédents familiaux" %><br />
-          <%= form.label :af_id, "Oui" %>
-          <%= form.radio_button( "af_id", "0" ) %><br />
-          <%= form.label :af_id, "Non" %>
-          <%= form.radio_button( "af_id", "1") %><br />
-          <%= form.label :af_id, "Inconnu" %>
-          <%= form.radio_button( "af_id", "2") %><br />
-        </td>
-        <td>
-          <%= form.text_area :comm_af, :size => "40x5"%>
-        </td>
-        <td>
-          <%= form.label :tabac, "Tabac (cigarettes/j)"%><br />
-          <%= form.radio_button( "tabac", "0") %>
-          <%= form.label :tabac, "0" %><br />
-          <%= form.radio_button( "tabac", "1") %>
-          <%= form.label :tabac, "0 à 5" %>
-          <%= form.radio_button( "tabac", "2") %>
-          <%= form.label :tabac, "5 à 10" %>
-          <%= form.radio_button( "tabac", "3") %>
-          <%= form.label :tabac, "Sup. à 10" %><br />
-          <%= form.radio_button( "tabac", "4") %>
-          <%= form.label :tabac, "Inconnu" %>
-        </td>
-      </tr>
-      <tr>
-        <td id="right">
-          <%= form.label :ap_id, "Antécédents personnels"%><br />
-          <%= form.label :ap_id, "Oui" %>
-          <%= form.radio_button( "ap_id", "0")%><br />
-          <%= form.label :ap_id, "Non" %>
-          <%= form.radio_button( "ap_id", "1")%><br />
-          <%= form.label :ap_id, "Inconnu" %>
-          <%= form.radio_button( "ap_id", "2")%><br />
-        </td>
-        <td>
-          <%= form.text_area :comm_ap, :size => "40x5" %>
-        </td>
-        <td>
-          <%= form.label :alcool, "Alcool (verres/j)"%><br />
-          <%= form.radio_button( "alcool", "0") %>
-          <%= form.label :alcool, "0" %><br />
-          <%= form.radio_button( "alcool", "1") %>
-          <%= form.label :alcool, "\<= 2" %><br />
-          <%= form.radio_button( "alcool", "2") %>
-          <%= form.label :alcool, "\> 2" %><br />
-          <%= form.radio_button( "alcool", "3") %>
-          <%= form.label :alcool, "Inconnu" %>
-        </td>
-      </tr>
-    </table>
+    <%= form.input :af, :as => :radio, :label => "Atcds familiaux", :collection => [["Oui", "0"], ["Non", "1"], ["Inconnu", "2"]] %>
+    <%= form.input :comm_af, :input_html => { :size => '40x2'} %><br />
+    <%= form.input :ap, :as => :radio, :label => "Atcds personnels", :collection => [["Oui", "0"], ["Non", "1"], ["Inconnu", "2"]] %>
+    <%= form.input :comm_ap, :input_html => { :size => '40x2'} %>
+    <%= form.input :tabac, :as => :radio, :label => "Tabac (cig/j)", :collection => [["0", "0"], ["0 à 5", "1"], ["5 à 10", "2"], ["Sup. à 10", "3"], ["Inconnu", "4"]] %>
+    <%= form.input :alcool, :as => :radio, :label => "Alcool (verres/j)", :collection => [["0", "0"], ["<= 2", "1"], ["> 2", "2"], ["Inconnu", "3"]] %>
   <% end %>
+
+  <a name="grs"></a>
   <% form.inputs :name => "Info Grossesse", :id => "info_grs" do %>
     <table class="goleft">
       <tr>
@@ -169,21 +122,21 @@
       </tr>
     </table>
     <p class="goleft">
-      <%= form.label :assmedproc_id, "Assistance médicale à la procréation" %><br />
-      <%= form.radio_button( "assmedproc_id", "0") %>
-      <%= form.label :assmedproc_id, "Oui" %><br />
-      <%= form.radio_button( "assmedproc_id", "1") %>
-      <%= form.label :assmedproc_id, "Non" %><br />
-      <%= form.radio_button( "assmedproc_id", "2") %>
-      <%= form.label :assmedproc_id, "Ne sait pas" %><br />
+      <%= form.label :assmedproc, "Assistance médicale à la procréation" %><br />
+      <%= form.radio_button( "assmedproc", "0") %>
+      <%= form.label :assmedproc, "Oui" %><br />
+      <%= form.radio_button( "assmedproc", "1") %>
+      <%= form.label :assmedproc, "Non" %><br />
+      <%= form.radio_button( "assmedproc", "2") %>
+      <%= form.label :assmedproc, "Ne sait pas" %><br />
     </p>
-  </div>
   <% end %>
-  <% form.inputs :name => "Expositions", :id => "infoexpo" do %>
-    <p>
-      <%= form.label "Niveau global d'exposition : " %>
-      <%= form.collection_select(:niveau_id, Niveau.all, :id, :name) %>
-    </p>
+
+  <%= link_to "Patiente", "#top" %> | <%= link_to "Antécédents", "#atcds" %>
+
+  <a name="expo"></a>
+  <% form.inputs :name => "Exposition", :id => "infoexpo" do %>
+    <%= form.input :niveau, :label => "Niveau global d'exposition" %>
     <div id="expositions">
       <% form.fields_for :expositions do |expo_form| %>
         <%= render :partial => 'exposition', :locals => { :f => expo_form } %>
@@ -192,104 +145,112 @@
     <p>
       <%= link_to 'Rajouter une exposition', '#exposition', :class => "add_nested_item", :rel => "expositions" %>
     </p>
-    <p>
-      <%= form.text_area :comm_expo, :class => "commentaire_100" %>
-    </p>
-  </div>
-  <h3>Évolution</h3>
-  <div id="infoevol">
-    <div class="goleft">
-      <table class="evol">
-        <tr>
-          <th colspan="2">
-            Type
-          </th>
-        </tr>
-        <% Acctype.all.in_groups_of(2, false) do |row_at| %>
+    <%= form.input :comm_expo, :label => false, :input_html => { :size => "100x4"} %>
+  <% end %>
+
+  <a name="evol"></a>
+  <% form.inputs :name => "Évolution", :id => "evolution" do %>
+    <div id="infoevol">
+      <div class="goleft">
+        <table class="evol">
           <tr>
-            <% for acctype in row_at %>
-              <td>
-                <%= form.radio_button "acctype_id", acctype.id %>
-                <%= form.label :acctype_id, "#{acctype.abbrev}" %>
-              </td>
-            <% end %>
+            <th colspan="2">
+              Type
+            </th>
           </tr>
-        <% end %>
-      </table>
-    </div>
-    <div class="goleft" style="margin-left:1em">
-      <table class="evol">
-        <tr>
-          <th>
-            Modalité
-          </th>
-        </tr>
-        <% Accmod.all.each do |am| %>
+          <% Acctype.all.in_groups_of(2, false) do |row_at| %>
+            <tr>
+              <% for acctype in row_at %>
+                <td>
+                  <%= form.radio_button "acctype_id", acctype.id %>
+                  <%= form.label :acctype_id, "#{acctype.abbrev}" %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="goleft" style="margin-left:1em">
+        <table class="evol">
+          <tr>
+            <th>
+              Modalité
+            </th>
+          </tr>
+          <% Accmod.all.each do |am| %>
+            <tr>
+              <td>
+                <%= form.radio_button "accmod_id", am.id %>
+                <%= form.label :accmod_id, am.abbr %>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+      <div class="goleft" style="margin-left:1em">
+        <table class="evol">
+          <tr>
+            <th>
+              Pathologie maternelle
+            </th>
+          </tr>
           <tr>
             <td>
-              <%= form.radio_button "accmod_id", am.id %>
-              <%= form.label :accmod_id, am.abbr %>
+              <%= form.radio_button "path_mat", "0" %>
+              <%= form.label :path_mat, "Oui" %>
             </td>
           </tr>
-        <% end %>
-      </table>
-    </div>
-    <div class="goleft" style="margin-left:1em">
-      <table class="evol">
-        <tr>
-          <th>
-            Pathologie maternelle
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <%= form.radio_button "path_mat", "0" %>
-            <%= form.label :path_mat, "Oui" %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <%= form.radio_button "path_mat", "1" %>
-            <%= form.label :path_mat, "Non" %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-          <%= form.radio_button "path_mat", "2" %>
-          <%= form.label :path_mat, "inconnu" %>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <p class="clear" style="margin-top:1em">
+          <tr>
+            <td>
+              <%= form.radio_button "path_mat", "1" %>
+              <%= form.label :path_mat, "Non" %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            <%= form.radio_button "path_mat", "2" %>
+            <%= form.label :path_mat, "inconnu" %>
+            </td>
+          </tr>
+        </table>
+      </div>
+    <div class="clear" style="margin-top:1em">
       <%= form.label :terme, "Terme (SA)" %>
       <%= form.text_field :terme, :size => 1 %>
       <%= form.label :dra, "Date d'accouchement" %>
       <%= form.date_select :dra, :start_year => 1998, :order => [:day, :month, :year], :prompt => true %>
-    </p>
+    </div>
     <p>
       <%= form.text_area :comm_evol, :class => "commentaire_100" %>
       * Compléter le champ malformation dans la section nouveau-né si examen anatomo-pathologique interprétable
     </p>
-  </div>
-  <h3>Nouveaux-nés</h3>
-  <div id="infonn">
-    <div id="bebes">
-      <% form.fields_for :bebes do |bebe_form| %>
-        <%= render :partial => 'bebe', :locals => { :f => bebe_form} %>
-      <% end %>
+  <% end %>
+
+  <%= link_to "Patiente", "#top" %> | <%= link_to "Antécédents", "#atcds" %>
+
+  <a name="nn"></a>
+  <% form.inputs :name => "Nouveaux-nés" do %>
+    <div id="infonn">
+      <div id="bebes">
+        <% form.fields_for :bebes do |bebe_form| %>
+          <%= render :partial => 'bebe', :locals => { :f => bebe_form} %>
+        <% end %>
+      </div>
+      <p>
+        <%= link_to 'Rajouter un nouveau-né', '#bebe', :class => "add_nested_item", :rel => "bebes" %>
+      </p>
+      <p>
+        <%= form.text_area :comm_bebe, :class => "commentaire_100" %>
+      </p>
     </div>
-    <p>
-      <%= link_to 'Rajouter un nouveau-né', '#bebe', :class => "add_nested_item", :rel => "bebes" %>
-    </p>
-    <p>
-      <%= form.text_area :comm_bebe, :class => "commentaire_100" %>
-    </p>
-  </div>
-  <h3>Commentaire</h3>
-  <p>
-    <%= form.text_area :commentaire, :class => "commentaire_100" %>
-  </p>
-<% end %>
+  <% end %>
+  <% form.inputs :name => "Commentaire" do %>
+    <%= form.input :commentaire, :label => false %>
+  <% end %>
+  <%= link_to "Patiente", "#top" %> | 
+  <%= link_to "Antécédents", "#atcds" %> | 
+  <%= link_to "Grossesse", "#grs" %> | 
+  <%= link_to "Exposition", "#expo" %> | 
+  <%= link_to "Evolution", "#evol" %>
   <%= form.buttons :commit %>
 <% end %>

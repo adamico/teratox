@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091111000253) do
+ActiveRecord::Schema.define(:version => 20091112095842) do
 
   create_table "accmods", :force => true do |t|
     t.string "abbr"
@@ -18,10 +18,6 @@ ActiveRecord::Schema.define(:version => 20091111000253) do
 
   create_table "acctypes", :force => true do |t|
     t.string "abbr"
-    t.string "name"
-  end
-
-  create_table "answers", :force => true do |t|
     t.string "name"
   end
 
@@ -65,15 +61,15 @@ ActiveRecord::Schema.define(:version => 20091111000253) do
     t.string   "nom",              :limit => 30
     t.string   "prenom",           :limit => 30
     t.integer  "age"
-    t.integer  "ap_id"
-    t.integer  "af_id"
-    t.integer  "assmedproc_id"
-    t.integer  "fcs"
-    t.integer  "geu"
-    t.integer  "miu"
-    t.integer  "ivg"
-    t.integer  "img"
-    t.integer  "nai"
+    t.integer  "ap"
+    t.integer  "af"
+    t.integer  "assmedproc"
+    t.integer  "fcs",                            :default => 0
+    t.integer  "geu",                            :default => 0
+    t.integer  "miu",                            :default => 0
+    t.integer  "ivg",                            :default => 0
+    t.integer  "img",                            :default => 0
+    t.integer  "nai",                            :default => 0
     t.integer  "terme"
     t.integer  "accmod_id"
     t.integer  "path_mat"
@@ -111,11 +107,11 @@ ActiveRecord::Schema.define(:version => 20091111000253) do
   end
 
   create_table "qualites", :force => true do |t|
-    t.string "libelle"
+    t.string "name"
   end
 
   create_table "specialites", :force => true do |t|
-    t.string "libelle"
+    t.string "name"
   end
 
 end

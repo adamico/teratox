@@ -24,9 +24,6 @@ class Dossier < ActiveRecord::Base
   belongs_to :correspondant
   accepts_nested_attributes_for :correspondant
 
-  belongs_to :ap, :class_name => "Answer"
-  belongs_to :af, :class_name => "Answer"
-
   # Named Scopes
   alias_scope :solvants, lambda { produits_name_like('solvant') }
   
