@@ -13,6 +13,8 @@
   <%= f.submit "Rechercher", :name => nil %>
 <% end %>
 <p>Trier par <%= order @search, :by => :date_appel %> | <%= order @search, :by => :nom %></p>
+<% unless params[:search].blank? %>
+  
 <table id="dossiers">
   <% @dossiers.each do |dossier| %>
     <tr class="<%= cycle("even", "odd") -%>">
@@ -29,7 +31,7 @@
     </tr>
   <% end %>
 </table>
-
+<% end %>
 <br />
 <%= link_to 'Nouveau dossier', new_dossier_path %>
 
