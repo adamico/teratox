@@ -111,27 +111,22 @@ class Dossier < ActiveRecord::Base
     grs_ant = [fcs, geu, miu, ivg, img, nai]
     grs_tot = grs_ant.sum + 1 # somme des grossesses antérieures + celle actuelle
     abbr = %w{ fcs geu miu ivg img nai } # array des abbreviations
-    string = "G" # abbreviation du mot 'gestité'
-    string+= grs_tot.to_s # gestite = Gn où n est b converti en chaine de charactères
-    # si gestité = nombre de naissances + grossesse actuelle
+    out = "G" # abbreviation du mot 'gestité'
+    out+= grs_tot.to_s # gestite = Gn où n est b converti en chaine de charactères
+    strings = [nil,nil,nil,nil,nil,nil] # array vide où l'on va mettre les nombre d'évol par type
+    # si nombre grs antérieures = nombre de naissances
     # on s'arrète là
-    if grs_tot == ( nai + 1 )
-      string
+    if grs_tot == nai + 1
+      out
     # sinon dis moi quelles évolutions et combien de fois
     else
-      string+= " (dont"
-      # vérifions la présence d'évolutions défavorables parmi les grossesses antérieures
-      for i in 0..4
-        if grs_ant[i]==0 # s'il n'y a aucune évolution de ce type
-          next # passe au prochain item
-        end
-        string+= " "
-        string+= grs_ant[i].to_s # transforme en chaine le nombre d'évolutions de ce type
-        string+= " "
-        string+= abbr[i] # rajoute l'abbreviation de l'évolution en question
+      grs_ant.each_with_index do |evol, index|
+        strings[index] = evol.to_s + " " + abbr[index] unless evol == 0 || index == 5
       end
-      string+= ")"
-      string
+      out+= " (dont "
+      out+= strings.compact.join(', ')
+      out+= ")"
+      out
     end
   end
 

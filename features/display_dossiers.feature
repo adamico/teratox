@@ -45,18 +45,19 @@ Feature: Display dossiers
   Scenario Outline: prints gestite in dossier show
     Given the following dossiers exist
       | fcs | geu | img | ivg | miu | nai |
-      | 0   | 0   | 0   | 0   | 0   | 0   |
+      | 0   | 0   | 0   | 0   | 0   | 1   |
       | 2   | 0   | 0   | 0   | 0   | 1   |
       | 0   | 0   | 0   | 0   | 0   | 2   |
       | 2   | 1   | 1   | 1   | 1   | 0   |
       | 1   | 1   | 1   | 1   | 1   | 1   |
     When I go to the <position> dossier's page
     Then I should see "Gestité : <gestite>"
+    But I should not see "<notthis>"
 
     Examples:
-      | position  | gestite                                     |
-      | first     | G1                                          |
-      | 2nd       | G4 (dont 2 fcs)                             |
-      | 3rd       | G3                                          |
-      | 4th       | G7 (dont 2 fcs 1 geu 1 miu 1 ivg 1 img) |
-      | 5th       | G7 (dont 1 fcs 1 geu 1 miu 1 ivg 1 img) |
+      | position  | gestite                                     | notthis |
+      | first     | G2                                          | (dont)  |
+      | 2nd       | G4 (dont 2 fcs)                             | cacca   |
+      | 3rd       | G3                                          | (dont)  |
+      | 4th       | G7 (dont 2 fcs, 1 geu, 1 miu, 1 ivg, 1 img) | cacca   |
+      | 5th       | G7 (dont 1 fcs, 1 geu, 1 miu, 1 ivg, 1 img) | cacca   |
