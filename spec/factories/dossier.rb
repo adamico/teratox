@@ -25,9 +25,9 @@ Factory.define :dossier do |d|
   d.comm_expo 'blabla'
   d.comm_evol 'blabla'
   d.comm_bebe 'blabla'
-  d.ap_id '0'
-  d.af_id '0'
-  d.assmedproc_id '0'
+  d.ap '0'
+  d.af '0'
+  d.assmedproc '0'
   d.commentaire 'Le commentaire'
   # associations
 
@@ -44,4 +44,5 @@ Factory.define :dossier do |d|
   d.niveau {|n| n.association(:niveau)}
   d.profession {|p| p.association(:profession)}
   d.accmod {|am| am.association(:accmod)}
+  d.cat {|c| c.association(:cat)}
 end

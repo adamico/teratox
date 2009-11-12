@@ -22,7 +22,7 @@ describe DossiersController do
     context "when the dossier saves successfully" do
       expects :save, :on => dossier_proc, :returns => true
       should_assign_to :dossier, :with => dossier_proc
-      should_set_the_flash :notice, :to => "The dossier was saved successfully."
+      should_set_the_flash :notice, :to => "Dossier créé avec succès."
       should_redirect_to { dossier_url(@dossier) }
     end
 

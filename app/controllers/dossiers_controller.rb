@@ -15,7 +15,7 @@ class DossiersController < ApplicationController
 
   def new
     @dossier = Dossier.new
-    @dossier.expositions.build
+    #@dossier.expositions.build
 
     @professions = Profession.all
     @niveaux = Niveau.all

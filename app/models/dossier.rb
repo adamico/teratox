@@ -24,6 +24,8 @@ class Dossier < ActiveRecord::Base
   belongs_to :correspondant
   accepts_nested_attributes_for :correspondant
 
+  belongs_to :cat
+
   # Named Scopes
   alias_scope :solvants, lambda { produits_name_like('solvant') }
   
@@ -53,7 +55,7 @@ class Dossier < ActiveRecord::Base
   end
 
   def atcdp
-    case ap_id
+    case ap
     when 1; "aucun"
     when 2; "inconnus"
     else comm_ap
@@ -61,7 +63,7 @@ class Dossier < ActiveRecord::Base
   end
 
   def atcdf
-    case af_id
+    case af
     when 1; "aucun"
     when 2; "inconnus"
     else comm_af
@@ -106,22 +108,30 @@ class Dossier < ActiveRecord::Base
   end
 
   def gestite
-    a = [fcs, geu, miu, ivg, img, nai]
-    b = a.sum + 1
-    d = b.to_s
-    if b == ( nai + 1 )
-      d
+    grs_ant = [fcs, geu, miu, ivg, img, nai]
+    grs_tot = grs_ant.sum + 1 # somme des grossesses antérieures + celle actuelle
+    abbr = %w{ fcs geu miu ivg img nai } # array des abbreviations
+    string = "G" # abbreviation du mot 'gestité'
+    string+= grs_tot.to_s # gestite = Gn où n est b converti en chaine de charactères
+    # si gestité = nombre de naissances + grossesse actuelle
+    # on s'arrète là
+    if grs_tot == ( nai + 1 )
+      string
+    # sinon dis moi quelles évolutions et combien de fois
     else
-      c = %w{ fcs geu miu ivg img nai }
-      d = b.to_s + " (dont"
+      string+= " (dont"
+      # vérifions la présence d'évolutions défavorables parmi les grossesses antérieures
       for i in 0..4
-        if a[i]==0
-          next
+        if grs_ant[i]==0 # s'il n'y a aucune évolution de ce type
+          next # passe au prochain item
         end
-        d+= " " + a[i].to_s + " " + c[i].to_s
+        string+= " "
+        string+= grs_ant[i].to_s # transforme en chaine le nombre d'évolutions de ce type
+        string+= " "
+        string+= abbr[i] # rajoute l'abbreviation de l'évolution en question
       end
-      d+= ")"
-      d
+      string+= ")"
+      string
     end
   end
 
@@ -147,13 +157,10 @@ class Dossier < ActiveRecord::Base
   def evolution
     case acctype_id
     when 1..5
-      a="#{acctype.name} " + "à #{terme} SA "
-      if acctype_id==5
-        a+= "par #{accmod.name}"
-        a
-      else
-        a
-      end
+      a="#{acctype.name} "
+      a+= "à #{terme} SA " unless terme.nil?
+      a+= "par #{accmod.name}" if acctype_id==5
+      a
     else
       acctype.name
     end

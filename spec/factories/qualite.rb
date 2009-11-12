@@ -1,4 +1,4 @@
 Factory.define(:qualite) do |q|
-  q.libelle 'Libéral'
+  q.name 'Libéral'
 end
 

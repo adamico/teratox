@@ -31,9 +31,9 @@
           Correspondant :
         </th>
         <td>
-          <%= h @dossier.correspondant.nom %><br />
-          <%= h @dossier.correspondant.specialite.libelle %>&nbsp;
-          <%= h @dossier.correspondant.qualite %><br />
+          <%= h @dossier.correspondant.name %><br />
+          <%= h @dossier.correspondant.specialite.name %>&nbsp;
+          <%= h @dossier.correspondant.qualite.name %><br />
           <%= h @dossier.correspondant.adresse %><br />
           <%= h @dossier.correspondant.cp %>&nbsp;
           <%= h @dossier.correspondant.ville %>
@@ -57,14 +57,15 @@
     Terme à l'inclusion : <%= @dossier.sa %> SA
   </p>
   <p>
-    Gestité : G<%= @dossier.gestite %><br /> 
-    Parité : P<%= @dossier.nai %>
+    Gestité : <%= @dossier.gestite %><br /> 
+    Parité : <%= @dossier.nai %>
   </p>
 </div>
 
 <h3>Exposition</h3>
 <div id="infoexpo">
   <p>Niveau global d'exposition : <%= @dossier.niveau.name %></p>
+  <p>Conduite à tenir préconisée : <%= @dossier.cat.name %></p>
   <table class="latex">
     <tr>
       <th>Nom du produit</th>

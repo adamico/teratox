@@ -145,6 +145,7 @@
     <p>
       <%= link_to 'Rajouter une exposition', '#exposition', :class => "add_nested_item", :rel => "expositions" %>
     </p>
+    <%= form.input :cat, :label => "Conduite à tenir préconisée" %>
     <%= form.input :comm_expo, :label => false, :input_html => { :size => "100x4"} %>
   <% end %>
 

@@ -7,7 +7,6 @@ Dossier :
     * cercare cosa indica ncode
     * spurgare le colonne ddr, dap, dg
       - creare uno script per autocompletare i vari campi date grossesse se almeno uno è riempito
-    * creare un campo "conduite à tenir préconisée"
   - view :
     * show:
       - rimettere la gemma per formattare semplicemente un testo (redcloth?)
