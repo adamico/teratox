@@ -1,6 +1,15 @@
 class CorrespondantsController < ApplicationController
   def index
-    @correspondants = Correspondant.all
+    @correspondants = Correspondant.all(:order => "Name ASC")
+  end
+
+  def show
+    @correspondant = Correspondant.find(params[:id], :include => :dossiers)
+  
+    respond_to do |wants|
+      wants.html # show.html.erb
+      wants.xml  { render :xml => @correspondant }
+    end
   end
   
   def new

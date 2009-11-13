@@ -26,7 +26,13 @@ Feature: Modify dossiers
       And a dossier exists
     When I go to the dossier's edit page
       And I select "Toubib" from "dossier[correspondant_id]"
-      And I press "Sauvegarder"
+      And I press "Save dossier"
       And I should see "Correspondant :"
       And I should see "Toubib"
+
+  Scenario: show a link to new correspondant
+    Given a dossier exists
+    When I go to the dossier's edit page
+      And I follow "Saisir un nouveau correspondant"
+    Then I should be on the new correspondant page
 

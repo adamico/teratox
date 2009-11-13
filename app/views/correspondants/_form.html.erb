@@ -1,5 +1,5 @@
 <% semantic_form_for @correspondant do |f| %>
-  <% form.inputs do |f| %>
+  <% f.inputs do %>
     <%= f.input :name, :label => "Nom" %>
     <%= f.input :specialite, :label => "Specialité" %>
     <%= f.input :qualite, :label => "Qualité" %>
@@ -11,5 +11,5 @@
     <%= f.input :poste %>
     <%= f.input :email %>
   <% end %>
-  <%= form.buttons :commit %>
+  <%= f.buttons :commit %>
 <% end %>

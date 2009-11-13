@@ -22,8 +22,12 @@
   <% form.inputs :name => "Correspondant" do %>
     <%= form.input :correspondant, :label => "Nom", :hint => "Choisir dans la liste ou saisir un nouveau correspondant en suivant le lien ci dessous" %>
   <% end %>
-  
-  <%= link_to "Patiente", "#top" %>
+  <p>
+    <%= link_to "Saisir un nouveau correspondant", new_correspondant_path, :popup => true %>
+  </p>
+  <p>
+    <%= link_to "Patiente", "#top" %>
+  </p>
 
   <a name="atcds"></a>
   <% form.inputs :name => "Antécédents / facteurs de risque", :id => "info_atcd" do %>
