@@ -19,6 +19,7 @@
   <% @dossiers.each do |dossier| %>
     <tr class="<%= cycle("even", "odd") -%>">
       <td><%= link_to h(dossier.n_sicap), dossier %></td>
+      <td><%= l dossier.date_appel, :format => :jjmmaaaa %></td>
       <td><%= dossier.short_name %></td>
       <td>
         <% dossier.produits.all.each do |p| %>

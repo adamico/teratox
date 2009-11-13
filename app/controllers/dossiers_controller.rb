@@ -21,11 +21,10 @@ class DossiersController < ApplicationController
     @niveaux = Niveau.all
     @acctypes = Acctype.all
     @accmods = Accmod.all
-    @correspondants = Correspondant.all
   end
 
   def create
-    @dossier = Dossier.new(params[:dossier])
+    @dossier = Dossier.new(params[:dossier], :include => [:correspondant, :profession, :acctype, :accmod, :produits])
 
     if @dossier.save
       flash[:notice] = "Dossier créé avec succès."
@@ -36,7 +35,7 @@ class DossiersController < ApplicationController
   end
 
   def edit
-    @dossier = Dossier.find(params[:id], :include => [ :profession, :acctype, :accmod, { :expositions => :niveau }, :produits, :bebes ])
+    @dossier = Dossier.find(params[:id], :include => [ :correspondant, :profession, :acctype, :accmod, { :expositions => :niveau }, :produits, :bebes ])
     @dossier.expositions.build
     @professions = Profession.all
     @niveaux = Niveau.all

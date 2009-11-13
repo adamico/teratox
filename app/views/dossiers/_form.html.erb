@@ -20,21 +20,9 @@
     <%= form.input :profession, :include_blank => false %>
   <% end %>
   <% form.inputs :name => "Correspondant" do %>
-    <%= form.input :correspondant, :label => "Nom", :hint => "Choisir dans la liste ou saisir un nouveau correspondant ci dessous" %>
+    <%= form.input :correspondant, :label => "Nom", :hint => "Choisir dans la liste ou saisir un nouveau correspondant en suivant le lien ci dessous" %>
   <% end %>
-  <% @dossier.build_correspondant unless @dossier.correspondant %>
-  <% form.inputs :for => :correspondant do |corr_form| %>
-    <%= corr_form.input :name, :label => "Nom", :input_html => { :size => '20' } %>
-    <%= corr_form.input :specialite, :label => "Specialité" %>
-    <%= corr_form.input :qualite, :label => "Qualité" %>
-    <%= corr_form.input :adresse, :input_html => { :size => '15x1' } %>
-    <%= corr_form.input :cp, :input_html => { :size => '3' } %>
-    <%= corr_form.input :ville, :input_html => { :size => '10' }%>
-    <%= corr_form.input :tel, :input_html => { :size => '10' } %>
-    <%= corr_form.input :fax, :input_html => { :size => '10' } %>
-    <%= corr_form.input :poste, :input_html => { :size => '4' } %>
-    <%= corr_form.input :email %>
-  <% end %>
+  
   <%= link_to "Patiente", "#top" %>
 
   <a name="atcds"></a>
