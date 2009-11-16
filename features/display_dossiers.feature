@@ -10,6 +10,7 @@ Feature: Display dossiers
     Then I should see "LP1"
     And I should see "MARTIN"
 
+@focus
   Scenario: list dossiers
     Given the following dossiers exist
       | n_sicap   | nom     | prenom  |
@@ -17,14 +18,15 @@ Feature: Display dossiers
       | LP9999998 | Machin  | Laure   |
       | LP9999997 | Machine | Laurie  |
     When I go to the dossiers page
+     And I follow "Nom"
     Then I should see dossiers table
-      | LP9999999 | MARTIN M. |
       | LP9999998 | MACHIN L. |
       | LP9999997 | MACHINE L. |
+      | LP9999999 | MARTIN M. |
 
   Scenario: show correspondant fields in dossier
-    Given a correspondant: "toubib" exists with nom: "Toubib", adresse: "99, rue des Foldingues", ville: "Paranoia", cp: "99999"
-      And another correspondant: "partic" exists with nom: "Particulier", adresse: "1, rue des Lilas", ville: "Lyon", cp: "11111"
+    Given a correspondant: "toubib" exists with name: "Toubib", adresse: "99, rue des Foldingues", ville: "Paranoia", cp: "99999"
+      And another correspondant: "partic" exists with name: "Particulier", adresse: "1, rue des Lilas", ville: "Lyon", cp: "11111"
       And a dossier exists with n_sicap: "LP1", nom: "Martin", correspondant: correspondant: "toubib"
       And another dossier exists with n_sicap: "LP2", nom: "Machin", correspondant: correspondant: "partic"
     When I go to the first dossier's page
@@ -41,7 +43,6 @@ Feature: Display dossiers
     Then I should see "Commentaire"
       And I should see "Ceci est un commentaire"
 
-@focus
   Scenario Outline: prints gestite in dossier show
     Given the following dossiers exist
       | fcs | geu | img | ivg | miu | nai |
