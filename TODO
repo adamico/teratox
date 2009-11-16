@@ -10,8 +10,9 @@ Dossier :
   - view :
     * show:
       - rimettere la gemma per formattare semplicemente un testo (redcloth?)
+    * index:
+      - creare un campo autocomplete per i prodotti
     * _form :
-      - creare un nested model form per inserire un nuovo correspondant
       - creare una funzione javascript per aggiornare il valore di grossesse antérieures quando uno dei campi è riempito
       - creare un pulsante per le nullipare primigeste
       - rajouter champ "anomalies échographiques"
@@ -22,6 +23,7 @@ Dossier :
 
 Correspondant :
   - saisir 2008
+  - creare un campo autocomplete (per Correspondant.name)
 
 Produit :
   - table

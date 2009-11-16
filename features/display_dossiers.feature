@@ -10,7 +10,6 @@ Feature: Display dossiers
     Then I should see "LP1"
     And I should see "MARTIN"
 
-@focus
   Scenario: list dossiers
     Given the following dossiers exist
       | n_sicap   | nom     | prenom  |
@@ -57,8 +56,8 @@ Feature: Display dossiers
 
     Examples:
       | position  | gestite                                     | notthis |
-      | first     | G2                                          | (dont)  |
+      | first     | G2                                          | dont    |
       | 2nd       | G4 (dont 2 fcs)                             | cacca   |
-      | 3rd       | G3                                          | (dont)  |
+      | 3rd       | G3                                          | dont    |
       | 4th       | G7 (dont 2 fcs, 1 geu, 1 miu, 1 ivg, 1 img) | cacca   |
       | 5th       | G7 (dont 1 fcs, 1 geu, 1 miu, 1 ivg, 1 img) | cacca   |

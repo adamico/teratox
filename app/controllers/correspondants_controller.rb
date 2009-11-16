@@ -1,6 +1,6 @@
 class CorrespondantsController < ApplicationController
   def index
-    @correspondants = Correspondant.all(:order => "Name ASC")
+    @correspondants = Correspondant.all(:order => "name ASC")
   end
 
   def show
