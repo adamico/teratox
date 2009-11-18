@@ -6,7 +6,7 @@ class Dossier < ActiveRecord::Base
   validates_presence_of :nom
   validates_presence_of :acctype_id
   #validates_uniqueness_of :n_sicap
-  validates_numericality_of :fcs, :ivg, :img, :miu, :geu, :nai, :allow_blank => true
+  validates_numericality_of :fcs, :ivg, :img, :miu, :geu, :nai
   validates_numericality_of :sa, :less_than => 40, :allow_blank => true
 
   # Associations

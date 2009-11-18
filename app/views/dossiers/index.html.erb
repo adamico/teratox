@@ -13,7 +13,7 @@
   <%= f.label "Evolution : " %><%= f.collection_select :acctype_id_equals, Acctype.all, :id, :name, :include_blank => true %><br />
   <%= f.submit "Rechercher", :name => nil %>
 <% end %>
-<p>Trier par <%= order @search, :by => :date_appel %> | <%= order @search, :by => :nom %></p>
+<p>Trier par <%= order @search, :by => :date_appel %> | <%= order @search, :by => :nom %> | <%= order @search, :by => :profession_name %></p>
 <% unless params[:search].blank? %>
   
 <table id="dossiers">
@@ -27,6 +27,7 @@
           <%= p.name %><br />
         <% end %>
       </td>
+      <td><%= dossier.profession.name rescue "non renseigné" %></td>
       <td><%= dossier.acctype.name unless dossier.acctype.nil? %></td>
       <td><%= link_to 'Modifier', edit_dossier_path(dossier) %></td>
       <td><%= link_to 'Detruire', dossier, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
