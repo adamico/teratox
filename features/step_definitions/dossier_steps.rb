@@ -13,7 +13,3 @@ end
 Given /^All dossiers are complete$/ do
   Dossier.incomplets.empty?
 end
-
-When /^the search params are not blank$/ do
-  params[:search]==ascend_by_date_appel
-end

@@ -49,7 +49,6 @@ Feature: Search dossiers
       And I should see "LP1"
       And I should see "LP2"
 
-  @focus
   Scenario: search dossiers by profession
     Given a profession: "techlabo" exists with name: "Technicienne de laboratoire"
       And a dossier exists with n_sicap: "LP1", profession: profession "techlabo"
