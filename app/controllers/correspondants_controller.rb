@@ -39,4 +39,11 @@ class CorrespondantsController < ApplicationController
       render :action => 'edit'
     end
   end
+
+  def destroy
+    @correspondant = Correspondant.find(params[:id])
+    @correspondant.destroy
+    flash[:notice] = "Correspondant détruit."
+    redirect_to correspondants_path
+  end
 end

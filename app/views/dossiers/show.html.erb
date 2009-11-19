@@ -24,24 +24,27 @@
       </td>
     </tr>
   </table>
-  <% unless @dossier.correspondant_id.nil? %>
-    <table>
-      <tr>
-        <th id="right">
-          Correspondant :
-        </th>
-        <td>
-          <%= h @dossier.correspondant.name %><br />
-          <%= h @dossier.correspondant.specialite.name %>&nbsp;
-          <%= h @dossier.correspondant.qualite.name %><br />
-          <%= h @dossier.correspondant.adresse %><br />
-          <%= h @dossier.correspondant.cp %>&nbsp;
-          <%= h @dossier.correspondant.ville %>
-        </td>
-      </tr>
-    </table>
-  <% end %>
 </div>
+<% unless @dossier.correspondant_id.nil? %>
+  <table>
+    <tr>
+      <th id="right">
+        Correspondant :
+      </th>
+      <td>
+        <%= h @dossier.correspondant.name %><br />
+        <%= h @dossier.correspondant.specialite.name %>&nbsp;
+        <%= h @dossier.correspondant.qualite.name %><br />
+        <%= h @dossier.correspondant.adresse %><br />
+        <%= h @dossier.correspondant.cp %>&nbsp;
+        <%= h @dossier.correspondant.ville %>
+      </td>
+    </tr>
+  </table>
+<% end %>
+<p>
+  Demandeur : <%= h @dossier.demandeur.name rescue "Non renseigné" %>
+</p>
 
 <h3>Antécédents/facteurs de risque</h3>
 <div id="infoatcd">

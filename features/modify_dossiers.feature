@@ -27,7 +27,7 @@ Feature: Modify dossiers
     When I go to the dossier's edit page
       And I select "Toubib" from "dossier[correspondant_id]"
       And I press "Save dossier"
-      And I should see "Correspondant :"
+    Then I should see "Correspondant :"
       And I should see "Toubib"
 
   Scenario: show a link to new correspondant
@@ -35,4 +35,13 @@ Feature: Modify dossiers
     When I go to the dossier's edit page
       And I follow "Saisir un nouveau correspondant"
     Then I should be on the new correspondant page
+
+  @focus
+  Scenario: add demandeur to dossier
+    Given a dossier exists
+    When I go to the dossier's edit page
+      And I select "patiente" from "dossier[demandeur_id]"
+      And I press "Save dossier"
+    Then I should see "Demandeur :"
+      And I should see "patiente"
 

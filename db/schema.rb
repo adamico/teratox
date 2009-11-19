@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091112104325) do
+ActiveRecord::Schema.define(:version => 20091119094105) do
 
   create_table "accmods", :force => true do |t|
     t.string "abbr"
@@ -51,6 +51,10 @@ ActiveRecord::Schema.define(:version => 20091112104325) do
     t.string  "email"
   end
 
+  create_table "demandeurs", :force => true do |t|
+    t.string "name"
+  end
+
   create_table "dossiers", :force => true do |t|
     t.string   "n_sicap"
     t.integer  "acctype_id"
@@ -90,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20091112104325) do
     t.datetime "updated_at"
     t.integer  "niveau_id"
     t.integer  "cat_id"
+    t.integer  "demandeur_id"
   end
 
   create_table "expositions", :force => true do |t|

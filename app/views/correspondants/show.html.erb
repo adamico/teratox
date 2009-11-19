@@ -26,5 +26,5 @@
 <% end %>
 
 <p>
-  <%= link_to "Retour à l'accueil", root_path %> | <%= link_to "Liste des correspondants", correspondants_path %>
+  <%= link_to "Retour à l'accueil", root_path %> | <%= link_to "Liste des correspondants", correspondants_path %> | <%= link_to "Detruire", @correspondant, :confirm => 'Etes-vous sûr ?', :method => :delete %>
 </p>

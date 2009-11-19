@@ -22,8 +22,25 @@
       Âge moyenne <br />
       de la mère
     </th>
-    <td><%= @solvants.average(:age).round(1) %></td>
-    <td><%= @autres_age_moyen.to_f %></td>
+    <td>
+      <%= @solvage_moyen %>
+      (<%= @solvage_sd %>)
+    </td>
+    <td>
+      <%= @autres_age_moyen %>
+    </td>
+  </tr>
+  <tr>
+    <th>
+     Âge < 35 ans
+    </th>
+    <td><%= @solvage_lt35 %></td>
+  </tr>
+  <tr>
+    <th>
+      P1G1
+    </th>
+    <td><%= @solv_p1g1 %></td>
   </tr>
   <% @niveaux.each do |n| %>
     <tr>

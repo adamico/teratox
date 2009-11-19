@@ -12,6 +12,7 @@
   <% form.inputs :id => "sicap" do %>
     <%= form.input :n_sicap, :label => "Numéro SICAP", :input_html => { :size => '6' } %>
     <%= form.input :date_appel, :as => :date, :start_year => 1995 %>
+    <%= form.input :demandeur, :label => "Demandeur" %>
   <% end %>
   <% form.inputs :name => "Données de la patiente", :id => "patiente" do %>
     <%= form.input :nom %>

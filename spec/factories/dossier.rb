@@ -39,6 +39,7 @@ Factory.define :dossier do |d|
   d.acctype_id { d.default_acctype.id }
   
   d.correspondant {|c| c.association(:correspondant)}
+  d.demandeur {|d| d.association(:demandeur)}
   d.acctype {|a| a.association(:acctype)}
   d.expositions {|e| [e.association(:exposition)]}
   d.niveau {|n| n.association(:niveau)}
