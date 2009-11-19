@@ -1,7 +1,10 @@
 class Bebe < ActiveRecord::Base
-  belongs_to :dossier
+  belongs_to :dossier, :counter_cache => true
 
   #TODO add validations for poids, taille, pc, apgar1 et apgar5
+
+  alias_scope :malformes, lambda { malforme_is(1) }
+  alias_scope :normaux, lambda { malforme_is(0) }
 
   def sex
     case sexe

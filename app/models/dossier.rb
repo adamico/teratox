@@ -28,8 +28,11 @@ class Dossier < ActiveRecord::Base
   belongs_to :demandeur
 
   # Named Scopes
-  alias_scope :solvants, lambda { produits_name_like('solvant') }
-  
+  alias_scope :solvants, lambda { produits_name_is('SOLVANT(S)') }
+  alias_scope :avec_jumeaux, lambda { bebes_count_gt(1) }
+  alias_scope :naissances, lambda { acctype_id_is(5) }
+  alias_scope :fausses_couches, lambda { acctype_id_is_any(1, 4) }
+
   named_scope :incomplets, :conditions => { :acctype_id => 6 } # evolution inconnue
 
   # custom methods
