@@ -36,7 +36,6 @@ Feature: Modify dossiers
       And I follow "Saisir un nouveau correspondant"
     Then I should be on the new correspondant page
 
-  @focus
   Scenario: add demandeur to dossier
     Given a dossier exists
     When I go to the dossier's edit page

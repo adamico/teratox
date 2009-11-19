@@ -16,6 +16,10 @@
       Groupe Produits divers<br />
       n = <%= @autres_nr %>
     </th>
+    <th>
+      Total<br />
+      n = <%= @dossiers.count %>
+    </th>
   </tr>
   <tr>
     <th>
@@ -29,18 +33,26 @@
     <td>
       <%= @autres_age_moyen %>
     </td>
+    <td>
+      <%= @age_moyen %>
+      (<%= @age_sd %>)
+    </td>
   </tr>
   <tr>
     <th>
      Âge < 35 ans
     </th>
     <td><%= @solvage_lt35 %></td>
+    <td><%= @age_lt35 - @solvage_lt35 %></td>
+    <td><%= @age_lt35 %></td>
   </tr>
   <tr>
     <th>
       P1G1
     </th>
     <td><%= @solv_p1g1 %></td>
+    <td><%= @p1g1 - @solv_p1g1 %></td>
+    <td><%= @p1g1 %></td>
   </tr>
   <% @niveaux.each do |n| %>
     <tr>
@@ -53,14 +65,34 @@
       <td>
         <%= n.dossiers.count - n.dossiers.solvants.count %>
       </td>
+      <td>
+        <%= n.dossiers.count %>
+      </td>
     </tr>
   <% end %>
 </table><h3>Évolution</h3>
-<table>
+<table class="latex">
+  <tr>
+    <th>&nbsp;</th>
+    <th>
+      Groupe Solvants<br />
+      n = <%= @solvants.count %>
+    </th>
+    <th>
+      Groupe Produits divers<br />
+      n = <%= @autres_nr %>
+    </th>
+    <th>
+      Total<br />
+      n = <%= @dossiers.count %>
+    </th>
+  </tr>
   <% @evolutions.each do |e| %>
     <tr>
-      <td><%= e.name %></td>
-      <td id="right"><%= e.dossiers.count %></td>
+      <th><%= e.abbr %></th>
+      <td><%= e.dossiers.solvants.count %></td>
+      <td></td>
+      <td><%= e.dossiers.count %></td>
     </tr>
   <% end %>
 </table>

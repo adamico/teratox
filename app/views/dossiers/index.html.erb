@@ -16,23 +16,15 @@
 <p>Trier par <%= order @search, :by => :date_appel %> | <%= order @search, :by => :nom %> | <%= order @search, :by => :profession_name %></p>
 <% unless params[:search].blank? %>
   
-<table id="dossiers">
-  <% @dossiers.each do |dossier| %>
-    <tr class="<%= cycle("even", "odd") -%>">
-      <td><%= link_to h(dossier.n_sicap), dossier %></td>
-      <td><%= l dossier.date_appel, :format => :jjmmaaaa %></td>
-      <td><%= dossier.short_name %></td>
-      <td>
-        <% dossier.produits.all.each do |p| %>
-          <%= p.name %><br />
-        <% end %>
-      </td>
-      <td><%= dossier.profession.name rescue "non renseigné" %></td>
-      <td><%= dossier.acctype.name unless dossier.acctype.nil? %></td>
-      <td><%= link_to 'Modifier', edit_dossier_path(dossier) %></td>
-      <td><%= link_to 'Detruire', dossier, :confirm => 'Etes-vous sur ?', :method => :delete %></td>
-    </tr>
-  <% end %>
+<table id="dossiers" class="latex">
+  <tr>
+    <th>Année</th>
+    <th>Dossier</th>
+    <th>Patiente</th>
+    <th>Exposition</th>
+    <th>Evolution</th>
+  </tr>
+  <%= render :partial => @dossiers %>
 </table>
 <% end %>
 <br />

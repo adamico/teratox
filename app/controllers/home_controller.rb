@@ -5,6 +5,15 @@ class HomeController < ApplicationController
 
   def bilan
     @dossiers = Dossier.all
+    @count ||= @dossiers.count
+    @age_moyen ||= Dossier.average(:age).round(1)
+    @age_sd ||= Math.sqrt(
+      Dossier.sum(
+        "(age - #{@age_moyen}) * (age - #{@age_moyen})"
+      ).to_f / @count
+    ).round(1)
+    @age_lt35 = Dossier.age_lt(35).count
+    @p1g1 = Dossier.fcs_is(0).ivg_is(0).img_is(0).miu_is(0).geu_is(0).nai_is(0).count
     @last = Dossier.last
     @solvants ||= Dossier.solvants
     @solv_count ||= @solvants.count
