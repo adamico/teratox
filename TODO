@@ -3,7 +3,6 @@ TODO:
 
 Dossier :
   - table
-    * saisir techniciennes de labo avant 2008
     * cercare cosa indica ncode
     * spurgare le colonne ddr, dap, dg
       - creare uno script per autocompletare i vari campi date grossesse se almeno uno è riempito
@@ -12,6 +11,7 @@ Dossier :
     * show:
       - rimettere la gemma per formattare semplicemente un testo (redcloth?)
     * _form :
+      - aggiungere pulsanti + e - per gli atcd grs
       - creare una funzione javascript per aggiornare il valore di grossesse antérieures quando uno dei campi è riempito
       - creare un pulsante per le nullipare primigeste
       - rajouter champ "anomalies échographiques"
@@ -36,10 +36,6 @@ Malformation :
   - creare table
 
 Exploitation
-  - statistiques:
-    * nombre malformations/pathologie
-    * epidémiologie => autre?
-    * stratificazione niveau/evolution
 
 Pagine fisse
   - aggiungere about, disclaimer, tutorial (e altro?)

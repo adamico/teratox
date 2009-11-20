@@ -1,93 +1,79 @@
 <% title 'Bilan/statistiques' %>
-<h3>Données générales</h3>
-<p>
-  Dossier plus récent : <%= link_to h(@last.n_sicap), dossier_path(@last) %>, du <%= @last.date_appel.to_s(:date_appel) %>
-</p> 
 
-<h3>Exposition</h3>
+<h3>Données générales</h3>
 <table class="latex">
   <tr>
     <th>&nbsp;</th>
-    <th>
-      Groupe<br />Solvants<br />
-      n = <%= @solvants.count %>
-    </th>
-    <th>
-      Groupe<br />Produits divers<br />
-      n = <%= @autres_nr %>
-    </th>
-    <th>
-      Total<br />
-      n = <%= @dossiers.count %>
-    </th>
+    <th class="center">Groupe<br />
+      Solvants<br />
+      n = <%= @solvants.count %></th>
+    <th class="center">Groupe<br />
+      Produits divers<br />
+      n = <%= @autres_count %></th>
+    <th class="center">Total<br />
+      n = <%= @dossiers.count %></th>
   </tr>
   <tr>
-    <th>
-      Âge moyenne <br />
-      de la mère
-    </th>
-    <td>
-      <%= @solvage_moyen %>
-      (<%= @solvage_sd %>)
-    </td>
-    <td>
-      <%= @autres_age_moyen %>
-    </td>
-    <td>
-      <%= @age_moyen %>
-      (<%= @age_sd %>)
-    </td>
+    <th>Âge</th>
+    <td><%= @solvage_moyen %> (<%= @solvage_sd %>)</td>
+    <td><%= @autres_age_moyen %></td>
+    <td><%= @age_moyen %> (<%= @age_sd %>)</td>
   </tr>
   <tr>
-    <th>
-     Âge < 35 ans
-    </th>
+    <th>&lt; 35 ans</th>
     <td><%= @solvage_lt35 %></td>
     <td><%= @age_lt35 - @solvage_lt35 %></td>
     <td><%= @age_lt35 %></td>
   </tr>
   <tr>
-    <th>
-      P1G1
-    </th>
+    <th>P1G1</th>
     <td><%= @solv_p1g1 %></td>
     <td><%= @p1g1 - @solv_p1g1 %></td>
     <td><%= @p1g1 %></td>
   </tr>
-  <% @niveaux.each do |n| %>
-    <% unless n.id == 0 %>
-      <tr>
-        <th style="text-align: right;">
-          <%= n.name %>
-        </th>
-        <td>
-          <%= n.dossiers.solvants.count %>
-        </td>
-        <td>
-          <%= n.dossiers.count - n.dossiers.solvants.count %>
-        </td>
-        <td>
-          <%= n.dossiers.count %>
-        </td>
-      </tr>
-    <% end %>
-  <% end %>
-</table><h3>Évolution</h3>
+  <tr>
+    <th>SA</th>
+    <td><%= @solvsa_moyen %> (<%= @solvsa_sd %>)</td>
+    <td><%= @autres_sa_moyen %> </td>
+    <td><%= @sa_moyen %> (<%= @sa_sd %>)</td>
+  </tr>
+</table>
+
+<h3>Exposition/Niveaux</h3>
 <table class="latex">
   <tr>
     <th>&nbsp;</th>
-    <th>
-      Groupe<br />Solvants<br />
-      n = <%= @solvants.count %>
-    </th>
-    <th>
-      Groupe<br />Produits divers<br />
-      n = <%= @autres_nr %>
-    </th>
-    <th>
-      Total<br />
-      n = <%= @dossiers.count %>
-    </th>
+    <th class="center">Groupe<br />
+      Solvants<br />
+      n = <%= @solvants.count %></th>
+    <th class="center">Groupe<br />
+      Produits divers<br />
+      n = <%= @autres_count %></th>
+    <th class="center">Total<br />
+      n = <%= @dossiers.count %></th>
+  </tr>
+  <% @niveaux.each do |n| %>
+    <% unless n.id == 0 %>
+      <tr>
+        <th style="text-align: right;"><%= n.name %></th>
+        <td><%= n.dossiers.solvants.count %></td>
+        <td><%= n.dossiers.count - n.dossiers.solvants.count %></td>
+        <td><%= n.dossiers.count %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+<h3>Issues</h3>
+<table class="latex">
+  <tr>
+    <th class="center">&nbsp;</th>
+    <th class="center">Groupe<br />
+      Solvants<br />
+      n = <%= @solvants.count %></th>
+    <th class="center">Groupe<br />Produits divers<br />
+      n = <%= @autres_count %></th>
+    <th class="center">Total<br />
+      n = <%= @dossiers.count %></th>
   </tr>
   <% @evolutions.each do |e| %>
     <tr>
@@ -110,25 +96,17 @@
       <table class="latex">
         <tr>
           <th>&nbsp;</th>
-          <th>Naissances</th>
-          <th>FCS+MIU</th>
-          <th>Total</th>
+          <th class="center">Naissances</th>
+          <th class="center">FCS+MIU</th>
+          <th class="center">Total</th>
         </tr>
         <% @niveaux.each do |n| %>
           <% unless n.id == 0 %>
             <tr>
-                <th style="text-align: right;">
-                  <%= n.name %>
-                </th>
-              <td>
-                <%= n.dossiers.solvants.naissances.count %>
-              </td>
-              <td>
-                <%= n.dossiers.solvants.fausses_couches.count %>
-              </td>
-              <td>
-                <%= n.dossiers.solvants.count %>
-              </td>
+                <th style="text-align: right;"><%= n.name %></th>
+              <td><%= n.dossiers.solvants.naissances.count %></td>
+              <td><%= n.dossiers.solvants.fausses_couches.count %></td>
+              <td><%= n.dossiers.solvants.count %></td>
             </tr>
           <% end %>
         <% end %>
@@ -145,25 +123,17 @@
       <table class="latex">
         <tr>
           <th>&nbsp;</th>
-          <th>Normaux</th>
-          <th>Malformés</th>
-          <th>Total</th>
+          <th class="center">Normaux</th>
+          <th class="center">Malformés</th>
+          <th class="center">Total</th>
         </tr>
         <% @niveaux.each do |n| %>
           <% unless n.id == 0 %>
             <tr>
-                <th style="text-align: right;">
-                  <%= n.name %>
-                </th>
-              <td>
-                <%= Bebe.normaux.dossier_niveau_id_is(n.id).dossier_solvants.count %>
-              </td>
-              <td>
-                <%= Bebe.malformes.dossier_niveau_id_is(n.id).dossier_solvants.count %>
-              </td>
-              <td>
-                <%= Bebe.dossier_niveau_id_is(n.id).dossier_solvants.count %>
-              </td>
+              <th style="text-align: right;"><%= n.name %></th>
+              <td><%= Bebe.normaux.dossier_niveau_id_is(n.id).dossier_solvants.count %></td>
+              <td><%= Bebe.malformes.dossier_niveau_id_is(n.id).dossier_solvants.count %></td>
+              <td><%= Bebe.dossier_niveau_id_is(n.id).dossier_solvants.count %></td>
             </tr>
           <% end %>
         <% end %>
