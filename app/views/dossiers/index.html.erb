@@ -13,15 +13,16 @@
   <%= f.label "Evolution : " %><%= f.collection_select :acctype_id_equals, Acctype.all, :id, :name, :include_blank => true %><br />
   <%= f.submit "Rechercher", :name => nil %>
 <% end %>
-<p>Trier par <%= order @search, :by => :date_appel %> | <%= order @search, :by => :nom %> | <%= order @search, :by => :profession_name %></p>
 <% unless params[:search].blank? %>
   
-<table id="dossiers" class="latex">
+<table id="dossiers" class="collapse">
   <tr>
-    <th>Année</th>
+    <th><%= order @search, :by => :date_appel, :as => 'Année' %></th>
     <th>Dossier</th>
-    <th>Patiente</th>
+    <th><%= order @search, :by => :nom, :as => 'Patiente' %></th>
+    <th><%= order @search, :by => :profession_name, :as => 'Profession' %></th>
     <th>Exposition</th>
+    <th>CAT préconisée</th>
     <th>Evolution</th>
   </tr>
   <%= render :partial => @dossiers %>

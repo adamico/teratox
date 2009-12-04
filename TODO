@@ -4,9 +4,10 @@ TODO:
 Dossier :
   - table
     * cercare cosa indica ncode
+
+  - model
     * spurgare le colonne ddr, dap, dg
       - creare uno script per autocompletare i vari campi date grossesse se almeno uno è riempito
-    * creare campo 'demandeur' (da distinguere avec correspondant)
   - view :
     * show:
       - rimettere la gemma per formattare semplicemente un testo (redcloth?)
@@ -26,8 +27,6 @@ Correspondant :
 Produit :
   - table
     * estrarre la lista dei solvants
-    * creare categorie solvants + autres
-    * creare produits libéllés "A CREER"
 
 Pathologie :
   - creare table
@@ -36,6 +35,9 @@ Malformation :
   - creare table
 
 Exploitation
+  - aggiungere righe atcds gynéco-obstétricaux
+  - parité
+  - gestité
 
 Pagine fisse
   - aggiungere about, disclaimer, tutorial (e altro?)

@@ -26,7 +26,7 @@ label {
 }
 
 #container {
-  width: 75%;
+  width: 85%;
   margin: 0 auto;
   background-color: #FFF;
   padding: 20px 40px;
@@ -95,6 +95,11 @@ label {
 }
 
 /* Latex table style */
+
+.collapse {
+  border-collapse: collapse;
+}
+
 .latex {
   border-collapse: collapse;
 }

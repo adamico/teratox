@@ -5,11 +5,12 @@ class Dossier < ActiveRecord::Base
   validates_presence_of :n_sicap
   validates_presence_of :nom
   validates_presence_of :acctype_id
-  #validates_uniqueness_of :n_sicap
+  #TODO add validates_uniqueness_of :n_sicap
   validates_numericality_of :fcs, :ivg, :img, :miu, :geu, :nai
   validates_numericality_of :sa, :less_than => 40, :allow_blank => true
 
   # Associations
+  # TODO add belongs_to :category (solvants, autres)
   belongs_to :profession
   belongs_to :acctype
   belongs_to :accmod
@@ -73,10 +74,6 @@ class Dossier < ActiveRecord::Base
     else comm_af
     end
   end
-
-  # cigarettes and alcool virtual attributes may be made 'more DRY'
-  # and thus used in _form as radio_button labels
-  # and maybe use a helper for the show view
 
   def cigarettes
     cigJour = [ 
