@@ -29,10 +29,12 @@ class Dossier < ActiveRecord::Base
   belongs_to :demandeur
 
   # Named Scopes
-  alias_scope :solvants, lambda { produits_name_is('SOLVANT(S)') }
+  alias_scope :solvants, lambda { expo_type_is('solvants') }
+  alias_scope :autres, lambda { expo_type_is('autres') }
   alias_scope :avec_jumeaux, lambda { bebes_count_gt(1) }
   alias_scope :naissances, lambda { acctype_id_is(5) }
   alias_scope :fausses_couches, lambda { acctype_id_is_any(1, 4) }
+  alias_scope :p1g1, lambda { fcs_is(0).ivg_is(0).img_is(0).miu_is(0).geu_is(0).nai_is(0) }
 
   named_scope :incomplets, :conditions => { :acctype_id => 6 } # evolution inconnue
 
@@ -41,15 +43,6 @@ class Dossier < ActiveRecord::Base
   #TODO eliminare i campi ddr, dap, dg, mantenere giusto SA e calcolarlo in base a una delle date conosciute
   def year
     date_appel.year
-  end
-
-  def expotype
-    prnames = produits.collect { |p| p.name }
-    if prnames.include? "SOLVANT(S)"
-      "SOLVANT(S)"
-    else
-      "AUTRES"
-    end
   end
 
   def short_name

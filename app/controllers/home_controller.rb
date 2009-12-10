@@ -25,6 +25,13 @@ class HomeController < ApplicationController
     ).round(1)
 
     @p1g1 = Dossier.fcs_is(0).ivg_is(0).img_is(0).miu_is(0).geu_is(0).nai_is(0).count
+    
+    @parite = Dossier.average(:nai).round(1)
+    @parite_sd ||= Math.sqrt(
+      Dossier.sum(
+        "(nai - #{@parite}) * (nai - #{@parite})"
+      ).to_f / @count
+    ).round(1)
 
     # groupe solvants
     @solvants ||= Dossier.solvants
@@ -45,14 +52,42 @@ class HomeController < ApplicationController
       ).to_f / @solv_count
     ).round(1)
 
-    @solv_p1g1 = @solvants.fcs_is(0).ivg_is(0).img_is(0).miu_is(0).geu_is(0).nai_is(0).count
+    @solv_p1g1 = @solvants.p1g1.count
 
-    @autres_count = @dossiers.count - @solvants.count
-    @autres_age_total = Dossier.sum(:age) - @solvants.sum(:age)
-    @autres_age_moyen ||= (@autres_age_total / @autres_count).to_f
+    @solv_parite = @solvants.average(:nai).round(1)
+    @solv_parite_sd ||= Math.sqrt(
+      @solvants.sum(
+        "(nai - #{@solv_parite}) * (nai - #{@solv_parite})"
+      ).to_f / @solv_count
+    ).round(1)
 
-    @autres_sa_total = Dossier.sum(:sa) - @solvants.sum(:sa)
-    @autres_sa_moyen ||= (@autres_sa_total / @autres_count).to_f
+    #produits divers
+    @autres = Dossier.autres
+    @autres_count = @autres.count
+
+    @autres_age_moyen ||= @autres.average(:age).round(1)
+    @autres_age_sd ||= Math.sqrt(
+      @autres.sum(
+        "(age - #{@autres_age_moyen}) * (age - #{@autres_age_moyen})"
+      ).to_f / @autres_count
+    ).round(1)
+    @autres_age_lt35 = @autres.age_lt(35).count
+
+    @autres_sa_moyen ||= @autres.average(:sa).round(1)
+    @autres_sa_sd ||= Math.sqrt(
+      @autres.sum(
+        "(sa - #{@autres_sa_moyen}) * (sa - #{@autres_sa_moyen})"
+      ).to_f / @autres_count
+    ).round(1)
+
+    @autres_p1g1 = @autres.p1g1.count
+
+    @autres_parite = @autres.average(:nai).round(1)
+    @autres_parite_sd ||= Math.sqrt(
+      @autres.sum(
+        "(nai - #{@autres_parite}) * (nai - #{@autres_parite})"
+      ).to_f / @autres_count
+    ).round(1)
 
     @evolutions ||= Acctype.all
     @bebes ||= Bebe.all

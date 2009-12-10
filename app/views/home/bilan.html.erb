@@ -4,6 +4,7 @@
 <table class="latex" id="don_gen">
   <tr>
     <th>&nbsp;</th>
+    <%#TODO refactorare la tabella con un loop%>
     <th class="center">Groupe<br />
       Solvants<br />
       n = <%= @solvants.count %></th>
@@ -16,30 +17,31 @@
   <tr>
     <th>Âge</th>
     <td><%= @solvage_moyen %> (<%= @solvage_sd %>)</td>
-    <td><%= @autres_age_moyen %></td>
+    <td><%= @autres_age_moyen %> (<%= @autres_age_sd %>)</td>
     <td><%= @age_moyen %> (<%= @age_sd %>)</td>
   </tr>
   <tr>
     <th>&lt; 35 ans</th>
     <td><%= @solvage_lt35 %></td>
-    <td><%= @age_lt35 - @solvage_lt35 %></td>
+    <td><%= @autres_age_lt35 %></td>
     <td><%= @age_lt35 %></td>
   </tr>
   <tr>
     <th>P1G1</th>
     <td><%= @solv_p1g1 %></td>
-    <td><%= @p1g1 - @solv_p1g1 %></td>
+    <td><%= @autres_p1g1 %></td>
     <td><%= @p1g1 %></td>
   </tr>
   <tr>
     <th>Parité</th>
-    <td><%= Dossier.solvants.sum(:nai) %></td>
-    <td><%= Dossier.solvants.average(:nai).round(1) %></td>
+    <td><%= @solv_parite %> (<%= @solv_parite_sd %>)</td>
+    <td><%= @autres_parite %> (<%= @autres_parite_sd %>)</td>
+    <td><%= @parite %> (<%= @parite_sd %>)</td>
   </tr>
   <tr>
     <th>SA</th>
     <td><%= @solvsa_moyen %> (<%= @solvsa_sd %>)</td>
-    <td><%= @autres_sa_moyen %> </td>
+    <td><%= @autres_sa_moyen %> (<%= @autres_sa_sd %>)</td>
     <td><%= @sa_moyen %> (<%= @sa_sd %>)</td>
   </tr>
 </table>
