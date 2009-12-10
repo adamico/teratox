@@ -39,6 +39,36 @@
     <td><%= @parite %> (<%= @parite_sd %>)</td>
   </tr>
   <tr>
+    <th>Gestité</th>
+    <td><%= @solv_gestite %> (<%= @solv_gestite_sd %>)</td>
+    <td><%= @autres_gestite %> (<%= @autres_gestite_sd %>)</td>
+    <td><%= @gestite %> (<%= @gestite_sd %>)</td>
+  </tr>
+  <tr>
+    <th>FCS</th>
+    <td><%= @solvants.sum(:fcs) %></td>
+    <td><%= @autres.sum(:fcs) %></td>
+    <td><%= Dossier.sum(:fcs) %></td>
+  </tr>
+  <tr>
+    <th>IVG</th>
+    <td><%= @solvants.sum(:ivg) %></td>
+    <td><%= @autres.sum(:ivg) %></td>
+    <td><%= Dossier.sum(:ivg) %></td>
+  </tr>
+  <tr>
+    <th>ITG</th>
+    <td><%= @solvants.sum(:img) %></td>
+    <td><%= @autres.sum(:img) %></td>
+    <td><%= Dossier.sum(:img) %></td>
+  </tr>
+  <tr>
+    <th>MIU</th>
+    <td><%= @solvants.sum(:miu) %></td>
+    <td><%= @autres.sum(:miu) %></td>
+    <td><%= Dossier.sum(:miu) %></td>
+  </tr>
+  <tr>
     <th>SA</th>
     <td><%= @solvsa_moyen %> (<%= @solvsa_sd %>)</td>
     <td><%= @autres_sa_moyen %> (<%= @autres_sa_sd %>)</td>

@@ -33,6 +33,13 @@ class HomeController < ApplicationController
       ).to_f / @count
     ).round(1)
 
+    @gestite = Dossier.average(:gestite).round(1)
+    @gestite_sd ||= Math.sqrt(
+      Dossier.sum(
+        "(gestite - #{@gestite}) * (gestite - #{@gestite})"
+      ).to_f / @count
+    ).round(1)
+
     # groupe solvants
     @solvants ||= Dossier.solvants
     @solv_count ||= @solvants.count
@@ -61,6 +68,13 @@ class HomeController < ApplicationController
       ).to_f / @solv_count
     ).round(1)
 
+    @solv_gestite = @solvants.average(:gestite).round(1)
+    @solv_gestite_sd ||= Math.sqrt(
+      @solvants.sum(
+        "(gestite - #{@solv_gestite}) * (gestite - #{@solv_gestite})"
+      ).to_f / @count
+    ).round(1)
+
     #produits divers
     @autres = Dossier.autres
     @autres_count = @autres.count
@@ -87,6 +101,13 @@ class HomeController < ApplicationController
       @autres.sum(
         "(nai - #{@autres_parite}) * (nai - #{@autres_parite})"
       ).to_f / @autres_count
+    ).round(1)
+
+    @autres_gestite = @autres.average(:gestite).round(1)
+    @autres_gestite_sd ||= Math.sqrt(
+      @autres.sum(
+        "(gestite - #{@autres_gestite}) * (gestite - #{@autres_gestite})"
+      ).to_f / @count
     ).round(1)
 
     @evolutions ||= Acctype.all

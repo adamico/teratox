@@ -10,7 +10,6 @@ class Dossier < ActiveRecord::Base
   validates_numericality_of :sa, :less_than => 40, :allow_blank => true
 
   # Associations
-  # TODO add belongs_to :category (solvants, autres)
   belongs_to :profession
   belongs_to :acctype
   belongs_to :accmod
@@ -103,16 +102,15 @@ class Dossier < ActiveRecord::Base
     b = a.sum
   end
 
-  def gestite
+  def gestite_in_words
     grs_ant = [fcs, geu, miu, ivg, img, nai]
-    grs_tot = grs_ant.sum + 1 # somme des grossesses antérieures + celle actuelle
     abbr = %w{ fcs geu miu ivg img nai } # array des abbreviations
     out = "G" # abbreviation du mot 'gestité'
-    out+= grs_tot.to_s # gestite = Gn où n est b converti en chaine de charactères
+    out+= gestite.to_s # gestite = Gn où n est grs_tot converti en chaine de charactères
     strings = [nil,nil,nil,nil,nil,nil] # array vide où l'on va mettre les nombre d'évol par type
     # si nombre grs antérieures = nombre de naissances
     # on s'arrète là
-    if grs_tot == nai + 1
+    if gestite == nai + 1
       out
     # sinon dis moi quelles évolutions et combien de fois
     else
