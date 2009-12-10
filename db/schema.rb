@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091119155514) do
+ActiveRecord::Schema.define(:version => 20091210104106) do
 
   create_table "accmods", :force => true do |t|
     t.string "abbr"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(:version => 20091119155514) do
     t.integer  "cat_id"
     t.integer  "demandeur_id"
     t.integer  "bebes_count",                    :default => 0
+    t.string   "expo_type"
   end
 
   create_table "expositions", :force => true do |t|

@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   end
 
   def bilan
+    # tous les dossiers
     @dossiers = Dossier.all
     @last = Dossier.last
     @count ||= @dossiers.count
@@ -25,6 +26,7 @@ class HomeController < ApplicationController
 
     @p1g1 = Dossier.fcs_is(0).ivg_is(0).img_is(0).miu_is(0).geu_is(0).nai_is(0).count
 
+    # groupe solvants
     @solvants ||= Dossier.solvants
     @solv_count ||= @solvants.count
 

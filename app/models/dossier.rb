@@ -38,6 +38,7 @@ class Dossier < ActiveRecord::Base
 
   # custom methods
 
+  #TODO eliminare i campi ddr, dap, dg, mantenere giusto SA e calcolarlo in base a una delle date conosciute
   def year
     date_appel.year
   end
@@ -102,6 +103,7 @@ class Dossier < ActiveRecord::Base
     end
   end
 
+  #TODO creare due colonna per calcolare parité et gestite (à l'inclusion)
   # info sur la grossesse
   def grsant
     a = [fcs, geu, miu, ivg, img, nai]

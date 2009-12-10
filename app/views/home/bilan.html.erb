@@ -1,7 +1,7 @@
 <% title 'Bilan/statistiques' %>
 
 <h3>Données générales</h3>
-<table class="latex">
+<table class="latex" id="don_gen">
   <tr>
     <th>&nbsp;</th>
     <th class="center">Groupe<br />
@@ -30,6 +30,11 @@
     <td><%= @solv_p1g1 %></td>
     <td><%= @p1g1 - @solv_p1g1 %></td>
     <td><%= @p1g1 %></td>
+  </tr>
+  <tr>
+    <th>Parité</th>
+    <td><%= Dossier.solvants.sum(:nai) %></td>
+    <td><%= Dossier.solvants.average(:nai).round(1) %></td>
   </tr>
   <tr>
     <th>SA</th>
