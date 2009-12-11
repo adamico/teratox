@@ -43,4 +43,3 @@ Feature: Modify dossiers
       And I press "Save dossier"
     Then I should see "Demandeur :"
       And I should see "patiente"
-

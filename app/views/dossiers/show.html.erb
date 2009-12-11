@@ -67,6 +67,7 @@
 
 <h3>Exposition</h3>
 <div id="infoexpo">
+  <p>Type d'exposition: <%= @dossier.try(:expo_type) %></p>
   <p>Niveau global d'exposition : <%= @dossier.niveau.name %></p>
   <p>Conduite à tenir préconisée : <%= @dossier.cat.name rescue "Non renseignée" %></p>
   <table class="latex">

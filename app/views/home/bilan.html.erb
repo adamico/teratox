@@ -69,6 +69,13 @@
     <td><%= Dossier.sum(:miu) %></td>
   </tr>
   <tr>
+    <th>GEU</th>
+    <td><%= @solvants.sum(:geu) %></td>
+    <td><%= @autres.sum(:geu) %></td>
+    <td><%= Dossier.sum(:geu) %></td>
+  </tr>
+  <%#TODO aggiungere atcds tabac alcool%>
+  <tr>
     <th>SA</th>
     <td><%= @solvsa_moyen %> (<%= @solvsa_sd %>)</td>
     <td><%= @autres_sa_moyen %> (<%= @autres_sa_sd %>)</td>
@@ -100,6 +107,7 @@
     <% end %>
   <% end %>
 </table>
+<%#TODO aggiungere CAT préconisées%>
 <h3>Issues</h3>
 <table class="latex">
   <tr>

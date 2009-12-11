@@ -129,6 +129,7 @@
 
   <a name="expo"></a>
   <% form.inputs :name => "Exposition", :id => "infoexpo" do %>
+    <%= form.input :expo_type, :label => "Type d'exposition", :as => :select, :collection => [["solvants"], ["autres"]] %>
     <%= form.input :niveau, :label => "Niveau global d'exposition" %>
     <div id="expositions">
       <% form.fields_for :expositions do |expo_form| %>

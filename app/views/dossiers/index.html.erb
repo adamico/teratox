@@ -5,11 +5,17 @@
 </p>
 <h2>Filtrer</h2>
 <% form_for @search do |f| %>
-  <%= f.label "Nom : " %><%= f.text_field :nom_like %><br />
+<%#, [['1995', 'Jan 01, 1995'], ["#{Time.now.year}", "#{Time.now.beginning_of_year.to_s}"] ]%>
+  <% years_dates = (1995..2009).map { |y| [y.to_s, "Jan 01, #{y}"]} %>
+  <%= f.label "De l'année : " %><%= f.select :date_appel_after, years_dates, { :include_blank => true} %><br />
+  <%= f.label "A l'année : " %><%= f.select :date_appel_before, years_dates, { :include_blank => true} %><br />
+  <%= f.label "Nom patiente : " %><%= f.text_field :nom_like %><br />
   <%= f.label "Mot(s) dans les commentaires : " %><%= f.text_field :commentaire_like %><br />
   <%= f.label "Profession" %><%= f.collection_select :profession_id_equals, Profession.all, :id, :name, :include_blank => true %><br />
   <%= f.label "Correspondant (spécialité)" %><%= f.collection_select :correspondant_specialite_id_equals, Specialite.all, :id, :name, :include_blank => true %><br />
-  <%= f.label "Exposition : " %><%= f.collection_select :produits_id_equals, Produit.all, :id, :name, :include_blank => true %><br />
+  <%= f.label "Produits : " %><%= f.collection_select :produits_id_equals, Produit.all, :id, :name, :include_blank => true %><br />
+  <%= f.label "Type Exposition : " %><%= f.select :expo_type_equals, %w[solvants autres], {:include_blank => true} %><br />
+  <%= f.label "Niveau : " %><%= f.collection_select :niveau_id_equals, Niveau.all, :id, :name, :include_blank => true %><br />
   <%= f.label "Evolution : " %><%= f.collection_select :acctype_id_equals, Acctype.all, :id, :name, :include_blank => true %><br />
   <%= f.submit "Rechercher", :name => nil %>
 <% end %>

@@ -1,6 +1,7 @@
 class Dossier < ActiveRecord::Base
   require 'chronic'
 
+  #TODO aggiungere gli attr_accessible
   # Validations
   validates_presence_of :n_sicap
   validates_presence_of :nom
@@ -35,14 +36,11 @@ class Dossier < ActiveRecord::Base
   alias_scope :fausses_couches, lambda { acctype_id_is_any(1, 4) }
   alias_scope :p1g1, lambda { fcs_is(0).ivg_is(0).img_is(0).miu_is(0).geu_is(0).nai_is(0) }
 
-  named_scope :incomplets, :conditions => { :acctype_id => 6 } # evolution inconnue
+  named_scope :incomplets, :conditions => { :acctype_id => 6 }
 
   # custom methods
-
+ 
   #TODO eliminare i campi ddr, dap, dg, mantenere giusto SA e calcolarlo in base a una delle date conosciute
-  def year
-    date_appel.year
-  end
 
   def short_name
     [nom.upcase, initiale_prenom].compact.join(' ')
