@@ -24,10 +24,11 @@
 <table id="dossiers" class="collapse">
   <tr>
     <th><%= order @search, :by => :date_appel, :as => 'Année' %></th>
-    <th>Dossier</th>
+    <th><%= order @search, :by => :n_sicap, :as => 'Dossier' %></th>
     <th><%= order @search, :by => :nom, :as => 'Patiente' %></th>
     <th><%= order @search, :by => :profession_name, :as => 'Profession' %></th>
     <th>Exposition</th>
+    <th>Niveau</th>
     <th>CAT préconisée</th>
     <th>Evolution</th>
   </tr>

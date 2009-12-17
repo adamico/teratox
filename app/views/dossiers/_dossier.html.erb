@@ -3,11 +3,8 @@
   <td><%= link_to h(dossier.n_sicap), dossier %></td>
   <td><%= dossier.short_name %></td>
   <td><%= dossier.profession.name %></td>
-  <td>
-    <% dossier.produits.all.each do |p| %>
-      <%= p.name %><br />
-    <% end %>
-  </td>
+  <td><%= dossier.expo_type %></td>
+  <td><%= dossier.niveau.name %></td>
   <td><%= dossier.cat.name rescue "Non renseigné" %></td>
   <td><%= dossier.acctype.name rescue "Non renseigné" %></td>
   <td><%= link_to 'Modifier', edit_dossier_path(dossier) %></td>

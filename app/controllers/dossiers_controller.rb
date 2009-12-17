@@ -1,3 +1,4 @@
+# encoding:utf-8
 class DossiersController < ApplicationController
 
   def index

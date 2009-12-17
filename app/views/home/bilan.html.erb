@@ -99,7 +99,7 @@
   <% @niveaux.each do |n| %>
     <% unless n.id == 0 %>
       <tr>
-        <th style="text-align: right;"><%= n.name %></th>
+        <th style="text-align: right;"><%= h n.name %></th>
         <td><%= n.dossiers.solvants.count %></td>
         <td><%= n.dossiers.count - n.dossiers.solvants.count %></td>
         <td><%= n.dossiers.count %></td>
