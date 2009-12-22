@@ -1,3 +1,4 @@
+# encoding:utf-8
 class CorrespondantsController < ApplicationController
   def index
     @correspondants = Correspondant.all(:order => "name ASC")

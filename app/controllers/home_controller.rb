@@ -5,6 +5,7 @@ class HomeController < ApplicationController
 
   def bilan
     #TODO spostare la logica nel modello dossier
+    #
     # tous les dossiers
     @dossiers = Dossier.all
     @last = Dossier.last
