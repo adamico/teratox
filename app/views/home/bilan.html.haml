@@ -298,6 +298,7 @@
               %td
                 = Bebe.normaux.dossier_niveau_id_is(n.id).dossier_solvants.count
               %td
+                -#TODO refactor this using Dossier.is_malforme named scope
                 = Bebe.malformes.dossier_niveau_id_is(n.id).dossier_solvants.count
               %td
                 = Bebe.dossier_niveau_id_is(n.id).dossier_solvants.count

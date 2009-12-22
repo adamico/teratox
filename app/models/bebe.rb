@@ -8,6 +8,7 @@ class Bebe < ActiveRecord::Base
   alias_scope :malformes, lambda { malforme_is(1) }
   alias_scope :normaux, lambda { malforme_is(0) }
 
+
   def sex
     case sexe
     when 0; "inconnu"
@@ -17,9 +18,9 @@ class Bebe < ActiveRecord::Base
   end
 
   def malf
-    if malformation
-      "oui"
-    else "non"
+    case malforme
+    when 1; "oui"
+    when 0; "non"
     end
   end
 

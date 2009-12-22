@@ -38,6 +38,7 @@ class Dossier < ActiveRecord::Base
   alias_scope :p1g1, lambda { fcs_is(0).ivg_is(0).img_is(0).miu_is(0).geu_is(0).nai_is(0) }
 
   named_scope :incomplets, :conditions => { :acctype_id => 6 }
+  named_scope :is_malforme, :include => :bebes, :conditions => {'bebes.malforme' => 1}
 
   # custom methods
  

@@ -1,14 +1,14 @@
-- title ( "Liste des dossiers (" + h( @dossiers.count.to_s ) + ")" )
-%a{ :name => "top" }
+-#TODO add nav_bar here
+- title "Rechercher des dossiers"
 %p= link_to "Retour à l'accueil", root_path
 %h2 Filtrer
 - form_for @search do |f|
-  - years_dates = (1995..2009).map { |y| [y.to_s, "Jan 01, #{y}"]}
+  - years_after = (1995..2009).map { |y| [y.to_s, "Dec 31, #{y-1}"]}
+  - years_before = (1995..2009).map { |y| [y.to_s, "Dec 31, #{y}"]}
   = f.label "De l'année : "
-  = f.select :date_appel_after, years_dates, { :include_blank => true}
-  %br
+  = f.select :date_appel_after, years_after, { :include_blank => true}
   = f.label "A l'année : "
-  = f.select :date_appel_before, years_dates, { :include_blank => true}
+  = f.select :date_appel_before, years_before, { :include_blank => true}
   %br
   = f.label "Nom patiente : "
   = f.text_field :nom_like
@@ -34,21 +34,31 @@
   = f.label "Evolution : "
   = f.collection_select :acctype_id_equals, Acctype.all, :id, :name, :include_blank => true
   %br
+  = f.label "Malformation : "
+  = f.check_box :is_malforme
+  %br
   = f.submit "Rechercher", :name => nil
 
-- unless params[:search].blank?
-  %table#dossiers.collapse
-    %tr
-      %th= order @search, :by => :date_appel, :as => 'Année'
-      %th= order @search, :by => :n_sicap, :as => 'Dossier'
-      %th= order @search, :by => :nom, :as => 'Patiente'
-      %th= order @search, :by => :profession_name, :as => 'Profession'
-      %th Exposition
-      %th Niveau
-      %th CAT préconisée
-      %th Evolution
-    = render :partial => @dossiers
+%hr
+
+- if @dossiers.count > 0
+  %h4="Résultats : " + h(@dossiers.count.to_s)
+  %a{ :name => "top" }
+  - unless params[:search].blank?
+    %table#dossiers.collapse
+      %tr
+        %th= order @search, :by => :date_appel, :as => 'Année'
+        %th= order @search, :by => :n_sicap, :as => 'Dossier'
+        %th= order @search, :by => :nom, :as => 'Patiente'
+        %th= order @search, :by => :profession_name, :as => 'Profession'
+        %th Exposition
+        %th= order @search, :by => :niveau_name, :as => 'Niveau'
+        %th CAT préconisée
+        %th Evolution
+      = render :partial => @dossiers
+  %a{ :href => "#top" }
+    Remonter
+- else
+  %h4 Aucun résultat
 
 %p= link_to 'Nouveau dossier', new_dossier_path
-%a{ :href => "#top" }
-  Remonter

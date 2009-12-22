@@ -16,8 +16,8 @@
       %td= f.text_field :pc, :size => 1
       %td= f.text_field :apgar1, :size => 1
       %td= f.text_field :apgar5, :size => 1
-      %td= f.select(:malformation, [['Non', 0], ['Oui', 1], ['NSP', 2]])
-      %td= f.select(:pathologie, [['Non', 0], ['Oui', 1], ['NSP', 2]])
+      %td= f.select(:malforme, [['Non', 0], ['Oui', 1]])
+      %td= f.select(:pathologie, [['Non', 0], ['Oui', 1]])
       - unless f.object.new_record?
         %td
           = f.label :_delete, "Effacer:"
