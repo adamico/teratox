@@ -1,0 +1,17 @@
+- if @dossiers.empty?
+  %h2 Tous les dossiers ont été évolués
+- else
+  - title ( "Dossiers à évoluer (" + h( @dossiers.count.to_s ) + ")" )
+  %table.latex
+    %tr
+      %th Année
+      %th Dossier
+      %th Patiente
+      %th Profession
+      %th Exposition
+      %th Niveau
+      %th CAT
+      %th Evolution
+    = render :partial => @dossiers
+
+%p= link_to "Retour à l'Accueil", root_path

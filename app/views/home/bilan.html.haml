@@ -1,0 +1,312 @@
+- title 'Bilan/statistiques'
+%h3 Données générales
+%table#don_gen.latex
+  %tr
+    %th
+      \&nbsp;
+    -#TODO refactorare la tabella con un loop
+    %th.center
+      Groupe
+      %br
+      Solvants
+      %br
+      n =
+      = @solvants.count
+    %th.center
+      Groupe
+      %br
+      Produits divers
+      %br
+      n =
+      = @autres_count
+    %th.center
+      Total
+      %br
+      n =
+      = @dossiers.count
+  %tr
+    %th
+      Âge
+    %td
+      = @solvage_moyen
+      (
+      = @solvage_sd
+      )
+    %td
+      = @autres_age_moyen
+      (
+      = @autres_age_sd
+      )
+    %td
+      = @age_moyen
+      (
+      = @age_sd
+      )
+  %tr
+    %th
+      \&lt; 35 ans
+    %td
+      = @solvage_lt35
+    %td
+      = @autres_age_lt35
+    %td
+      = @age_lt35
+  %tr
+    %th
+      P1G1
+    %td
+      = @solv_p1g1
+    %td
+      = @autres_p1g1
+    %td
+      = @p1g1
+  %tr
+    %th
+      Parité
+    %td
+      = @solv_parite
+      (
+      = @solv_parite_sd
+      )
+    %td
+      = @autres_parite
+      (
+      = @autres_parite_sd
+      )
+    %td
+      = @parite
+      (
+      = @parite_sd
+      )
+  %tr
+    %th
+      Gestité
+    %td
+      = @solv_gestite
+      (
+      = @solv_gestite_sd
+      )
+    %td
+      = @autres_gestite
+      (
+      = @autres_gestite_sd
+      )
+    %td
+      = @gestite
+      (
+      = @gestite_sd
+      )
+  %tr
+    %th
+      FCS
+    %td
+      = @solvants.sum(:fcs)
+    %td
+      = @autres.sum(:fcs)
+    %td
+      = Dossier.sum(:fcs)
+  %tr
+    %th
+      IVG
+    %td
+      = @solvants.sum(:ivg)
+    %td
+      = @autres.sum(:ivg)
+    %td
+      = Dossier.sum(:ivg)
+  %tr
+    %th
+      ITG
+    %td
+      = @solvants.sum(:img)
+    %td
+      = @autres.sum(:img)
+    %td
+      = Dossier.sum(:img)
+  %tr
+    %th
+      MIU
+    %td
+      = @solvants.sum(:miu)
+    %td
+      = @autres.sum(:miu)
+    %td
+      = Dossier.sum(:miu)
+  %tr
+    %th
+      GEU
+    %td
+      = @solvants.sum(:geu)
+    %td
+      = @autres.sum(:geu)
+    %td
+      = Dossier.sum(:geu)
+  -#TODO aggiungere atcds tabac alcool
+  %tr
+    %th
+      SA
+    %td
+      = @solvsa_moyen
+      (
+      = @solvsa_sd
+      )
+    %td
+      = @autres_sa_moyen
+      (
+      = @autres_sa_sd
+      )
+    %td
+      = @sa_moyen
+      (
+      = @sa_sd
+      )
+%h3
+  Exposition/Niveaux
+%table.latex
+  %tr
+    %th
+      \&nbsp;
+    %th.center
+      Groupe
+      %br
+      Solvants
+      %br
+      n =
+      = @solvants.count
+    %th.center
+      Groupe
+      %br
+      Produits divers
+      %br
+      n =
+      = @autres_count
+    %th.center
+      Total
+      %br
+      n =
+      = @dossiers.count
+  - @niveaux.each do |n|
+    - unless n.id == 0
+      %tr
+        %th{ :style => "text-align: right;" }
+          = h n.name
+        %td
+          = n.dossiers.solvants.count
+        %td
+          = n.dossiers.count - n.dossiers.solvants.count
+        %td
+          = n.dossiers.count
+
+-#TODO aggiungere CAT préconisées
+%h3 Issues
+%table.latex
+  %tr
+    %th.center
+      \&nbsp;
+    %th.center
+      Groupe
+      %br
+      Solvants
+      %br
+      n =
+      = @solvants.count
+    %th.center
+      Groupe
+      %br
+      Produits divers
+      %br
+      n =
+      = @autres_count
+    %th.center
+      Total
+      %br
+      n =
+      = @dossiers.count
+  - @evolutions.each do |e|
+    %tr
+      %th
+        = e.abbr
+      %td
+        = e.dossiers.solvants.count
+      %td
+        = e.dossiers.count - e.dossiers.solvants.count
+      %td
+        = e.dossiers.count
+  %th
+    Enfants
+  %td
+    = Bebe.dossier_solvants.count
+  %td
+    = @bebes.count - Bebe.dossier_solvants.count
+  %td
+    = @bebes.count
+%h3
+  Stratification Niveaux/Issues
+%h4
+  Groupe Solvants
+%table
+  %tr
+    %td
+      %table.latex
+        %tr
+          %th
+            \&nbsp;
+          %th.center
+            Naissances
+          %th.center
+            FCS+MIU
+          %th.center
+            Total
+        - @niveaux.each do |n|
+          - unless n.id == 0
+            %tr
+              %th{ :style => "text-align: right;" }
+                = n.name
+              %td
+                = n.dossiers.solvants.naissances.count
+              %td
+                = n.dossiers.solvants.fausses_couches.count
+              %td
+                = n.dossiers.solvants.count
+        %tr
+          %th{ :style => "text-align: right;" }
+            Total
+          %td
+            = @solvants.naissances.count
+          %td
+            = @solvants.fausses_couches.count
+          %td
+            = @solvants.count
+    %td
+      \&nbsp;
+    %td
+      %table.latex
+        %tr
+          %th
+            \&nbsp;
+          %th.center
+            Normaux
+          %th.center
+            Malformés
+          %th.center
+            Total
+        - @niveaux.each do |n|
+          - unless n.id == 0
+            %tr
+              %th{ :style => "text-align: right;" }
+                = n.name
+              %td
+                = Bebe.normaux.dossier_niveau_id_is(n.id).dossier_solvants.count
+              %td
+                = Bebe.malformes.dossier_niveau_id_is(n.id).dossier_solvants.count
+              %td
+                = Bebe.dossier_niveau_id_is(n.id).dossier_solvants.count
+        %tr
+          %th{ :style => "text-align: right;" }
+            Total
+          %td
+            = Bebe.normaux.dossier_solvants.count
+          %td
+            = Bebe.malformes.dossier_solvants.count
+          %td
+            = Bebe.dossier_solvants.count

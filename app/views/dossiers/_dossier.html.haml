@@ -1,0 +1,11 @@
+%tr{ :class => cycle("even", "odd") }
+  %td= h dossier.date_appel.year
+  %td= link_to h(dossier.n_sicap), dossier
+  %td= dossier.short_name
+  %td= dossier.profession.name
+  %td= dossier.expo_type
+  %td= dossier.niveau.name
+  %td= dossier.cat.name rescue "Non renseigné"
+  %td= dossier.acctype.name rescue "Non renseigné"
+  %td= link_to 'Modifier', edit_dossier_path(dossier)
+  %td= link_to 'Detruire', dossier, :confirm => 'Etes-vous sur ?', :method => :delete

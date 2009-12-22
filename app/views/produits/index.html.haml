@@ -1,0 +1,12 @@
+%h1 Listing produits
+%table
+  %tr
+    %th Name
+  - @produits.each do |produit|
+    %tr
+      %td= h produit.name
+      %td= link_to 'Show', produit
+      %td= link_to 'Edit', edit_produit_path(produit)
+      %td= link_to 'Destroy', produit, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to 'New produit', new_produit_path

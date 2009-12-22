@@ -1,0 +1,26 @@
+- title @correspondant.name
+%p=link_to "Modifier", edit_correspondant_path(@correspondant)
+%p
+  %b Qualité :
+  = @correspondant.qualite.name
+%p
+  %b Specialité :
+  = @correspondant.specialite.name
+%p
+  %b Adresse :
+  = @correspondant.adresse
+  = @correspondant.cp
+  = @correspondant.ville
+%p
+  %b Téléphone :
+  = @correspondant.tel
+%h4 Dossiers de ce correspondant :
+- @correspondant.dossiers.each do |d|
+  %p= link_to d.n_sicap, d
+
+%p
+  = link_to "Retour à l'accueil", root_path
+  |
+  = link_to "Liste des correspondants", correspondants_path
+  |
+  = link_to "Detruire", @correspondant, :confirm => 'Etes-vous sûr ?', :method => :delete

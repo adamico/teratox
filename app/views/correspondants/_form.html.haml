@@ -1,0 +1,13 @@
+- semantic_form_for @correspondant do |f|
+  - f.inputs do
+    = f.input :name, :label => "Nom"
+    = f.input :specialite, :label => "Specialité"
+    = f.input :qualite, :label => "Qualité"
+    = f.input :adresse, :input_html => { :size => '15x1' }
+    = f.input :cp
+    = f.input :ville
+    = f.input :tel
+    = f.input :fax
+    = f.input :poste
+    = f.input :email
+  = f.buttons :commit

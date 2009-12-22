@@ -1,0 +1,16 @@
+- title "Correspondants"
+%table
+  %tr
+    %th Nom
+    %th Specialité
+    %th Qualité
+    %th Ville
+  - for correspondant in @correspondants
+    %tr
+      %td= link_to h(correspondant.name), correspondant
+      %td= h correspondant.specialite.name rescue "Non renseignée"
+      %td= h correspondant.qualite.name rescue "Non renseignée"
+      %td= h correspondant.ville
+      %td= link_to "Edit", edit_correspondant_path(correspondant)
+
+%p= link_to "New Correspondant", new_correspondant_path

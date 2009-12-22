@@ -1,0 +1,3 @@
+- title "#{@dossier.n_sicap}(modif) "
+= render :partial => 'form'
+%p= link_to 'Annuler les modifications', dossier_path(@dossier), :confirm => 'Voulez-vous annuler les modifications ?'

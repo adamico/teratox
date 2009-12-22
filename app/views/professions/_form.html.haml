@@ -1,0 +1,8 @@
+- form_for(@profession) do |f|
+  = f.error_messages
+  %table
+    %tr
+      %td
+        = f.label :name
+        = f.text_field :name
+  %p= f.submit 'Sauvegarder'

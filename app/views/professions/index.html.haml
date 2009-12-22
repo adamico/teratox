@@ -1,0 +1,10 @@
+- title "Liste des professions"
+%table
+  %tr
+  - @professions.each do |profession|
+    %tr{ :class => cycle("even", "odd") }
+      %td= h profession.id
+      %td= h profession.name
+      %td= link_to 'Modifier', edit_profession_path(profession)
+      %td= link_to 'Detruire', profession, :confirm => 'Etes-vous sur ?', :method => :delete
+%p= link_to 'Nouvelle profession', new_profession_path
