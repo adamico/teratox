@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+      <% if @page_title %>
+        <%= @page_title %> - 
+      <% end %>  
+      admin_data
+    </title>
+    
+    <%= AdminData::Util.stylesheet_link_tag(
+                                            'vendor/jquery-1.7.ui.core',
+                                            'vendor/jquery-1.7.ui.datepicker',
+                                            'base',
+                                            'themes/drastic-dark/style',
+                                            'umbrella', 
+                                            'rounded', 
+                                            'header', 
+                                            'app') %>
+
+    <% if Rails.env.development? %>
+       <script type="text/javascript">$ = 'foo';</script>
+    <% end %>
+
+    <!-- It is breaking the html markup and test is full of messages like 
+      ignoring attempt to close string with script Hence not including jquery.form in test -->
+    <%= AdminData::Util.javascript_include_tag('vendor/jquery-1.3.2.min',  
+                                               'vendor/jquery-ui-1.7.custom.min') unless Rails.env.test? %> 
+
+    <% if Rails.env.development? %>
+       <script type="text/javascript">jQuery.noConflict();</script>
+    <% end %>
+
+    <!-- It is breaking the html markup and test is full of messages like 
+      ignoring attempt to close string with script Hence not including jquery.form in test -->
+    <%= AdminData::Util.javascript_include_tag('vendor/jquery.form') unless Rails.env.test? %> 
+
+    <%= AdminData::Util.javascript_include_tag('vendor/log', 
+                                               'admin_data_js_util', 
+                                               'validate_model/select_all', 
+                                               'validate_model/ajaxify_form', 
+                                               'app') %>
+
+    <%# assert_tag is throwing a lot of warning with these inline javascripts.
+        no need of these javascripts in test mode %>
+    <% if params[:action] == 'advance_search' && !Rails.env.test? %>
+      <%= AdminData::Util.javascript_include_tag('advance_search/adv_search', 
+                                                 'advance_search/advance_search_structure', 
+                                                 'advance_search/ajaxify_advance_search') %>
+    <% end %>
+  
+  </head>
+
+  <body>
+    <noscript>
+      <div id="noscript-warning">JavaScript is disabled. A few things might not work properly.</div>
+      <br />
+      <br />
+    </noscript>
+    <%= render 'admin_data/main/misc/header', :drop_down_for_klasses => @drop_down_for_klasses %>
+    <div id="container">
+      <div id="wrapper">
+        <%= yield %>
+        <div class="clear"></div>      
+      </div>    
+      <%= render :partial => 'admin_data/main/misc/powered_by' %>
+    </div>
+  </body>
+  
+</html>

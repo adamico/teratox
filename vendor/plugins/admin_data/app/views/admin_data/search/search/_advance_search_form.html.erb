@@ -1,0 +1,32 @@
+<%= form_tag(admin_data_advance_search_path(:klass=>klass),   
+             :method => 'get', 
+             :class => 'form search_form', 
+             :id => 'advance_search_form') %>
+
+    <div id='advance_search' class='search_box'>
+     <table id='advance_search_table' class='advtable'>
+     </table>
+     <div class='group'>     
+         <label class='label'>sort by</label>
+         <select name='sortby' id='sortby' style='width:200px;'>
+            <%= AdminData::Util.build_sort_options(klass,params[:sortby]) %>
+         </select>
+      </div> 
+     <input type="submit" value="Search"/>
+   </div>
+
+</form>   
+
+<div style='display:none;' id='admin_data_table_structure_data'>
+  <% 
+    collection_of_colums = klass.columns.collect { |column| 
+      #JSLint complains if a hash has key named boolean. So I am changing the key to booleant  
+      column_type =  (column.type.to_s == 'boolean') ? 'booleant' : column.type.to_s
+      
+      "#{column.name}:'#{column_type}'" 
+    }  
+    collection_of_colums = collection_of_colums.join(',')
+    collection_of_colums = "[{#{collection_of_colums}}]"
+  %>
+  <%=collection_of_colums%>
+</div>
