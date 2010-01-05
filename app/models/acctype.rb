@@ -10,3 +10,15 @@ class Acctype < ActiveRecord::Base
     end
   end
 end
+
+
+# == Schema Information
+# Schema version: 20100105082615
+#
+# Table name: acctypes
+#
+#  id   :integer         not null, primary key
+#  abbr :string(255)
+#  name :string(255)
+#
+

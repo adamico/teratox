@@ -5,3 +5,14 @@
 #
 # two:
 #   column: value
+
+
+# == Schema Information
+# Schema version: 20100105082615
+#
+# Table name: professions
+#
+#  id   :integer         not null, primary key
+#  name :string(255)
+#
+

@@ -10,3 +10,17 @@ class Exposition < ActiveRecord::Base
     self.produit = Produit.find_or_create_by_name(name) unless name.blank?
   end
 end
+
+
+# == Schema Information
+# Schema version: 20100105082615
+#
+# Table name: expositions
+#
+#  id         :integer         not null, primary key
+#  dossier_id :integer
+#  produit_id :integer
+#  terme_id   :integer
+#  niveau_id  :integer
+#
+
