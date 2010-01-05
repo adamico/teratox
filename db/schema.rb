@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100105082615) do
+ActiveRecord::Schema.define(:version => 20100105084745) do
 
   create_table "accmods", :force => true do |t|
     t.string "abbr"
@@ -102,12 +102,22 @@ ActiveRecord::Schema.define(:version => 20100105082615) do
     t.boolean  "terato",                         :default => false
   end
 
+  add_index "dossiers", ["accmod_id"], :name => "index_dossiers_on_accmod_id"
+  add_index "dossiers", ["acctype_id"], :name => "index_dossiers_on_acctype_id"
+  add_index "dossiers", ["cat_id"], :name => "index_dossiers_on_cat_id"
+  add_index "dossiers", ["correspondant_id"], :name => "index_dossiers_on_correspondant_id"
+  add_index "dossiers", ["demandeur_id"], :name => "index_dossiers_on_demandeur_id"
+  add_index "dossiers", ["niveau_id"], :name => "index_dossiers_on_niveau_id"
+  add_index "dossiers", ["profession_id"], :name => "index_dossiers_on_profession_id"
+
   create_table "expositions", :force => true do |t|
     t.integer "dossier_id"
     t.integer "produit_id"
     t.integer "terme_id"
     t.integer "niveau_id"
   end
+
+  add_index "expositions", ["dossier_id"], :name => "index_expositions_on_dossier_id"
 
   create_table "niveaux", :force => true do |t|
     t.string "name"
