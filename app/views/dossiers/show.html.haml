@@ -1,159 +1,162 @@
 - title ( "Dossier " + h( @dossier.n_sicap.to_s ))
 
-%p
-  = link_to 'Modifier', edit_dossier_path(@dossier)
-  |
-  = link_to "Retour à l'accueil", root_path
-  |
-  = link_to "Saisir un nouveau dossier", new_dossier_path
-%p#time
-  Inclusion :
-  = l @dossier.date_appel, :format => :jjmmaaaa
-#infoperso
-  %table
-    %tr
-      %th#right= "Patiente : "
-      %td
-        = h @dossier.short_name
-      %th#right
-        Age :
-      %td
-        = h @dossier.age
-    %tr
-      %th#right
-        Profession :
-      %td
-        = h @dossier.profession.name rescue "Non renseignée"
-- unless @dossier.correspondant_id.nil?
-  %table
-    %tr
-      %th#right
-        Correspondant :
-      %td
-        = h @dossier.correspondant.name
-        %br
-        = h @dossier.correspondant.specialite.name
-        \&nbsp;
-        = h @dossier.correspondant.qualite.name
-        %br
-        = h @dossier.correspondant.adresse
-        %br
-        = h @dossier.correspondant.cp
-        \&nbsp;
-        = h @dossier.correspondant.ville
+- content_for :navbar do
+  %p
+    = link_to 'Modifier', edit_dossier_path(@dossier)
+    |
+    = link_to "Retour à l'accueil", root_path
+    |
+    = link_to "Saisir un nouveau dossier", new_dossier_path
 
-%p
-  %strong
-    Demandeur :
-  = h @dossier.demandeur.name rescue "Non renseigné"
-%h3
-  Antécédents/facteurs de risque
-#infoatcd
-  %p
-    Antécédents personnels :
-    = h @dossier.atcdp
-  %p
-    Antécédents familiaux :
-    = h @dossier.atcdf
-  %p
-    Tabac :
-    = h @dossier.cigarettes
-  %p
-    Alcool :
-    = h @dossier.boisson
-%h3
-  Grossesse
-#infogrs
-  %p
-    Terme à l'inclusion :
-    = @dossier.sa
-    SA
-  %p
-    Gestité :
-    = @dossier.gestite_in_words
-    %br
-    Parité : P
-    = @dossier.nai
-%h3
-  Exposition
-#infoexpo
-  %p
-    Type d'exposition:
-    = @dossier.try(:expo_type)
-  %p
-    Niveau global d'exposition :
-    = @dossier.niveau.name
-  %p
-    Conduite à tenir préconisée :
-    = @dossier.cat.name rescue "Non renseignée"
-  %table.latex
-    %tr
-      %th
-        Nom du produit
-      %th
-        Niveau
-    - @dossier.expositions.each do |expo|
+- content_for :main do
+  %p#time
+    Inclusion :
+    = l @dossier.date_appel, :format => :jjmmaaaa
+  #infoperso
+    %table
       %tr
+        %th#right= "Patiente : "
         %td
-          = h expo.produit.name
+          = h @dossier.short_name
+        %th#right
+          Age :
         %td
-          = h expo.niveau.name
+          = h @dossier.age
+      %tr
+        %th#right
+          Profession :
+        %td
+          = h @dossier.profession.name rescue "Non renseignée"
+  - unless @dossier.correspondant_id.nil?
+    %table
+      %tr
+        %th#right
+          Correspondant :
+        %td
+          = h @dossier.correspondant.name
+          %br
+          = h @dossier.correspondant.specialite.name
+          \&nbsp;
+          = h @dossier.correspondant.qualite.name
+          %br
+          = h @dossier.correspondant.adresse
+          %br
+          = h @dossier.correspondant.cp
+          \&nbsp;
+          = h @dossier.correspondant.ville
 
-  - unless @dossier.comm_expo.blank?
-    %p.commentaire
-      = h @dossier.comm_expo
-
-%h3
-  Evolution
-#infoevol
   %p
-    = h @dossier.evolution
-  %table
-    %tr
-      %td
-        = h @dossier.date_acc
-  - unless @dossier.comm_evol.blank?
-    %p.commentaire
-      = h @dossier.comm_evol
-
-- unless @dossier.bebes.empty?
+    %strong
+      Demandeur :
+    = h @dossier.demandeur.name rescue "Non renseigné"
   %h3
-    Nouveaux-nés (
-    = @dossier.bebes.count
-    )
-  #infonn
+    Antécédents/facteurs de risque
+  #infoatcd
+    %p
+      Antécédents personnels :
+      = h @dossier.atcdp
+    %p
+      Antécédents familiaux :
+      = h @dossier.atcdf
+    %p
+      Tabac :
+      = h @dossier.cigarettes
+    %p
+      Alcool :
+      = h @dossier.boisson
+  %h3
+    Grossesse
+  #infogrs
+    %p
+      Terme à l'inclusion :
+      = @dossier.sa
+      SA
+    %p
+      Gestité :
+      = @dossier.gestite_in_words
+      %br
+      Parité : P
+      = @dossier.nai
+  %h3
+    Exposition
+  #infoexpo
+    %p
+      Type d'exposition:
+      = @dossier.try(:expo_type)
+    %p
+      Niveau global d'exposition :
+      = @dossier.niveau.name
+    %p
+      Conduite à tenir préconisée :
+      = @dossier.cat.name rescue "Non renseignée"
     %table.latex
       %tr
-        %th Sexe
-        %th Poids
-        %th Taille
-        %th PC
-        %th Apgar (1')
-        %th Apgar (5')
-        %th Malformation
-        %th Pathologie
-      - @dossier.bebes.each do |bebe|
+        %th
+          Nom du produit
+        %th
+          Niveau
+      - @dossier.expositions.each do |expo|
         %tr
-          %td= h bebe.sex
-          %td= h bebe.poids
-          %td= h bebe.taille
-          %td= h bebe.pc
-          %td= h bebe.apgar1
-          %td= h bebe.apgar5
-          %td= h bebe.malf
-          %td= h bebe.path
+          %td
+            = h expo.produit.name
+          %td
+            = h expo.niveau.name
 
-    - unless @dossier.comm_bebe.blank?
+    - unless @dossier.comm_expo.blank?
       %p.commentaire
-        = h @dossier.comm_bebe
+        = h @dossier.comm_expo
 
-- unless @dossier.commentaire.blank?
   %h3
-    Commentaire
-  %p.commentaire
-    = h @dossier.commentaire
+    Evolution
+  #infoevol
+    %p
+      = h @dossier.evolution
+    %table
+      %tr
+        %td
+          = h @dossier.date_acc
+    - unless @dossier.comm_evol.blank?
+      %p.commentaire
+        = h @dossier.comm_evol
 
-%p
-  = link_to 'Modifier', edit_dossier_path(@dossier)
-  |
-  = link_to "Retour à la liste", dossiers_path
+  - unless @dossier.bebes.empty?
+    %h3
+      Nouveaux-nés (
+      = @dossier.bebes.count
+      )
+    #infonn
+      %table.latex
+        %tr
+          %th Sexe
+          %th Poids
+          %th Taille
+          %th PC
+          %th Apgar (1')
+          %th Apgar (5')
+          %th Malformation
+          %th Pathologie
+        - @dossier.bebes.each do |bebe|
+          %tr
+            %td= h bebe.sex
+            %td= h bebe.poids
+            %td= h bebe.taille
+            %td= h bebe.pc
+            %td= h bebe.apgar1
+            %td= h bebe.apgar5
+            %td= h bebe.malf
+            %td= h bebe.path
+
+      - unless @dossier.comm_bebe.blank?
+        %p.commentaire
+          = h @dossier.comm_bebe
+
+  - unless @dossier.commentaire.blank?
+    %h3
+      Commentaire
+    %p.commentaire
+      = h @dossier.commentaire
+
+  %p
+    = link_to 'Modifier', edit_dossier_path(@dossier)
+    |
+    = link_to "Retour à la liste", dossiers_path
