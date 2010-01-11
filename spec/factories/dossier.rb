@@ -6,10 +6,10 @@ Factory.define :dossier do |d|
   d.nai '1'
   d.fcs '0'
   d.geu '0'
-  d.sa '12'
   d.miu '0'
   d.img '0'
   d.ivg '0'
+  d.sa '12'
   d.tabac '0'
   d.alcool '0'
   d.ncode '0'
@@ -39,7 +39,7 @@ Factory.define :dossier do |d|
   d.acctype_id { d.default_acctype.id }
   
   d.correspondant {|c| c.association(:correspondant)}
-  d.demandeur {|d| d.association(:demandeur)}
+  d.demandeur {|a| a.association(:demandeur)}
   d.acctype {|a| a.association(:acctype)}
   d.expositions {|e| [e.association(:exposition)]}
   d.niveau {|n| n.association(:niveau)}
