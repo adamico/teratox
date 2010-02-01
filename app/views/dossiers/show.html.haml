@@ -75,8 +75,7 @@
       Gestité :
       = @dossier.gestite_in_words
       %br
-      Parité : P
-      = @dossier.nai
+      = "Parité : P#{@dossier.nai}"
   %h3
     Exposition
   #infoexpo
@@ -111,10 +110,10 @@
   #infoevol
     %p
       = h @dossier.evolution
-    %table
-      %tr
-        %td
-          = h @dossier.date_acc
+    %p
+      = "Anomalies échographiques : #{@dossier.anomalie_echo}"
+    %p
+      = "Retard de croissance in utero : #{@dossier.rciu}"
     - unless @dossier.comm_evol.blank?
       %p.commentaire
         = h @dossier.comm_evol

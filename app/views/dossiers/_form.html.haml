@@ -18,6 +18,7 @@
       = form.input :nom
       = form.input :prenom, :label => "Prénom"
       = form.input :age, :input_html => { :size => '3' }
+      = form.input :date_naissance, :start_year => 1965, :include_blank => true
       = form.input :profession, :include_blank => false
 
     - form.inputs :name => "Correspondant" do
@@ -161,6 +162,9 @@
           = form.text_field :terme, :size => 1
           = form.label :dra, "Date d'accouchement"
           = form.date_select :dra, :start_year => 1998, :order => [:day, :month, :year], :prompt => true
+        %p
+          = form.input :anomalie_echo
+          = form.input :rciu
         %p
           = form.text_area :comm_evol, :class => "commentaire_100"
           * Compléter le champ malformation dans la section nouveau-né si examen anatomo-pathologique interprétable

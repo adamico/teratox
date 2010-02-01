@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100105084745) do
+ActiveRecord::Schema.define(:version => 20100201090153) do
 
   create_table "accmods", :force => true do |t|
     t.string "abbr"
@@ -100,6 +100,9 @@ ActiveRecord::Schema.define(:version => 20100105084745) do
     t.string   "expo_type"
     t.integer  "gestite"
     t.boolean  "terato",                         :default => false
+    t.date     "date_naissance"
+    t.boolean  "anomalie_echo"
+    t.boolean  "rciu"
   end
 
   add_index "dossiers", ["accmod_id"], :name => "index_dossiers_on_accmod_id"
