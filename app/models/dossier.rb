@@ -99,18 +99,18 @@ class Dossier < ActiveRecord::Base
   # info sur la grossesse
   def grsant
     a = [fcs, geu, miu, ivg, img, nai]
-    b = a.sum
+    a.sum
   end
 
   def gestite_in_words
     grs_ant = [fcs, geu, miu, ivg, img, nai]
     abbr = %w{ fcs geu miu ivg img nai } # array des abbreviations
     out = "G" # abbreviation du mot 'gestité'
-    out+= gestite.to_s # gestite = Gn où n est grs_tot converti en chaine de charactères
+    out+= (grsant + 1).to_s # gestite = Gn où n est grs_tot converti en chaine de charactères
     strings = [nil,nil,nil,nil,nil,nil] # array vide où l'on va mettre les nombre d'évol par type
     # si nombre grs antérieures = nombre de naissances
     # on s'arrète là
-    if gestite == nai + 1
+    if grsant == nai
       out
     # sinon dis moi quelles évolutions et combien de fois
     else
