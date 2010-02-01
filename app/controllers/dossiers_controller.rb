@@ -25,7 +25,7 @@ class DossiersController < ApplicationController
   end
 
   def create
-    @dossier = Dossier.new(params[:dossier], :include => [:correspondant, :profession, :acctype, :accmod, :produits])
+    @dossier = Dossier.new(params[:dossier])
 
     if @dossier.save
       flash[:notice] = "Dossier créé avec succès."
