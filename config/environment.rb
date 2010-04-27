@@ -51,5 +51,4 @@ Rails::Initializer.run do |config|
   config.i18n.default_locale = :fr
 end
 
-Encoding.default_internal, Encoding.default_external = ['utf-8'] * 2
 Time::DATE_FORMATS[:date_appel] = "%d-%m-%Y"

@@ -42,6 +42,10 @@ class Dossier < ActiveRecord::Base
 
   # custom methods
  
+  def self.avg_birthweight
+    average('bebes.poids', :include => :bebes)
+  end
+
   #TODO eliminare i campi ddr, dap, dg, mantenere giusto SA e calcolarlo in base a una delle date conosciute
 
   def short_name
