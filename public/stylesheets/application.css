@@ -145,3 +145,10 @@ th.center {
   width: auto;
   display: block;
   height: 24px; }
+
+ol.formList {
+  list-style: none; }
+  ol.formList label {
+    font-weight: bold; }
+    ol.formList label:after {
+      content: " : "; }

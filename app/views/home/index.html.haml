@@ -7,7 +7,7 @@
     %li= link_to "Une évolution", evoluer_dossiers_path
   %h3 Afficher :
   %ul
-    %li= link_to "Tous les dossiers", dossiers_path
+    %li= link_to "Recherche de dossiers", dossiers_path
     %li
       - form_tag dossiers_path, :method => :get do
         = label_tag :search, "Un dossier par son numéro SICAP : LP"
