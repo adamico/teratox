@@ -8,12 +8,11 @@
 - content_for :main do
   %h2 Filtrer
   - form_for @search do |f|
-    - years_after = (1995..2009).map { |y| [y.to_s, "Dec 31, #{y-1}"]}
     - years_before = (1995..2009).map { |y| [y.to_s, "Dec 31, #{y}"]}
-    = f.label "De l'année : "
-    = f.select :date_appel_after, years_after, { :include_blank => true}
-    = f.label "A l'année : "
-    = f.select :date_appel_before, years_before, { :include_blank => true}
+    = f.label "Par date"
+    = f.calendar_date_select :date_appel_after, :year_range => 1995..Time.now.year, :valid_date_check => "date < (new Date()).stripTime()", :popup => :force, :size => 8
+    = " - "
+    = f.calendar_date_select :date_appel_before, :year_range => 1995..Time.now.year, :popup => :force, :size => 8
     %br
     = f.label "Nom patiente : "
     = f.text_field :nom_like

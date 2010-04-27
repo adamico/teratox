@@ -19,11 +19,10 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
-  config.gem "justinfrench-formtastic", 
-    :lib     => 'formtastic', 
-    :source  => 'http://gems.github.com'
+  config.gem "formtastic"
   config.gem "webrat", :version => ">=0.4.4"
   config.gem "searchlogic"
+  config.gem "calendar_date_select"
   config.gem "thoughtbot-factory_girl",
              :lib    => "factory_girl",
              :source => "http://gems.github.com"
@@ -51,4 +50,5 @@ Rails::Initializer.run do |config|
   config.i18n.default_locale = :fr
 end
 
+CalendarDateSelect.format = :finnish
 Time::DATE_FORMATS[:date_appel] = "%d-%m-%Y"
