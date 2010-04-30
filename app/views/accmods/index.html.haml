@@ -1,0 +1,17 @@
+- title "Accmods"
+
+- content_for :main do
+  %table
+    %tr
+      %th Abbr
+      %th Name
+    - for accmod in @accmods
+      %tr
+        %td= h accmod.abbr
+        %td= h accmod.name
+        %td= link_to 'Show', accmod
+        %td= link_to 'Edit', edit_accmod_path(accmod)
+        %td= link_to 'Destroy', accmod, :confirm => 'Are you sure?', :method => :delete
+
+- content_for :footer do
+  %p= link_to "New Accmod", new_accmod_path

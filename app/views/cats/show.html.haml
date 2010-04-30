@@ -1,0 +1,11 @@
+- title "Cat"
+
+- content_for :main do
+  %p
+    %strong Name:
+    =h @cat.name
+
+  %p
+    = link_to "Edit", edit_cat_path(@cat)
+    |
+    = link_to "Destroy", @cat, :confirm => 'Are you sure?', :method => :delete

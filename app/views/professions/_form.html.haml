@@ -1,8 +1,3 @@
-- form_for(@profession) do |f|
-  = f.error_messages
-  %table
-    %tr
-      %td
-        = f.label :name
-        = f.text_field :name
-  %p= f.submit 'Sauvegarder'
+- semantic_form_for @profession do |f|
+  = f.inputs
+  = f.buttons :commit

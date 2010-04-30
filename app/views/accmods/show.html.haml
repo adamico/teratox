@@ -1,0 +1,14 @@
+- title "Accmod"
+
+- content_for :main do
+  %p
+    %strong Abbr:
+    =h @accmod.abbr
+  %p
+    %strong Name:
+    =h @accmod.name
+
+  %p
+    = link_to "Edit", edit_accmod_path(@accmod)
+    |
+    = link_to "Destroy", @accmod, :confirm => 'Are you sure?', :method => :delete

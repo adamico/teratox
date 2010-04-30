@@ -1,0 +1,11 @@
+- title "Specialite"
+
+- content_for :main do
+  %p
+    %strong Name:
+    =h @specialite.name
+
+  %p
+    = link_to "Edit", edit_specialite_path(@specialite)
+    |
+    = link_to "Destroy", @specialite, :confirm => 'Are you sure?', :method => :delete

@@ -1,0 +1,11 @@
+- title "Niveau"
+
+- content_for :main do
+  %p
+    %strong Name:
+    =h @niveau.name
+
+  %p
+    = link_to "Edit", edit_niveau_path(@niveau)
+    |
+    = link_to "Destroy", @niveau, :confirm => 'Are you sure?', :method => :delete

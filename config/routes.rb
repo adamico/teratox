@@ -1,4 +1,18 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :specialites
+
+  map.resources :qualites
+
+  map.resources :niveaux
+
+  map.resources :demandeurs
+
+  map.resources :cats
+
+  map.resources :acctypes
+
+  map.resources :accmods
+
   map.resources :home, :produits, :correspondants, :professions
   map.resources :dossiers, :collection => { :evoluer => :get }
 

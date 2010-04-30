@@ -1,13 +1,5 @@
 - title "Editing produit: #{@produit.name}"
-- form_for(@produit) do |f|
-  = f.error_messages
-  %p
-    = f.label :name
-    %br
-    = f.text_field :name
-  %p
-    = f.submit 'Update'
-%p
-  = link_to 'Show', @produit
-  |
-  = link_to 'Back', produits_path
+
+- content_for :main do
+  = render :partial => 'form'
+  %p= link_to 'Show', @produit

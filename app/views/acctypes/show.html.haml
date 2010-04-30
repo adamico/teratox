@@ -1,0 +1,16 @@
+- title "Acctype"
+
+- content_for :main do
+  %p
+    %strong Abbr:
+    =h @acctype.abbr
+  %p
+    %strong Name:
+    =h @acctype.name
+
+  %p
+    = link_to "Edit", edit_acctype_path(@acctype)
+    |
+    = link_to "Destroy", @acctype, :confirm => 'Are you sure?', :method => :delete
+    |
+    = link_to "View All", acctypes_path

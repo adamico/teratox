@@ -1,0 +1,14 @@
+- title "Demandeurs"
+
+- content_for :main do
+  %table
+    %tr
+      %th Name
+    - for demandeur in @demandeurs
+      %tr
+        %td= h demandeur.name
+        %td= link_to 'Show', demandeur
+        %td= link_to 'Edit', edit_demandeur_path(demandeur)
+        %td= link_to 'Destroy', demandeur, :confirm => 'Are you sure?', :method => :delete
+
+  %p= link_to "New Demandeur", new_demandeur_path

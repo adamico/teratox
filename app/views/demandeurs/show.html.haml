@@ -1,0 +1,11 @@
+- title "Demandeur"
+
+- content_for :main do
+  %p
+    %strong Name:
+    =h @demandeur.name
+
+  %p
+    = link_to "Edit", edit_demandeur_path(@demandeur)
+    |
+    = link_to "Destroy", @demandeur, :confirm => 'Are you sure?', :method => :delete

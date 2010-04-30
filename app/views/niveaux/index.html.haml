@@ -1,0 +1,14 @@
+- title "Niveaux"
+
+- content_for :main do
+  %table
+    %tr
+      %th Name
+    - for niveau in @niveaux
+      %tr
+        %td= h niveau.name
+        %td= link_to 'Show', niveau
+        %td= link_to 'Edit', edit_niveau_path(niveau)
+        %td= link_to 'Destroy', niveau, :confirm => 'Are you sure?', :method => :delete
+
+  %p= link_to "New Niveau", new_niveau_path

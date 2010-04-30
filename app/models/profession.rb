@@ -1,5 +1,6 @@
 class Profession < ActiveRecord::Base
-  #TODO rénommer ce modèle en poste_travail
+  validates_presence_of :name
+
   has_many :dossiers
 end
 
