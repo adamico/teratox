@@ -1,0 +1,61 @@
+%a{ :name => "grs" }
+- f.inputs :name => "Info Grossesse", :id => "info_grs" do
+  %table.goleft
+    %tr
+      %th{ :colspan => "2" }
+        Grossesses antérieures :
+        = @dossier.grsant rescue "0"
+    %tr
+      %td#right
+        = f.label :fcs
+        = f.text_field :fcs, :size => "1"
+      %td#right
+        = f.label :geu
+        = f.text_field :geu, :size => "1"
+    %tr
+      %td#right
+        = f.label :miu
+        = f.text_field :miu, :size => "1"
+      %td#right
+        = f.label :ivg
+        = f.text_field :ivg, :size => "1"
+    %tr
+      %td#right
+        = f.label :img
+        = f.text_field :img, :size => "1"
+      %td#right
+        = f.label :nai
+        = f.text_field :nai, :size => "1"
+  %table.goleft{ :style => "margin-left:1em" }
+    %tr
+      %td#right
+        = f.label :sa, "Terme : "
+      %td
+        = f.text_field :sa, :size => "1"
+        SA
+    %tr
+      %td#right
+        = f.label :ddr,  "DDR : "
+      %td
+        = f.calendar_date_select :ddr, :size => 10
+    %tr
+      %td#right
+        = f.label :dg, "Debut de grossesse : "
+      %td
+        = f.calendar_date_select :dg, :popup => :force, :size => 10
+    %tr
+      %td#right
+        = f.label :dap, "Accouchement prévu : "
+      %td
+        = f.calendar_date_select :dap, :popup => :force, :size => 10
+  %p.goleft
+    = f.label :assmedproc, "Assistance médicale à la procréation"
+    %br
+    = f.radio_button( "assmedproc", "0")
+    = f.label :assmedproc, "Oui"
+    %br
+    = f.radio_button( "assmedproc", "1")
+    = f.label :assmedproc, "Non"
+    %br
+    = f.radio_button( "assmedproc", "2")
+    = f.label :assmedproc, "Ne sait pas"

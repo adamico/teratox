@@ -1,0 +1,46 @@
+%a{ :name => "evol" }
+- f.inputs :name => "Évolution", :id => "evolution" do
+  #infoevol
+    %table
+      %tr
+        %th{ :colspan => "2" } Type
+      - Acctype.all.in_groups_of(2, false) do |row_at|
+        %tr
+          - for acctype in row_at
+            %td
+              = f.radio_button "acctype_id", acctype.id
+              = f.label :acctype_id, "#{acctype.abbrev}"
+    %table
+      %tr
+        %th
+          Modalité
+      - Accmod.all.each do |am|
+        %tr
+          %td
+            = f.radio_button "accmod_id", am.id
+            = f.label :accmod_id, am.abbr
+    %table
+      %tr
+        %th Pathologie maternelle
+      %tr
+        %td
+          = f.radio_button "path_mat", "0"
+          = f.label :path_mat, "Oui"
+      %tr
+        %td
+          = f.radio_button "path_mat", "1"
+          = f.label :path_mat, "Non"
+      %tr
+        %td
+          = f.radio_button "path_mat", "2"
+          = f.label :path_mat, "inconnu"
+
+    .clear{ :style => "margin-top:1em" }
+      = f.label :dra, "Date d'accouchement"
+      = f.calendar_date_select :dra, :size => 10
+      = f.label :terme, "Terme (SA)"
+      = f.text_field :terme, :size => 1
+      = f.input :anomalie_echo
+      = f.input :rciu
+    %p
+      = f.input :comm_evol, :hint => "* Compléter le champ malformation dans la section nouveau-né si examen anatomo-pathologique interprétable"

@@ -1,12 +1,17 @@
-%h1 Listing produits
-%table
-  %tr
-    %th Name
-  - @produits.each do |produit|
-    %tr
-      %td= h produit.name
-      %td= link_to 'Show', produit
-      %td= link_to 'Edit', edit_produit_path(produit)
-      %td= link_to 'Destroy', produit, :confirm => 'Are you sure?', :method => :delete
+- title "Liste des produits"
 
-%p= link_to 'New produit', new_produit_path
+- content_for :main do
+  %table
+    %tr
+      %th Name
+    - @produits.each do |produit|
+      %tr
+        %td= h produit.name
+        %td= link_to 'Show', produit
+        %td= link_to 'Edit', edit_produit_path(produit)
+        %td= link_to 'Destroy', produit, :confirm => 'Are you sure?', :method => :delete
+
+  %p= will_paginate @produits, :previous_label => "<--", :next_label => "-->"
+
+- content_for :footer do
+  %p= link_to 'Nouveau produit', new_produit_path

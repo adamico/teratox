@@ -1,12 +1,12 @@
-.bebe
+.fields
   %table.latex
     %tr
       %th= f.label :sexe
       %th= f.label :poids
       %th= f.label :taille
       %th= f.label :pc, "PC"
-      %th= f.label :apgar1, "Apgar (1\')"
-      %th= f.label :apgar5, "Apgar (5\')"
+      %th= f.label :apgar1, "Apgar (1')"
+      %th= f.label :apgar5, "Apgar (5')"
       %th= f.label :malformation
       %th= f.label :pathologie
     %tr
@@ -18,7 +18,4 @@
       %td= f.text_field :apgar5, :size => 1
       %td= f.select(:malforme, [['Non', 0], ['Oui', 1]])
       %td= f.select(:pathologie, [['Non', 0], ['Oui', 1]])
-      - unless f.object.new_record?
-        %td
-          = f.label :_delete, "Effacer:"
-          = f.check_box :_delete
+      %td= link_to_remove_fields "Détruire ce bébé", f

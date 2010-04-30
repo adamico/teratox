@@ -1,0 +1,7 @@
+.fields
+  - f.inputs do
+    %li.select
+      = f.label :produit_id, "Produit"
+      = f.collection_select :produit_id, Produit.all(:order => "LOWER(name) ASC"), :id, :name, :include_blank => true
+      = f.collection_select :niveau_id, Niveau.all, :id, :name, :include_blank => true
+    %p= link_to_remove_fields "Détruire cette exposition", f

@@ -28,6 +28,10 @@ class Dossier < ActiveRecord::Base
   belongs_to :cat
   belongs_to :demandeur
 
+  # Constants
+  ONI = [["Oui", "0"], ["Non", "1"], ["Inconnu", "2"]]
+  TABAC = [["0", "0"], ["0 à 5", "1"], ["5 à 10", "2"], ["Sup. à 10", "3"], ["Inconnu", "4"]]
+  ALCOOL = [["0", "0"], ["<= 2", "1"], ["> 2", "2"], ["Inconnu", "3"]]
   # Named Scopes
   alias_scope :solvants, lambda { expo_type_is('solvants') }
   alias_scope :autres, lambda { expo_type_is('autres') }

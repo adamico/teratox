@@ -1,177 +1,44 @@
-- javascript 'delegate', 'dossier_form_scripts'
+- javascript 'dossier_form_scripts'
 
--#TODO add links to navbar
 - content_for :main do
   %a{ :name => "top" }
 
-  - semantic_form_for @dossier do |form|
-    - content_for :jstemplates do
-      = "var exposition='#{generate_template(form, :expositions)}'"
-      = "var bebe='#{generate_template(form, :bebes)}'"
-
-    - form.inputs :id => "sicap" do
-      = form.input :n_sicap, :label => "Numéro SICAP", :input_html => { :size => '6' }
+  - semantic_form_for @dossier do |f|
+    - f.inputs :id => "sicap" do
+      = f.input :n_sicap, :label => "Numéro SICAP", :input_html => { :size => '6' }
       %li.select
-        = form.label :date_appel
-        = form.calendar_date_select :date_appel, :valid_date_check => "date <= (new Date()).stripTime()", :size => 10
-      = form.input :demandeur, :label => "Demandeur"
+        = f.label :date_appel
+        = f.calendar_date_select :date_appel, :valid_date_check => "date <= (new Date()).stripTime()", :size => 10
+      = f.input :demandeur, :label => "Demandeur"
 
-    - form.inputs :name => "Données de la patiente", :id => "patiente" do
-      = form.input :nom
-      = form.input :prenom, :label => "Prénom"
-      = form.input :age, :input_html => { :size => '3' }
-      %li.select
-        = form.label :date_naissance
-        = form.calendar_date_select :date_naissance, :valid_date_check => "date <= (new Date()).stripTime()", :year_range => 50.years.ago.year..Time.now.year, :size => 10
-      = form.input :profession, :include_blank => false
-
-    - form.inputs :name => "Correspondant" do
-      = form.input :correspondant, :label => "Nom", :hint => "Choisir dans la liste ou saisir un nouveau correspondant en suivant le lien ci dessous"
+    - f.inputs :name => "Correspondant" do
+      = f.input :correspondant, :label => "Nom", :hint => "Choisir dans la liste ou saisir un nouveau correspondant en suivant le lien ci dessous"
 
     %p= link_to "Saisir un nouveau correspondant", new_correspondant_path, :popup => true
+
+    #patient_fields
+      = render 'patient_fields', :f => f
     %p= link_to "Patiente", "#top"
 
-    %a{ :name => "atcds" }
-    - form.inputs :name => "Antécédents / facteurs de risque", :id => "info_atcd" do
-      = form.input :af, :as => :radio, :label => "Atcds familiaux", :collection => [["Oui", "0"], ["Non", "1"], ["Inconnu", "2"]]
-      = form.input :comm_af, :input_html => { :size => '40x2'}
-      %br
-      = form.input :ap, :as => :radio, :label => "Atcds personnels", :collection => [["Oui", "0"], ["Non", "1"], ["Inconnu", "2"]]
-      = form.input :comm_ap, :input_html => { :size => '40x2'}
-      = form.input :tabac, :as => :radio, :label => "Tabac (cig/j)", :collection => [["0", "0"], ["0 à 5", "1"], ["5 à 10", "2"], ["Sup. à 10", "3"], ["Inconnu", "4"]]
-      = form.input :alcool, :as => :radio, :label => "Alcool (verres/j)", :collection => [["0", "0"], ["<= 2", "1"], ["> 2", "2"], ["Inconnu", "3"]]
-
-    %a{ :name => "grs" }
-    - form.inputs :name => "Info Grossesse", :id => "info_grs" do
-      %table.goleft
-        %tr
-          %th{ :colspan => "2" }
-            Grossesses antérieures :
-            = @dossier.grsant rescue "0"
-        %tr
-          %td#right
-            = form.label :fcs
-            = form.text_field :fcs, :size => "1"
-          %td#right
-            = form.label :geu
-            = form.text_field :geu, :size => "1"
-        %tr
-          %td#right
-            = form.label :miu
-            = form.text_field :miu, :size => "1"
-          %td#right
-            = form.label :ivg
-            = form.text_field :ivg, :size => "1"
-        %tr
-          %td#right
-            = form.label :img
-            = form.text_field :img, :size => "1"
-          %td#right
-            = form.label :nai
-            = form.text_field :nai, :size => "1"
-      %table.goleft{ :style => "margin-left:1em" }
-        %tr
-          %td#right
-            = form.label :sa, "Terme : "
-          %td
-            = form.text_field :sa, :size => "1"
-            SA
-        %tr
-          %td#right
-            = form.label :ddr,  "DDR : "
-          %td
-            = form.calendar_date_select :ddr, :size => 10
-        %tr
-          %td#right
-            = form.label :dg, "Debut de grossesse : "
-          %td
-            = form.calendar_date_select :dg, :popup => :force, :size => 10
-        %tr
-          %td#right
-            = form.label :dap, "Accouchement prévu : "
-          %td
-            = form.calendar_date_select :dap, :popup => :force, :size => 10
-      %p.goleft
-        = form.label :assmedproc, "Assistance médicale à la procréation"
-        %br
-        = form.radio_button( "assmedproc", "0")
-        = form.label :assmedproc, "Oui"
-        %br
-        = form.radio_button( "assmedproc", "1")
-        = form.label :assmedproc, "Non"
-        %br
-        = form.radio_button( "assmedproc", "2")
-        = form.label :assmedproc, "Ne sait pas"
-        %br
+    = render 'grossesse', :f => f
 
     = link_to "Patiente", "#top"
     |
     = link_to "Antécédents", "#atcds"
 
     %a{ :name => "expo" }
-    - form.inputs :name => "Exposition", :id => "infoexpo" do
-      = form.input :expo_type, :label => "Type d'exposition", :as => :select, :collection => [["solvants"], ["autres"]]
-      = form.input :niveau, :label => "Niveau global d'exposition"
-      #expositions
-        - form.fields_for :expositions do |expo_form|
-          = render :partial => 'exposition', :locals => { :f => expo_form }
+    - f.inputs :name => "Exposition", :id => "infoexpo" do
+      = f.input :expo_type, :label => "Type d'exposition", :as => :select, :collection => [["solvants"], ["autres"]]
+      = f.input :niveau, :label => "Niveau global d'exposition"
 
-      %p= link_to 'Rajouter une exposition', '#exposition', :class => "add_nested_item", :rel => "expositions"
-      = form.input :cat, :label => "Conduite à tenir préconisée"
-      = form.input :comm_expo, :label => false, :input_html => { :size => "100x4"}
+      - f.fields_for :expositions do |exposition|
+        = render 'exposition_fields', :f => exposition
+      %p= link_to_add_fields 'Rajouter une exposition', f, :expositions
 
-    %a{ :name => "evol" }
-    - form.inputs :name => "Évolution", :id => "evolution" do
-      #infoevol
-        .goleft
-          %table.evol
-            %tr
-              %th{ :colspan => "2" } Type
-            - Acctype.all.in_groups_of(2, false) do |row_at|
-              %tr
-                - for acctype in row_at
-                  %td
-                    = form.radio_button "acctype_id", acctype.id
-                    = form.label :acctype_id, "#{acctype.abbrev}"
+      = f.input :cat, :label => "Conduite à tenir préconisée"
+      = f.input :comm_expo, :label => false, :input_html => { :size => "100x4"}
 
-        .goleft{ :style => "margin-left:1em" }
-          %table.evol
-            %tr
-              %th
-                Modalité
-            - Accmod.all.each do |am|
-              %tr
-                %td
-                  = form.radio_button "accmod_id", am.id
-                  = form.label :accmod_id, am.abbr
-
-        .goleft{ :style => "margin-left:1em" }
-          %table.evol
-            %tr
-              %th Pathologie maternelle
-            %tr
-              %td
-                = form.radio_button "path_mat", "0"
-                = form.label :path_mat, "Oui"
-            %tr
-              %td
-                = form.radio_button "path_mat", "1"
-                = form.label :path_mat, "Non"
-            %tr
-              %td
-                = form.radio_button "path_mat", "2"
-                = form.label :path_mat, "inconnu"
-        .clear{ :style => "margin-top:1em" }
-          = form.label :dra, "Date d'accouchement"
-          = form.calendar_date_select :dra, :size => 10
-          = form.label :terme, "Terme (SA)"
-          = form.text_field :terme, :size => 1
-        %p
-          = form.input :anomalie_echo
-          = form.input :rciu
-        %p
-          = form.text_area :comm_evol, :class => "commentaire_100"
-          * Compléter le champ malformation dans la section nouveau-né si examen anatomo-pathologique interprétable
+      = render 'evolution', :f => f
 
       %p
         = link_to "Patiente", "#top"
@@ -179,16 +46,15 @@
         = link_to "Antécédents", "#atcds"
 
       %a{ :name => "nn" }
-      - form.inputs :name => "Nouveaux-nés" do
+      - f.inputs :name => "Nouveaux-nés" do
         #infonn
-          #bebes
-            - form.fields_for :bebes do |bebe_form|
-              = render :partial => 'bebe', :locals => { :f => bebe_form}
-          %p= link_to 'Rajouter un nouveau-né', '#bebe', :class => "add_nested_item", :rel => "bebes"
-          %p= form.text_area :comm_bebe, :class => "commentaire_100"
+          - f.fields_for :bebes do |bebe|
+            = render 'bebe_fields', :f => bebe
+          %p= link_to_add_fields 'Rajouter un nouveau-né', f, :bebes
+          %p= f.text_area :comm_bebe, :class => "commentaire_100"
 
-      - form.inputs :name => "Commentaire" do
-        = form.input :commentaire, :label => false
+      - f.inputs :name => "Commentaire" do
+        = f.input :commentaire, :label => false
 
       %p
         = link_to "Patiente", "#top"
@@ -200,4 +66,4 @@
         = link_to "Exposition", "#expo"
         |
         = link_to "Evolution", "#evol"
-      = form.buttons :commit
+      = f.buttons :commit

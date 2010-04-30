@@ -2,25 +2,15 @@ class ProduitsController < ApplicationController
 
   def index
     params[:search] ||= {}
-    @produits = Produit.all(:conditions => ['name LIKE ?', "%#{params[:search]}%"])
+    @produits = Produit.paginate :page => params[:page], :order => "LOWER(name) ASC"
   end
 
   def show
     @produit = Produit.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @produit }
-    end
   end
 
   def new
     @produit = Produit.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @produit }
-    end
   end
 
   def edit
@@ -29,31 +19,21 @@ class ProduitsController < ApplicationController
 
   def create
     @produit = Produit.new(params[:produit])
-
-    respond_to do |format|
-      if @produit.save
-        flash[:notice] = 'The produit was saved successfully.'
-        format.html { redirect_to(@produit) }
-        format.xml  { render :xml => @produit, :status => :created, :location => @produit }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @produit.errors, :status => :unprocessable_entity }
-      end
+    if @produit.save
+      flash[:notice] = 'The produit was saved successfully.'
+      redirect_to(@produit)
+    else
+      render :action => "new"
     end
   end
 
   def update
     @produit = Produit.find(params[:id])
-
-    respond_to do |format|
-      if @produit.update_attributes(params[:produit])
-        flash[:notice] = 'Produit was successfully updated.'
-        format.html { redirect_to(@produit) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @produit.errors, :status => :unprocessable_entity }
-      end
+    if @produit.update_attributes(params[:produit])
+      flash[:notice] = 'Produit was successfully updated.'
+      redirect_to(@produit)
+    else
+      render :action => "edit"
     end
   end
 
@@ -61,9 +41,7 @@ class ProduitsController < ApplicationController
     @produit = Produit.find(params[:id])
     @produit.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(produits_url) }
-      format.xml  { head :ok }
-    end
+    flash[:notice] = "Successfully destroyed produit."
+    redirect_to(produits_url)
   end
 end
