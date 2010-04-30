@@ -1,4 +1,4 @@
-- javascript :defaults, 'delegate'
+- javascript 'delegate', 'calcul_dates_grossesse'
 
 -#TODO add links to navbar
 - content_for :main do
@@ -11,14 +11,18 @@
 
     - form.inputs :id => "sicap" do
       = form.input :n_sicap, :label => "Numéro SICAP", :input_html => { :size => '6' }
-      = form.input :date_appel, :as => :date, :start_year => 1995
+      %li.select
+        = form.label :date_appel
+        = form.calendar_date_select :date_appel, :valid_date_check => "date <= (new Date()).stripTime()", :size => 10
       = form.input :demandeur, :label => "Demandeur"
 
     - form.inputs :name => "Données de la patiente", :id => "patiente" do
       = form.input :nom
       = form.input :prenom, :label => "Prénom"
       = form.input :age, :input_html => { :size => '3' }
-      = form.input :date_naissance, :start_year => 1965, :include_blank => true
+      %li.select
+        = form.label :date_naissance
+        = form.calendar_date_select :date_naissance, :valid_date_check => "date <= (new Date()).stripTime()", :year_range => 50.years.ago.year..Time.now.year, :size => 10
       = form.input :profession, :include_blank => false
 
     - form.inputs :name => "Correspondant" do
@@ -74,19 +78,19 @@
             SA
         %tr
           %td#right
+            = form.label :ddr,  "DDR : "
+          %td
+            = form.calendar_date_select :ddr, :size => 10
+        %tr
+          %td#right
             = form.label :dg, "Debut de grossesse : "
           %td
-            = form.text_field :dg_string, :size => 15
+            = form.calendar_date_select :dg, :popup => :force, :size => 10
         %tr
           %td#right
             = form.label :dap, "Accouchement prévu : "
           %td
-            = form.date_select :dap, :order => [:day, :month, :year], :prompt => true
-        %tr
-          %td#right
-            = form.label :ddr,  "DDR : "
-          %td
-            = form.date_select :ddr, :order => [:day, :month, :year], :prompt => true
+            = form.calendar_date_select :dap, :popup => :force, :size => 10
       %p.goleft
         = form.label :assmedproc, "Assistance médicale à la procréation"
         %br
@@ -158,10 +162,10 @@
                 = form.radio_button "path_mat", "2"
                 = form.label :path_mat, "inconnu"
         .clear{ :style => "margin-top:1em" }
+          = form.label :dra, "Date d'accouchement"
+          = form.calendar_date_select :dra, :size => 10
           = form.label :terme, "Terme (SA)"
           = form.text_field :terme, :size => 1
-          = form.label :dra, "Date d'accouchement"
-          = form.date_select :dra, :start_year => 1998, :order => [:day, :month, :year], :prompt => true
         %p
           = form.input :anomalie_echo
           = form.input :rciu
