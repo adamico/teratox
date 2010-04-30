@@ -1,4 +1,4 @@
 class JavascriptsController < ApplicationController
-  def calcul_dates_grossesse
+  def dossier_form_scripts
   end
 end
