@@ -1,7 +1,7 @@
 # encoding:utf-8
 class CorrespondantsController < ApplicationController
   def index
-    @correspondants = Correspondant.all(:order => "name ASC")
+    @correspondants = Correspondant.paginate :page => params[:page], :order => "LOWER(name) ASC"
   end
 
   def show

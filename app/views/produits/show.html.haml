@@ -1,8 +1,12 @@
 - title @produit.name
-%p
-  %b Name:
-  = h @produit.name
-%p
-  = link_to 'Edit', edit_produit_path(@produit)
-  |
-  = link_to 'Back', produits_path
+
+- content_for :main do
+
+  %ul
+    - @produit.dossiers.uniq.each do |d|
+      %li= link_to d.n_sicap, dossier_path(d)
+
+  %p
+    = link_to 'Edit', edit_produit_path(@produit)
+    |
+    = link_to 'Back', produits_path

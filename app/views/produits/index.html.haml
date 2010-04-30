@@ -2,12 +2,9 @@
 
 - content_for :main do
   %table
-    %tr
-      %th Name
     - @produits.each do |produit|
       %tr
-        %td= h produit.name
-        %td= link_to 'Show', produit
+        %td= link_to h(produit.name), produit
         %td= link_to 'Edit', edit_produit_path(produit)
         %td= link_to 'Destroy', produit, :confirm => 'Are you sure?', :method => :delete
 
