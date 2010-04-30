@@ -6,3 +6,12 @@ class QualiteTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: qualites
+#
+#  id   :integer         not null, primary key
+#  name :string(255)
+#
+

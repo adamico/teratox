@@ -6,3 +6,12 @@ class CatTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: cats
+#
+#  id   :integer         not null, primary key
+#  name :string(255)
+#
+

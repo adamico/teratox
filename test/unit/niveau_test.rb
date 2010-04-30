@@ -6,3 +6,12 @@ class NiveauTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: niveaux
+#
+#  id   :integer         not null, primary key
+#  name :string(255)
+#
+

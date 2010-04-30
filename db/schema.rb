@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100201090153) do
+ActiveRecord::Schema.define(:version => 20100429144125) do
 
   create_table "accmods", :force => true do |t|
     t.string "abbr"
@@ -62,11 +62,11 @@ ActiveRecord::Schema.define(:version => 20100201090153) do
     t.integer  "correspondant_id"
     t.integer  "profession_id"
     t.integer  "ncode"
-    t.datetime "date_appel"
-    t.datetime "ddr"
-    t.datetime "dra"
-    t.datetime "dap"
-    t.datetime "dg"
+    t.date     "date_appel"
+    t.date     "ddr"
+    t.date     "dra"
+    t.date     "dap"
+    t.date     "dg"
     t.string   "nom",              :limit => 30
     t.string   "prenom",           :limit => 30
     t.integer  "age"

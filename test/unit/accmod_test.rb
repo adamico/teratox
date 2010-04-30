@@ -6,3 +6,13 @@ class AccmodTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: accmods
+#
+#  id   :integer         not null, primary key
+#  abbr :string(255)
+#  name :string(255)
+#
+

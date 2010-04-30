@@ -6,3 +6,15 @@ class ExpositionTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: expositions
+#
+#  id         :integer         not null, primary key
+#  dossier_id :integer
+#  produit_id :integer
+#  terme_id   :integer
+#  niveau_id  :integer
+#
+

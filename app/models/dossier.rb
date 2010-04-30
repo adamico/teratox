@@ -6,11 +6,12 @@ class Dossier < ActiveRecord::Base
   validates_presence_of :n_sicap
   validates_presence_of :nom
   validates_presence_of :acctype_id
-  #TODO add validates_uniqueness_of :n_sicap
+  validates_uniqueness_of :n_sicap
   validates_numericality_of :fcs, :ivg, :img, :miu, :geu, :nai
   validates_numericality_of :sa, :less_than => 40, :allow_blank => true
 
   # Associations
+  #TODO aggiungere has_one :patient e popolare con i dati della table dossiers
   belongs_to :profession
   belongs_to :acctype
   belongs_to :accmod
@@ -23,7 +24,6 @@ class Dossier < ActiveRecord::Base
 
   belongs_to :niveau
   belongs_to :correspondant
-  accepts_nested_attributes_for :correspondant
 
   belongs_to :cat
   belongs_to :demandeur
@@ -40,7 +40,7 @@ class Dossier < ActiveRecord::Base
   named_scope :is_malforme, :include => :bebes, :conditions => {'bebes.malforme' => 1}
 
   # custom methods
- 
+
   def self.avg_birthweight
     average('bebes.poids', :include => :bebes)
   end
@@ -160,8 +160,8 @@ class Dossier < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
-# Schema version: 20100105082615
 #
 # Table name: dossiers
 #
@@ -171,11 +171,11 @@ end
 #  correspondant_id :integer
 #  profession_id    :integer
 #  ncode            :integer
-#  date_appel       :datetime
-#  ddr              :datetime
-#  dra              :datetime
-#  dap              :datetime
-#  dg               :datetime
+#  date_appel       :date
+#  ddr              :date
+#  dra              :date
+#  dap              :date
+#  dg               :date
 #  nom              :string(30)
 #  prenom           :string(30)
 #  age              :integer
@@ -208,6 +208,9 @@ end
 #  bebes_count      :integer         default(0)
 #  expo_type        :string(255)
 #  gestite          :integer
-#  terato           :boolean
+#  terato           :boolean         default(FALSE)
+#  date_naissance   :date
+#  anomalie_echo    :boolean
+#  rciu             :boolean
 #
 

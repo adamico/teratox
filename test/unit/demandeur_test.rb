@@ -6,3 +6,12 @@ class DemandeurTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: demandeurs
+#
+#  id   :integer         not null, primary key
+#  name :string(255)
+#
+

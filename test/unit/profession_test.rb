@@ -6,3 +6,12 @@ class ProfessionTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: professions
+#
+#  id   :integer         not null, primary key
+#  name :string(255)
+#
+

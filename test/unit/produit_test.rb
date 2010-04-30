@@ -6,3 +6,12 @@ class ProduitTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: produits
+#
+#  id   :integer         not null, primary key
+#  name :string(255)
+#
+

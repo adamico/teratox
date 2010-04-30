@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
     page.bilan 'bilan', :action => 'bilan'
   end
 
-  map.connect ':controller/:action/:id'
+  map.connect ':controller/:action.:format'
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

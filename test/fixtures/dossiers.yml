@@ -9,8 +9,8 @@ two:
   nom: Pallino
 
 
+
 # == Schema Information
-# Schema version: 20100105082615
 #
 # Table name: dossiers
 #
@@ -20,11 +20,11 @@ two:
 #  correspondant_id :integer
 #  profession_id    :integer
 #  ncode            :integer
-#  date_appel       :datetime
-#  ddr              :datetime
-#  dra              :datetime
-#  dap              :datetime
-#  dg               :datetime
+#  date_appel       :date
+#  ddr              :date
+#  dra              :date
+#  dap              :date
+#  dg               :date
 #  nom              :string(30)
 #  prenom           :string(30)
 #  age              :integer
@@ -57,6 +57,9 @@ two:
 #  bebes_count      :integer         default(0)
 #  expo_type        :string(255)
 #  gestite          :integer
-#  terato           :boolean
+#  terato           :boolean         default(FALSE)
+#  date_naissance   :date
+#  anomalie_echo    :boolean
+#  rciu             :boolean
 #
 

@@ -6,3 +6,12 @@ class SpecialiteTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: specialites
+#
+#  id   :integer         not null, primary key
+#  name :string(255)
+#
+

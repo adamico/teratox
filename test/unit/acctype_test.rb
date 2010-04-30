@@ -6,3 +6,13 @@ class AcctypeTest < ActiveSupport::TestCase
     assert true
   end
 end
+
+# == Schema Information
+#
+# Table name: acctypes
+#
+#  id   :integer         not null, primary key
+#  abbr :string(255)
+#  name :string(255)
+#
+
