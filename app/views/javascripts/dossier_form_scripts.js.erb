@@ -1,41 +1,23 @@
 function calc1() {
-
-  if ($('dossier_ddr').value != "")
-    {
-    ddr = parseDate($('dossier_ddr').value, '.');
-    $('dossier_dg').value = addDays(ddr, 14);
-    $('dossier_dap').value = addDays(ddr, 283);
-    }
-  else
-    {
-    $('dossier_dg').value = ""
-    $('dossier_dap').value = ""
-    }
-
-  if ($('dossier_dg').value != "" && $('dossier_date_appel').value != "")
-    {
-    dg = parseDate($('dossier_dg').value, '.')
-    dappel = parseDate($('dossier_date_appel').value, '.');
-    start = dg.getTime();
-    end = dappel.getTime();
-    days = (end - start) / (1000 * 60 * 60 * 24);
-
-    $('dossier_sa').value = Math.round(days/7);
-    }
-  else
-    {
-    $('dossier_sa').value = ""
-    }
-
+	dg_string = addDays(parseDate($('dossier_ddr').value, '.'), 14);
+	dap_string = addDays(parseDate($('dossier_ddr').value, '.'), 283);
+	ddr = parseDate($('dossier_ddr').value, '.');
+	dappel = parseDate($('dossier_date_appel').value, '.');
+  
+	if ($('dossier_ddr').value != "" && $('dossier_date_appel').value != ""){
+		$('dossier_dg').value = dg_string;
+	  $('dossier_dap').value = dap_string;
+	  $('dossier_sa').value = getSA(ddr, dappel);
+	}
 }
 
 function calc2() {
-  if ($('dossier_dra').value != "" && $('dossier_dg').value != "")
-    {
-    date_acc = parseDate($('dossier_dra').value, '.');
-    dg = parseDate($('dossier_dg').value, '.')
-    $('dossier_terme').value = getSA(dg, date_acc);
-    }
+	dra = parseDate($('dossier_dra').value, '.');
+  ddr = parseDate($('dossier_ddr').value, '.')
+  
+  if ($('dossier_dra').value != "" && $('dossier_ddr').value != ""){
+    $('dossier_terme').value = getSA(ddr, dra);
+   }
 }
 
 function getSA(startDate, endDate) {
