@@ -1,12 +1,14 @@
 # encoding:utf-8
 class CorrespondantsController < ApplicationController
   def index
-    @correspondants = Correspondant.paginate :page => params[:page], :order => "LOWER(name) ASC"
+    @search = Correspondant.search(params[:search])
+    @correspondants = @search.all(:order => "LOWER(name) ASC").paginate :page => params[:page]
+
   end
 
   def show
     @correspondant = Correspondant.find(params[:id], :include => :dossiers)
-  
+
     respond_to do |wants|
       wants.html # show.html.erb
       wants.xml  { render :xml => @correspondant }

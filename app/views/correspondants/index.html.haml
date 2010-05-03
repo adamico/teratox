@@ -1,21 +1,34 @@
 - title "Correspondants"
 
 - content_for :main do
-  %table
-    %tr
-      %th Nom
-      %th Specialité
-      %th Qualité
-      %th Ville
-    - for correspondant in @correspondants
-      %tr
-        %td= link_to h(correspondant.name), correspondant
-        %td= h correspondant.specialite.name rescue "Non renseignée"
-        %td= h correspondant.qualite.name rescue "Non renseignée"
-        %td= h correspondant.ville
-        %td= link_to "Edit", edit_correspondant_path(correspondant)
+  - form_for @search, :class => "search" do |f|
+    %ol.formList
+      %li
+        = f.label "Recherche par nom"
+        = f.text_field :name_like
+        = f.submit "Rechercher", :name => nil
 
-  %p= will_paginate @correspondants, :previous_label => "<--", :next_label => "-->"
+  - if @correspondants.count > 0
+    - unless params[:search].blank?
+      %hr
+      %table.collapse
+        %tr
+          %th Nom
+          %th Specialité
+          %th Qualité
+          %th Ville
+        - for correspondant in @correspondants
+          %tr
+            %td= link_to h(correspondant.name), correspondant
+            %td= h correspondant.specialite.name rescue ""
+            %td= h correspondant.qualite.name rescue ""
+            %td= h correspondant.ville
+            %td= link_to "Edit", edit_correspondant_path(correspondant)
+            %td= link_to "Destroy", correspondant, :confirm => 'Etes-vous sur ?', :method => :delete
+
+      %p= will_paginate @correspondants, :previous_label => "<--", :next_label => "-->"
+  - else
+    %p Aucun résultat
 
 - content_for :footer do
   %p= link_to "New Correspondant", new_correspondant_path

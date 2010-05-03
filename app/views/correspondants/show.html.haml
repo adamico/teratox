@@ -5,10 +5,10 @@
   %p=link_to "Modifier", edit_correspondant_path(@correspondant)
   %p
     %b Qualité :
-    = @correspondant.qualite.name
+    = @correspondant.qualite.name rescue ""
   %p
     %b Specialité :
-    = @correspondant.specialite.name
+    = @correspondant.specialite.name rescue ""
   %p
     %b Adresse :
     = @correspondant.adresse
