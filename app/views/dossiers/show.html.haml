@@ -1,14 +1,7 @@
 - title ( "Dossier " + h( @dossier.n_sicap.to_s ))
 
-- content_for :navbar do
-  %p
-    = link_to 'Modifier', edit_dossier_path(@dossier)
-    |
-    = link_to "Retour à l'accueil", root_path
-    |
-    = link_to "Saisir un nouveau dossier", new_dossier_path
-
 - content_for :main do
+  %p= link_to 'Modifier', edit_dossier_path(@dossier)
   %p#time
     Inclusion :
     = l @dossier.date_appel
@@ -33,11 +26,11 @@
         %th#right
           Correspondant :
         %td
-          = h @dossier.correspondant.name
+          = h @dossier.correspondant.name rescue ""
           %br
-          = h @dossier.correspondant.specialite.name
+          = h @dossier.correspondant.specialite.name rescue ""
           \&nbsp;
-          = h @dossier.correspondant.qualite.name
+          = h @dossier.correspondant.qualite.name rescue ""
           %br
           = h @dossier.correspondant.adresse
           %br
@@ -154,8 +147,3 @@
       Commentaire
     %p.commentaire
       = h @dossier.commentaire
-
-  %p
-    = link_to 'Modifier', edit_dossier_path(@dossier)
-    |
-    = link_to "Retour à la liste", dossiers_path

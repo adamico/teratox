@@ -3,7 +3,7 @@ class DossiersController < ApplicationController
 
   def index
     @search = Dossier.search(params[:search])
-    @dossiers = @search.all(:include => [ :profession, :acctype, :produits, :expositions ])
+    @dossiers = @search.all(:include => [:profession, :acctype, :produits, :expositions])
   end
 
   def evoluer
@@ -11,7 +11,7 @@ class DossiersController < ApplicationController
   end
 
   def show
-    @dossier = Dossier.find(params[:id], :include => [ :correspondant, :profession, :acctype, :accmod, { :expositions => :niveau }, :produits, :bebes ])
+    @dossier = Dossier.find(params[:id], :include => [:correspondant, :profession, :acctype, :accmod, {:expositions => :niveau}, :produits, :bebes])
   end
 
   def new

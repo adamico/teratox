@@ -1,19 +1,28 @@
 - f.inputs :name => "Données de la patiente", :id => "patiente" do
-  = f.input :nom
-  = f.input :prenom, :label => "Prénom"
-  = f.input :age, :input_html => { :size => '3' }
   %li.select
-    = f.label :date_naissance
+    = f.label "Nom/Prénom"
+    = f.text_field :nom
+    = f.text_field :prenom, :label => "Prénom"
+  %li.select
+    = f.label :age, "Âge"
+    = f.text_field :age, :size => "3"
+    = " Ou "
     = f.calendar_date_select :date_naissance, :valid_date_check => "date <= (new Date()).stripTime()", :year_range => 50.years.ago.year..Time.now.year, :size => 10
   = f.input :profession, :include_blank => false
 
 %a{ :name => "atcds" }
-- f.inputs :name => "Antécédents / facteurs de risque", :id => "info_atcd" do
-  = f.input :af, :as => :radio, :label => "Atcds familiaux", :collection => Dossier::ONI
-  = f.input :comm_af, :input_html => { :size => '40x2'}
-  %br
-  = f.input :ap, :as => :radio, :label => "Atcds personnels", :collection => Dossier::ONI
-  = f.input :comm_ap, :input_html => { :size => '40x2'}
-  = f.input :tabac, :as => :radio, :label => "Tabac (cig/j)", :collection => Dossier::TABAC
-  = f.input :alcool, :as => :radio, :label => "Alcool (verres/j)", :collection => Dossier::ALCOOL
+- f.inputs :id => "info_atcd" do
+  %li.select
+    = f.label :af, "Atcds familiaux"
+    = f.select :af, Dossier::ONI
+    = f.text_field :comm_af, :size => "67"
+  %li.select
+    = f.label :ap, "Atcds personnels"
+    = f.select :ap, Dossier::ONI
+    = f.text_field :comm_ap, :size => "67"
+  %li.select
+    = f.label "Tabac/Alcool"
+    = f.select :tabac, Dossier::TABAC
+    = f.select :alcool, Dossier::ALCOOL
+    %p.inline-hints cigarettes/verres par jour
 

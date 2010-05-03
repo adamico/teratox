@@ -1,35 +1,48 @@
-%a{ :name => "grs" }
-- f.inputs :name => "Info Grossesse", :id => "info_grs" do
+- f.inputs :id => "info_grs" do
   %table.goleft
     %tr
-      %th{ :colspan => "2" }
+      %th#right{ :colspan => "3"}
         Grossesses antérieures :
+      %td
         = @dossier.grsant rescue "0"
+      %th
+      %td
     %tr
-      %td#right
+      %th#right
         = f.label :fcs
+      %td
         = f.text_field :fcs, :size => "1"
-      %td#right
+      %th#right
         = f.label :geu
+      %td
         = f.text_field :geu, :size => "1"
     %tr
-      %td#right
+      %th#right
         = f.label :miu
+      %td
         = f.text_field :miu, :size => "1"
-      %td#right
+      %th#right
         = f.label :ivg
+      %td
         = f.text_field :ivg, :size => "1"
     %tr
-      %td#right
+      %th#right
         = f.label :img
+      %td
         = f.text_field :img, :size => "1"
-      %td#right
+      %th#right
         = f.label :nai
+      %td
         = f.text_field :nai, :size => "1"
   %table.goleft{ :style => "margin-left:1em" }
     %tr
+      %td &nbsp;
+      %td
+        = button_to_function "Calculer", nil, :id => "calc"
+        = button_to_function "Effacer", nil, :id => "reset"
+    %tr
       %td#right
-        = f.label :sa, "Terme : "
+        = f.label :sa, "Âge de la grossesse : "
       %td
         = f.text_field :sa, :size => "1"
         SA

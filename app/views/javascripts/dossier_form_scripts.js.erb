@@ -41,7 +41,15 @@ function addDays(objDate, days) {
   return arrDate.join(".");
 }
 
+function reset() {
+  $('dossier_sa').value = "";
+  $('dossier_ddr').value = "";
+  $('dossier_dg').value = "";
+  $('dossier_dap').value = "";
+}
+
 document.observe('dom:loaded', function() {
-  $('dossier_ddr').observe('mouseover', calc1);
+  $('calc').observe('click', calc1);
+  $('reset').observe('click', reset);
   $('dossier_dra').observe('mouseover', calc2);
 });

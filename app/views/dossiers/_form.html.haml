@@ -5,28 +5,23 @@
 
   - semantic_form_for @dossier do |f|
     - f.inputs :id => "sicap" do
-      = f.input :n_sicap, :label => "Numéro SICAP", :input_html => { :size => '6' }
+      %li.select
+        = f.label :n_sicap, "Numéro SICAP"
+        = f.text_field :n_sicap, :size => "10"
       %li.select
         = f.label :date_appel
         = f.calendar_date_select :date_appel, :valid_date_check => "date <= (new Date()).stripTime()", :size => 10
       = f.input :demandeur, :label => "Demandeur"
 
-    - f.inputs :name => "Correspondant" do
-      = f.input :correspondant, :label => "Nom", :hint => "Choisir dans la liste ou saisir un nouveau correspondant en suivant le lien ci dessous"
+      %li.select
+        = f.label :correspondant_id, "Correspondant"
+        = f.collection_select :correspondant_id, Correspondant.all(:order => "LOWER(name) ASC"), :id, :name
+        = link_to "Saisir un nouveau correspondant", new_correspondant_path, :popup => true
 
-    %p= link_to "Saisir un nouveau correspondant", new_correspondant_path, :popup => true
-
-    #patient_fields
-      = render 'patient_fields', :f => f
-    %p= link_to "Patiente", "#top"
+    #patient_fields= render 'patient_fields', :f => f
 
     = render 'grossesse', :f => f
 
-    = link_to "Patiente", "#top"
-    |
-    = link_to "Antécédents", "#atcds"
-
-    %a{ :name => "expo" }
     - f.inputs :name => "Exposition", :id => "infoexpo" do
       = f.input :expo_type, :label => "Type d'exposition", :as => :select, :collection => [["solvants"], ["autres"]]
       = f.input :niveau, :label => "Niveau global d'exposition"
@@ -40,30 +35,13 @@
 
       = render 'evolution', :f => f
 
-      %p
-        = link_to "Patiente", "#top"
-        |
-        = link_to "Antécédents", "#atcds"
-
-      %a{ :name => "nn" }
-      - f.inputs :name => "Nouveaux-nés" do
-        #infonn
-          - f.fields_for :bebes do |bebe|
-            = render 'bebe_fields', :f => bebe
-          %p= link_to_add_fields 'Rajouter un nouveau-né', f, :bebes
-          %p= f.text_area :comm_bebe, :class => "commentaire_100"
+      - f.inputs :name => "Nouveaux-nés", :id => "infonn" do
+        - f.fields_for :bebes do |bebe|
+          = render 'bebe_fields', :f => bebe
+        %p= link_to_add_fields 'Rajouter un nouveau-né', f, :bebes
+        %p= f.text_area :comm_bebe, :class => "commentaire_100"
 
       - f.inputs :name => "Commentaire" do
         = f.input :commentaire, :label => false
 
-      %p
-        = link_to "Patiente", "#top"
-        |
-        = link_to "Antécédents", "#atcds"
-        |
-        = link_to "Grossesse", "#grs"
-        |
-        = link_to "Exposition", "#expo"
-        |
-        = link_to "Evolution", "#evol"
       = f.buttons :commit
