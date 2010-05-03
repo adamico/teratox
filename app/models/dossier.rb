@@ -49,8 +49,6 @@ class Dossier < ActiveRecord::Base
     average('bebes.poids', :include => :bebes)
   end
 
-  #TODO eliminare i campi ddr, dap, dg, mantenere giusto SA e calcolarlo in base a una delle date conosciute
-
   def short_name
     [nom.upcase, initiale_prenom].compact.join(' ')
   end

@@ -154,8 +154,9 @@ th.center {
 
 #topbar {
   width: auto;
-  display: block;
-  height: 48px; }
+  display: block; }
+  #topbar h1 {
+    height: 1em; }
 
 #navbar {
   width: auto;

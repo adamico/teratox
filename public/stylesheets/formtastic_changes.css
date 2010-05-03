@@ -1,3 +1,8 @@
 form.formtastic fieldset ol li p.inline-hints {
   font-style: italic;
   font-size: 11px; }
+
+form.formtastic fieldset ol li {
+  margin: 0.2em; }
+  form.formtastic fieldset ol li p.inline-hints {
+    margin: 0; }
