@@ -39,6 +39,12 @@ class Dossier < ActiveRecord::Base
   alias_scope :naissances, lambda { acctype_id_is(5) }
   alias_scope :fausses_couches, lambda { acctype_id_is_any(1, 4) }
   alias_scope :p1g1, lambda { fcs_is(0).ivg_is(0).img_is(0).miu_is(0).geu_is(0).nai_is(0) }
+  alias_scope :prematures, lambda { terme_lt(37)}
+
+  alias_scope :infimes, lambda { niveau_id_is(1)}
+  alias_scope :faibles, lambda { niveau_id_is(2)}
+  alias_scope :moderes, lambda { niveau_id_is(3)}
+  alias_scope :importants, lambda { niveau_id_is(4)}
 
   named_scope :incomplets, :conditions => { :acctype_id => 6 }
   named_scope :is_malforme, :include => :bebes, :conditions => {'bebes.malforme' => 1}
@@ -46,7 +52,27 @@ class Dossier < ActiveRecord::Base
   # custom methods
 
   def self.avg_birthweight
-    average('bebes.poids', :include => :bebes)
+    average('bebes.poids', :include => :bebes).to_f.round(0)
+  end
+
+  def self.avg_terme
+    average(:terme).to_f.round(0)
+  end
+
+  def self.avg_and_sd(col_name, round=0, options={})
+    mean = self.average(col_name.to_s, options)
+    sd = self.std_deviation(col_name, options)
+    "#{mean.round(round)} (#{sd.round(round)})"
+  end
+
+  def self.variance(col_name, options={})
+    n = self.all.count
+    mean = self.average(col_name.to_sym, options)
+    self.sum("(#{col_name} - #{mean}) * (#{col_name} - #{mean})", options).to_f / n
+  end
+
+  def self.std_deviation(col_name, options={})
+    Math.sqrt(variance(col_name, options))
   end
 
   def short_name
