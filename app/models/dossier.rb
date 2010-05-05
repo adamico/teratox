@@ -50,9 +50,33 @@ class Dossier < ActiveRecord::Base
   named_scope :is_malforme, :include => :bebes, :conditions => {'bebes.malforme' => 1}
 
   # custom methods
+  def self.get_nonzero_birthweight
+    lespoids = []
+    self.all.each do |d|
+      lespoids << d.bebes.map { |b| b.poids.to_i }
+    end
+    lespoids.flatten!.compact!
+    lespoids.reject { |p| p == 0}
+  end
 
   def self.avg_birthweight
-    average('bebes.poids', :include => :bebes).to_f.round(0)
+    total = 0
+    lespoids = self.get_nonzero_birthweight
+    lespoids.each do |p|
+      total += p
+    end
+    total / lespoids.size
+  end
+
+  def self.sd_birthweight
+    lespoids = self.get_nonzero_birthweight
+    n = lespoids.count
+    mean = self.avg_birthweight
+    ss = 0.0
+
+    lespoids.each { |p| ss += ((p - mean) * (p - mean)) }
+
+    Math.sqrt(ss / (n - 1))
   end
 
   def self.avg_terme
@@ -68,7 +92,7 @@ class Dossier < ActiveRecord::Base
   def self.variance(col_name, options={})
     n = self.all.count
     mean = self.average(col_name.to_sym, options)
-    self.sum("(#{col_name} - #{mean}) * (#{col_name} - #{mean})", options).to_f / n
+    self.sum("(#{col_name} - #{mean}) * (#{col_name} - #{mean})", options).to_f / (n - 1)
   end
 
   def self.std_deviation(col_name, options={})
