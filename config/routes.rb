@@ -1,20 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :specialites
+  map.connect "dossiers/auto_complete_for_correspondant_name", :controller => "dossiers", :action => "auto_complete_for_correspondant_name"
+  map.resources :specialites, :qualites, :niveaux, :demandeurs, :cats, :acctypes, :accmods, :home, :produits, :correspondants, :professions
 
-  map.resources :qualites
-
-  map.resources :niveaux
-
-  map.resources :demandeurs
-
-  map.resources :cats
-
-  map.resources :acctypes
-
-  map.resources :accmods
-
-  map.resources :home, :produits, :correspondants, :professions
-  map.resources :dossiers, :collection => { :evoluer => :get }
+  map.resources :dossiers, :collection => {
+    :evoluer => :get,
+    :auto_complete_for_correspondant_name => :get
+  }
 
   map.root :controller => "home", :action => 'index'
 

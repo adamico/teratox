@@ -14,8 +14,8 @@
       = f.input :demandeur, :label => "Demandeur"
 
       %li.select
-        = f.label :correspondant_id, "Correspondant"
-        = f.collection_select :correspondant_id, Correspondant.all(:order => "LOWER(name) ASC"), :id, :name
+        = f.label :correspondant_name, "Correspondant"
+        = f.text_field_with_auto_complete :correspondant_name, {:size => 40}, {:method => :get, :url => "/dossiers/auto_complete_for_correspondant_name", :param_name => "correspondant[name]"}
         = link_to "Saisir un nouveau correspondant", new_correspondant_path, :popup => true
 
     #patient_fields= render 'patient_fields', :f => f

@@ -3,9 +3,7 @@ class Dossier < ActiveRecord::Base
 
   #TODO aggiungere gli attr_accessible
   # Validations
-  validates_presence_of :n_sicap
-  validates_presence_of :nom
-  validates_presence_of :acctype_id
+  validates_presence_of :n_sicap, :nom, :acctype_id
   validates_uniqueness_of :n_sicap
   validates_numericality_of :fcs, :ivg, :img, :miu, :geu, :nai
   validates_numericality_of :sa, :less_than => 40, :allow_blank => true
@@ -50,6 +48,14 @@ class Dossier < ActiveRecord::Base
   named_scope :is_malforme, :include => :bebes, :conditions => {'bebes.malforme' => 1}
 
   # custom methods
+  
+  def correspondant_name
+    correspondant.name if correspondant
+  end
+  def correspondant_name=(name)
+    self.correspondant = Correspondant.find_by_name(name)
+  end
+
   def self.get_nonzero_birthweight
     lespoids = []
     self.all.each do |d|

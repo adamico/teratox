@@ -1,5 +1,6 @@
 # encoding:utf-8
 class DossiersController < ApplicationController
+  auto_complete_for :correspondant, :name
 
   def index
     @search = Dossier.search(params[:search])

@@ -3,7 +3,6 @@ class CorrespondantsController < ApplicationController
   def index
     @search = Correspondant.search(params[:search])
     @correspondants = @search.all(:order => "LOWER(name) ASC").paginate :page => params[:page]
-
   end
 
   def show
