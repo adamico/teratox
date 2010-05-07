@@ -1,8 +1,8 @@
 class ProduitsController < ApplicationController
 
   def index
-    params[:search] ||= {}
-    @produits = Produit.paginate :page => params[:page], :order => "LOWER(name) ASC"
+    @produits_paginate = Produit.paginate :page => params[:page], :order => "LOWER(name) ASC"
+    @produits = Produit.all(:conditions => ['name LIKE ?', "%#{params[:search]}%"])
   end
 
   def show

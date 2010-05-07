@@ -1,7 +1,7 @@
 .fields
   - f.inputs do
     %li.select
-      = f.label :produit_id, "Produit"
-      = f.collection_select :produit_id, Produit.all(:order => "LOWER(name) ASC"), :id, :name, :include_blank => true
+      = f.label :produit_name, "Produit"
+      = f.text_field_with_auto_complete :produit_name, {:size => 40},  { :url => produits_path(:format => :js), :method => :get, :param_name => 'search'}
       = f.collection_select :niveau_id, Niveau.all, :id, :name, :include_blank => true
     %p= link_to_remove_fields "Détruire cette exposition", f

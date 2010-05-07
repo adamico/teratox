@@ -28,6 +28,7 @@ Rails::Initializer.run do |config|
              :source => "http://gems.github.com"
   config.gem "cucumber", :lib => false, :version => ">=0.4.3"
   config.gem "pickle", :lib => false, :version => ">=0.1.21"
+  config.gem "repeated_auto_complete"
 
 
   # Only load the plugins named here, in the order given (default is alphabetical).
