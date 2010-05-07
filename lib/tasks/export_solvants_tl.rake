@@ -1,15 +1,14 @@
-#encoding=utf-8
 namespace :db do
 
   desc "Exporter les dossiers du groupe solvants technicienne de labo"
   task :export_solvants_tl => :environment do
-    require 'csv'
+    require 'fastercsv'
 
     cas = Dossier.solvants.profession_id_is(14)
 
-    CSV.open("private/solvants_tl.csv", "wb") do |row|
+    FasterCSV.open("private/solvants_tl.csv", "wb") do |row|
       cas.each do |d|
-        row << [d.n_sicap, d.date_appel.year, d.age, d.sa, d.gestite, d.fcs, d.geu, d.miu, d.ivg, d.nai, d.acctype.abbr, d.niveau.name, d.terato]
+        row << [d.n_sicap, d.acctype.abbr, d.niveau.name, d.terme, d.bebes.map(&:poids).join(', ')]
       end
     end
   end
