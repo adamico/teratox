@@ -1,17 +1,17 @@
 ActionController::Routing::Routes.draw do |map|
-  map.connect "dossiers/auto_complete_for_correspondant_name", :controller => "dossiers", :action => "auto_complete_for_correspondant_name"
-  map.resources :specialites, :qualites, :niveaux, :demandeurs, :cats, :acctypes, :accmods, :home, :produits, :correspondants, :professions
+map.connect "dossiers/auto_complete_for_correspondant_name", :controller => "dossiers", :action => "auto_complete_for_correspondant_name"
+map.resources :specialites, :qualites, :niveaux, :demandeurs, :cats, :acctypes, :accmods, :home, :produits, :correspondants, :professions
 
-  map.resources :dossiers, :collection => {
-    :evoluer => :get,
-    :auto_complete_for_correspondant_name => :get
-  }
-
-  map.root :controller => "home", :action => 'index'
+map.resources :dossiers, :collection => {
+  :evoluer => :get,
+  :auto_complete_for_correspondant_name => :get
+}
 
   map.with_options :controller => 'home' do |page|
     page.bilan 'bilan', :action => 'bilan'
   end
+
+  map.root :controller => "home", :action => 'index'
 
   map.connect ':controller/:action.:format'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,4 +1,4 @@
-# encoding:utf-8
+#!= encoding:utf-8
 class DossiersController < ApplicationController
   auto_complete_for :correspondant, :name
 
