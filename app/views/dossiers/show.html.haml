@@ -1,7 +1,7 @@
 - title ( "Dossier " + h( @dossier.n_sicap.to_s ))
 
 - content_for :main do
-  %p= link_to 'Modifier', edit_dossier_path(@dossier)
+  %p= link_to 'Modifier', edit_dossier_path(@dossier), :accesskey => "M"
   %p#time
     Inclusion :
     = l @dossier.date_appel

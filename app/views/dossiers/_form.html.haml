@@ -6,7 +6,7 @@
   - semantic_form_for @dossier do |f|
     - f.inputs :id => "sicap" do
       %li.select
-        = f.label :n_sicap, "Numéro SICAP"
+        = f.label :n_sicap, "Numéro SICAP", :accesskey => "N"
         = f.text_field :n_sicap, :size => "10"
       %li.select
         = f.label :date_appel
@@ -43,5 +43,4 @@
 
       - f.inputs :name => "Commentaire" do
         = f.input :commentaire, :label => false
-
-      = f.buttons :commit
+      = f.submit "Enregistrer", :name => nil, :accesskey => "S"
