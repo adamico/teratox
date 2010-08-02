@@ -20,8 +20,8 @@
         - for correspondant in @correspondants
           %tr
             %td= link_to h(correspondant.name), correspondant
-            %td= h correspondant.specialite.name rescue ""
-            %td= h correspondant.qualite.name rescue ""
+            %td= h correspondant.specialite_name
+            %td= h correspondant.qualite_name
             %td= h correspondant.ville
             %td= link_to "Edit", edit_correspondant_path(correspondant)
             %td= link_to "Destroy", correspondant, :confirm => 'Etes-vous sur ?', :method => :delete

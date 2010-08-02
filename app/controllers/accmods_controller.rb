@@ -1,10 +1,11 @@
 class AccmodsController < ApplicationController
+  before_filter :find_accmod, :only => [:show, :edit, :update, :destroy]
+
   def index
     @accmods = Accmod.all
   end
   
   def show
-    @accmod = Accmod.find(params[:id])
   end
   
   def new
@@ -22,11 +23,9 @@ class AccmodsController < ApplicationController
   end
   
   def edit
-    @accmod = Accmod.find(params[:id])
   end
   
   def update
-    @accmod = Accmod.find(params[:id])
     if @accmod.update_attributes(params[:accmod])
       flash[:notice] = "Successfully updated accmod."
       redirect_to @accmod
@@ -36,9 +35,14 @@ class AccmodsController < ApplicationController
   end
   
   def destroy
-    @accmod = Accmod.find(params[:id])
     @accmod.destroy
     flash[:notice] = "Successfully destroyed accmod."
     redirect_to accmods_url
+  end
+
+  protected
+
+  def find_accmod
+    @accmod = Accmod.find(params[:id])
   end
 end
