@@ -4,6 +4,9 @@
 - content_for :main do
   %p=link_to "Modifier", edit_correspondant_path(@correspondant)
   %p
+    %b Sexe :
+    = @correspondant.lesexe
+  %p
     %b Qualité :
     = @correspondant.qualite.name rescue ""
   %p

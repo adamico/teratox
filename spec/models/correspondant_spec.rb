@@ -4,6 +4,7 @@ describe Correspondant do
   it "should be valid"
 end
 
+
 # == Schema Information
 #
 # Table name: correspondants
@@ -20,5 +21,6 @@ end
 #  fax           :integer
 #  poste         :integer
 #  email         :string(255)
+#  sexe          :integer
 #
 

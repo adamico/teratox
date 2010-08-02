@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100429144125) do
+ActiveRecord::Schema.define(:version => 20100802090635) do
 
   create_table "accmods", :force => true do |t|
     t.string "abbr"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20100429144125) do
     t.integer "fax"
     t.integer "poste"
     t.string  "email"
+    t.integer "sexe"
   end
 
   create_table "demandeurs", :force => true do |t|

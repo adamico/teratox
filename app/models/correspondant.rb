@@ -4,11 +4,21 @@ class Correspondant < ActiveRecord::Base
   belongs_to :qualite
 
   validates_presence_of :name
+
+  SEXES = {"INC" => 0, "M" => 1, "F" => 2}
+
+  delegate :name, :to => :specialite, :prefix => true, :allow_nil => true
+  delegate :name, :to => :qualite, :prefix => true, :allow_nil => true
+
+  def lesexe
+    sexes = SEXES.invert
+    sexes[sexe]
+  end
 end
 
 
+
 # == Schema Information
-# Schema version: 20100105082615
 #
 # Table name: correspondants
 #
@@ -24,5 +34,6 @@ end
 #  fax           :integer
 #  poste         :integer
 #  email         :string(255)
+#  sexe          :integer
 #
 

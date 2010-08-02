@@ -19,8 +19,8 @@ two:
   email: MyString
 
 
+
 # == Schema Information
-# Schema version: 20100105082615
 #
 # Table name: correspondants
 #
@@ -36,5 +36,6 @@ two:
 #  fax           :integer
 #  poste         :integer
 #  email         :string(255)
+#  sexe          :integer
 #
 

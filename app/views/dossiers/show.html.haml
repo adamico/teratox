@@ -19,29 +19,29 @@
         %th#right
           Profession :
         %td
-          = h @dossier.profession.name rescue "Non renseignée"
+          = h @dossier.profession_name rescue "Non renseignée"
   - unless @dossier.correspondant_id.nil?
     %table
       %tr
         %th#right
           Correspondant :
         %td
-          = h @dossier.correspondant.name rescue ""
+          = h @dossier.correspondant_name
           %br
-          = h @dossier.correspondant.specialite.name rescue ""
+          = h @dossier.correspondant_specialite_name
           \&nbsp;
-          = h @dossier.correspondant.qualite.name rescue ""
+          = h @dossier.correspondant_qualite_name
           %br
-          = h @dossier.correspondant.adresse
+          = h @dossier.correspondant_adresse
           %br
-          = h @dossier.correspondant.cp
+          = h @dossier.correspondant_cp
           \&nbsp;
-          = h @dossier.correspondant.ville
+          = h @dossier.correspondant_ville
 
   %p
     %strong
       Demandeur :
-    = h @dossier.demandeur.name rescue "Non renseigné"
+    = h @dossier.demandeur_name
   %h3
     Antécédents/facteurs de risque
   #infoatcd
@@ -77,10 +77,10 @@
       = @dossier.try(:expo_type)
     %p
       Niveau global d'exposition :
-      = @dossier.niveau.name
+      = @dossier.niveau_name
     %p
       Conduite à tenir préconisée :
-      = @dossier.cat.name rescue "Non renseignée"
+      = @dossier.cat_name
     %table.latex
       %tr
         %th

@@ -3,6 +3,7 @@ class Exposition < ActiveRecord::Base
   belongs_to :produit
   belongs_to :niveau
 
+  delegate :name, :to => :niveau, :prefix => true, :allow_nil => true
   def produit_name
     produit.name if produit
   end
