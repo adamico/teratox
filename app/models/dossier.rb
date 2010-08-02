@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Dossier < ActiveRecord::Base
   require 'chronic'
 

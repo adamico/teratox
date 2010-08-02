@@ -18,12 +18,13 @@ Rails::Initializer.run do |config|
   # config.gem "bj"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   config.gem "sqlite3-ruby", :lib => "sqlite3"
-  config.gem "will_paginate", :version => '~> 2.3.11', :source => 'http://gemcutter.org'
+  config.gem "will_paginate"
   config.gem "formtastic"
+  config.gem "haml"
   config.gem "searchlogic"
   config.gem "calendar_date_select"
-  config.gem "factory_girl"
   config.gem "repeated_auto_complete"
+  config.gem "chronic"
 
 
   # Only load the plugins named here, in the order given (default is alphabetical).
