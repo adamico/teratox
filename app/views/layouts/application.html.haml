@@ -23,9 +23,15 @@
       %h1= link_to "TeraTOX", root_path
       #menu
         %ul
-          %li= link_to "Dossiers", dossiers_path
-          %li= link_to "Correspondants", correspondants_path
-          %li= link_to "Produits", produits_path
+          %li
+            = link_to "Dossiers", dossiers_path
+            - link_to_add_record("dossier")
+          %li
+            = link_to "Correspondants", correspondants_path
+            - link_to_add_record("correspondant")
+          %li
+            = link_to "Produits", produits_path
+            - link_to_add_record("produit")
           = render :partial => 'shared/admin_menu'
     #container
       - flash.each do |name, msg|

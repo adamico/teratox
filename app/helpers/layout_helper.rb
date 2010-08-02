@@ -20,5 +20,12 @@ module LayoutHelper
     args = args.map { |arg| arg == :defaults ? arg : arg.to_s }
     content_for(:head) { javascript_include_tag(*args) }
   end
+
+  def link_to_add_record(model)
+    target = model.classify.constantize
+    haml_tag 'span.add_record' do
+      haml_concat(link_to "+", new_polymorphic_path(target))
+    end
+  end
 end
 
