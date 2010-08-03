@@ -47,6 +47,7 @@ class Dossier < ActiveRecord::Base
 
   named_scope :incomplets, :conditions => { :acctype_id => 6 }
   named_scope :is_malforme, :include => :bebes, :conditions => {'bebes.malforme' => 1}
+  named_scope :recent, :include => [:profession, :acctype, :expositions], :order => "updated_at DESC", :limit => 10
 
   # delegations
   delegate :name, :to => :profession, :prefix => true, :allow_nil => true
@@ -54,6 +55,8 @@ class Dossier < ActiveRecord::Base
   delegate :name, :to => :demandeur, :prefix => true, :allow_nil => true
   delegate :name, :to => :niveau, :prefix => true, :allow_nil => true
   delegate :name, :to => :cat, :prefix => true, :allow_nil => true
+  delegate :name, :to => :acctype, :prefix => true, :allow_nil => true
+
   # custom methods
   def correspondant_name
     correspondant.name if correspondant

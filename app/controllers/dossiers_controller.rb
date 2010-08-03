@@ -4,7 +4,11 @@ class DossiersController < ApplicationController
 
   def index
     @search = Dossier.search(params[:search])
-    @dossiers = @search.all(:include => [:profession, :acctype, :produits, :expositions])
+    if params[:search]
+      @dossiers = @search.all(:include => [:profession, :acctype, :expositions])
+    else
+      @dossiers = Dossier.recent.all
+    end
   end
 
   def evoluer

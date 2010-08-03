@@ -112,6 +112,10 @@ label
     border-width: 1px 0 1px
     text-align: center
 
+table#dossiers
+  font-size: 85%
+  th, td
+    padding: 0 0.4em
 
 #infoevol
   table
@@ -153,7 +157,7 @@ th.center
   background-color: white
 
 #container, #header
-  width: 760px
+  width: 860px
   margin: 0 auto
   background-color: #FFF
   padding: 20px 40px
@@ -202,11 +206,16 @@ th.center
   display: block
   height: 24px
 
-ol.formList
-  list-style: none
-  label
-    font-weight: bold
-    &:after
-      content: " : "
 
-form.search
+fieldset#search
+  border: 0
+  legend
+    font-weight: bold
+    font-size: 1.2em
+  ol.formList
+    font-size: 85%
+    list-style: none
+    label
+      font-weight: bold
+      &:after
+        content: " : "
