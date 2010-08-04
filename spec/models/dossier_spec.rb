@@ -1,20 +1,28 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
 describe Dossier do
-  
-  before(:each) do
-    @dossier = Factory.create(:dossier,
-                       :fcs => 1,
-                       :geu => 1,
-                       :miu => 1,
-                       :ivg => 1,
-                       :img => 1,
-                       :nai => 1)
+  it "should not be valid" do
+    Dossier.new.should_not be_valid
   end
 
-  describe "#gestite" do
+  let(:dossier) { Factory(:dossier)}
+
+  describe "#grsant" do
     it "should be equal to previous pregnancies + 1" do
-      @dossier.gestite.should == 7
+      dossier.miu = 1
+      dossier.nai = 1
+      dossier.geu = 1
+      dossier.fcs = 1
+      dossier.ivg = 1
+      dossier.img = 1
+      dossier.grsant.should == 6
+    end
+  end
+
+  describe "#patient_age" do
+    it "should return age in years" do
+      dossier.date_naissance = 10.years.ago.to_date
+      dossier.patient_age.should == 10
     end
   end
 

@@ -1,5 +1,7 @@
 # encoding: utf-8
 class Dossier < ActiveRecord::Base
+  cattr_reader :per_page
+  @@per_page = 10
   require 'chronic'
 
   #TODO aggiungere gli attr_accessible
@@ -58,6 +60,11 @@ class Dossier < ActiveRecord::Base
   delegate :name, :to => :acctype, :prefix => true, :allow_nil => true
 
   # custom methods
+  def patient_age
+    if date_naissance
+      Date.today.year - date_naissance.year
+    end
+  end
   def correspondant_name
     correspondant.name if correspondant
   end

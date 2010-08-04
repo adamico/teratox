@@ -4,6 +4,7 @@
   %a{ :name => "top" }
 
   - semantic_form_for @dossier do |f|
+    = f.error_messages
     - f.inputs :id => "sicap" do
       %li.select
         = f.label :n_sicap, "Numéro SICAP", :accesskey => "N"

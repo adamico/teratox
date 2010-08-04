@@ -36,11 +36,6 @@
         = f.text_field :nai, :size => "1"
   %table.goleft{ :style => "margin-left:1em" }
     %tr
-      %td &nbsp;
-      %td
-        = button_to_function "Calculer", nil, :id => "calc"
-        = button_to_function "Effacer", nil, :id => "reset"
-    %tr
       %td#right
         = f.label :sa, "Âge de la grossesse : "
       %td
@@ -61,6 +56,11 @@
         = f.label :dap, "Accouchement prévu : "
       %td
         = f.calendar_date_select :dap, :popup => :force, :size => 10
+    %tr
+      %td &nbsp;
+      %td
+        = button_to_function "Calculer", nil, :id => "calc"
+        = button_to_function "Effacer", nil, :id => "reset"
   %p.goleft
     = f.label :assmedproc, "Assistance médicale à la procréation"
     %br

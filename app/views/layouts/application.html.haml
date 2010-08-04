@@ -25,13 +25,13 @@
         %ul
           %li
             = link_to "Dossiers", dossiers_path
-            - link_to_add_record("dossier")
+            - link_to_add_record("dossier", "N")
           %li
             = link_to "Correspondants", correspondants_path
-            - link_to_add_record("correspondant")
+            - link_to_add_record("correspondant", "C")
           %li
             = link_to "Produits", produits_path
-            - link_to_add_record("produit")
+            - link_to_add_record("produit", "P")
           = render :partial => 'shared/admin_menu'
     #container
       - flash.each do |name, msg|

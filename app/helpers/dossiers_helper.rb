@@ -39,9 +39,15 @@ module DossiersHelper
 
   end
 
-
   def generate_template(form_builder, method, options = {})
     escape_javascript generate_html(form_builder, method, options = {})
   end
 
+  def dossier_patient_age(dossier)
+    if dossier.age
+      haml_concat dossier.age
+    else
+      haml_concat dossier.patient_age
+    end
+  end
 end

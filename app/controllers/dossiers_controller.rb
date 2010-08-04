@@ -5,9 +5,11 @@ class DossiersController < ApplicationController
   def index
     @search = Dossier.search(params[:search])
     if params[:search]
-      @dossiers = @search.all(:include => [:profession, :acctype, :expositions])
+      @dossiers = @search.all(:include => [:profession, :acctype, :expositions, :niveau, :cat]).paginate(
+        :page => params[:page], :per_page => 20
+      )
     else
-      @dossiers = Dossier.recent.all
+      @dossiers = Dossier.recent.all.paginate(:page => params[:page], :per_page => 20)
     end
   end
 

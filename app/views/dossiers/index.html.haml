@@ -3,10 +3,9 @@
 - content_for :main do
   = render 'search_form', :search => @search
 
-  %hr
+  %hr/
 
-  %a{:name => "results"}
-  %h4= pluralize(@dossiers.size, "Dossier")
+  = pagination_results @dossiers
   %table#dossiers.collapse
     %tr
       %th= order @search, :by => :date_appel, :as => 'Année'
@@ -20,12 +19,4 @@
       %th CAT préconisée
       %th Evolution
     = render :partial => @dossiers
-  %p
-    %a{ :href => "#results" }
-      Début de la liste
-    |
-    %a{ :href => "#top"}
-      Remonter
-
-- content_for :footer do
-  %p= link_to "Nouveau Dossier", new_dossier_path
+  = will_paginate @dossiers
