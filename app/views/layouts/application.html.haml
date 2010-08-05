@@ -1,7 +1,8 @@
-!!! Strict
-%html{html_attrs}
+!!!
+%html
   %head
-    %title= h(yield(:title) || "Untitled")
+    %title= yield(:title || "Untitled")
+    %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}/
     = stylesheet_link_tag 'application', 'formtastic', 'formtastic_changes', 'anylinkcssmenu', :cache => 'base'
     = javascript_include_tag :defaults, :cache => true
     = calendar_date_select_includes "blue", :locale => I18n.locale
@@ -17,6 +18,7 @@
       //anylinkcssmenu.init("menu_anchors_class") ////Pass in the CSS class of anchor links (that contain a sub menu)
       anylinkcssmenu.init("anchorclass")
 
+    = csrf_meta_tag
     = yield(:head)
   %body
     #header

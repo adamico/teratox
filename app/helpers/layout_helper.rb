@@ -4,7 +4,7 @@
 #   helper :layout
 module LayoutHelper
   def title(page_title, show_title = true)
-    @content_for_title = page_title.to_s
+    content_for(:title) {page_title.to_s}
     @show_title = show_title
   end
   
@@ -13,18 +13,20 @@ module LayoutHelper
   end
   
   def stylesheet(*args)
-    content_for(:head) { stylesheet_link_tag(*args.map(&:to_s)) }
+    content_for(:head) { stylesheet_link_tag(*args) }
   end
   
   def javascript(*args)
-    args = args.map { |arg| arg == :defaults ? arg : arg.to_s }
     content_for(:head) { javascript_include_tag(*args) }
   end
 
   def link_to_add_record(model, accesskey)
     target = model.classify.constantize
     haml_tag 'span.add_record' do
-      haml_concat(link_to "+", new_polymorphic_path(target), :accesskey => accesskey)
+      haml_concat(
+        link_to "+",
+        new_polymorphic_path(target),
+        :accesskey => accesskey)
     end
   end
 end
