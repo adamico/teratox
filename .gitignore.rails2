@@ -1,0 +1,8 @@
+*.*swp
+*~
+*.*~
+log/*.log
+tmp/**/*
+private/*.*
+config/database.yml
+db/*.sqlite3
