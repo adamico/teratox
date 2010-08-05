@@ -1,4 +1,11 @@
 GIT
+  remote: git@github.com:adamico/calendar_date_select.git
+  revision: 34f025c
+  branch: jqueryrails3
+  specs:
+    calendar_date_select (1.16.1)
+
+GIT
   remote: http://github.com/codegram/pickle.git
   revision: 2834204
   specs:
@@ -47,7 +54,6 @@ GEM
     arel (0.4.0)
       activesupport (>= 3.0.0.beta)
     builder (2.1.2)
-    calendar_date_select (1.16.1)
     capybara (0.3.9)
       culerity (>= 0.2.4)
       mime-types (>= 1.16)
@@ -55,8 +61,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       selenium-webdriver (>= 0.0.3)
-    chronic (0.2.3)
-      hoe (>= 1.2.1)
     configuration (1.1.0)
     cucumber (0.8.5)
       builder (~> 2.1.2)
@@ -94,6 +98,10 @@ GEM
       treetop (>= 1.4.5)
     meta_search (0.5.4)
       actionpack (>= 3.0.0.beta4)
+      activerecord (>= 3.0.0.beta4)
+      activesupport (>= 3.0.0.beta4)
+      arel (>= 0.4.0)
+    meta_where (0.5.2)
       activerecord (>= 3.0.0.beta4)
       activesupport (>= 3.0.0.beta4)
       arel (>= 0.4.0)
@@ -169,9 +177,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  calendar_date_select
+  calendar_date_select!
   capybara
-  chronic
   cucumber
   cucumber-rails
   database_cleaner
@@ -180,6 +187,7 @@ DEPENDENCIES
   haml
   launchy
   meta_search
+  meta_where
   nifty-generators
   pickle!
   rails (= 3.0.0.rc)

@@ -10,14 +10,15 @@ group :development do
   gem "rails3-generators"
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem "rails_best_practices"
+  gem "thin"
 end
 
 gem 'will_paginate', '3.0.pre'
 gem "formtastic", :git => "http://github.com/justinfrench/formtastic.git", :branch => "rails3"
 gem "haml"
 gem "meta_search"
-gem "calendar_date_select"
-gem "chronic"
+gem "meta_where"
+gem "calendar_date_select", :git => 'git@github.com:adamico/calendar_date_select.git', :branch => "jqueryrails3"
 gem 'rails3-jquery-autocomplete'
 
 group :development, :test do

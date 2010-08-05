@@ -10,6 +10,5 @@
 # end
 
 ActiveSupport::Inflector.inflections do |inflect|
-  inflect.plural /^(niveau)$/i, '\1x'
-  inflect.singular /^(niveau)x/i, '\1'
+  inflect.irregular 'niveau', 'niveaux'
 end

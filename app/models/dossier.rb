@@ -2,7 +2,6 @@
 class Dossier < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 10
-  require 'chronic'
 
   #TODO aggiungere gli attr_accessible
   # Validations
@@ -25,7 +24,6 @@ class Dossier < ActiveRecord::Base
 
   belongs_to :niveau
   belongs_to :correspondant
-
   belongs_to :cat
   belongs_to :demandeur
 
@@ -33,23 +31,31 @@ class Dossier < ActiveRecord::Base
   ONI = [["Oui", "0"], ["Non", "1"], ["Inconnu", "2"]]
   TABAC = [["0", "0"], ["0 à 5", "1"], ["5 à 10", "2"], ["Sup. à 10", "3"], ["Inconnu", "4"]]
   ALCOOL = [["0", "0"], ["<= 2", "1"], ["> 2", "2"], ["Inconnu", "3"]]
+
   # Named Scopes
-  alias_scope :solvants, lambda { expo_type_is('solvants') }
-  alias_scope :autres, lambda { expo_type_is('autres') }
-  alias_scope :avec_jumeaux, lambda { bebes_count_gt(1) }
-  alias_scope :naissances, lambda { acctype_id_is(5) }
-  alias_scope :fausses_couches, lambda { acctype_id_is_any(1, 4) }
-  alias_scope :p1g1, lambda { fcs_is(0).ivg_is(0).img_is(0).miu_is(0).geu_is(0).nai_is(0) }
-  alias_scope :prematures, lambda { terme_lt(37)}
+  scope :solvants, where(:expo_type => 'solvants')
+  scope :autres, where(:expo_type => 'autres')
 
-  alias_scope :infimes, lambda { niveau_id_is(1)}
-  alias_scope :faibles, lambda { niveau_id_is(2)}
-  alias_scope :moderes, lambda { niveau_id_is(3)}
-  alias_scope :importants, lambda { niveau_id_is(4)}
+  scope :avec_jumeaux, where(:bebes_count.gt => 1)
+  scope :naissances, where(:acctypes => [:abbr.matches => "%nai%"]).autojoin
+  scope :fausses_couches, where(
+    :acctypes => [:abbr.matches % "%fcs%" | :abbr.matches % "%miu%"]
+  ).autojoin
+  scope :incomplets, where(:acctypes => [:abbr.matches => "%inc%"]).autojoin
+  scope :p1g1, where(
+    :fcs => 0, :ivg => 0, :img => 0, :miu => 0, :geu => 0, :nai => 0
+  )
+  scope :prematures, where(:terme.lt => 37)
+  scope :with_niveau, lambda { |niveau|
+    where(:niveaux => [:name.matches % "%#{niveau}%"]).autojoin
+  }
+  scope :infimes, where(:niveaux => [:name.matches % "%infime%"]).autojoin
+  scope :faibles, where(:niveaux => [:name.matches % "%faible%"]).autojoin
+  scope :moderes, where(:niveaux => [:name.matches % "%modéré%"]).autojoin
+  scope :importants, where(:niveaux => [:name.matches % "%important%"]).autojoin
 
-  named_scope :incomplets, :conditions => { :acctype_id => 6 }
-  named_scope :is_malforme, :include => :bebes, :conditions => {'bebes.malforme' => 1}
-  named_scope :recent, :include => [:profession, :acctype, :expositions], :order => "updated_at DESC", :limit => 10
+  scope :is_malforme, where(:bebes => [:malforme => 1]).autojoin
+  scope :recent, includes([:profession, :acctype, :expositions]).order("updated_at DESC").limit(10)
 
   # delegations
   delegate :name, :to => :profession, :prefix => true, :allow_nil => true
@@ -199,20 +205,6 @@ class Dossier < ActiveRecord::Base
       out+= ")"
       out
     end
-  end
-
-  def dg_string
-    dg.to_s
-  end
-
-  def dg_string=(dg_str)
-    self.dg = Chronic.parse(dg_str)
-  rescue ArgumentError
-    @dg_invalid = true
-  end
-
-  def validate
-    errors.add(:dg, "La date de debut de grossesse n'est pas valide") if @dg_invalid
   end
 
   # info sur l'évolution
