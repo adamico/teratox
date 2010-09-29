@@ -5,8 +5,8 @@ class Bebe < ActiveRecord::Base
   #TODO add validations for poids, taille, pc, apgar1 et apgar5
   #TODO has_and_belongs_to_many :malformations (eliminer champ malformation)
   #TODO has_and_belongs_to_many :pathologies (éliminer champ pathologie)
-  alias_scope :malformes, lambda { malforme_is(1) }
-  alias_scope :normaux, lambda { malforme_is(0) }
+  scope :malformes, where(:malforme => 1)
+  scope :normaux, where(:malforme => 0)
 
 
   def sex

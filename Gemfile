@@ -12,7 +12,6 @@ gem "meta_search"
 gem "meta_where"
 gem "formtastic", "~> 1.1.0"
 gem 'will_paginate', '3.0.pre'
-gem "calendar_date_select", :git => 'http://github.com/locksmithdon/calendar_date_select.git', :branch => "jqueryrails3"
 gem 'pickle'
 
 group :development do

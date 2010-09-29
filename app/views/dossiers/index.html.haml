@@ -8,15 +8,15 @@
   = pagination_results @dossiers
   %table#dossiers.collapse
     %tr
-      %th= order @search, :by => :date_appel, :as => 'Année'
-      %th= order @search, :by => :n_sicap, :as => 'Dossier'
-      %th= order @search, :by => :nom, :as => 'Patiente'
-      %th= order @search, :by => :age, :as => 'Âge'
-      %th= order @search, :by => :sa, :as => 'SA'
-      %th= order @search, :by => :profession_name, :as => 'Profession'
+      %th= sort_link @search, :date_appel, 'Année'
+      %th= sort_link @search, :n_sicap, 'Dossier'
+      %th= sort_link @search, :nom, 'Patiente'
+      %th= sort_link @search, :age, 'Âge'
+      %th= sort_link @search, :sa, 'SA'
+      %th= sort_link @search, :profession_name, 'Profession'
       %th Exposition
-      %th= order @search, :by => :niveau_name, :as => 'Niveau'
+      %th= sort_link @search, :niveau_name, 'Niveau'
       %th CAT préconisée
       %th Evolution
-    = render :partial => @dossiers
+    = render @dossiers
   = will_paginate @dossiers

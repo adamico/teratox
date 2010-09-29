@@ -1,8 +1,7 @@
 # encoding: utf-8
 class Dossier < ActiveRecord::Base
   cattr_reader :per_page
-  @@per_page = 10
-
+  @@per_page = 20
   #TODO aggiungere gli attr_accessible
   # Validations
   validates_presence_of :n_sicap, :nom, :acctype_id
@@ -37,25 +36,31 @@ class Dossier < ActiveRecord::Base
   scope :autres, where(:expo_type => 'autres')
 
   scope :avec_jumeaux, where(:bebes_count.gt => 1)
-  scope :naissances, where(:acctypes => [:abbr.matches => "%nai%"]).autojoin
-  scope :fausses_couches, where(
-    :acctypes => [:abbr.matches % "%fcs%" | :abbr.matches % "%miu%"]
-  ).autojoin
-  scope :incomplets, where(:acctypes => [:abbr.matches => "%inc%"]).autojoin
+  scope :naissances, joins(:acctypes).where(
+    :acctypes => [:abbr.matches => "%nai%"])
+  scope :fausses_couches, joins(:acctypes).where(
+    :acctypes => [:abbr.matches % "%fcs%" | :abbr.matches % "%miu%"])
+  scope :incomplets, joins(:acctypes).where(
+    :acctypes => [:abbr.matches => "%inc%"])
   scope :p1g1, where(
-    :fcs => 0, :ivg => 0, :img => 0, :miu => 0, :geu => 0, :nai => 0
-  )
+    :fcs => 0, :ivg => 0, :img => 0, :miu => 0, :geu => 0, :nai => 0)
   scope :prematures, where(:terme.lt => 37)
   scope :with_niveau, lambda { |niveau|
-    where(:niveaux => [:name.matches % "%#{niveau}%"]).autojoin
-  }
-  scope :infimes, where(:niveaux => [:name.matches % "%infime%"]).autojoin
-  scope :faibles, where(:niveaux => [:name.matches % "%faible%"]).autojoin
-  scope :moderes, where(:niveaux => [:name.matches % "%modéré%"]).autojoin
-  scope :importants, where(:niveaux => [:name.matches % "%important%"]).autojoin
+    joins(:niveaux).where(:niveaux => [:name.matches % "%#{niveau}%"])}
+  scope :infimes, joins(:niveaux).where(
+    :niveaux => [:name.matches % "%infime%"])
+  scope :faibles, joins(:niveaux).where(
+    :niveaux => [:name.matches % "%faible%"])
+  scope :moderes, joins(:niveaux).where(
+    :niveaux => [:name.matches % "%modéré%"])
+  scope :importants, joins(:niveaux).where(
+    :niveaux => [:name.matches % "%important%"])
 
-  scope :is_malforme, where(:bebes => [:malforme => 1]).autojoin
+  scope :is_malforme, joins(:bebes).where(:bebes => [:malforme => "1"])
   scope :recent, includes([:profession, :acctype, :expositions]).order("updated_at DESC").limit(10)
+
+  # metasearch search methods
+  search_methods :is_malforme
 
   # delegations
   delegate :name, :to => :profession, :prefix => true, :allow_nil => true

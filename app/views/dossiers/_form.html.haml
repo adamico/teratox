@@ -1,11 +1,11 @@
 - javascript 'dossier_form_scripts'
 
-- content_for :main do
+= content_for :main do
   %a{ :name => "top" }
 
-  - semantic_form_for @dossier do |f|
+  = semantic_form_for @dossier do |f|
     = f.error_messages
-    - f.inputs :id => "sicap" do
+    = f.inputs :id => "sicap" do
       %li.select
         = f.label :n_sicap, "Numéro SICAP", :accesskey => "N"
         = f.text_field :n_sicap, :size => "10"
@@ -16,7 +16,8 @@
 
       %li.select
         = f.label :correspondant_name, "Correspondant"
-        = f.text_field_with_auto_complete :correspondant_name, {:size => 40}, {:method => :get, :url => "/dossiers/auto_complete_for_correspondant_name", :param_name => "correspondant[name]"}
+        -#= f.text_field_with_auto_complete :correspondant_name, {:size => 40}, {:method => :get, :url => "/dossiers/auto_complete_for_correspondant_name", :param_name => "correspondant[name]"}
+        = f.text_field :correspondant_name
         = link_to "Saisir un nouveau correspondant", new_correspondant_path, :popup => true
 
     #patient_fields= render 'patient_fields', :f => f

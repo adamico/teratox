@@ -1,20 +1,22 @@
-- form_for search do |f|
+= form_for search do |f|
   %fieldset#search
     %legend Filtrer
     %ol.formList
       %li
-        = f.label "Par date"
-        = f.calendar_date_select :date_appel_after, :year_range => 1995..Time.now.year, :valid_date_check => "date < (new Date()).stripTime()", :popup => :force, :size => 8
+        = f.label :nom_contains, "Nom patiente"
+        = f.text_field :nom_contains
+      %li
+        = f.label "Mot(s) dans les commentaire"
+        = f.text_field :commentaire_contains
+      %li
+        = f.label "Par année"
+        = f.date_select :date_appel_gte,
+          :start_year => 1995, :end_year => Time.now.year, :discard_day => true, :discard_month => true, :include_blank => true
         = " - "
-        = f.calendar_date_select :date_appel_before, :year_range => 1995..Time.now.year, :popup => :force, :size => 8
+        = f.date_select :date_appel_lte,
+          :start_year => 1995, :end_year => Time.now.year, :discard_day => true, :discard_month => true, :include_blank => true
       %li
-        = f.label "Nom patiente"
-        = f.text_field :nom_like
-      %li
-        = f.label "Mot(s) dans les commentaires"
-        = f.text_field :commentaire_like
-      %li
-        = f.label "Profession"
+        = f.label :profession_id_equals, "Profession"
         = f.collection_select :profession_id_equals, Profession.all, :id, :name, :include_blank => true
       %li
         = f.label "Correspondant (spécialité)"
@@ -33,6 +35,6 @@
         = f.collection_select :acctype_id_equals, Acctype.all, :id, :name, :include_blank => true
       %li
         = f.label "Malformation"
-        = f.check_box :is_malforme
+        = f.select :is_malforme, [["Non", ""], ["Oui", 1]]
       %li
         = f.submit "Rechercher", :name => nil

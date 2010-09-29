@@ -1,13 +1,12 @@
 # encoding:utf-8
 class DossiersController < ApplicationController
-  auto_complete_for :correspondant, :name
 
   def index
     @search = Dossier.search(params[:search])
     if params[:search]
-      @dossiers = @search.all(:include => [:profession, :acctype, :expositions, :niveau, :cat]).paginate(
-        :page => params[:page], :per_page => 20
-      )
+      @dossiers = @search.includes(
+        :profession, :acctype, :expositions, :niveau, :cat).
+        paginate(:page => params[:page], :per_page => 20)
     else
       @dossiers = Dossier.recent.all.paginate(:page => params[:page], :per_page => 20)
     end
@@ -18,7 +17,7 @@ class DossiersController < ApplicationController
   end
 
   def show
-    @dossier = Dossier.find(params[:id], :include => [:correspondant, :profession, :acctype, :accmod, {:expositions => :niveau}, :produits, :bebes])
+    @dossier = Dossier.find(params[:id]).includes(:correspondant, :profession, :acctype, :accmod, {:expositions => :niveau}, :produits, :bebes)
   end
 
   def new
