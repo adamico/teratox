@@ -1,30 +1,44 @@
+# teratox Gemfile
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.rc'
+gem 'rails', '3.0.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-group :development do
-  gem "nifty-generators"
-  gem "rails3-generators"
-  gem 'sqlite3-ruby', :require => 'sqlite3'
-  gem "rails_best_practices"
-  gem "thin"
-end
-
-gem 'will_paginate', '3.0.pre'
-gem "formtastic", :git => "http://github.com/justinfrench/formtastic.git", :branch => "rails3"
 gem "haml"
+gem "RedCloth"
 gem "meta_search"
 gem "meta_where"
-gem "calendar_date_select", :git => 'git@github.com:adamico/calendar_date_select.git', :branch => "jqueryrails3"
-gem 'rails3-jquery-autocomplete'
+gem "formtastic", "~> 1.1.0"
+gem 'will_paginate', '3.0.pre'
+gem "calendar_date_select", :git => 'http://github.com/locksmithdon/calendar_date_select.git', :branch => "jqueryrails3"
+gem 'pickle'
+
+group :development do
+  gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem "nifty-generators"
+  gem "rails3-generators"
+  gem "rails_best_practices"
+  gem "haml-rails"
+  gem "wirble"
+  gem "hirb"
+  gem 'annotate-models', '1.0.4'
+  gem 'faker', '0.3.1'
+end
 
 group :development, :test do
-  gem 'test-unit', '1.2.3'
+  gem 'rspec-rails', ">= 2.0.0.beta.20"
+  gem "webrat"
+end
+
+group :test do
   gem 'factory_girl_rails'
-  gem 'rspec-rails', ">= 2.0.0.beta.17"
+  gem "ZenTest"
+  gem "autotest-notification"
+  gem "autotest-rails"
+  gem 'spork'
+  gem "webrat"
 end
 
 group :cucumber do
@@ -32,10 +46,10 @@ group :cucumber do
   gem 'database_cleaner'
   gem 'cucumber-rails'
   gem 'cucumber'
-  gem 'rspec-rails', ">= 2.0.0.beta.17"
+  gem 'rspec-rails', ">= 2.0.0.beta.20"
   gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
-  gem 'pickle', :git => 'http://github.com/codegram/pickle.git'
+  gem 'pickle'
   gem 'factory_girl_rails'
 end
 
