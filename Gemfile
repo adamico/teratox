@@ -28,7 +28,12 @@ end
 
 group :development, :test do
   gem 'rspec-rails', ">= 2.0.0.beta.20"
-  gem "webrat"
+  gem 'steak', '>= 1.0.0.beta.1'
+  gem 'capybara'
+  gem 'spork'
+  gem 'database_cleaner'
+  gem 'selenium-webdriver'
+  gem 'launchy'
 end
 
 group :test do
@@ -38,18 +43,6 @@ group :test do
   gem "autotest-rails"
   gem 'spork'
   gem "webrat"
-end
-
-group :cucumber do
-  gem 'capybara'
-  gem 'database_cleaner'
-  gem 'cucumber-rails'
-  gem 'cucumber'
-  gem 'rspec-rails', ">= 2.0.0.beta.20"
-  gem 'spork'
-  gem 'launchy'    # So you can do Then show me the page
-  gem 'pickle'
-  gem 'factory_girl_rails'
 end
 
 # Use unicorn as the web server

@@ -77,7 +77,7 @@ $(function() {
   $('#reset').click(function() {
     reset();
   });
-  $('#dossier_dra').mouseover(function() {
+  $('#calc2').click(function() {
     calc2();
   });
 });
