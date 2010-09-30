@@ -1,5 +1,4 @@
-%a{ :name => "evol" }
-- f.inputs :name => "Évolution", :id => "evolution" do
+= f.inputs :name => "Évolution", :id => "evolution" do
   #infoevol
     %table
       %tr
@@ -37,7 +36,7 @@
 
     .clear{ :style => "margin-top:1em" }
       = f.label :dra, "Date d'accouchement"
-      = f.calendar_date_select :dra, :size => 10
+      = f.text_field :dra
       = f.label :terme, "Terme (SA)"
       = f.text_field :terme, :size => 1
       = f.input :anomalie_echo

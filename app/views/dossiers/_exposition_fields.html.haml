@@ -1,5 +1,5 @@
 .fields
-  - f.inputs do
+  = f.inputs do
     %li.select
       = f.label :produit_name, "Produit"
       -#= f.text_field_with_auto_complete :produit_name, {:size => 40},  { :url => produits_path(:format => :js), :method => :get, :param_name => 'search'}

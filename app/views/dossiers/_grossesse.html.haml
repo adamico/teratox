@@ -1,4 +1,4 @@
-- f.inputs :id => "info_grs" do
+= f.inputs :id => "info_grs" do
   %table.goleft
     %tr
       %th#right{ :colspan => "3"}
@@ -45,17 +45,17 @@
       %td#right
         = f.label :ddr,  "DDR : "
       %td
-        = f.calendar_date_select :ddr, :size => 10
+        = f.text_field :ddr
     %tr
       %td#right
         = f.label :dg, "Debut de grossesse : "
       %td
-        = f.calendar_date_select :dg, :popup => :force, :size => 10
+        = f.text_field :dg
     %tr
       %td#right
         = f.label :dap, "Accouchement prévu : "
       %td
-        = f.calendar_date_select :dap, :popup => :force, :size => 10
+        = f.text_field :dap
     %tr
       %td &nbsp;
       %td

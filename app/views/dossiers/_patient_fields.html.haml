@@ -1,4 +1,4 @@
-- f.inputs :name => "Données de la patiente", :id => "patiente" do
+= f.inputs :name => "Données de la patiente", :id => "patiente" do
   %li.select
     = f.label "Nom/Prénom"
     = f.text_field :nom
@@ -7,11 +7,10 @@
     = f.label :age, "Âge"
     = f.text_field :age, :size => "3"
     = " Ou "
-    = f.calendar_date_select :date_naissance, :valid_date_check => "date <= (new Date()).stripTime()", :year_range => 50.years.ago.year..Time.now.year, :size => 10
+    = f.date_select :date_naissance, :start_year => 50.years.ago.year, :end_year => Time.now.year
   = f.input :profession, :include_blank => false
 
-%a{ :name => "atcds" }
-- f.inputs :id => "info_atcd" do
+= f.inputs :id => "info_atcd" do
   %li.select
     = f.label :af, "Atcds familiaux"
     = f.select :af, Dossier::ONI
@@ -25,4 +24,3 @@
     = f.select :tabac, Dossier::TABAC
     = f.select :alcool, Dossier::ALCOOL
     %p.inline-hints cigarettes/verres par jour
-
