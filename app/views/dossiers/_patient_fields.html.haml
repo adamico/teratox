@@ -6,8 +6,8 @@
   %li.select
     = f.label :age, "Âge"
     = f.text_field :age, :size => "3"
-    = " Ou "
-    = f.date_select :date_naissance, :start_year => 50.years.ago.year, :end_year => Time.now.year
+    = " Ou date de naissance : "
+    = f.text_field :date_naissance
   = f.input :profession, :include_blank => false
 
 = f.inputs :id => "info_atcd" do

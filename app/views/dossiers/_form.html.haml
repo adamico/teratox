@@ -1,3 +1,6 @@
+= content_for :head do
+  = javascript_include_tag 'dossier_form'
+
 = content_for :main do
 
   = semantic_form_for @dossier do |f|
