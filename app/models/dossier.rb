@@ -222,6 +222,7 @@ class Dossier < ActiveRecord::Base
     when 1..5
       a="#{acctype.name} "
       a+= "à #{terme} SA " unless terme.nil?
+      # FIXME: check for acctype.name and not id!
       a+= "par #{accmod.name}" if acctype_id==5
       a
     else

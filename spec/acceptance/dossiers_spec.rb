@@ -13,13 +13,21 @@ feature "Dossiers", %q{
     page.should have_content('LP1')
     page.should have_content('LP2')
   end
-  
-  scenario "dossier form calculations", :js => true do
-    visit "/dossiers/new"
-    fill_in 'dossier_date_appel', :with => '15/9/2010'
-    fill_in 'dossier_ddr', :with => '1/9/2010'
-    click_button 'calc'
 
-    page.should have_css("input#dossier_sa", :value => "2")
+  scenario "creating a dossier" do
+    5.times do
+      Factory(:acctype)
+    end
+
+    visit "/dossiers/new"
+
+    fill_in "dossier_n_sicap", :with => "LP1"
+    fill_in "dossier_nom", :with => "value for dossier#nom"
+    fill_in "dossier_date_appel", :with => Time.now.to_date
+    choose "dossier_acctype_id_4"
+
+    click_button "Enregistrer"
+
+    Dossier.count.should == 1
   end
 end

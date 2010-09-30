@@ -17,7 +17,7 @@ class DossiersController < ApplicationController
   end
 
   def show
-    @dossier = Dossier.find(params[:id]).includes(:correspondant, :profession, :acctype, :accmod, {:expositions => :niveau}, :produits, :bebes)
+    @dossier = Dossier.find(params[:id])
   end
 
   def new

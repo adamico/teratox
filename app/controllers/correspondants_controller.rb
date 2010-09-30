@@ -5,6 +5,10 @@ class CorrespondantsController < ApplicationController
     @correspondants = @search.all(:order => "LOWER(name) ASC").paginate :page => params[:page]
   end
 
+  def names
+    @correspondants = Correspondant.where(:name =~ "%#{params[:term]}%")
+  end
+
   def show
     @correspondant = Correspondant.find(params[:id], :include => :dossiers)
 

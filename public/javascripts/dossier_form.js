@@ -51,9 +51,18 @@ function reset() {
 };
 
 $(function() {
+  // datepicker elements
   $("#dossier_ddr").datepicker() ;
   $("#dossier_date_appel").datepicker() ;
   $("#dossier_date_naissance").datepicker({minDate: '-50y', maxDate: '-10y'});
+  // autocomplete elements
+  $("#dossier_correspondant_name").autocomplete({
+    source: '/correspondants/names.js',
+    minLength: 2
+  });
+  add_autocomplete();
+
+  // grossesse calc
   $('#calc').click(function() {
     calc1();
   });

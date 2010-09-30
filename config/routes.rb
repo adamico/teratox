@@ -7,14 +7,19 @@ Teratox::Application.routes.draw do
     :acctypes,
     :accmods,
     :home,
-    :produits,
-    :correspondants,
     :professions
 
   resources :dossiers do
     get :evoluer, :on => :collection
   end
 
+  resources :correspondants do
+    get :names, :on => :collection
+  end
+
+  resources :produits do
+    get :names, :on => :collection
+  end
   match 'bilan' => 'home#bilan'
   root :to => 'home#index'
 

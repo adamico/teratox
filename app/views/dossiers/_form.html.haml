@@ -16,9 +16,8 @@
 
       %li.select
         = f.label :correspondant_name, "Correspondant"
-        -#= f.text_field_with_auto_complete :correspondant_name, {:size => 40}, {:method => :get, :url => "/dossiers/auto_complete_for_correspondant_name", :param_name => "correspondant[name]"}
         = f.text_field :correspondant_name
-        = link_to "Saisir un nouveau correspondant", new_correspondant_path, :popup => true
+        = link_to "Saisir un nouveau correspondant", new_correspondant_path, :target => "_blank"
 
     #patient_fields= render 'patient_fields', :f => f
 

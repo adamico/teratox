@@ -2,7 +2,11 @@ class ProduitsController < ApplicationController
 
   def index
     @produits_paginate = Produit.paginate :page => params[:page], :order => "LOWER(name) ASC"
-    @produits = Produit.all(:conditions => ['name LIKE ?', "%#{params[:search]}%"])
+    @produits = Produit.all
+  end
+  
+  def names
+    @produits = Produit.where(:name =~ "%#{params[:term]}%")
   end
 
   def show
