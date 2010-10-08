@@ -11,10 +11,12 @@ gem "RedCloth"
 gem "meta_search"
 gem "meta_where"
 gem "formtastic", "~> 1.1.0"
-gem 'will_paginate', '3.0.pre'
+gem 'will_paginate', '3.0.pre2'
 gem 'pickle'
 
 group :development do
+  gem "ruby-graphviz"
+  gem "rails-erd"
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem "nifty-generators"
   gem "rails3-generators"

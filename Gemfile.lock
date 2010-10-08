@@ -121,6 +121,10 @@ GEM
       activesupport (= 3.0.0)
       bundler (~> 1.0.0)
       railties (= 3.0.0)
+    rails-erd (0.3.0)
+      activerecord (~> 3.0.0)
+      activesupport (~> 3.0)
+      ruby-graphviz (~> 0.9.17)
     rails3-generators (0.13.0)
     rails_best_practices (0.4.4)
       colored (~> 1.2)
@@ -145,6 +149,7 @@ GEM
       rspec-expectations (= 2.0.0.beta.22)
     rspec-rails (2.0.0.beta.22)
       rspec (= 2.0.0.beta.22)
+    ruby-graphviz (0.9.17)
     ruby2ruby (1.2.5)
       ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
@@ -197,9 +202,11 @@ DEPENDENCIES
   nifty-generators
   pickle
   rails (= 3.0.0)
+  rails-erd
   rails3-generators
   rails_best_practices
   rspec-rails (>= 2.0.0.beta.20)
+  ruby-graphviz
   selenium-webdriver
   spork
   sqlite3-ruby
