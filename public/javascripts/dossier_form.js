@@ -53,6 +53,7 @@ function reset() {
 $(function() {
   // datepicker elements
   $("#dossier_ddr").datepicker() ;
+  $("#dossier_dra").datepicker() ;
   $("#dossier_date_appel").datepicker() ;
   $("#dossier_date_naissance").datepicker({minDate: '-50y', maxDate: '-10y'});
   // autocomplete elements

@@ -14,6 +14,29 @@ Factory.define :produit do |p|
 end
 
 Factory.define :acctype do |f|
-  f.name "acctype"
+  f.sequence(:name) {|n| "acctype#{n}"}
 end
 
+Factory.define :accmod do |f|
+  f.sequence(:name) { |n| "accmod#{n}"}
+end
+
+Factory.define :cat do |f|
+  f.sequence(:name) { |n| "cat#{n}"}
+end
+
+Factory.define :demandeur do |f|
+  f.sequence(:name) { |n| "demandeur#{n}"}
+end
+
+Factory.define :niveau do |f|
+  f.sequence(:name) { |n| "niveau#{n}"}
+end
+
+Factory.define :profession do |f|
+  f.sequence(:name) { |n| "profession#{n}"}
+end
+
+Factory.define :qualite do |f|
+  f.sequence(:name) { |n| "qualite#{n}"}
+end

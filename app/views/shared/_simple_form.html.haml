@@ -1,0 +1,6 @@
+= simple_form_for resource do |f|
+  .inputs
+    - resource.attributes.keys.each do |attribute|
+      = f.input attribute.to_sym
+  .actions
+    = f.button :submit

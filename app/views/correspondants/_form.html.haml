@@ -1,16 +1,15 @@
-- semantic_form_for @correspondant do |f|
-  - f.inputs do
+= simple_form_for correspondant do |f|
+  .inputs
     = f.input :name, :label => "Nom"
-    %li.select
-      = f.label :sexe
-      = f.select :sexe, Correspondant::SEXES, :include_blank => true
-    = f.input :specialite, :label => "Specialité"
-    = f.input :qualite, :label => "Qualité"
-    = f.input :adresse, :input_html => { :size => '15x1' }
+    = f.input :sexe, :collection => Correspondant::SEXES
+    = f.association :specialite, :label => "Specialité"
+    = f.association :qualite, :label => "Qualité"
+    = f.input :adresse, :as => :string
     = f.input :cp
     = f.input :ville
     = f.input :tel
     = f.input :fax
     = f.input :poste
     = f.input :email
-  = f.buttons :commit
+  .buttons
+    = f.button :submit

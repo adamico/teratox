@@ -1,46 +1,21 @@
-= f.inputs :name => "Évolution", :id => "evolution" do
-  #infoevol
-    %table
-      %tr
-        %th{ :colspan => "2" } Type
-      - Acctype.all.in_groups_of(2, false) do |row_at|
-        %tr
-          - for acctype in row_at
-            %td
-              = f.radio_button "acctype_id", acctype.id
-              = f.label :acctype_id, "#{acctype.abbrev}"
-    %table
-      %tr
-        %th
-          Modalité
-      - Accmod.all.each do |am|
-        %tr
-          %td
-            = f.radio_button "accmod_id", am.id
-            = f.label :accmod_id, am.abbr
-    %table
-      %tr
-        %th Pathologie maternelle
-      %tr
-        %td
-          = f.radio_button "path_mat", "0"
-          = f.label :path_mat, "Oui"
-      %tr
-        %td
-          = f.radio_button "path_mat", "1"
-          = f.label :path_mat, "Non"
-      %tr
-        %td
-          = f.radio_button "path_mat", "2"
-          = f.label :path_mat, "inconnu"
+%h2 Évolution
+.inputs#evolution
+  = f.association :acctype, :label => "Type", :as => :radio,
+    :collection => Acctype.all, :label_method => :abbr
+  = f.association :accmod, :label => "Modalité", :as => :radio,
+    :collection => Accmod.all, :label_method => :abbr
+  = f.input :path_mat, :label => "Pathologie maternelle",
+    :collection => Dossier::ONI
 
-    .clear{ :style => "margin-top:1em" }
-      = f.label :dra, "Date d'accouchement"
-      = f.text_field :dra
-      = f.label :terme, "Terme (SA)"
-      = f.text_field :terme, :size => 1
-      = button_to_function "Calculer", nil, :id => "calc2"
-      = f.input :anomalie_echo
-      = f.input :rciu
-    %p
-      = f.input :comm_evol, :hint => "* Compléter le champ malformation dans la section nouveau-né si examen anatomo-pathologique interprétable"
+  .clear
+  .input.inline
+    = f.label :dra, "Date accouchement"
+    = f.text_field :dra
+    = f.label :terme, "Terme (SA)"
+    = f.text_field :terme, :size => 1
+    = button_to_function "Calculer", nil, :id => "calc2"
+  = f.input :anomalie_echo
+  = f.input :rciu
+  = f.input :comm_evol,
+    :hint => "* Compléter le champ malformation dans la section nouveau-né si examen anatomo-pathologique interprétable",
+    :input_html => { :size => "40x2"}

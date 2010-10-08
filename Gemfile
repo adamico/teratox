@@ -10,7 +10,7 @@ gem "haml"
 gem "RedCloth"
 gem "meta_search"
 gem "meta_where"
-gem "formtastic", "~> 1.1.0"
+gem "simple_form"
 gem 'will_paginate', '3.0.pre2'
 gem 'pickle'
 
@@ -44,7 +44,6 @@ group :test do
   gem "autotest-notification"
   gem "autotest-rails"
   gem 'spork'
-  gem "webrat"
 end
 
 # Use unicorn as the web server

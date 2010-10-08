@@ -1,8 +1,8 @@
-# encoding:utf-8
 class CorrespondantsController < ApplicationController
   def index
     @search = Correspondant.search(params[:search])
-    @correspondants = @search.all(:order => "LOWER(name) ASC").paginate :page => params[:page]
+    @correspondants = @search.
+      paginate(:page => params[:page], :order => "LOWER(name) ASC")
   end
 
   def names
@@ -10,18 +10,13 @@ class CorrespondantsController < ApplicationController
   end
 
   def show
-    @correspondant = Correspondant.find(params[:id], :include => :dossiers)
-
-    respond_to do |wants|
-      wants.html # show.html.erb
-      wants.xml  { render :xml => @correspondant }
-    end
+    @correspondant = Correspondant.find(params[:id])
   end
-  
+
   def new
     @correspondant = Correspondant.new
   end
-  
+
   def create
     @correspondant = Correspondant.new(params[:correspondant])
     if @correspondant.save
@@ -49,7 +44,7 @@ class CorrespondantsController < ApplicationController
   def destroy
     @correspondant = Correspondant.find(params[:id])
     @correspondant.destroy
-    flash[:notice] = "Correspondant détruit."
+    flash[:notice] = "Successfully destroyed correspondant."
     redirect_to correspondants_path
   end
 end

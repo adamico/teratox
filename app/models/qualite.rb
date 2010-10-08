@@ -1,5 +1,7 @@
 class Qualite < ActiveRecord::Base
-  validates_presence_of :name
+  validates :name,
+    :presence => true,
+    :uniqueness => { :case_sensitive => false}
   has_many :correspondants
 end
 

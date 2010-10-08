@@ -1,4 +1,7 @@
 - title "Nouveau Dossier"
+
 %h1 Creation d'un nouveau dossier
-= render :partial => 'form'
+
+= render 'form', :dossier => @dossier
+
 %p= link_to "Annuller et retourner à l'Accueil", root_path

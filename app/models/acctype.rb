@@ -1,5 +1,8 @@
 class Acctype < ActiveRecord::Base
   has_many :dossiers
+  validates :name,
+    :presence => true,
+    :uniqueness => { :case_sensitive => false }
 
   def abbrev
     case id

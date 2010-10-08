@@ -1,10 +1,10 @@
 require 'spec_helper'
- 
-describe AcctypesController do
+
+describe CorrespondantsController do
   render_views
   before(:each) do
-    @acctype = Factory(:acctype)
-    @invalid_acctype = { :name  => ""}
+    @correspondant = Factory(:correspondant)
+    @invalid_attr = { :name  => "" }
   end
 
   it "index action should render index template" do
@@ -13,7 +13,7 @@ describe AcctypesController do
   end
 
   it "show action should render show template" do
-    get :show, :id => @acctype
+    get :show, :id => @correspondant
     response.should render_template(:show)
   end
 
@@ -23,33 +23,34 @@ describe AcctypesController do
   end
 
   it "create action should render new template when model is invalid" do
-    post :create, :acctype => @invalid_acctype
+    post :create, :correspondant => @invalid_attr
     response.should render_template(:new)
   end
 
   it "create action should redirect when model is valid" do
-    post :create, :acctype => { :name => "value_for_name" }
-    response.should redirect_to(acctype_path(assigns[:acctype]))
+    post :create, :correspondant => { :name => "value_for_name" }
+    response.should redirect_to(correspondants_url)
   end
 
   it "edit action should render edit template" do
-    get :edit, :id => @acctype
+    get :edit, :id => @correspondant
     response.should render_template(:edit)
   end
 
   it "update action should render edit template when model is invalid" do
-    put :update, :id => @acctype, :acctype => @invalid_acctype
+    put :update, :id => @correspondant, :correspondant => @invalid_attr
     response.should render_template(:edit)
   end
 
   it "update action should redirect when model is valid" do
-    put :update, :id => @acctype, :acctype => @acctype
-    response.should redirect_to(acctype_path(assigns[:acctype]))
+    put :update, :id => @correspondant, :correspondant => { :name => "new name" }
+    response.should redirect_to(correspondants_url)
   end
 
   it "destroy action should destroy model and redirect to index action" do
-    delete :destroy, :id => @acctype
-    response.should redirect_to(acctypes_url)
-    Acctype.exists?(@acctype.id).should be_false
+    correspondant = @correspondant
+    delete :destroy, :id => correspondant
+    response.should redirect_to(correspondants_url)
+    Correspondant.exists?(correspondant.id).should be_false
   end
 end

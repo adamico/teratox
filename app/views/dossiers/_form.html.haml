@@ -2,46 +2,45 @@
   = javascript_include_tag 'dossier_form'
 
 = content_for :main do
-
-  = semantic_form_for @dossier do |f|
+  = simple_form_for dossier do |f|
     = f.error_messages
-    = f.inputs :id => "sicap" do
-      %li.select
+    .inputs#sicap
+      .input.inline
         = f.label :n_sicap, "Numéro SICAP", :accesskey => "N"
         = f.text_field :n_sicap, :size => "10"
-      %li.select
         = f.label :date_appel
         = f.text_field :date_appel
-      = f.input :demandeur, :label => "Demandeur"
-
-      %li.select
-        = f.label :correspondant_name, "Correspondant"
-        = f.text_field :correspondant_name
-        = link_to "Saisir un nouveau correspondant", new_correspondant_path, :target => "_blank"
+      = f.association :demandeur
+      = f.input :correspondant_name, :label => "Correspondant"
 
     #patient_fields= render 'patient_fields', :f => f
 
-    = render 'grossesse', :f => f
+    #grossesse_fields= render 'grossesse', :f => f
 
-    = f.inputs :name => "Exposition", :id => "infoexpo" do
-      = f.input :expo_type, :label => "Type d'exposition", :as => :select, :collection => [["solvants"], ["autres"]]
-      = f.input :niveau, :label => "Niveau global d'exposition"
+    #expo_fields
+      %h2 Exposition
+      = f.input :expo_type, :label => "Type",
+        :collection => [["solvants"], ["autres"]]
+      = f.association :niveau
 
       = f.fields_for :expositions do |exposition|
         = render 'exposition_fields', :f => exposition
       %p= link_to_add_fields 'Rajouter une exposition', f, :expositions
 
-      = f.input :cat, :label => "Conduite à tenir préconisée"
+      = f.association :cat, :label => "CAT"
       = f.input :comm_expo, :label => false, :input_html => { :size => "100x4"}
 
-    = render 'evolution', :f => f
+    #evol_fields= render 'evolution', :f => f
 
-    = f.inputs :name => "Nouveaux-nés", :id => "infonn" do
-      = f.fields_for :bebes do |bebe|
-        = render 'bebe_fields', :f => bebe
-      %p= link_to_add_fields 'Rajouter un nouveau-né', f, :bebes
-      %p= f.text_area :comm_bebe, :class => "commentaire_100"
+    #bebe_fields
+      %h2 Nouveaux-nés
+      .inputs#infonn
+        = f.fields_for :bebes do |bebe|
+          = render 'bebe_fields', :f => bebe
+        %p= link_to_add_fields 'Rajouter un nouveau-né', f, :bebes
+      = f.input :comm_bebe, :input_html => {:size => "40x2"}
 
-    = f.inputs :name => "Commentaire" do
-      = f.input :commentaire, :label => false
-    = f.submit "Enregistrer", :name => nil, :accesskey => "S"
+    = f.input :commentaire, :input_html => {:size => "40x2"}
+
+    .actions
+      = f.button :submit, :accesskey => "S"
