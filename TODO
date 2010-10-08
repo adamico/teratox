@@ -5,21 +5,12 @@ Dossier :
   - table
     * cercare cosa indica ncode
 
-  - model
-    * spurgare le colonne ddr, dap, dg
-      - creare uno script per autocompletare i vari campi date grossesse se almeno uno è riempito
   - view :
-    * show:
-      - rimettere la gemma per formattare semplicemente un testo (redcloth?)
+    * usare textilize per formattare i campi dei commenti
     * _form :
-      - aggiungere pulsanti + e - per gli atcd grs
-      - creare una funzione javascript per aggiornare il valore di grossesse antérieures quando uno dei campi è riempito
-      - creare un pulsante per le nullipare primigeste
-      - rajouter champ "anomalies échographiques"
-      - rajouter champ "retard de croissance in utero"
-      - rajouter un script js pour calculer terme de naissance/date d'accouchement
       - sezione bebes
         * creare la possibilità di inserire patologie e malformazioni
+      - implementare dei tabs per dividere le sezioni del form con jquery
 
 Correspondant :
   - saisir 2008
