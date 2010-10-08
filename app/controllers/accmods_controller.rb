@@ -4,14 +4,14 @@ class AccmodsController < ApplicationController
   def index
     @accmods = Accmod.all
   end
-  
+
   def show
   end
-  
+
   def new
     @accmod = Accmod.new
   end
-  
+
   def create
     @accmod = Accmod.new(params[:accmod])
     if @accmod.save
@@ -21,10 +21,10 @@ class AccmodsController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
   end
-  
+
   def update
     if @accmod.update_attributes(params[:accmod])
       flash[:notice] = "Successfully updated accmod."
@@ -33,7 +33,7 @@ class AccmodsController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @accmod.destroy
     flash[:notice] = "Successfully destroyed accmod."

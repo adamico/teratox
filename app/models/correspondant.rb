@@ -3,7 +3,7 @@ class Correspondant < ActiveRecord::Base
   belongs_to :specialite
   belongs_to :qualite
 
-  validates_presence_of :name
+  validates :name, :presence => true
 
   SEXES = {"INC" => 0, "M" => 1, "F" => 2}
 

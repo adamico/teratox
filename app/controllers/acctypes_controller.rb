@@ -2,11 +2,11 @@ class AcctypesController < ApplicationController
   def index
     @acctypes = Acctype.all
   end
-  
+
   def show
     @acctype = Acctype.find(params[:id])
   end
-  
+
   def new
     @acctype = Acctype.new
   end
@@ -20,11 +20,11 @@ class AcctypesController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @acctype = Acctype.find(params[:id])
   end
-  
+
   def update
     @acctype = Acctype.find(params[:id])
     if @acctype.update_attributes(params[:acctype])
@@ -34,7 +34,7 @@ class AcctypesController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @acctype = Acctype.find(params[:id])
     @acctype.destroy

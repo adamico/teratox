@@ -1,26 +1,27 @@
-= f.inputs :name => "Données de la patiente", :id => "patiente" do
-  %li.select
+%h2 Données de la patiente
+.inputs#patiente
+  .input.inline
     = f.label "Nom/Prénom"
     = f.text_field :nom
-    = f.text_field :prenom, :label => "Prénom"
-  %li.select
+    = f.text_field :prenom
+  .input.inline
     = f.label :age, "Âge"
     = f.text_field :age, :size => "3"
-    = " Ou date de naissance : "
+    %strong Ou date de naissance :
     = f.text_field :date_naissance
-  = f.input :profession, :include_blank => false
+  = f.association :profession, :include_blank => false
 
-= f.inputs :id => "info_atcd" do
-  %li.select
+.inputs#info_atcd
+  .input.inline
     = f.label :af, "Atcds familiaux"
     = f.select :af, Dossier::ONI
     = f.text_field :comm_af, :size => "67"
-  %li.select
+  .input.inline
     = f.label :ap, "Atcds personnels"
     = f.select :ap, Dossier::ONI
     = f.text_field :comm_ap, :size => "67"
-  %li.select
+  .input.inline
     = f.label "Tabac/Alcool"
     = f.select :tabac, Dossier::TABAC
     = f.select :alcool, Dossier::ALCOOL
-    %p.inline-hints cigarettes/verres par jour
+    .hint cigarettes/verres par jour

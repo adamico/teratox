@@ -1,14 +1,14 @@
 .fields
-  %table.latex
+  %table
     %tr
-      %th= f.label :sexe
-      %th= f.label :poids
-      %th= f.label :taille
-      %th= f.label :pc, "PC"
-      %th= f.label :apgar1, "Apgar (1')"
-      %th= f.label :apgar5, "Apgar (5')"
-      %th= f.label :malformation
-      %th= f.label :pathologie
+      %th Sexe
+      %th Poids
+      %th Taille
+      %th Pc
+      %th Apgar (1')
+      %th Apgar (5')
+      %th Malformation
+      %th Pathologie
     %tr
       %td= f.select(:sexe, [['Inconnu', 0], ['Garçon', 1], ['Fille', 2]])
       %td= f.text_field :poids, :size => 3

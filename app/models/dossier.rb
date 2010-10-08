@@ -183,8 +183,8 @@ class Dossier < ActiveRecord::Base
     end
   end
 
-  #TODO creare due colonna per calcolare parité et gestite (à l'inclusion)
-  # info sur la grossesse
+  #TODO creare colonne parite, gestite
+  #TODO aggiungere 2 callback per calcolare parite e gestite
   def grsant
     a = [fcs, geu, miu, ivg, img, nai]
     a.sum

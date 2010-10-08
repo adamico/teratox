@@ -2,7 +2,7 @@ class QualitesController < ApplicationController
   def index
     @qualites = Qualite.all
   end
-  
+
   def show
     @qualite = Qualite.find(params[:id])
   end
@@ -10,7 +10,7 @@ class QualitesController < ApplicationController
   def new
     @qualite = Qualite.new
   end
-  
+
   def create
     @qualite = Qualite.new(params[:qualite])
     if @qualite.save
@@ -20,11 +20,11 @@ class QualitesController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @qualite = Qualite.find(params[:id])
   end
-  
+
   def update
     @qualite = Qualite.find(params[:id])
     if @qualite.update_attributes(params[:qualite])
@@ -34,7 +34,7 @@ class QualitesController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @qualite = Qualite.find(params[:id])
     @qualite.destroy

@@ -2,15 +2,15 @@ class DemandeursController < ApplicationController
   def index
     @demandeurs = Demandeur.all
   end
-  
+
   def show
     @demandeur = Demandeur.find(params[:id])
   end
-  
+
   def new
     @demandeur = Demandeur.new
   end
-  
+
   def create
     @demandeur = Demandeur.new(params[:demandeur])
     if @demandeur.save
@@ -20,11 +20,11 @@ class DemandeursController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @demandeur = Demandeur.find(params[:id])
   end
-  
+
   def update
     @demandeur = Demandeur.find(params[:id])
     if @demandeur.update_attributes(params[:demandeur])
@@ -34,7 +34,7 @@ class DemandeursController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @demandeur = Demandeur.find(params[:id])
     @demandeur.destroy
