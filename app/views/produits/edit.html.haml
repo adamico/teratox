@@ -1,5 +1,5 @@
 - title "Editing produit: #{@produit.name}"
 
 - content_for :main do
-  = render :partial => 'form'
-  %p= link_to 'Show', @produit
+  = render "shared/simple_form", :resource => @produit
+  %p= link_to 'Annuler', @produit
