@@ -4,43 +4,54 @@
 = content_for :main do
   = simple_form_for dossier do |f|
     = f.error_messages
-    .inputs#sicap
-      .input.inline
-        = f.label :n_sicap, "Numéro SICAP", :accesskey => "N"
-        = f.text_field :n_sicap, :size => "10"
-        = f.label :date_appel
-        = f.text_field :date_appel
-      = f.association :demandeur
-      = f.input :correspondant_name, :label => "Correspondant"
+    #tabs
+      %ul
+        %li= link_to "Informations", "#informations"
+        %li= link_to "Patiente", "#patiente"
+        %li= link_to "Grossesse", "#grossesse"
+        %li= link_to "Expositions", "#expositions"
+        %li= link_to "Evolution", "#evolution"
+        %li= link_to "Nouveaux-nés", "#bebe"
 
-    #patient_fields= render 'patient_fields', :f => f
+      #informations
+        .inputs#sicap
+          .input.inline
+            = f.label :n_sicap, "Numéro SICAP", :accesskey => "N"
+            = f.text_field :n_sicap, :size => "10"
+            = f.label :date_appel
+            = f.text_field :date_appel
+          = f.association :demandeur
+          = f.input :correspondant_name, :label => "Correspondant"
 
-    #grossesse_fields= render 'grossesse', :f => f
+      #patiente= render 'patient_fields', :f => f
 
-    #expo_fields
-      %h2 Exposition
-      = f.input :expo_type, :label => "Type",
-        :collection => [["solvants"], ["autres"]]
-      = f.association :niveau
+      #grossesse= render 'grossesse', :f => f
 
-      = f.fields_for :expositions do |exposition|
-        = render 'exposition_fields', :f => exposition
-      %p= link_to_add_fields 'Rajouter une exposition', f, :expositions
+      #expositions
+        %h2 Exposition
+        = f.input :expo_type, :label => "Type",
+          :collection => [["solvants"], ["autres"]]
+        = f.association :niveau
 
-      = f.association :cat, :label => "CAT"
-      = f.input :comm_expo, :label => false, :input_html => { :size => "100x4"}
+        = f.fields_for :expositions do |exposition|
+          = render 'exposition_fields', :f => exposition
+        %p= link_to_add_fields 'Rajouter une exposition', f, :expositions
 
-    #evol_fields= render 'evolution', :f => f
+        = f.association :cat, :label => "CAT"
+        = f.input :comm_expo, :label => false, :input_html => { :size => "100x4"}
 
-    #bebe_fields
-      %h2 Nouveaux-nés
-      .inputs#infonn
-        = f.fields_for :bebes do |bebe|
-          = render 'bebe_fields', :f => bebe
-        %p= link_to_add_fields 'Rajouter un nouveau-né', f, :bebes
-      = f.input :comm_bebe, :input_html => {:size => "40x2"}
+      #evolution= render 'evolution', :f => f
 
-    = f.input :commentaire, :input_html => {:size => "40x2"}
+      #bebe
+        %h2 Nouveaux-nés
+        .inputs#infonn
+          = f.fields_for :bebes do |bebe|
+            = render 'bebe_fields', :f => bebe
+          %p= link_to_add_fields 'Rajouter un nouveau-né', f, :bebes
+        = f.input :comm_bebe, :input_html => {:size => "40x2"}
+
+    .inputs
+      = f.input :commentaire, :input_html => {:size => "40x2"}
 
     .actions
       = f.button :submit, :accesskey => "S"

@@ -51,6 +51,8 @@ function reset() {
 };
 
 $(function() {
+  // tabs
+  $("#tabs").tabs();
   // datepicker elements
   $("#dossier_ddr").datepicker() ;
   $("#dossier_dra").datepicker() ;
@@ -74,4 +76,5 @@ $(function() {
     calc2();
   });
 });
+
 
