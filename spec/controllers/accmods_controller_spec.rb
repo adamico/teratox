@@ -51,6 +51,6 @@ describe AccmodsController do
     accmod = @accmod
     delete :destroy, :id => accmod
     response.should redirect_to(accmods_url)
-    Accmod.exists?(accmod.id).should be_false
+    Accmod.exists?(@accmod.id).should be_false
   end
 end
