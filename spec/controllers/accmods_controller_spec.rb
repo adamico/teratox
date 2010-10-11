@@ -4,7 +4,7 @@ describe AccmodsController do
   render_views
   before(:each) do
     @accmod = Factory(:accmod)
-    @invalid_accmod = Factory.build(:accmod, :name => "")
+    @invalid_attr = {:name => ""}
   end
 
   it "index action should render index template" do
@@ -23,7 +23,7 @@ describe AccmodsController do
   end
 
   it "create action should render new template when model is invalid" do
-    post :create, :accmod => @invalid_accmod
+    post :create, :accmod => @invalid_attr
     response.should render_template(:new)
   end
 
@@ -38,7 +38,7 @@ describe AccmodsController do
   end
 
   it "update action should render edit template when model is invalid" do
-    put :update, :id => @accmod, :accmod => @invalid_accmod
+    put :update, :id => @accmod, :accmod => @invalid_attr
     response.should render_template(:edit)
   end
 
@@ -48,8 +48,9 @@ describe AccmodsController do
   end
 
   it "destroy action should destroy model and redirect to index action" do
-    delete :destroy, :id => @accmod
+    accmod = @accmod
+    delete :destroy, :id => accmod
     response.should redirect_to(accmods_url)
-    Accmod.exists?(@accmod.id).should be_false
+    Accmod.exists?(accmod.id).should be_false
   end
 end

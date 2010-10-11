@@ -40,3 +40,7 @@ end
 Factory.define :qualite do |f|
   f.sequence(:name) { |n| "qualite#{n}"}
 end
+
+Factory.define :specialite do |f|
+  f.sequence(:name) { |n| "specialite#{n}"}
+end

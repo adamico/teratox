@@ -1,7 +1,7 @@
 - title "Correspondants"
 
 - content_for :main do
-  - form_for @search, :class => "search" do |f|
+  = form_for @search, :class => "search" do |f|
     %ol.formList
       %li
         = f.label "Recherche par nom"

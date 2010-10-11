@@ -28,8 +28,8 @@ describe QualitesController do
   end
 
   it "create action should redirect when model is valid" do
-    post :create, :qualite => @qualite
-    response.should redirect_to(qualite_url(assigns[:qualite]))
+    post :create, :qualite => { :name => "value_for_name"}
+    response.should redirect_to(qualite_path(assigns[:qualite]))
   end
 
   it "edit action should render edit template" do
@@ -43,7 +43,7 @@ describe QualitesController do
   end
 
   it "update action should redirect when model is valid" do
-    put :update, :id => @qualite, :qualite => "new name"
+    put :update, :id => @qualite, :qualite => {:name => "new name"}
     response.should redirect_to(qualite_url(assigns[:qualite]))
   end
 
