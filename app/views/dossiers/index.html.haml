@@ -5,7 +5,6 @@
 
   %hr/
 
-  = pagination_results @dossiers
   %table#dossiers.collapse
     %tr
       %th= sort_link @search, :date_appel, 'Année'
@@ -19,4 +18,6 @@
       %th CAT préconisée
       %th Evolution
     = render @dossiers
-  = will_paginate @dossiers
+  - if params[:search]
+    = pagination_results @dossiers
+    = will_paginate @dossiers

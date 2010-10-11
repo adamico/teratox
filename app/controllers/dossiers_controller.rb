@@ -8,7 +8,7 @@ class DossiersController < ApplicationController
         :profession, :acctype, :expositions, :niveau, :cat).
         paginate(:page => params[:page], :per_page => 20)
     else
-      @dossiers = Dossier.recent.all.paginate(:page => params[:page], :per_page => 20)
+      @dossiers = Dossier.recent
     end
   end
 
@@ -22,12 +22,6 @@ class DossiersController < ApplicationController
 
   def new
     @dossier = Dossier.new
-    @dossier.expositions.build
-
-    @professions = Profession.all
-    @niveaux = Niveau.all
-    @acctypes = Acctype.all
-    @accmods = Accmod.all
   end
 
   def create
@@ -42,13 +36,7 @@ class DossiersController < ApplicationController
   end
 
   def edit
-    @dossier = Dossier.find(params[:id], :include => [ :correspondant, :profession, :acctype, :accmod, { :expositions => :niveau }, :produits, :bebes ])
-    @dossier.expositions.build
-    @professions = Profession.all
-    @niveaux = Niveau.all
-    @acctypes = Acctype.all
-    @accmods = Accmod.all
-    @correspondants = Correspondant.all
+    @dossier = Dossier.find(params[:id])
   end
 
   def update

@@ -4,8 +4,10 @@ class Dossier < ActiveRecord::Base
   @@per_page = 20
   #TODO aggiungere gli attr_accessible
   # Validations
-  validates_presence_of :n_sicap, :nom, :acctype_id
-  validates_uniqueness_of :n_sicap
+  validates :n_sicap,
+    :presence => true,
+    :uniqueness => true
+  validates_presence_of :nom, :acctype_id, :date_appel
   validates_numericality_of :fcs, :ivg, :img, :miu, :geu, :nai
   validates_numericality_of :sa, :less_than => 40, :allow_blank => true
 
@@ -16,10 +18,12 @@ class Dossier < ActiveRecord::Base
   belongs_to :accmod
   has_many :produits, :through => :expositions
   has_many :expositions, :dependent => :destroy
-  accepts_nested_attributes_for :expositions, :allow_destroy => true, :reject_if => proc { |attrs| attrs['produit_name'].blank? }
+  accepts_nested_attributes_for :expositions, :allow_destroy => true,
+    :reject_if => proc { |attrs| attrs['produit_name'].blank? }
 
   has_many :bebes, :dependent => :destroy
-  accepts_nested_attributes_for :bebes, :allow_destroy => true, :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? }}
+  accepts_nested_attributes_for :bebes, :allow_destroy => true,
+    :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? }}
 
   belongs_to :niveau
   belongs_to :correspondant
