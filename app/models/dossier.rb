@@ -78,6 +78,8 @@ class Dossier < ActiveRecord::Base
   def patient_age
     if date_naissance
       Date.today.year - date_naissance.year
+    else
+      age
     end
   end
   def correspondant_name
