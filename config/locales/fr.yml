@@ -4,8 +4,6 @@
 # contributor: Sebastien Grosjean - ZenCocoon.com
 
 fr:
-  hello_world: Bonjour Monde
-  hello_flash: Bonjour Flash
 
   date:
     formats:
@@ -113,14 +111,24 @@ fr:
       words_connector: ", "
       two_words_connector: " et "
       last_word_connector: " et "
+    select:
+      prompt: "Sélectionner :"
   
+  errors:
+    template:
+      header: 
+        one: "Impossible d'enregistrer ce %{model} : 1 erreur"
+        other: "Impossible d'enregistrer ce %{model} : %{count} erreurs."
+      body: "Veuillez vérifier les champs suivants :"
+
   activerecord:
     errors:
       template:
         header: 
-          one: "Impossible d'enregistrer {{model}}: 1 erreur"
-          other: "Impossible d'enregistrer {{model}}: {{count}} erreurs."
+          one: "Impossible d'enregistrer ce %{model} : 1 erreur"
+          other: "Impossible d'enregistrer ce %{model} : %{count} erreurs."
         body: "Veuillez vérifier les champs suivants :"
+
       messages:
         inclusion: "n'est pas inclus(e) dans la liste"
         exclusion: "n'est pas disponible"
@@ -129,17 +137,17 @@ fr:
         accepted: "doit être accepté(e)"
         empty: "doit être rempli(e)"
         blank: "doit être rempli(e)"
-        too_long: "est trop long (pas plus de {{count}} caractères)"
-        too_short: "est trop court (au moins {{count}} caractères)"
-        wrong_length: "ne fait pas la bonne longueur (doit comporter {{count}} caractères)"
+        too_long: "est trop long (pas plus de %{count} caractères)"
+        too_short: "est trop court (au moins %{count} caractères)"
+        wrong_length: "n'est pas de la bonne longueur (doit comporter %{count} caractères)"
         taken: "n'est pas disponible"
         not_a_number: "n'est pas un nombre"
-        greater_than: "doit être supérieur à {{count}}"
-        greater_than_or_equal_to: "doit être supérieur ou égal à {{count}}"
-        equal_to: "doit être égal à {{count}}"
-        less_than: "doit être inférieur à {{count}}"
-        less_than_or_equal_to: "doit être inférieur ou égal à {{count}}"
+        greater_than: "doit être supérieur à %{count}"
+        greater_than_or_equal_to: "doit être supérieur ou égal à %{count}"
+        equal_to: "doit être égal à %{count}"
+        less_than: "doit être inférieur à %{count}"
+        less_than_or_equal_to: "doit être inférieur ou égal à %{count}"
         odd: "doit être impair"
         even: "doit être pair"
-        record_invalid: "record invalide"
+        record_invalid: "L'enregistrement est invalide: %{errors} erreurs"
 
