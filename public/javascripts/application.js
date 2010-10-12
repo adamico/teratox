@@ -15,7 +15,9 @@ function add_fields(link, association, content) {
   $(link).parent().before(content.replace(regexp, new_id));
   add_autocomplete();
   if (association == "bebes") {
-    bindOpenTree(new_id);
+    type = "malforme"
+    bindOpenTree(new_id, type);
+    divForTree(new_id, type)
   };
 };
 
