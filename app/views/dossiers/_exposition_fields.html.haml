@@ -2,6 +2,6 @@
   .inputs
     .input.inline
       = f.label :produit_name, "Produit"
-      = f.text_field :produit_name
-      = f.collection_select :niveau_id, Niveau.all, :id, :name, :include_blank => true
+      = f.text_field :produit_name, :tabindex => autotab
+      = f.collection_select :niveau_id, Niveau.all, :id, :name, {:include_blank => true}, {:tabindex => autotab}
       = link_to_remove_fields "Détruire cette exposition", f

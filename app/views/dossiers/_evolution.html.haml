@@ -1,21 +1,19 @@
-%h2 Évolution
-.inputs#evolution
+.inputs
   = f.association :acctype, :label => "Type", :as => :radio,
-    :collection => Acctype.all, :label_method => :abbr
+    :collection => Acctype.all, :label_method => :abbr, :input_html => {:tabindex => autotab}
   = f.association :accmod, :label => "Modalité", :as => :radio,
-    :collection => Accmod.all, :label_method => :abbr
-  = f.input :path_mat, :label => "Pathologie maternelle",
-    :collection => Dossier::ONI
+    :collection => Accmod.all, :label_method => :abbr, :input_html => {:tabindex => autotab}
+  = f.input :path_mat, :label => "Path. maternelle",
+    :collection => Dossier::ONI, :input_html => {:tabindex => autotab}
 
   .clear
-  .input.inline
-    = f.label :dra, "Date accouchement"
-    = f.text_field :dra
+  = f.input :dra, :as => :string, :label => "Date accouchement", :input_html => {:size => "30", :tabindex => autotab}
+  .input
     = f.label :terme, "Terme (SA)"
-    = f.text_field :terme, :size => 3
+    = f.text_field :terme, :size => "3", :tabindex => autotab
     = button_to_function "Calculer", nil, :id => "calc2"
-  = f.input :anomalie_echo
-  = f.input :rciu
+  = f.input :anomalie_echo, :input_html => {:tabindex => autotab}
+  = f.input :rciu, :input_html => {:tabindex => autotab}
   = f.input :comm_evol,
     :hint => "* Compléter le champ malformation dans la section nouveau-né si examen anatomo-pathologique interprétable",
-    :input_html => { :size => "40x2"}
+    :input_html => { :size => "40x2", :tabindex => autotab}

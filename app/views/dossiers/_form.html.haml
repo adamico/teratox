@@ -6,52 +6,61 @@
     = f.error_messages
     #tabs
       %ul
-        %li= link_to "Informations", "#informations"
+        %li= link_to "Infos", "#infos"
         %li= link_to "Patiente", "#patiente"
         %li= link_to "Grossesse", "#grossesse"
-        %li= link_to "Expositions", "#expositions"
-        %li= link_to "Evolution", "#evolution"
-        %li= link_to "Nouveaux-nés", "#bebe"
+        %li= link_to "Expos", "#expositions"
+        %li= link_to "Évol", "#evolution"
+        %li= link_to "Bébés", "#bebes"
+        %li= link_to "Commentaire", "#commentaire"
 
-      #informations
+      #infos
         .inputs#sicap
-          .input.inline
-            = f.label :n_sicap, "Numéro SICAP", :accesskey => "N"
-            = f.text_field :n_sicap, :size => "10"
-            = f.label :date_appel
-            = f.text_field :date_appel
-          = f.association :demandeur
-          = f.input :correspondant_name, :label => "Correspondant"
+          = f.input :n_sicap, :label => "N° SICAP", :input_html => {:accesskey => "N", :tabindex => autotab, :size => "10"}
+          .clear
+          = f.input :date_appel, :as => :string, :input_html => {:size => "30", :tabindex => autotab}
+          = f.association :demandeur, :input_html => {:tabindex => autotab}
+          = f.input :correspondant_name, :label => "Correspondant", :input_html => {:size => "30", :tabindex => autotab}
 
       #patiente= render 'patient_fields', :f => f
 
       #grossesse= render 'grossesse', :f => f
 
       #expositions
-        %h2 Exposition
         = f.input :expo_type, :label => "Type",
-          :collection => [["solvants"], ["autres"]]
-        = f.association :niveau
+          :collection => [["solvants"], ["autres"]],
+          :input_html => {:tabindex => autotab}
+        = f.association :niveau, :input_html => {:tabindex => autotab}
+        = f.association :cat, :label => "CAT", :input_html => {:tabindex => autotab}
 
         = f.fields_for :expositions do |exposition|
           = render 'exposition_fields', :f => exposition
         %p= link_to_add_fields 'Rajouter une exposition', f, :expositions
 
-        = f.association :cat, :label => "CAT"
-        = f.input :comm_expo, :label => false, :input_html => { :size => "100x4"}
+        = f.input :comm_expo, :label => false, :input_html => { :size => "100x4", :tabindex => autotab}
 
       #evolution= render 'evolution', :f => f
 
-      #bebe
-        %h2 Nouveaux-nés
+      #bebes
+        %table#bebes
+          %tr
+            %th.single Sexe
+            %th.triple Poids
+            %th.triple Taille
+            %th.triple Pc
+            %th.quintuple Apgar (1')
+            %th.quintuple Apgar (5')
+            %th Malformation
+            %th Pathologie
         .inputs#infonn
           = f.fields_for :bebes do |bebe|
             = render 'bebe_fields', :f => bebe
           %p= link_to_add_fields 'Rajouter un nouveau-né', f, :bebes
         = f.input :comm_bebe, :input_html => {:size => "40x2"}
 
-    .inputs
-      = f.input :commentaire, :input_html => {:size => "40x2"}
+      #commentaire
+        .inputs
+          = f.input :commentaire
 
     .actions
       = f.button :submit, :accesskey => "S"

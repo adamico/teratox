@@ -1,27 +1,16 @@
-%h2 Données de la patiente
-.inputs#patiente
-  .input.inline
-    = f.label "Nom/Prénom"
-    = f.text_field :nom
-    = f.text_field :prenom
-  .input.inline
-    = f.label :age, "Âge"
-    = f.text_field :age, :size => "3"
-    %strong Ou date de naissance :
-    = f.text_field :date_naissance
-  = f.association :profession, :include_blank => false
+.inputs
+  = f.input :nom, :input_html => {:tabindex => autotab}
+  = f.input :prenom, :label => "Prénom", :input_html => {:tabindex => autotab}
+  = f.input :age, :label => "Âge", :input_html => {:size => "3", :tabindex => autotab}
+  = f.input :date_naissance, :as => :string, :input_html => {:size => "30", :tabindex => autotab}
+  .clear
+  = f.association :profession, :input_html => {:tabindex => autotab}
 
-.inputs#info_atcd
-  .input.inline
-    = f.label :af, "Atcds familiaux"
-    = f.select :af, Dossier::ONI
-    = f.text_field :comm_af, :size => "67"
-  .input.inline
-    = f.label :ap, "Atcds personnels"
-    = f.select :ap, Dossier::ONI
-    = f.text_field :comm_ap, :size => "67"
-  .input.inline
-    = f.label "Tabac/Alcool"
-    = f.select :tabac, Dossier::TABAC
-    = f.select :alcool, Dossier::ALCOOL
-    .hint cigarettes/verres par jour
+  = f.input :af, :label => "Atcds familiaux", :collection => Dossier::ONI,
+    :input_html => {:tabindex => autotab}
+  = f.input :comm_af, :input_html => {:size => "67", :tabindex => autotab}
+  = f.input :ap, :label => "Atcds personnels", :collection => Dossier::ONI,
+    :input_html => {:tabindex => autotab}
+  = f.input :comm_ap, :input_html => {:size => "67", :tabindex => autotab}
+  = f.input :tabac, :collection => Dossier::TABAC, :hint => "cigarettes par jour", :input_html => {:tabindex => autotab}
+  = f.input :alcool, :collection => Dossier::ALCOOL, :hint => "verres par jour", :input_html => {:tabindex => autotab}

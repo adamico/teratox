@@ -67,8 +67,12 @@ class Dossier < ActiveRecord::Base
   search_methods :is_malforme
 
   # delegations
-  delegate :name, :to => :profession, :prefix => true, :allow_nil => true
-  delegate :specialite_name, :qualite_name, :adresse, :cp, :ville, :to => :correspondant, :prefix => true, :allow_nil => true
+  delegate :name,
+    :to => :profession, :prefix => true, :allow_nil => true
+  delegate :specialite_name, :qualite_name, :adresse, :cp, :ville,
+    :to => :correspondant,
+    :prefix => true,
+    :allow_nil => true
   delegate :name, :to => :demandeur, :prefix => true, :allow_nil => true
   delegate :name, :to => :niveau, :prefix => true, :allow_nil => true
   delegate :name, :to => :cat, :prefix => true, :allow_nil => true

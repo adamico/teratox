@@ -1,5 +1,7 @@
-.inputs#info_grs
-  = f.input :assmedproc, :label => "Assistance médicale à la procréation", :collection => Dossier::ONI
+.inputs
+  = f.input :assmedproc, :label => "Assistance médicale à la procréation", :collection => Dossier::ONI, :input_html => {:tabindex => autotab}
+
+  .clear 
 
   %table.grossesse
     %tr
@@ -7,32 +9,32 @@
       %td#grsant= @dossier.grsant rescue "0"
     %tr
       %th= f.label :fcs
-      %td= f.text_field :fcs, :size => "1"
+      %td= f.text_field :fcs, :size => "1", :tabindex => autotab
       %th= f.label :geu
-      %td= f.text_field :geu, :size => "1"
+      %td= f.text_field :geu, :size => "1", :tabindex => autotab
     %tr
       %th= f.label :miu
-      %td= f.text_field :miu, :size => "1"
+      %td= f.text_field :miu, :size => "1", :tabindex => autotab
       %th= f.label :ivg
-      %td= f.text_field :ivg, :size => "1"
+      %td= f.text_field :ivg, :size => "1", :tabindex => autotab
     %tr
       %th= f.label :img
-      %td= f.text_field :img, :size => "1"
+      %td= f.text_field :img, :size => "1", :tabindex => autotab
       %th= f.label :nai
-      %td= f.text_field :nai, :size => "1"
+      %td= f.text_field :nai, :size => "1", :tabindex => autotab
   %table.grossesse{ :style => "margin-left:1em" }
     %tr
       %th= f.label :sa, "Terme (SA)"
-      %td= f.text_field :sa, :size => "3"
+      %td= f.text_field :sa, :size => "3", :tabindex => autotab
     %tr
       %th= f.label :ddr,  "DDR"
-      %td= f.text_field :ddr
+      %td= f.text_field :ddr, :tabindex => autotab
     %tr
       %th= f.label :dg, "Debut de grossesse"
-      %td= f.text_field :dg
+      %td= f.text_field :dg, :tabindex => autotab
     %tr
       %th= f.label :dap, "Accouchement prévu"
-      %td= f.text_field :dap
+      %td= f.text_field :dap, :tabindex => autotab
     %tr
       %td &nbsp;
       %td
