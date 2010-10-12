@@ -1,12 +1,15 @@
 .fields
   %table#bebes
     %tr
-      %td.single= f.select :sexe, [['?', 0], ['M', 1], ['F', 2]], {}, {:tabindex => autotab}
+      %td.single= f.select :sexe, [['?', 0], ['M', 1], ['F', 2]],
+        {}, {:tabindex => autotab}
       %td.triple= f.text_field :poids, :size => 4, :tabindex => autotab
       %td.triple= f.text_field :taille, :size => 4, :tabindex => autotab
       %td.triple= f.text_field :pc, :size => 4, :tabindex => autotab
       %td.quintuple= f.text_field :apgar1, :size => 3, :tabindex => autotab
       %td.quintuple= f.text_field :apgar5, :size => 3, :tabindex => autotab
-      %td.large= f.select :malforme, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
-      %td.large= f.select :pathologie, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
+      %td.large= f.select :malforme, [['Non', 0], ['Oui', 1]],
+        {}, {:tabindex => autotab}
+      %td.large= f.select :pathologie, [['Non', 0], ['Oui', 1]],
+        {}, {:tabindex => autotab}
       %td= link_to_remove_fields "Détruire ce bébé", f

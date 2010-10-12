@@ -23,9 +23,6 @@ a {
   color: black; }
   a:visited {
     color: #666666; }
-  a:hover {
-    color: white;
-    background-color: black; }
 
 label {
   font-weight: bold; }

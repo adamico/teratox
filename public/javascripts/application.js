@@ -14,6 +14,9 @@ function add_fields(link, association, content) {
   var regexp = new RegExp("new_" + association, "g");
   $(link).parent().before(content.replace(regexp, new_id));
   add_autocomplete();
+  if (association == "bebes") {
+    bindOpenTree(new_id);
+  };
 };
 
 function add_autocomplete() {

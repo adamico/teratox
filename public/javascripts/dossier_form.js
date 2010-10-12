@@ -50,6 +50,27 @@ function reset() {
   $('#dossier_dap').val("");
 };
 
+function openTree(element, id) {
+  // jsTree
+  html = "<div id='malf_tree_" + id + "'></div>"
+  element.closest('.fields').append(html);
+  $("#malf_tree_" + id).jstree({
+    "core" : { "initially_open" : [ "root_1" ]},
+    "html_data" : {
+      "data" : "<li id='root_1'><a href='#'>Root node 1</a><ul><li><a href='#'>Child node</a></li></ul></li><li id='root_2'><a href='#'>Root node 2</a></li>"
+    },
+    "plugins" : [ "themes", "html_data", "ui", "checkbox"]
+  });
+};
+
+function bindOpenTree(id) {
+  target_id = 'select[id$=' + id + '_malforme]'
+  target_el = $(target_id)
+  target_el.change(function() {
+    openTree(target_el, id)
+  });
+};
+
 $(function() {
   // tabs
   $("#tabs").tabs();
