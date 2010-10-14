@@ -1,16 +1,4 @@
 module DossiersHelper
-  def add_exposition_link(name)
-    link_to_function name do |page|
-      page.insert_html :bottom, :expositions, :partial => 'exposition', :object => Exposition.new
-    end
-  end
-  
-  def remove_link_unless_new_record(fields)
-    out = ''
-    out << fields.hidden_field(:_delete)  unless fields.object.new_record?
-    out << link_to("remove", "##{fields.object.class.name.underscore}", :class => 'remove')
-    out
-  end
 
   def autotab
     @current_tab ||= 0

@@ -50,6 +50,36 @@ function reset() {
   $('#dossier_dap').val("");
 };
 
+function divForTree(id, type) {
+  target_id = 'input[id$=' + id + '_' + type + ']'
+  target_el = $(target_id)
+  html = "<div id='" + type + "_tree_" + id + "'></div>"
+  target_el.closest('.fields').append(html);
+};
+
+function openTree(id, type) {
+  // jsTree
+  target = "#" + type + "_tree_" + id
+  //console.log("target = " + target)
+  $(target).jstree({
+    "core" : { "initially_open" : [ "root_1" ]},
+    "html_data" : {
+      "data" : "<li id='root_1'><a href='#'>Root node 1</a><ul><li><a href='#'>Child node</a></li></ul></li><li id='root_2'><a href='#'>Root node 2</a></li>"
+    },
+    "plugins" : [ "themes", "html_data", "ui"]
+  });
+};
+
+function bindOpenTree(id, type) {
+  //console.log("id = " + id);
+  //console.log("type = " + type);
+  target_id = 'input[id$=' + id + '_' + type + ']'
+  target_el = $(target_id);
+  target_el.click(function() {
+    openTree(id, type)
+  });
+};
+
 $(function() {
   // tabs
   $("#tabs").tabs();
