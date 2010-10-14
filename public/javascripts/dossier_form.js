@@ -76,11 +76,19 @@ function setupTree(id, type) {
 
 function addTree(element) {
   $(element).jstree({
-    "core" : { "initially_open" : [ "root_1" ]},
-    "html_data" : {
-      "data" : "<li id='root_1'><a href='#'>Root node 1</a><ul><li><a href='#'>Child node</a></li></ul></li><li id='root_2'><a href='#'>Root node 2</a></li>"
+    "json_data" : {
+      "ajax" : {
+        "url" : "/malformations.json",
+        "data" : function (node) {
+          return { parent_id : node.attr ? node.attr("id") : 0 };
+        }
+      }
     },
-    "plugins" : [ "themes", "html_data", "ui"]
+    // "core" : { "initially_open" : [ "root_1" ]},
+    // "html_data" : {
+    //   "data" : "<li id='root_1'><a href='#'>Root node 1</a><ul><li><a href='#'>Child node</a></li></ul></li><li id='root_2'><a href='#'>Root node 2</a></li>"
+    // },
+    "plugins" : [ "themes", "json_data", "ui"]
   });
 };
 

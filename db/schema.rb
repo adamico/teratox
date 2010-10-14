@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(:version => 20101012194534) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "ancestry"
+    t.integer  "parent_id"
   end
 
   add_index "malformations", ["ancestry"], :name => "index_malformations_on_ancestry"

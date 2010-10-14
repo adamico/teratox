@@ -12,21 +12,16 @@ gem "meta_search"
 gem "meta_where"
 gem "simple_form"
 gem 'will_paginate', '3.0.pre2'
-gem 'pickle'
 gem 'ancestry'
 
 group :development do
-  gem "ruby-graphviz"
-  gem "rails-erd"
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem "nifty-generators"
   gem "rails3-generators"
-  gem "rails_best_practices"
   gem "haml-rails"
   gem "wirble"
   gem "hirb"
   gem 'annotate-models', '1.0.4'
-  gem 'faker', '0.3.1'
 end
 
 group :development, :test do
@@ -41,9 +36,6 @@ end
 
 group :test do
   gem 'factory_girl_rails'
-  gem "ZenTest"
-  gem "autotest-notification"
-  gem "autotest-rails"
   gem 'spork'
 end
 

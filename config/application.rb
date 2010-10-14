@@ -33,7 +33,7 @@ module Teratox
     config.i18n.default_locale = :fr
 
     # JavaScript files you want as :defaults (application.js is always included).
-    config.action_view.javascript_expansions[:defaults] = %w(jquery-1.4.2.min jquery-ui-1.8.5.custom.min rails)
+    config.action_view.javascript_expansions[:defaults] = %w(jquery jquery-ui.min rails)
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
