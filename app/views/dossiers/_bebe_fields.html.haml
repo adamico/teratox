@@ -9,11 +9,12 @@
       %td.quintuple= f.text_field :apgar1, :size => 3, :tabindex => autotab
       %td.quintuple= f.text_field :apgar5, :size => 3, :tabindex => autotab
       %td.large
-        = f.collection_select :malformation_ids, Malformation.roots.first.subtree, :id, :libelle, {}, {:multiple => true}
+        -#= f.collection_select :malformation_ids, Malformation.roots.first.subtree, :id, :libelle, {}, {:multiple => true}
         -#= f.select :malforme, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
-      %td.large= f.select :pathologie, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
-      -#= f.text_field :malforme, :size => 5, :tabindex => autotab
+        %input{:type => "button", :id => "add_malformation_new_bebes", :value => "rajouter/voir", :tabindex => autotab}
+        = f.hidden_field :malformation_ids
       %td.large
-        = f.select :pathologie, [['Non', 0], ['Oui', 1]],
-          {}, {:tabindex => autotab}
+        = f.select :pathologie, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
       %td= link_to_remove_fields "Détruire ce bébé", f
+
+  #malformation_tree_new_bebes{:style => "display:none;"}

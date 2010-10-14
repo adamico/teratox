@@ -1,8 +1,8 @@
 function calc1() {
-  dg_string = addDays(parseDate($('#dossier_ddr').val()), 14);
-  dap_string = addDays(parseDate($('#dossier_ddr').val()), 283);
-  ddr = parseDate($('#dossier_ddr').val());
-  dappel = parseDate($('#dossier_date_appel').val());
+  var dg_string = addDays(parseDate($('#dossier_ddr').val()), 14);
+  var dap_string = addDays(parseDate($('#dossier_ddr').val()), 283);
+  var ddr = parseDate($('#dossier_ddr').val());
+  var dappel = parseDate($('#dossier_date_appel').val());
 
   if ($('#dossier_ddr').val() != "" && $('#dossier_date_appel').val() != ""){
     $('#dossier_dg').val(dg_string);
@@ -12,8 +12,8 @@ function calc1() {
 }
 
 function calc2() {
-  dra = parseDate($('#dossier_dra').val());
-  ddr = parseDate($('#dossier_ddr').val());
+  var dra = parseDate($('#dossier_dra').val());
+  var ddr = parseDate($('#dossier_ddr').val());
 
   if ($('#dossier_dra').val() != "" && $('#dossier_ddr').val() != ""){
     $('#dossier_terme').val(getSA(ddr, dra));
@@ -21,24 +21,24 @@ function calc2() {
 };
 
 function getSA(startDate, endDate) {
-  start = startDate.getTime();
-  end = endDate.getTime();
-  days = (end - start) / (1000 * 60 * 60 * 24);
-  weeks = Math.round(days/7);
+  var start = startDate.getTime();
+  var end = endDate.getTime();
+  var days = (end - start) / (1000 * 60 * 60 * 24);
+  var weeks = Math.round(days/7);
   return weeks;
 };
 
 function parseDate(strDate) {
-  strSep = "/"
-  dateArray = strDate.split(strSep);
-  date = new Date(dateArray[2], dateArray[1]-1, dateArray[0]);
-  return date;
+  var strSep = "/"
+  var dateArray = strDate.split(strSep);
+  var theDate = new Date(dateArray[2], dateArray[1]-1, dateArray[0]);
+  return theDate;
 };
 
 function addDays(objDate, days) {
-  strSep = "/"
+  var strSep = "/"
   objDate.setDate(objDate.getDate() + days);
-  arrDate = new Array();
+  var arrDate = new Array();
   arrDate.push(objDate.getDate(), objDate.getMonth()+1, objDate.getFullYear());
   return arrDate.join(strSep);
 };
@@ -50,33 +50,36 @@ function reset() {
   $('#dossier_dap').val("");
 };
 
-function divForTree(id, type) {
-  target_id = 'input[id$=' + id + '_' + type + ']'
-  target_el = $(target_id)
-  html = "<div id='" + type + "_tree_" + id + "'></div>"
-  target_el.closest('.fields').append(html);
+
+// jsTree stuff
+//
+
+function log(string) {
+  $("#log").append('<p>' + string + '</p>');
+  $("#log").attr({ scrollTop: $("#log").attr("scrollHeight") });
+}
+
+function showTreeSelection() {
+  var selection = $()
+}
+
+function setupTree(id, type) {
+  var add_button_id = 'input[id=add_' + type + '_' + id + ']'
+  var add_button_el = $(add_button_id);
+  var tree_el = $("div[id=" + type + "_tree_" + id + "]") 
+  addTree(tree_el)
+  add_button_el.click(function() {
+    tree_el.toggle()
+  });
 };
 
-function openTree(id, type) {
-  // jsTree
-  target = "#" + type + "_tree_" + id
-  //console.log("target = " + target)
-  $(target).jstree({
+function addTree(element) {
+  $(element).jstree({
     "core" : { "initially_open" : [ "root_1" ]},
     "html_data" : {
       "data" : "<li id='root_1'><a href='#'>Root node 1</a><ul><li><a href='#'>Child node</a></li></ul></li><li id='root_2'><a href='#'>Root node 2</a></li>"
     },
     "plugins" : [ "themes", "html_data", "ui"]
-  });
-};
-
-function bindOpenTree(id, type) {
-  //console.log("id = " + id);
-  //console.log("type = " + type);
-  target_id = 'input[id$=' + id + '_' + type + ']'
-  target_el = $(target_id);
-  target_el.click(function() {
-    openTree(id, type)
   });
 };
 

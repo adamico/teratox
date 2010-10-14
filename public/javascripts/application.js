@@ -13,12 +13,8 @@ function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g");
   $(link).parent().before(content.replace(regexp, new_id));
-  add_autocomplete();
-  if (association == "bebes") {
-    type = "malforme"
-    bindOpenTree(new_id, type);
-    divForTree(new_id, type)
-  };
+  if (association == "produits") { add_autocomplete() };
+  if (association == "bebes") { setupTree(new_id, "malformation") };
 };
 
 function add_autocomplete() {

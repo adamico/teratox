@@ -58,7 +58,9 @@
           %p= link_to_add_fields 'Rajouter un nouveau-né', f, :bebes
         = f.input :comm_bebe, :input_html => {:size => "40x2"}
 
-        %input{:type => "button", :class => "button", :id => "open-tree", :value => "open tree"}
+        %input{:type => "button", :class => "button", :id => "show-tree-selection", :value => "inspect tree"}
+
+        #log
 
       #commentaire
         .inputs
