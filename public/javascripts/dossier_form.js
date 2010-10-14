@@ -57,20 +57,21 @@ function reset() {
 function log(string) {
   $("#log").append('<p>' + string + '</p>');
   $("#log").attr({ scrollTop: $("#log").attr("scrollHeight") });
-}
+};
 
-function showTreeSelection() {
-  var selection = $()
-}
+function showTreeSelection(tree_element) {
+  var selection = tree_element.jstree("get_selected");
+  var selectionId = selection.attr("id");
+  log("The currently selected nod is Node " + selectionId);
+};
 
 function setupTree(id, type) {
-  var add_button_id = 'input[id=add_' + type + '_' + id + ']'
+  var add_button_id = "input[id=add_" + type + "_" + id + "]";
   var add_button_el = $(add_button_id);
-  var tree_el = $("div[id=" + type + "_tree_" + id + "]") 
-  addTree(tree_el)
-  add_button_el.click(function() {
-    tree_el.toggle()
-  });
+  var tree_el = $("div[id=" + type + "_tree_" + id + "]") ;
+  addTree(tree_el);
+  add_button_el.click(function() {tree_el.toggle()});
+  //$('input[id=show-tree-selection]').click(showTreeSelection(tree_el));
 };
 
 function addTree(element) {
