@@ -1,16 +1,5 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  n_sicap: LP9999999
-  nom: Pinco
-
-two:
-  n_sicap: LP9999998
-  nom: Pallino
-
-
-
 # == Schema Information
+# Schema version: 20101012181103
 #
 # Table name: dossiers
 #
@@ -57,9 +46,21 @@ two:
 #  bebes_count      :integer         default(0)
 #  expo_type        :string(255)
 #  gestite          :integer
-#  terato           :boolean         default(FALSE)
+#  terato           :boolean
 #  date_naissance   :date
 #  anomalie_echo    :boolean
 #  rciu             :boolean
 #
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  n_sicap: LP9999999
+  nom: Pinco
+
+two:
+  n_sicap: LP9999998
+  nom: Pallino
+
+
 

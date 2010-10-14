@@ -1,0 +1,21 @@
+- title "Malformations"
+
+%table
+  %tr
+    %th Code terme
+    %th Code terme pere
+    %th Libabr
+    %th Level
+    %th Libelle
+  - for malformation in @malformations
+    %tr
+      %td= malformation.code_terme
+      %td= malformation.code_terme_pere
+      %td= malformation.libabr
+      %td= malformation.level
+      %td= malformation.libelle
+      %td= link_to 'Show', malformation
+      %td= link_to 'Edit', edit_malformation_path(malformation)
+      %td= link_to 'Destroy', malformation, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Malformation", new_malformation_path

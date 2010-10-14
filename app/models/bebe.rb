@@ -1,9 +1,9 @@
 # encoding:utf-8
 class Bebe < ActiveRecord::Base
   belongs_to :dossier, :counter_cache => true
+  has_and_belongs_to_many :malformations
 
   #TODO add validations for poids, taille, pc, apgar1 et apgar5
-  #TODO has_and_belongs_to_many :malformations (eliminer champ malformation)
   #TODO has_and_belongs_to_many :pathologies (éliminer champ pathologie)
   scope :malformes, where(:malforme => 1)
   scope :normaux, where(:malforme => 0)

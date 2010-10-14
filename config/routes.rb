@@ -1,4 +1,6 @@
 Teratox::Application.routes.draw do
+  resources :malformations
+
   resources :specialites,
     :qualites,
     :niveaux,

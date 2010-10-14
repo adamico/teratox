@@ -7,6 +7,8 @@
       %td.triple= f.text_field :pc, :size => 4, :tabindex => autotab
       %td.quintuple= f.text_field :apgar1, :size => 3, :tabindex => autotab
       %td.quintuple= f.text_field :apgar5, :size => 3, :tabindex => autotab
-      %td.large= f.select :malforme, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
+      %td.large
+        = f.collection_select :malformation_ids, Malformation.roots.first.subtree, :id, :libelle, {}, {:multiple => true}
+        -#= f.select :malforme, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
       %td.large= f.select :pathologie, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
       %td= link_to_remove_fields "Détruire ce bébé", f

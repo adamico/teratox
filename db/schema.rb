@@ -1,15 +1,16 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of Active Record to incrementally modify your database, and
-# then regenerate this schema definition.
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your database schema. If you need
-# to create the application database on another system, you should be using db:schema:load, not running
-# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100802095625) do
+ActiveRecord::Schema.define(:version => 20101012194534) do
 
   create_table "accmods", :force => true do |t|
     t.string "abbr"
@@ -35,6 +36,11 @@ ActiveRecord::Schema.define(:version => 20100802095625) do
   end
 
   add_index "bebes", ["dossier_id"], :name => "index_bebes_on_dossier_id"
+
+  create_table "bebes_malformations", :id => false, :force => true do |t|
+    t.integer "bebe_id"
+    t.integer "malformation_id"
+  end
 
   create_table "cats", :force => true do |t|
     t.string "name"
@@ -124,6 +130,17 @@ ActiveRecord::Schema.define(:version => 20100802095625) do
   end
 
   add_index "expositions", ["dossier_id"], :name => "index_expositions_on_dossier_id"
+
+  create_table "malformations", :force => true do |t|
+    t.string   "libabr"
+    t.integer  "level"
+    t.string   "libelle"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "ancestry"
+  end
+
+  add_index "malformations", ["ancestry"], :name => "index_malformations_on_ancestry"
 
   create_table "niveaux", :force => true do |t|
     t.string "name"

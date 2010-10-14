@@ -30,6 +30,8 @@ GEM
       activemodel (= 3.0.0)
       activesupport (= 3.0.0)
     activesupport (3.0.0)
+    ancestry (1.2.0)
+      activerecord (>= 2.1.0)
     annotate-models (1.0.4)
     arel (1.0.1)
       activesupport (~> 3.0.0)
@@ -178,6 +180,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   ZenTest
+  ancestry
   annotate-models (= 1.0.4)
   autotest-notification
   autotest-rails
