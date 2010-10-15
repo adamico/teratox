@@ -5,7 +5,7 @@ body {
   font-size: 13px;
   line-height: 18px; }
 
-p, ol, ul, td {
+p, ol, ul, td, th {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px; }
@@ -94,29 +94,24 @@ table#dossiers {
   table#dossiers th, table#dossiers td {
     padding: 0 0.4em; }
 
-table#bebes th {
-  border-bottom: 2px solid black;
-  text-align: center; }
-table#bebes td, table#bebes th {
-  padding: 0 0.4em; }
-  table#bebes td.single, table#bebes th.single {
-    width: 1em; }
-  table#bebes td.triple, table#bebes th.triple {
-    width: 3em; }
-  table#bebes td.quintuple, table#bebes th.quintuple {
-    width: 5em; }
-  table#bebes td.large, table#bebes th.large {
-    width: 500px; }
+table#bebes {
+  width: 1000px; }
+  table#bebes th {
+    border-bottom: 2px solid black;
+    text-align: left; }
+  table#bebes td, table#bebes th {
+    padding: 0 0.4em; }
+    table#bebes td.single, table#bebes th.single {
+      width: 1em; }
+    table#bebes td.triple, table#bebes th.triple {
+      width: 3em; }
+    table#bebes td.quintuple, table#bebes th.quintuple {
+      width: 5em; }
+    table#bebes td.large, table#bebes th.large {
+      width: 10em; }
 
-.add_fields {
-  border-top: 1px solid black; }
-
-ul#malformations {
-  list-style: none;
-  width: 95%;
-  margin-left: 0;
-  padding-left: 0;
-  text-indent: -1em; }
+span[id*=malformation_list] {
+  font-size: 0.7em; }
 
 #infoevol table {
   float: left;
@@ -128,7 +123,7 @@ th.center {
   text-align: center; }
 
 .small {
-  font-size: 70%; }
+  font-size: 68%; }
 
 #time {
   font-size: 90%; }

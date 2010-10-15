@@ -61,7 +61,6 @@ function log(string) {
 
 function addSelected(tree_element) {
   var $selection = tree_element.jstree("get_selected");
-
   $selection.each(function(index) {
     log((index + 1) + ": " + $(this).text() + " (id = " + this.id + ")");
   });

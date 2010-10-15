@@ -1,27 +1,32 @@
 .fields
   %table#bebes
     %tr
-      %td.single= f.select :sexe, [['?', 0], ['M', 1], ['F', 2]], {},
-        {:tabindex => autotab}
-      %td.triple= f.text_field :poids, :size => 4, :tabindex => autotab
-      %td.triple= f.text_field :taille, :size => 4, :tabindex => autotab
-      %td.triple= f.text_field :pc, :size => 4, :tabindex => autotab
-      %td.quintuple= f.text_field :apgar1, :size => 3, :tabindex => autotab
-      %td.quintuple= f.text_field :apgar5, :size => 3, :tabindex => autotab
-      %td.large
-        %ul#malformations
-          %li
-            %span.small Malformations congénitales et anomalies chromosomiques
-          %li
-            %span.small Malformations congénitales et anomalies chromosomiques
-          %li
-            %span.small Malformations congénitales et anomalies chromosomiques
+      %th.single Sexe
+      %th.triple Poids
+      %th.triple Taille
+      %th.triple Pc
+      %th.quintuple Apgar (1')
+      %th.quintuple Apgar (5')
+      %th.large Malformation(s)
+      %th.single &nbsp;
+      %th.large Pathologie(s)
+      %th.quintuple &nbsp;
+    %tr
+      %td= f.select :sexe, [['?', 0], ['M', 1], ['F', 2]], {}, {:tabindex => autotab}
+      %td= f.text_field :poids,  :size => 4, :tabindex => autotab
+      %td= f.text_field :taille, :size => 4, :tabindex => autotab
+      %td= f.text_field :pc,     :size => 4, :tabindex => autotab
+      %td= f.text_field :apgar1, :size => 3, :tabindex => autotab
+      %td= f.text_field :apgar5, :size => 3, :tabindex => autotab
+      %td
+        %span#malformation_list_new_bebes
       %td
         %input{:type => "button", :id => "show_malformation_new_bebes", :value => "+", :tabindex => autotab}
         = f.hidden_field :malformation_ids
-      %td.large
+      %td
         = f.select :pathologie, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
-      %td= link_to_remove_fields "Détruire ce bébé", f
+      %td
+        = link_to_remove_fields "Détruire ce bébé", f
 
   #malformation_new_bebes{:style => "display:none;"}
     #malformation_tree_new_bebes

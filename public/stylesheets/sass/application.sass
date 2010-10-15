@@ -6,7 +6,7 @@ body
   line-height: 18px
 
 
-p, ol, ul, td
+p, ol, ul, td, th
   font-family: verdana, arial, helvetica, sans-serif
   font-size: 13px
   line-height: 18px
@@ -103,7 +103,6 @@ table
   border-collapse: collapse
 
 .latex
-
   th
     text-align: right
     padding-left: 1em
@@ -120,9 +119,10 @@ table#dossiers
     padding: 0 0.4em
 
 table#bebes
+  width: 1000px
   th
     border-bottom: 2px solid black
-    text-align: center
+    text-align: left
   td, th
     padding: 0 0.4em
     &.single
@@ -132,17 +132,12 @@ table#bebes
     &.quintuple
       width: 5em
     &.large
-      width: 500px
+      width: 10em
 
 .add_fields
-  border-top: 1px solid black
 
-ul#malformations
-  list-style: none
-  width: 95%
-  margin-left: 0
-  padding-left: 0
-  text-indent: -1em
+span[id*=malformation_list]
+  font-size: 0.7em
 
 #infoevol
   table
@@ -156,7 +151,7 @@ th.center
   text-align: center
 
 .small
-  font-size: 70%
+  font-size: 68%
 
 #time
   font-size: 90%
