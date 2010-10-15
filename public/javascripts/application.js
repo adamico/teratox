@@ -13,13 +13,6 @@ function add_fields(link, association, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g");
   $(link).parent().before(content.replace(regexp, new_id));
-  if (association == "produits") { add_autocomplete() };
+  if (association == "expositions") { add_produit_autocomplete(new_id) };
   if (association == "bebes") { setupTree(new_id, "malformation") };
-};
-
-function add_autocomplete() {
-  $('[id*=produit_name]').autocomplete({
-    source: '/produits/names.js',
-    minLength: 2
-  });
 };

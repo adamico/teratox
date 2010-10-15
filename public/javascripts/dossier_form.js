@@ -59,11 +59,19 @@ function log(string) {
   $("#log").attr({ scrollTop: $("#log").attr("scrollHeight") });
 };
 
-function addSelected(tree_element) {
+function addSelected(tree_element, id, type) {
   var $selection = tree_element.jstree("get_selected");
+  var malf_names_list = new Array();
+  var malf_ids_list = new Array();
   $selection.each(function(index) {
-    log((index + 1) + ": " + $(this).text() + " (id = " + this.id + ")");
+    malf_names_list.push($(this).text().trim());
+    malf_ids_list.push(this.id);
   });
+  log('adding the following malformations:');
+  log('names: ' + malf_names_list.join(', '));
+  log('ids: ' + malf_ids_list);
+  $("#malformation_list_" + id).text(malf_names_list.join(', '));
+  $("#dossier_bebes_attributes_" + id + "_" + type + "_ids").val("[" + malf_ids_list.join(', ') + "]");
 };
 
 function setupTree(id, type) {
@@ -76,8 +84,7 @@ function setupTree(id, type) {
     $malformations_div_el.toggle()
   });
   $add_button_el.click(function() {
-    log('Adding following malformations: ')
-    addSelected($tree_el);
+    addSelected($tree_el, id, type);
   });
 };
 
@@ -99,6 +106,13 @@ function addTree(element) {
   });
 };
 
+function add_produit_autocomplete(id) {
+  $('#dossier_expositions_attributes_' + id + '_produit_name').autocomplete({
+    source: '/produits/names.js',
+    minLength: 2
+  });
+};
+
 $(function() {
   // tabs
   $("#tabs").tabs();
@@ -112,7 +126,6 @@ $(function() {
     source: '/correspondants/names.js',
     minLength: 2
   });
-  add_autocomplete();
 
   // grossesse calc
   $('#calc').click(function() {
