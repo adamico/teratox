@@ -75,16 +75,16 @@ function addSelected(tree_element, id, type) {
 };
 
 function setupTree(id, type) {
-  var $show_button_el =       $("input[id=show_" + type + "_" + id + "]");
-  var $add_button_el =        $("input[id=add_"  + type + "_" + id + "]")
-  var $malformations_div_el = $("div[id=" + type + "_" + id + "]");
-  var $tree_el =              $("div[id=" + type + "_tree_" + id + "]") ;
-  addTree($tree_el); //binds tree to its div
-  $show_button_el.click(function() {
-    $malformations_div_el.toggle()
+  var $show_button =       $("input[id=show_" + type + "_" + id + "]");
+  var $add_button =        $("input[id=add_"  + type + "_" + id + "]")
+  var $container_div =     $("div[id=" + type + "_" + id + "]");
+  var $tree_div =              $("div[id=" + type + "_tree_" + id + "]") ;
+  addTree($tree_div); //binds tree to its div
+  $show_button.click(function() {
+    $container_div.toggle()
   });
-  $add_button_el.click(function() {
-    addSelected($tree_el, id, type);
+  $add_button.click(function() {
+    addSelected($tree_div, id, type);
   });
 };
 
@@ -113,6 +113,32 @@ function add_produit_autocomplete() {
   });
 };
 
+function loadExistingTrees(type) {
+  $show_buttons = $('input[id*=show_' + type + ']')
+  $add_buttons = $('input[id*=add_' + type + ']')
+  $container_divs = $('div[id*=' + type + ']')
+  $tree_divs = $('div[id*=' + type + '_tree]')
+  $tree_divs.each(function () {
+    addTree(this);
+  });
+
+  // bind open container for tree toggle to show buttons
+  $show_buttons.each(function(index) {
+    $(this).click(function() {
+      $($container_divs[index]).toggle();
+    });
+  });
+
+  // bind open container for tree toggle to show buttons
+  $add_buttons.each(function(index) {
+    $(this).click(function() {
+      full_id = this.id.split('_');
+      id = full_id[2];
+      addSelected($($tree_divs[index]), id, type);
+    });
+  });
+};
+
 $(function() {
   // tabs
   $("#tabs").tabs();
@@ -127,6 +153,7 @@ $(function() {
     minLength: 2
   });
   add_produit_autocomplete();
+  loadExistingTrees("malformation");
 
   // grossesse calc
   $('#calc').click(function() {

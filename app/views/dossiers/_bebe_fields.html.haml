@@ -22,7 +22,7 @@
         %span{:id => f.object.new_record? ? "malformation_list_new_bebes" : "malformation_list_#{f.object.id}"}
       %td
         %input{:type => "button", :id => f.object.new_record? ? "show_malformation_new_bebes" : "show_malformation_#{f.object.id}", :value => "+", :tabindex => autotab}
-        = f.hidden_field :malformation_ids, :name => "dossier[bebes_attributes][new_bebes][malformation_ids][]"
+          = f.hidden_field :malformation_ids, :id => f.object.new_record? ? "dossier_bebes_attributes_new_bebes_malformation_ids" : "dossier_bebes_attributes_#{f.object.id}_malformation_ids", :name => f.object.new_record? ? "dossier[bebes_attributes][new_bebes][malformation_ids][]" : "dossier[bebes_attributes][#{f.object.id}][malformation_ids][]"
       %td
         = f.select :pathologie, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
       %td
