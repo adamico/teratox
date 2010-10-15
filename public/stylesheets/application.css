@@ -95,18 +95,18 @@ table#dossiers {
     padding: 0 0.4em; }
 
 table#bebes th {
-  border-bottom: 2px solid black; }
+  border-bottom: 2px solid black;
+  text-align: center; }
 table#bebes td, table#bebes th {
-  text-align: center;
   padding: 0 0.4em; }
-table#bebes .single {
-  width: 1em; }
-table#bebes .triple {
-  width: 3em; }
-table#bebes .quintuple {
-  width: 5em; }
-table#bebes .large {
-  width: 7em; }
+  table#bebes td.single, table#bebes th.single {
+    width: 1em; }
+  table#bebes td.triple, table#bebes th.triple {
+    width: 3em; }
+  table#bebes td.quintuple, table#bebes th.quintuple {
+    width: 5em; }
+  table#bebes td.large, table#bebes th.large {
+    width: 500px; }
 
 #infoevol table {
   float: left;
@@ -116,6 +116,9 @@ table#bebes .large {
 
 th.center {
   text-align: center; }
+
+.small {
+  font-size: 70%; }
 
 #time {
   font-size: 90%; }
@@ -142,7 +145,7 @@ th.center {
   background-color: white; }
 
 #container, #header {
-  width: 860px;
+  width: 1024px;
   margin: 0 auto;
   background-color: white;
   padding: 20px 40px;
@@ -236,7 +239,11 @@ fieldset#search {
 
 #log {
   clear: both;
-  overflow: scroll;
+  overflow: auto;
   height: 150px;
   color: #009900;
   background-color: #ccffcc; }
+
+div[id*=malformation_tree] {
+  height: 300px;
+  overflow: auto; }

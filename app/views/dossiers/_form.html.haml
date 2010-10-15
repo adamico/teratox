@@ -50,8 +50,8 @@
             %th.triple Pc
             %th.quintuple Apgar (1')
             %th.quintuple Apgar (5')
-            %th Malformation
-            %th Pathologie
+            %th.large Malformation(s)
+            %th.large Pathologie(s)
         .inputs#infonn
           = f.fields_for :bebes do |bebe|
             = render 'bebe_fields', :f => bebe
@@ -60,7 +60,8 @@
 
         %input{:type => "button", :class => "button", :id => "show-tree-selection", :value => "inspect tree"}
 
-        #log
+        - if Rails.env.development?
+          #log
 
       #commentaire
         .inputs

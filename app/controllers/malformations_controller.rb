@@ -8,7 +8,7 @@ class MalformationsController < ApplicationController
         node_hashes = nodes.map do |node|
           node_hash = {
             :data => node.libelle,
-            :attr => { :id => node.id }
+            :attr => { :id => node.id}
           }
 
           node_hash[:state] = 'closed' if node.has_children?

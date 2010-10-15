@@ -122,17 +122,17 @@ table#dossiers
 table#bebes
   th
     border-bottom: 2px solid black
-  td, th
     text-align: center
+  td, th
     padding: 0 0.4em
-  .single
-    width: 1em
-  .triple
-    width: 3em
-  .quintuple
-    width: 5em
-  .large
-    width: 7em
+    &.single
+      width: 1em
+    &.triple
+      width: 3em
+    &.quintuple
+      width: 5em
+    &.large
+      width: 500px
 
 #infoevol
   table
@@ -145,6 +145,8 @@ table#bebes
 th.center
   text-align: center
 
+.small
+  font-size: 70%
 
 #time
   font-size: 90%
@@ -174,7 +176,7 @@ th.center
   background-color: white
 
 #container, #header
-  width: 860px
+  width: 1024px
   margin: 0 auto
   background-color: #FFF
   padding: 20px 40px
@@ -278,7 +280,11 @@ fieldset#search
 
 #log
   clear: both
-  overflow: scroll
+  overflow: auto
   height: 150px
   color: #090
   background-color: #cfc
+
+div[id*=malformation_tree]
+  height: 300px
+  overflow: auto
