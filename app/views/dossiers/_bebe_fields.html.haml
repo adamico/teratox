@@ -19,15 +19,15 @@
       %td= f.text_field :apgar1, :size => 3, :tabindex => autotab
       %td= f.text_field :apgar5, :size => 3, :tabindex => autotab
       %td
-        %span#malformation_list_new_bebes
+        %span{:id => f.object.new_record? ? "malformation_list_new_bebes" : "malformation_list_#{f.object.id}"}
       %td
-        %input{:type => "button", :id => "show_malformation_new_bebes", :value => "+", :tabindex => autotab}
-        = f.hidden_field :malformation_ids
+        %input{:type => "button", :id => f.object.new_record? ? "show_malformation_new_bebes" : "show_malformation_#{f.object.id}", :value => "+", :tabindex => autotab}
+        = f.hidden_field :malformation_ids, :name => "dossier[bebes_attributes][new_bebes][malformation_ids][]"
       %td
         = f.select :pathologie, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
       %td
         = link_to_remove_fields "Détruire ce bébé", f
 
-  #malformation_new_bebes{:style => "display:none;"}
-    #malformation_tree_new_bebes
-    %input{:type => "button", :class => "button", :id => "add_malformation_new_bebes", :value => "Rajouter les malformations selectionnées"}
+  %div{:id => f.object.new_record? ? "malformation_new_bebes" : "malformation_#{f.object.id}", :style => "display:none;"}
+    %div{:id => f.object.new_record? ? "malformation_tree_new_bebes" : "malformation_tree_#{f.object.id}"}
+    %input{:type => "button", :class => "button", :id => f.object.new_record? ? "add_malformation_new_bebes" : "add_malformation_#{f.object.id}", :value => "Rajouter les malformations selectionnées"}
