@@ -9,13 +9,20 @@
       %td.quintuple= f.text_field :apgar1, :size => 3, :tabindex => autotab
       %td.quintuple= f.text_field :apgar5, :size => 3, :tabindex => autotab
       %td.large
-        %span.small Malformations congénitales et anomalies chromosomiques
-        -#= f.select :malforme, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
+        %ul#malformations
+          %li
+            %span.small Malformations congénitales et anomalies chromosomiques
+          %li
+            %span.small Malformations congénitales et anomalies chromosomiques
+          %li
+            %span.small Malformations congénitales et anomalies chromosomiques
       %td
-        %input{:type => "button", :id => "add_malformation_new_bebes", :value => "+", :tabindex => autotab}
+        %input{:type => "button", :id => "show_malformation_new_bebes", :value => "+", :tabindex => autotab}
         = f.hidden_field :malformation_ids
       %td.large
         = f.select :pathologie, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
       %td= link_to_remove_fields "Détruire ce bébé", f
 
-  #malformation_tree_new_bebes{:style => "display:none;"}
+  #malformation_new_bebes{:style => "display:none;"}
+    #malformation_tree_new_bebes
+    %input{:type => "button", :class => "button", :id => "add_malformation_new_bebes", :value => "Rajouter les malformations selectionnées"}

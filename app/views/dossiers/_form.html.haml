@@ -55,10 +55,8 @@
         .inputs#infonn
           = f.fields_for :bebes do |bebe|
             = render 'bebe_fields', :f => bebe
-          %p= link_to_add_fields 'Rajouter un nouveau-né', f, :bebes
+          %p.add_fields= link_to_add_fields 'Rajouter un nouveau-né', f, :bebes
         = f.input :comm_bebe, :input_html => {:size => "40x2"}
-
-        %input{:type => "button", :class => "button", :id => "show-tree-selection", :value => "inspect tree"}
 
         - if Rails.env.development?
           #log

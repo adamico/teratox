@@ -59,26 +59,26 @@ function log(string) {
   $("#log").attr({ scrollTop: $("#log").attr("scrollHeight") });
 };
 
-function showTreeSelection(tree_element) {
+function addSelected(tree_element) {
   var $selection = tree_element.jstree("get_selected");
 
-  log("Currently selected node(s):");
   $selection.each(function(index) {
     log((index + 1) + ": " + $(this).text() + " (id = " + this.id + ")");
   });
 };
 
 function setupTree(id, type) {
-  var add_button_id = "input[id=add_" + type + "_" + id + "]";
-  var $add_button_el = $(add_button_id);
-  var $tree_el = $("div[id=" + type + "_tree_" + id + "]") ;
-  var $show_tree_el = $('input[id=show-tree-selection]');
-  addTree($tree_el);
-  $add_button_el.click(function() {
-      $tree_el.toggle()
+  var $show_button_el =       $("input[id=show_" + type + "_" + id + "]");
+  var $add_button_el =        $("input[id=add_"  + type + "_" + id + "]")
+  var $malformations_div_el = $("div[id=" + type + "_" + id + "]");
+  var $tree_el =              $("div[id=" + type + "_tree_" + id + "]") ;
+  addTree($tree_el); //binds tree to its div
+  $show_button_el.click(function() {
+    $malformations_div_el.toggle()
   });
-  $show_tree_el.click(function() {
-      showTreeSelection($tree_el);
+  $add_button_el.click(function() {
+    log('Adding following malformations: ')
+    addSelected($tree_el);
   });
 };
 
