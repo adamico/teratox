@@ -134,10 +134,52 @@ table#bebes
     &.large
       width: 10em
 
-.add_fields
-
 span[id*=malformation_list]
   font-size: 0.7em
+
+form, fieldset, legend
+  border: 0
+  padding: 0
+  margin: 0
+
+form
+  legend
+    font-size: 2em
+    line-height: 1.8
+    padding-bottom: 0.5em
+  button
+    margin-left: 130px
+    cursor: pointer
+
+form ol
+  list-style: none
+  margin: 0
+  padding: 0
+
+form ol li
+  clear: both
+  margin: 0 0 0.75em
+  padding: 0
+  label
+    display: block
+    float: left
+    line-height: 1.6
+    margin-right: 10px
+    text-align: right
+    width: 120px
+    &:after
+      content: ' :'
+  input, textarea, select
+    background: #ddd
+    &:focus
+      background: #fff
+
+ol.inline
+  li
+    width: 5em
+    display: inline-block
+    &.ten
+      width: 10em
 
 #infoevol
   table

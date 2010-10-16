@@ -113,6 +113,48 @@ table#bebes {
 span[id*=malformation_list] {
   font-size: 0.7em; }
 
+form, fieldset, legend {
+  border: 0;
+  padding: 0;
+  margin: 0; }
+
+form legend {
+  font-size: 2em;
+  line-height: 1.8;
+  padding-bottom: 0.5em; }
+form button {
+  margin-left: 130px;
+  cursor: pointer; }
+
+form ol {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+form ol li {
+  clear: both;
+  margin: 0 0 0.75em;
+  padding: 0; }
+  form ol li label {
+    display: block;
+    float: left;
+    line-height: 1.6;
+    margin-right: 10px;
+    text-align: right;
+    width: 120px; }
+    form ol li label:after {
+      content: " :"; }
+  form ol li input, form ol li textarea, form ol li select {
+    background: #dddddd; }
+    form ol li input:focus, form ol li textarea:focus, form ol li select:focus {
+      background: white; }
+
+ol.inline li {
+  width: 5em;
+  display: inline-block; }
+  ol.inline li.ten {
+    width: 10em; }
+
 #infoevol table {
   float: left;
   margin-right: 1em; }

@@ -1,15 +1,15 @@
-%ol.inline
+%ol.formlist.inline
   %li= f.select :sexe, [['?', 0], ['M', 1], ['F', 2]], {}, {:tabindex => autotab}
   %li= f.text_field :poids,  :size => 4, :tabindex => autotab
   %li= f.text_field :taille, :size => 4, :tabindex => autotab
-  %li= f.text_field :pc,     :size => 4, :tabindex => autotab
+  %li= f.text_field :pc,     :size => 3, :tabindex => autotab
   %li= f.text_field :apgar1, :size => 3, :tabindex => autotab
   %li= f.text_field :apgar5, :size => 3, :tabindex => autotab
-  %li= f.select :malformation, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
-  %li= f.select :pathologie, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
-  %li= f.link_to_remove "Détruire ce bébé"
+  %li.ten= f.select :malformation, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
+  %li.ten= f.select :pathologie, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
+  %li.ten= f.link_to_remove "Détruire ce bébé"
 
-#malformation_container
+#malformation_container{:style => "display:none"}
   #malformation_tree
     %input{:type => "button", :class => "button",
       :id => "add_malformation", :value => "Rajouter"}
