@@ -106,12 +106,6 @@ function addTree(element) {
   });
 };
 
-function add_produit_autocomplete() {
-  $("input[id*=produit_name]").autocomplete({
-    source: '/produits/names.js',
-    minLength: 2
-  });
-};
 
 function loadExistingTrees(type) {
   $show_buttons = $('input[id*=show_' + type + ']')
@@ -139,6 +133,13 @@ function loadExistingTrees(type) {
   });
 };
 
+function add_produit_autocomplete() {
+  $(".produit_autocomplete").autocomplete({
+    source: '/produits/names.js',
+    minLength: 2
+  });
+};
+
 $(function() {
   // tabs
   $("#tabs").tabs();
@@ -152,8 +153,14 @@ $(function() {
     source: '/correspondants/names.js',
     minLength: 2
   });
+
+  $(".produit_autocomplete").autocomplete({
+    source: '/produits/names.js',
+    minLength: 2
+  });
   add_produit_autocomplete();
-  loadExistingTrees("malformation");
+
+  //loadExistingTrees("malformation");
 
   // grossesse calc
   $('#calc').click(function() {
@@ -166,5 +173,3 @@ $(function() {
     calc2();
   });
 });
-
-

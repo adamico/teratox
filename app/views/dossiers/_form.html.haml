@@ -2,7 +2,7 @@
   = javascript_include_tag 'dossier_form'
 
 = content_for :main do
-  = simple_form_for dossier do |f|
+  = nested_form_for dossier do |f|
     = f.error_messages
     #tabs
       %ul
@@ -15,44 +15,76 @@
         %li= link_to "Commentaire", "#commentaire"
 
       #infos
-        .inputs#sicap
-          = f.input :n_sicap, :label => "N° SICAP", :input_html => {:accesskey => "N", :tabindex => autotab, :size => "10"}
-          .clear
-          = f.input :date_appel, :as => :string, :input_html => {:size => "30", :tabindex => autotab}
-          = f.association :demandeur, :input_html => {:tabindex => autotab}
-          = f.input :correspondant_name, :label => "Correspondant", :input_html => {:size => "30", :tabindex => autotab}
+        %ol
+          %li
+            = f.label :n_sicap, "N° SICAP"
+            = f.text_field :n_sicap, :accesskey => "N", :tabindex => autotab, :size => "10"
+          %li
+            = f.label :date_appel
+            = f.text_field :date_appel, :size => "30", :tabindex => autotab
+          %li
+            = f.label :demandeur_id
+            = f.collection_select :demandeur_id, Demandeur.all, :id, :name,
+              :tabindex => autotab
+          %li
+            = f.label :correspondant_name, "Correspondant"
+            = f.text_field :correspondant_name, :size => "30", :tabindex => autotab
 
-      #patiente= render 'patient_fields', :f => f
+      #patiente= render 'patiente', :f => f
 
       #grossesse= render 'grossesse', :f => f
 
+      .clear
+
       #expositions
-        = f.input :expo_type, :label => "Type",
-          :collection => [["solvants"], ["autres"]],
-          :input_html => {:tabindex => autotab}
-        = f.association :niveau, :input_html => {:tabindex => autotab}
-        = f.association :cat, :label => "CAT", :input_html => {:tabindex => autotab}
+        %ol
+          %li
+            = f.label :expo_type, "Type"
+            = f.select :expo_type, [["solvants"], ["autres"]], :tabindex => autotab
+          %li
+            = f.label :niveau_id
+            = f.collection_select :niveau_id, Niveau.all, :id, :name, :tabindex => autotab
+          %li
+            = f.label :cat_id, "CAT"
+            = f.collection_select :cat_id, Cat.all, :id, :name, :tabindex => autotab
 
-        = f.fields_for :expositions do |exposition|
-          = render 'exposition_fields', :f => exposition
-        %p= link_to_add_fields 'Rajouter une exposition', f, :expositions
+          = f.fields_for :expositions do |expo_form|
+            = render 'exposition_fields', :f => expo_form
 
-        = f.input :comm_expo, :label => false, :input_html => { :size => "100x4", :tabindex => autotab}
+          = f.link_to_add 'Rajouter une exposition', :expositions
+
+          %ol
+            %li
+              = f.text_area :comm_expo, :size => "100x4", :tabindex => autotab
 
       #evolution= render 'evolution', :f => f
 
       #bebes
-        = f.fields_for :bebes do |bebe|
-          = render 'bebe_fields', :f => bebe
-        %p.add_fields= link_to_add_fields 'Rajouter un nouveau-né', f, :bebes
-        = f.input :comm_bebe, :input_html => {:size => "40x2"}
+        %ol.inline
+          %li Sexe
+          %li Poids
+          %li Taille
+          %li Pc
+          %li Apgar (1')
+          %li Apgar (5')
+          %li Malformation(s)
+          %li Pathologie(s)
+          %li &nbsp;
+        = f.fields_for :bebes do |bebe_form|
+          = render 'bebe_fields', :f => bebe_form
+        = f.link_to_add 'Rajouter un nouveau-né', :bebes
+
+        %ol
+          %li
+            = f.label :comm_bebe
+            = f.text_area :comm_bebe, :size => "40x2", :tabindex => autotab
 
         - if Rails.env.development?
           #log
 
       #commentaire
-        .inputs
-          = f.input :commentaire
-
-    .actions
-      = f.button :submit, :accesskey => "S"
+        %ol
+          %li
+            = f.label :commentaire
+            = f.text_area :commentaire
+    = f.submit#, {:accesskey => "S"}

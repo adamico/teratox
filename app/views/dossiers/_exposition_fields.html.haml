@@ -1,7 +1,5 @@
-.fields
-  .inputs
-    .input.inline
-      = f.label :produit_name, "Produit"
-      = f.text_field :produit_name, :tabindex => autotab
-      = f.collection_select :niveau_id, Niveau.all, :id, :name, {:include_blank => true}, {:tabindex => autotab}
-      = link_to_remove_fields "Détruire cette exposition", f
+= f.label :produit_name, "Produit"
+= f.text_field :produit_name, :class => "produit_autocomplete", :tabindex => autotab
+= f.select :niveau_id, options_from_collection_for_select(Niveau.all, :id, :name, f.object.niveau_id), #collection_select :niveau_id, Niveau.all, :id, :name,
+  {:include_blank => true}, {:tabindex => autotab}
+= f.link_to_remove "Détruire cette exposition"

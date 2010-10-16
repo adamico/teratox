@@ -1,7 +1,7 @@
-.inputs
-  = f.input :assmedproc, :label => "Assistance médicale à la procréation", :collection => Dossier::ONI, :input_html => {:tabindex => autotab}
-
-  .clear 
+%ol
+  %li
+    = f.label :assmedproc, "Assistance médicale à la procréation"
+    = f.select :assmedproc, Dossier::ONI, :tabindex => autotab
 
   %table.grossesse
     %tr
@@ -40,5 +40,3 @@
       %td
         = button_to_function "Calculer", nil, :id => "calc"
         = button_to_function "Effacer", nil, :id => "reset"
-
-.clear

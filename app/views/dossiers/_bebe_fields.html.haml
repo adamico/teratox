@@ -1,33 +1,15 @@
-.fields
-  %table#bebes
-    %tr
-      %th.single Sexe
-      %th.triple Poids
-      %th.triple Taille
-      %th.triple Pc
-      %th.quintuple Apgar (1')
-      %th.quintuple Apgar (5')
-      %th.large Malformation(s)
-      %th.single &nbsp;
-      %th.large Pathologie(s)
-      %th.quintuple &nbsp;
-    %tr
-      %td= f.select :sexe, [['?', 0], ['M', 1], ['F', 2]], {}, {:tabindex => autotab}
-      %td= f.text_field :poids,  :size => 4, :tabindex => autotab
-      %td= f.text_field :taille, :size => 4, :tabindex => autotab
-      %td= f.text_field :pc,     :size => 4, :tabindex => autotab
-      %td= f.text_field :apgar1, :size => 3, :tabindex => autotab
-      %td= f.text_field :apgar5, :size => 3, :tabindex => autotab
-      %td
-        %span{:id => f.object.new_record? ? "malformation_list_new_bebes" : "malformation_list_#{f.object.id}"}
-      %td
-        %input{:type => "button", :id => f.object.new_record? ? "show_malformation_new_bebes" : "show_malformation_#{f.object.id}", :value => "+", :tabindex => autotab}
-          = f.hidden_field :malformation_ids, :id => f.object.new_record? ? "dossier_bebes_attributes_new_bebes_malformation_ids" : "dossier_bebes_attributes_#{f.object.id}_malformation_ids", :name => f.object.new_record? ? "dossier[bebes_attributes][new_bebes][malformation_ids][]" : "dossier[bebes_attributes][#{f.object.id}][malformation_ids][]"
-      %td
-        = f.select :pathologie, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
-      %td
-        = link_to_remove_fields "Détruire ce bébé", f
+%ol.inline
+  %li= f.select :sexe, [['?', 0], ['M', 1], ['F', 2]], {}, {:tabindex => autotab}
+  %li= f.text_field :poids,  :size => 4, :tabindex => autotab
+  %li= f.text_field :taille, :size => 4, :tabindex => autotab
+  %li= f.text_field :pc,     :size => 4, :tabindex => autotab
+  %li= f.text_field :apgar1, :size => 3, :tabindex => autotab
+  %li= f.text_field :apgar5, :size => 3, :tabindex => autotab
+  %li= f.select :malformation, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
+  %li= f.select :pathologie, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
+  %li= f.link_to_remove "Détruire ce bébé"
 
-  %div{:id => f.object.new_record? ? "malformation_new_bebes" : "malformation_#{f.object.id}", :style => "display:none;"}
-    %div{:id => f.object.new_record? ? "malformation_tree_new_bebes" : "malformation_tree_#{f.object.id}"}
-    %input{:type => "button", :class => "button", :id => f.object.new_record? ? "add_malformation_new_bebes" : "add_malformation_#{f.object.id}", :value => "Rajouter les malformations selectionnées"}
+#malformation_container
+  #malformation_tree
+    %input{:type => "button", :class => "button",
+      :id => "add_malformation", :value => "Rajouter"}

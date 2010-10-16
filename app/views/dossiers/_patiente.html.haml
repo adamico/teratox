@@ -1,0 +1,32 @@
+%ol
+  %li
+    = f.label :nom
+    = f.text_field :nom, :tabindex => autotab
+  %li
+    = f.label :prenom, "Prénom"
+    = f.text_field :prenom, :tabindex => autotab
+  %li
+    = f.label :age, "Âge"
+    = f.text_field :age, :size => "3", :tabindex => autotab
+  %li
+    = f.label :date_naissance
+    = f.text_field :date_naissance, :size => "30", :tabindex => autotab
+  %li
+    = f.label :profession_id, "Profession"
+    = f.collection_select :profession_id, Profession.order(:name), :id, :name, :tabindex => autotab
+  %li
+    = f.label :af, "Atcds familiaux"
+    = f.select :af, Dossier::ONI, :tabindex => autotab
+    = f.text_field :comm_af, :size => "67", :tabindex => autotab
+  %li
+    = f.label :ap, "Atcds personnels"
+    = f.select :ap, Dossier::ONI, :tabindex => autotab
+    = f.text_field :comm_ap, :size => "67", :tabindex => autotab
+  %li
+    = f.label :tabac
+    = f.select :tabac, Dossier::TABAC, :tabindex => autotab
+    %span.hint cigarettes par jour
+  %li
+    = f.label :alcool
+    = f.select :alcool, Dossier::ALCOOL, :tabindex => autotab
+    %span.hint verres par jour"
