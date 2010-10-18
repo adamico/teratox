@@ -150,6 +150,7 @@ form ol li {
       background: white; }
 
 ol.inline li {
+  vertical-align: top;
   width: 5em;
   display: inline-block; }
   ol.inline li.ten {

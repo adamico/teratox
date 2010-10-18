@@ -5,7 +5,12 @@
   %li= f.text_field :pc,     :size => 3, :tabindex => autotab
   %li= f.text_field :apgar1, :size => 3, :tabindex => autotab
   %li= f.text_field :apgar5, :size => 3, :tabindex => autotab
-  %li.ten= f.select :malformation, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
+  %li.ten
+    -#= f.select :malformation, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
+    %ol
+      %li{:style => "margin: 0;"} Test1
+      %li{:style => "margin: 0;"} Test2
+      %li{:style => "margin: 0;"} Test3
   %li.ten= f.select :pathologie, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
   %li.ten= f.link_to_remove "Détruire ce bébé"
 
