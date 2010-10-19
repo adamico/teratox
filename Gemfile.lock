@@ -1,3 +1,9 @@
+GIT
+  remote: http://github.com/madebydna/nested_form.git
+  revision: 253f84b325f77af6181a80d8741eb76a7a8168a1
+  specs:
+    nested_form (0.0.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -148,6 +154,7 @@ DEPENDENCIES
   launchy
   meta_search
   meta_where
+  nested_form!
   nifty-generators
   rails (= 3.0.1)
   rails3-generators
