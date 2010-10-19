@@ -20,6 +20,10 @@ class MalformationsController < ApplicationController
     end
   end
 
+  def libelles
+    @malformations = Malformation.where(:libelle =~ "%#{params[:term]}%")
+  end
+
   def show
     @malformation = Malformation.find(params[:id])
   end

@@ -1,6 +1,4 @@
 Teratox::Application.routes.draw do
-  resources :malformations
-
   resources :specialites,
     :qualites,
     :niveaux,
@@ -22,6 +20,11 @@ Teratox::Application.routes.draw do
   resources :produits do
     get :names, :on => :collection
   end
+
+  resources :malformations do
+    get :libelles, :on => :collection
+  end
+
   match 'bilan' => 'home#bilan'
   root :to => 'home#index'
 

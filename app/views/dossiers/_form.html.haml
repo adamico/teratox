@@ -50,7 +50,6 @@
 
           = f.fields_for :expositions do |expo_form|
             = render 'exposition_fields', :f => expo_form
-
           = f.link_to_add 'Rajouter une exposition', :expositions
 
           %ol
@@ -70,7 +69,7 @@
           %li.ten Malformation(s)
           %li.ten Pathologie(s)
         = f.fields_for :bebes do |bebe_form|
-          = render 'bebe_fields', :f => bebe_form
+          = render 'bebe', :f => bebe_form
         = f.link_to_add 'Rajouter un nouveau-né', :bebes
 
         %ol
@@ -87,3 +86,5 @@
             = f.label :commentaire
             = f.text_area :commentaire
     = f.submit#, {:accesskey => "S"}
+  = yield :bebes_fields_blueprint
+  = yield :malformation_assignments_fields_blueprint

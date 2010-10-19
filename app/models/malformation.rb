@@ -17,5 +17,6 @@
 
 class Malformation < ActiveRecord::Base
   has_ancestry
-  has_and_belongs_to_many :bebes
+  has_many :bebes, :through => :malformation_assignments
+  has_many :malformation_assignments
 end
