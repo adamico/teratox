@@ -32,6 +32,8 @@ $('form a.add_nested_fields').live('click', function() {
   content     = content.replace(regexp, new_id);
 
   $(this).before(content);
+  add_produit_autocomplete();
+  add_malformation_autocomplete();
   return false;
 });
 

@@ -1,23 +1,20 @@
-.fields
-  %ol.formlist.inline
-    %li= f.select :sexe, [['?', 0], ['M', 1], ['F', 2]], {}, {:tabindex => autotab}
-    %li= f.text_field :poids,  :size => 4, :tabindex => autotab
-    %li= f.text_field :taille, :size => 4, :tabindex => autotab
-    %li= f.text_field :pc,     :size => 3, :tabindex => autotab
-    %li= f.text_field :apgar1, :size => 3, :tabindex => autotab
-    %li= f.text_field :apgar5, :size => 3, :tabindex => autotab
-    %li.ten
-      -#= f.select :malformation, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
-      .children_fields
-        = f.fields_for :malformation_assignments do |malf_form|
-          = render 'malformation_assignment', :f => malf_form
-        %br/
-        = f.link_to_add "+", :malformation_assignments
+%ol.formlist.inline
+  %li= f.select :sexe, [['?', 0], ['M', 1], ['F', 2]], {}, {:tabindex => autotab}
+  %li= f.text_field :poids,  :size => 4, :tabindex => autotab
+  %li= f.text_field :taille, :size => 4, :tabindex => autotab
+  %li= f.text_field :pc,     :size => 3, :tabindex => autotab
+  %li= f.text_field :apgar1, :size => 3, :tabindex => autotab
+  %li= f.text_field :apgar5, :size => 3, :tabindex => autotab
+  %li.ten
+    - 3.times do
+      - f.object.malformation_assignments.build
+    = f.fields_for :malformation_assignments do |malf_form|
+      = render 'malformation_assignment', :f => malf_form
 
-    %li.ten= f.select :pathologie, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
-    %li.ten= f.link_to_remove "Détruire ce bébé"
+  %li.ten= f.select :pathologie, [['Non', 0], ['Oui', 1]], {}, {:tabindex => autotab}
+  %li.ten= f.link_to_remove "Détruire ce bébé"
 
-  #malformation_container{:style => "display:none"}
-    #malformation_tree
-      %input{:type => "button", :class => "button",
-        :id => "add_malformation", :value => "Rajouter"}
+#malformation_container{:style => "display:none"}
+  #malformation_tree
+    %input{:type => "button", :class => "button",
+      :id => "add_malformation", :value => "Rajouter"}

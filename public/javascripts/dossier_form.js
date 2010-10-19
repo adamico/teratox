@@ -133,9 +133,16 @@ function loadExistingTrees(type) {
   });
 };
 
-function add_produit_autocomplete() {
+var add_produit_autocomplete = function() {
   $(".produit_autocomplete").autocomplete({
     source: '/produits/names.js',
+    minLength: 2
+  });
+};
+
+var add_malformation_autocomplete = function() {
+  $(".malformation_autocomplete").autocomplete({
+    source: '/malformations/libelles.js',
     minLength: 2
   });
 };
@@ -159,6 +166,7 @@ $(function() {
     minLength: 2
   });
   add_produit_autocomplete();
+  add_malformation_autocomplete();
 
   //loadExistingTrees("malformation");
 
