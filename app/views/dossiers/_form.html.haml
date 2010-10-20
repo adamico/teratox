@@ -59,7 +59,7 @@
       #evolution= render 'evolution', :f => f
 
       #bebes
-        %ol.inline
+        %ol.inline.headers
           %li Sexe
           %li Poids
           %li Taille
@@ -72,13 +72,24 @@
           = render 'bebe', :f => bebe_form
         = f.link_to_add 'Rajouter un nouveau-né', :bebes
 
+
+        %p
+          %input{:type => "button", :class => "button",
+            :id => "show_malformations_tree", :value => "Arbre des malformations"}
+          %input{:type => "button", :class => "button",
+            :id => "show_pathologies_tree", :value => "Arbre des pathologies"}
+        #malformations.tree
+        #pathologies.tree
+
+        .clear
+
         %ol
           %li
             = f.label :comm_bebe
             = f.text_area :comm_bebe, :size => "40x2", :tabindex => autotab
 
         - if Rails.env.development?
-          #log
+          #log{:style => "display: none;"}
 
       #commentaire
         %ol
@@ -86,5 +97,3 @@
             = f.label :commentaire
             = f.text_area :commentaire
     = f.submit#, {:accesskey => "S"}
-  = yield :bebes_fields_blueprint
-  = yield :malformation_assignments_fields_blueprint
