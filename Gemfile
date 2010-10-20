@@ -12,8 +12,8 @@ gem "meta_search"
 gem "meta_where"
 gem "simple_form"
 gem 'will_paginate', '3.0.pre2'
-gem 'ancestry'
-gem 'nested_form', :git => "http://github.com/madebydna/nested_form.git"
+gem 'ancestry', :git => "http://github.com/thoughtbot/ancestry.git", :branch => "rails3"
+gem 'nested_form', :git => "git@github.com:adamico/nested_form.git"
 
 group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'

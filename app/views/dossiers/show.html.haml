@@ -1,4 +1,4 @@
-- title ( "Dossier " + h( @dossier.n_sicap.to_s ))
+- title ( "Dossier " + @dossier.n_sicap.to_s)
 
 - content_for :main do
   %p= link_to 'Modifier', edit_dossier_path(@dossier), :accesskey => "M"
@@ -10,7 +10,7 @@
       %tr
         %th#right= "Patiente : "
         %td
-          = h @dossier.short_name
+          = @dossier.short_name
         %th#right
           Age :
         %td
@@ -19,46 +19,44 @@
         %th#right
           Profession :
         %td
-          = h @dossier.profession_name rescue "Non renseignée"
+          = @dossier.profession_name rescue "Non renseignée"
   - unless @dossier.correspondant_id.nil?
     %table
       %tr
         %th#right
           Correspondant :
         %td
-          = h @dossier.correspondant_name
+          = @dossier.correspondant_name
           %br
-          = h @dossier.correspondant_specialite_name
+          = @dossier.correspondant_specialite_name
           \&nbsp;
-          = h @dossier.correspondant_qualite_name
+          = @dossier.correspondant_qualite_name
           %br
-          = h @dossier.correspondant_adresse
+          = @dossier.correspondant_adresse
           %br
-          = h @dossier.correspondant_cp
+          = @dossier.correspondant_cp
           \&nbsp;
-          = h @dossier.correspondant_ville
+          = @dossier.correspondant_ville
 
   %p
     %strong
       Demandeur :
-    = h @dossier.demandeur_name
-  %h3
-    Antécédents/facteurs de risque
+    = @dossier.demandeur_name
+  %h3 Antécédents/facteurs de risque
   #infoatcd
     %p
       Antécédents personnels :
-      = h @dossier.atcdp
+      = @dossier.atcdp
     %p
       Antécédents familiaux :
-      = h @dossier.atcdf
+      = @dossier.atcdf
     %p
       Tabac :
-      = h @dossier.cigarettes
+      = @dossier.cigarettes
     %p
       Alcool :
-      = h @dossier.boisson
-  %h3
-    Grossesse
+      = @dossier.boisson
+  %h3 Grossesse
   #infogrs
     %p
       Terme à l'inclusion :
@@ -69,8 +67,7 @@
       = @dossier.gestite_in_words
       %br
       = "Parité : P#{@dossier.nai}"
-  %h3
-    Exposition
+  %h3 Exposition
   #infoexpo
     %p
       Type d'exposition:
@@ -90,26 +87,23 @@
       - @dossier.expositions.each do |expo|
         %tr
           %td
-            = h expo.produit.name
+            = expo.produit.name
           %td
-            = h expo.niveau.name
+            = expo.niveau.name
 
     - unless @dossier.comm_expo.blank?
-      %p.commentaire
-        = h @dossier.comm_expo
+      = raw textilize @dossier.comm_expo
 
-  %h3
-    Evolution
+  %h3 Evolution
   #infoevol
     %p
-      = h @dossier.evolution
+      = @dossier.evolution
     %p
       = "Anomalies échographiques : #{@dossier.anomalie_echo}"
     %p
       = "Retard de croissance in utero : #{@dossier.rciu}"
     - unless @dossier.comm_evol.blank?
-      %p.commentaire
-        = h @dossier.comm_evol
+      = raw textilize @dossier.comm_evol
 
   - unless @dossier.bebes.empty?
     %h3
@@ -125,25 +119,28 @@
           %th PC
           %th Apgar (1')
           %th Apgar (5')
-          %th Malformation
-          %th Pathologie
+          %th Malformation(s)
+          %th Pathologie(s)
         - @dossier.bebes.each do |bebe|
           %tr
-            %td= h bebe.sex
-            %td= h bebe.poids
-            %td= h bebe.taille
-            %td= h bebe.pc
-            %td= h bebe.apgar1
-            %td= h bebe.apgar5
-            %td= h bebe.malf
-            %td= h bebe.path
+            %td= bebe.sex
+            %td= bebe.poids
+            %td= bebe.taille
+            %td= bebe.pc
+            %td= bebe.apgar1
+            %td= bebe.apgar5
+            %td
+              - if bebe.malformations.empty?
+                Non
+              - else
+                %ol{:style => "list-style: none;"}
+                  - bebe.malformations.each do |m|
+                    %li= m.libelle
+            %td= bebe.path
 
       - unless @dossier.comm_bebe.blank?
-        %p.commentaire
-          = h @dossier.comm_bebe
+        = raw textilize @dossier.comm_bebe
 
   - unless @dossier.commentaire.blank?
-    %h3
-      Commentaire
-    %p.commentaire
-      = h @dossier.commentaire
+    %h3 Commentaire
+    = raw textilize @dossier.commentaire
