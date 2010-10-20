@@ -25,6 +25,10 @@ Teratox::Application.routes.draw do
     get :libelles, :on => :collection
   end
 
+  resources :pathologies do
+    get :libelles, :on => :collection
+  end
+
   match 'bilan' => 'home#bilan'
   root :to => 'home#index'
 

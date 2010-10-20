@@ -11,4 +11,5 @@
 
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'niveau', 'niveaux'
+  inflect.irregular 'pathologie', 'pathologies'
 end

@@ -89,45 +89,24 @@ function setupTree(id, type) {
 };
 
 function addTree(type) {
-  $("#" + type).jstree({
-    "json_data" : {
-      "ajax" : {
-        "url" : "/" + type + ".json",
-        "data" : function (node) {
-          return { parent_id : node.attr ? node.attr("id") : 0 };
+  $element = $("#" + type);
+  $element
+    .bind("loaded.jstree", function(event, data) {
+      console.log("tree#" + $(this).attr('id') + " is loaded");
+    })
+    .jstree({
+      "json_data" : {
+        "ajax" : {
+          "url" : "/" + type + ".json",
+          "data" : function (node) {
+            return { parent_id : node.attr ? node.attr("id") : 0 };
+          }
         }
-      }
-    },
-    "plugins" : [ "themes", "json_data", "ui"]
+      },
+      "plugins" : [ "themes", "json_data", "ui"]
   });
 };
 
-
-function loadExistingTrees(type) {
-  $show_buttons = $('input[id*=show_' + type + ']')
-  $add_buttons = $('input[id*=add_' + type + ']')
-  $container_divs = $('div[id*=' + type + ']')
-  $tree_divs = $('div[id*=' + type + '_tree]')
-  $tree_divs.each(function () {
-    addTree(this);
-  });
-
-  // bind open container for tree toggle to show buttons
-  $show_buttons.each(function(index) {
-    $(this).click(function() {
-      $($container_divs[index]).toggle();
-    });
-  });
-
-  // bind open container for tree toggle to show buttons
-  $add_buttons.each(function(index) {
-    $(this).click(function() {
-      full_id = this.id.split('_');
-      id = full_id[2];
-      addSelected($($tree_divs[index]), id, type);
-    });
-  });
-};
 
 var add_produit_autocomplete = function() {
   $(".produit_autocomplete").autocomplete({
@@ -143,13 +122,26 @@ var add_malformation_autocomplete = function() {
   });
 };
 
+var add_pathologie_autocomplete = function() {
+  $(".pathologie_autocomplete").autocomplete({
+    source: '/pathologies/libelles.js',
+    minLength: 2
+  });
+};
+
+var assignDivToggle = function(element, message) {
+  return function() {
+    element.toggle();
+    console.log(message);
+  };
+};
+
 $(function() {
   // malformations/pathologies tree
   $.each(['malformations', 'pathologies'], function(index, val) {
     addTree(val);
-    $('#show_' + val + '_tree').click(function() {
-      $('#' + val).toggle();
-    });
+    $button = $('#show_' + val + '_tree')
+    $button.click(assignDivToggle($('#' + val), 'clicked button#' + $button.attr('id')));
   });
   // tabs
   $("#tabs").tabs();
@@ -169,6 +161,7 @@ $(function() {
     minLength: 2
   });
   add_produit_autocomplete();
+  add_malformation_autocomplete();
   add_malformation_autocomplete();
 
   //loadExistingTrees("malformation");

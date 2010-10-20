@@ -5,6 +5,10 @@ class Bebe < ActiveRecord::Base
   has_many :malformation_assignments, :dependent => :destroy
   accepts_nested_attributes_for :malformation_assignments, :allow_destroy => true,
     :reject_if => proc { |attrs| attrs['malformation_name'].blank? }
+  has_many :pathologies, :through => :pathologie_assignments
+  has_many :pathologie_assignments, :dependent => :destroy
+  accepts_nested_attributes_for :pathologie_assignments, :allow_destroy => true,
+    :reject_if => proc { |attrs| attrs['pathologie_name'].blank? }
 
   #TODO add validations for poids, taille, pc, apgar1 et apgar5
   #TODO has_and_belongs_to_many :pathologies (éliminer champ pathologie)

@@ -34,6 +34,7 @@ $('form a.add_nested_fields').live('click', function() {
   $(this).before(content);
   add_produit_autocomplete();
   add_malformation_autocomplete();
+  add_pathologie_autocomplete();
   return false;
 });
 
