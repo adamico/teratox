@@ -5,19 +5,26 @@
 
   %hr/
 
-  %table#dossiers.collapse
-    %tr
-      %th= sort_link @search, :date_appel, 'Année'
-      %th= sort_link @search, :n_sicap, 'Dossier'
-      %th= sort_link @search, :nom, 'Patiente'
-      %th= sort_link @search, :age, 'Âge'
-      %th= sort_link @search, :sa, 'SA'
-      %th= sort_link @search, :profession_name, 'Profession'
-      %th Exposition
-      %th= sort_link @search, :niveau_name, 'Niveau'
-      %th CAT préconisée
-      %th Evolution
-    = render @dossiers
-  - if params[:search]
-    = pagination_results @dossiers
-    = will_paginate @dossiers
+  - if @dossiers.empty?
+    %h4 Aucun résultat
+
+  - else
+    %h4 Résultats de la recherche :
+    %table#dossiers.collapse
+      %tr
+        %th= sort_link @search, :date_appel, 'Année'
+        %th= sort_link @search, :n_sicap, 'Dossier'
+        %th= sort_link @search, :nom, 'Patiente'
+        %th= sort_link @search, :age, 'Âge'
+        %th= sort_link @search, :sa, 'SA'
+        %th= sort_link @search, :profession_name, 'Profession'
+        %th Exposition
+        %th= sort_link @search, :niveau_name, 'Niveau'
+        %th CAT préconisée
+        %th Evolution
+      - @dossiers.each do |dossier|
+        = render "dossier_line", :dossier => dossier
+    - if params[:search]
+      %p= pagination_results @dossiers
+      = will_paginate @dossiers
+      %p= link_to "Exporter les résultats en .csv", dossiers_path(:format => :csv, :utf8 => "✓", :search => params[:search])

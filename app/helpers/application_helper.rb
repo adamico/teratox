@@ -16,9 +16,9 @@ module ApplicationHelper
 
     if collection.total_pages < 2
       case collection.size
-      when 0; "Aucun #{entry_name}".html_safe
-      when 1; "<b>1</b> #{entry_name}".html_safe
-      else;   "<b>#{collection.size}</b> #{entry_name.pluralize} sont montrés".html_safe
+      when 0; "Aucun #{entry_name}"
+      when 1; "<b>1</b> #{entry_name}"
+      else;   "<b>#{collection.size}</b> #{entry_name.pluralize} sont montrés"
       end
     else
         %{<b>%d&nbsp;-&nbsp;%d</b> sur <b>%d</b> #{entry_name.pluralize}} % [
@@ -26,6 +26,6 @@ module ApplicationHelper
           collection.offset + collection.length,
           collection.total_entries
         ]
-    end
+    end.html_safe
   end
 end

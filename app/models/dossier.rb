@@ -84,6 +84,15 @@ class Dossier < ActiveRecord::Base
   belongs_to :cat
   belongs_to :demandeur
 
+  # csv export method
+  require "csv"
+
+  def to_csv
+    CSV.generate_line([
+      n_sicap,
+      date_appel.to_s(:default)
+    ])
+  end
   # Constants
   ONI = [["Oui", "0"], ["Non", "1"], ["Inconnu", "2"]]
   TABAC = [["0", "0"], ["0 à 5", "1"], ["5 à 10", "2"], ["Sup. à 10", "3"], ["Inconnu", "4"]]

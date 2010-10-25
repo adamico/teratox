@@ -4,11 +4,24 @@ class DossiersController < ApplicationController
   def index
     @search = Dossier.search(params[:search])
     if params[:search]
+      old_params = params[:search]
+      old_params["date_appel_gte(1i)"] = old_params["date_appel_gte"][0]
+      old_params["date_appel_lte(1i)"] = old_params["date_appel_lte"][0]
+      params[:search] = old_params.reject { |k,v| k == "date_appel_gte" || k == "date_appel_lte"}
       @dossiers = @search.includes(
         :profession, :acctype, :expositions, :niveau, :cat).
         paginate(:page => params[:page], :per_page => 20)
     else
       @dossiers = Dossier.recent
+    end
+    respond_to do |format|
+      format.html
+      format.csv do
+        @dossiers = @search.all
+        @outfile = "dossiers_" + Time.now.strftime("%d-%m-%Y") + ".csv"
+        response.headers["Content-Type"] = "text/csv; charset=UTF-8; header=present"
+        response.headers["Content-Disposition"] = "attachment; filename=#{@outfile}"
+      end
     end
   end
 
