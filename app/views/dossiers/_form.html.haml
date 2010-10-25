@@ -24,8 +24,7 @@
             = f.text_field :date_appel, :size => "30", :tabindex => autotab
           %li
             = f.label :demandeur_id
-            = f.collection_select :demandeur_id, Demandeur.all, :id, :name,
-              :tabindex => autotab
+            = f.collection_select :demandeur_id, Demandeur.all, :id, :name, {}, :tabindex => autotab
           %li
             = f.label :correspondant_name, "Correspondant"
             = f.text_field :correspondant_name, :size => "30", :tabindex => autotab
