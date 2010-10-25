@@ -1,7 +1,7 @@
 %ol
   %li
     = f.label :assmedproc, "Assistance médicale à la procréation"
-    = f.select :assmedproc, Dossier::ONI, :tabindex => autotab
+    = f.select :assmedproc, Dossier::ONI, {}, :tabindex => autotab
 
   %table.grossesse
     %tr

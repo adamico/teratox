@@ -6,7 +6,7 @@ class CorrespondantsController < ApplicationController
   end
 
   def names
-    @correspondants = Correspondant.where(:name =~ "%#{params[:term]}%")
+    @correspondants = Correspondant.where(:name =~ "%#{params[:term]}%").order(:name)
   end
 
   def show

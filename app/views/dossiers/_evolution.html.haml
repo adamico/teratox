@@ -1,20 +1,20 @@
 %ol
   %li
     = f.label :acctype_id, "Type"
-    = f.collection_select :acctype_id, Acctype.all, :id, :abbr, :tabindex => autotab
+    = f.collection_select :acctype_id, Acctype.all, :id, :abbr, {}, :tabindex => autotab
   %li
     = f.label :accmod_id, "Modalité"
-    = f.collection_select :accmod_id, Accmod.all, :id, :abbr, :tabindex => autotab
+    = f.collection_select :accmod_id, Accmod.all, :id, :abbr, {}, :tabindex => autotab
   %li
     = f.label :path_mat, "Path. maternelle"
-    = f.select :path_mat, Dossier::ONI, :tabindex => autotab
+    = f.select :path_mat, Dossier::ONI, {}, :tabindex => autotab
   %li
     = f.label :dra, "Date accouchement"
     = f.text_field :dra, :size => "30", :tabindex => autotab
   %li
     = f.label :terme, "Terme (SA)"
     = f.text_field :terme, :size => "3", :tabindex => autotab
-    = button_to_function "Calculer", nil, :id => "calc2"
+    = button_to_function "Calculer", nil, :id => "calc2", :tabindex => autotab
   %li
     = f.label :anomalie_echo
     = f.check_box :anomalie_echo, :tabindex => autotab
@@ -24,4 +24,5 @@
   %li
     = f.label :comm_evol
     = f.text_area :comm_evol, :size => "40x2", :tabindex => autotab
+  %p
     %span.hint Compléter le champ malformation dans la section nouveau-né si examen anatomo-pathologique interprétable

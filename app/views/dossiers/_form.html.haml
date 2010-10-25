@@ -6,19 +6,19 @@
     = f.error_messages
     #tabs
       %ul
-        %li= link_to "Infos", "#infos"
-        %li= link_to "Patiente", "#patiente"
-        %li= link_to "Grossesse", "#grossesse"
-        %li= link_to "Expos", "#expositions"
-        %li= link_to "Évol", "#evolution"
-        %li= link_to "Bébés", "#bebes"
+        %li= link_to "Infos", "#infos", :accesskey => "I"
+        %li= link_to "Patiente", "#patiente", :accesskey => "P"
+        %li= link_to "Grossesse", "#grossesse", :accesskey => "G"
+        %li= link_to "Expos", "#expositions", :accesskey => "X"
+        %li= link_to "Évol", "#evolution", :accesskey => "E"
+        %li= link_to "Bébés", "#bebes", :accesskey => "B"
         %li= link_to "Commentaire", "#commentaire"
 
       #infos
         %ol
           %li
             = f.label :n_sicap, "N° SICAP"
-            = f.text_field :n_sicap, :accesskey => "N", :tabindex => autotab, :size => "10"
+            = f.text_field :n_sicap, :tabindex => autotab, :size => "10"
           %li
             = f.label :date_appel
             = f.text_field :date_appel, :size => "30", :tabindex => autotab
@@ -39,13 +39,13 @@
         %ol
           %li
             = f.label :expo_type, "Type"
-            = f.select :expo_type, [["solvants"], ["autres"]], :tabindex => autotab
+            = f.select :expo_type, [["solvants"], ["autres"]], {}, :tabindex => autotab
           %li
             = f.label :niveau_id
-            = f.collection_select :niveau_id, Niveau.all, :id, :name, :tabindex => autotab
+            = f.collection_select :niveau_id, Niveau.all, :id, :name, {}, :tabindex => autotab
           %li
             = f.label :cat_id, "CAT"
-            = f.collection_select :cat_id, Cat.all, :id, :name, :tabindex => autotab
+            = f.collection_select :cat_id, Cat.all, :id, :name, {}, :tabindex => autotab
 
           = f.fields_for :expositions do |expo_form|
             = render 'exposition_fields', :f => expo_form
