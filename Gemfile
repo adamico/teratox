@@ -32,10 +32,11 @@ group :development, :test do
 end
 
 group :test do
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', "~> 1.1.beta1"
   gem "autotest"
   gem 'spork', '0.9.0.rc2'
   gem 'capybara'
+  gem 'database_cleaner'
 end
 
 group :cucumber do
@@ -47,7 +48,7 @@ group :cucumber do
   gem 'spork', '0.9.0.rc2'
   gem 'launchy'    # So you can do Then show me the page
   gem 'pickle'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', "~> 1.1.beta1"
 end
 
 # Use unicorn as the web server

@@ -9,3 +9,16 @@ class PathologieAssignment < ActiveRecord::Base
     self.pathologie = Pathologie.find_by_libelle(name) unless name.blank?
   end
 end
+
+# == Schema Information
+# Schema version: 20101020134225
+#
+# Table name: pathologie_assignments
+#
+#  id            :integer         not null, primary key
+#  bebe_id       :integer
+#  pathologie_id :integer
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+

@@ -1,5 +1,11 @@
+class Malformation < ActiveRecord::Base
+  has_ancestry
+  has_many :bebes, :through => :malformation_assignments
+  has_many :malformation_assignments
+end
+
 # == Schema Information
-# Schema version: 20101020132348
+# Schema version: 20101020134225
 #
 # Table name: malformations
 #
@@ -13,8 +19,3 @@
 #  parent_id  :integer
 #
 
-class Malformation < ActiveRecord::Base
-  has_ancestry
-  has_many :bebes, :through => :malformation_assignments
-  has_many :malformation_assignments
-end

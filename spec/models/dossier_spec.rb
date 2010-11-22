@@ -1,28 +1,26 @@
 require 'spec_helper'
 
 describe Dossier do
-  it "should not be valid" do
-    Dossier.new.should_not be_valid
-  end
+  subject {Factory.build(:dossier)}
 
-  let(:dossier) { Factory(:dossier)}
+  it "should require a #n_sicap" do
+    subject.n_sicap = nil
+    subject.should_not be_valid
+  end
 
   describe "#grsant" do
     it "should be equal to previous pregnancies + 1" do
-      dossier.miu = 1
-      dossier.nai = 1
-      dossier.geu = 1
-      dossier.fcs = 1
-      dossier.ivg = 1
-      dossier.img = 1
-      dossier.grsant.should == 6
+      %w[miu nai geu fcs ivg img].each do |item|
+        subject.send("#{item}=", 1)
+      end
+      subject.grsant.should == 6
     end
   end
 
   describe "#patient_age" do
     it "should return age in years" do
-      dossier.date_naissance = 10.years.ago.to_date
-      dossier.patient_age.should == 10
+      subject.date_naissance = 10.years.ago.to_date
+      subject.patient_age.should == 10
     end
   end
 

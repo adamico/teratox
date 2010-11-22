@@ -1,46 +1,49 @@
-Factory.define :dossier do |d|
-  d.sequence(:n_sicap) { |n| "LP#{n}" }
-  d.nom 'Martin'
-  d.date_appel Time.now.to_date
-  d.association :acctype
-end
+FactoryGirl.define do
 
-Factory.define(:correspondant) do |c|
-  c.name 'Toubib'
-end
+  factory :dossier do
+    sequence(:n_sicap) { |n| "LP#{n}" }
+    nom 'nom'
+    date_appel Time.now.to_date
+    acctype
+  end
 
-Factory.define :produit do |p|
-  p.name 'tartampionate de sodium'
-end
+  factory :correspondant do
+    name 'Toubib'
+  end
 
-Factory.define :acctype do |f|
-  f.sequence(:name) {|n| "acctype#{n}"}
-end
+  factory :produit do
+    name 'tartampionate de sodium'
+  end
 
-Factory.define :accmod do |f|
-  f.sequence(:name) { |n| "accmod#{n}"}
-end
+  factory :acctype do
+    sequence(:name) {|n| "acctype#{n}"}
+  end
 
-Factory.define :cat do |f|
-  f.sequence(:name) { |n| "cat#{n}"}
-end
+  factory :accmod do
+    sequence(:name) { |n| "accmod#{n}"}
+  end
 
-Factory.define :demandeur do |f|
-  f.sequence(:name) { |n| "demandeur#{n}"}
-end
+  factory :cat do
+    sequence(:name) { |n| "cat#{n}"}
+  end
 
-Factory.define :niveau do |f|
-  f.sequence(:name) { |n| "niveau#{n}"}
-end
+  factory :demandeur do
+    sequence(:name) { |n| "demandeur#{n}"}
+  end
 
-Factory.define :profession do |f|
-  f.sequence(:name) { |n| "profession#{n}"}
-end
+  factory :niveau do
+    sequence(:name) { |n| "niveau#{n}"}
+  end
 
-Factory.define :qualite do |f|
-  f.sequence(:name) { |n| "qualite#{n}"}
-end
+  factory :profession do
+    sequence(:name) { |n| "profession#{n}"}
+  end
 
-Factory.define :specialite do |f|
-  f.sequence(:name) { |n| "specialite#{n}"}
+  factory :qualite do
+    sequence(:name) { |n| "qualite#{n}"}
+  end
+
+  factory :specialite do
+    sequence(:name) { |n| "specialite#{n}"}
+  end
 end

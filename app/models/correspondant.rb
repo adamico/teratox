@@ -18,7 +18,9 @@ end
 
 
 
+
 # == Schema Information
+# Schema version: 20101020134225
 #
 # Table name: correspondants
 #

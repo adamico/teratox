@@ -6,8 +6,9 @@ class Cat < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
-# Schema version: 20100105082615
+# Schema version: 20101020134225
 #
 # Table name: cats
 #

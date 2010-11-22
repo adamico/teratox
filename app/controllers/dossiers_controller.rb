@@ -4,11 +4,6 @@ class DossiersController < ApplicationController
   def index
     @search = Dossier.search(params[:search])
     if params[:search]
-      old_params = params[:search]
-      old_params["date_appel_gte(1i)"] = old_params["date_appel_gte"][0]
-      old_params["date_appel_lte(1i)"] = old_params["date_appel_lte"][0]
-      params[:search] = old_params.reject { |k,v| k == "date_appel_gte" || k == "date_appel_lte"}
-      fix_search_params
       @dossiers = @search.includes(
         :profession, :acctype, :expositions, :niveau, :cat).
         paginate(:page => params[:page], :per_page => 20)
@@ -69,10 +64,5 @@ class DossiersController < ApplicationController
     @dossier.destroy
     flash[:notice] = "Dossier détruit."
     redirect_to dossiers_path
-  end
-
-  private
-
-  def fix_search_params(parameters)
   end
 end
