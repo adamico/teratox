@@ -93,6 +93,7 @@ class Dossier < ActiveRecord::Base
       date_appel.to_s(:default)
     ])
   end
+
   # Constants
   ONI = [["Oui", "0"], ["Non", "1"], ["Inconnu", "2"]]
   TABAC = [["0", "0"], ["0 à 5", "1"], ["5 à 10", "2"], ["Sup. à 10", "3"], ["Inconnu", "4"]]
@@ -236,10 +237,12 @@ class Dossier < ActiveRecord::Base
       '5 à 10 ',
       'plus de 10 ',
       'consommation inconnue']
-    case tabac
-      when 0; cigJour[0]
-      when 4; cigJour[4]
-      else "fume " + cigJour[tabac] + "cigarettes par jour"
+    unless tabac.nil?
+      case tabac
+        when 0; cigJour[0]
+        when 4; cigJour[4]
+        else "fume " + cigJour[tabac] + "cigarettes par jour"
+      end
     end
   end
 

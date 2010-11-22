@@ -1,7 +1,7 @@
 # teratox Gemfile
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.1'
+gem 'rails', '3.0.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -26,18 +26,28 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails', ">= 2.0.0.beta.20"
-  gem 'steak', '>= 1.0.0.beta.1'
-  gem 'capybara'
-  gem 'spork'
-  gem 'database_cleaner'
-  gem 'selenium-webdriver'
-  gem 'launchy'
+  gem 'rspec-rails', "~> 2.1"
+  gem 'rcov'
+  gem 'ruby-debug19'
 end
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'spork'
+  gem "autotest"
+  gem 'spork', '0.9.0.rc2'
+  gem 'capybara'
+end
+
+group :cucumber do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'cucumber-rails'
+  gem 'cucumber'
+  gem 'rspec-rails', "~> 2.1"
+  gem 'spork', '0.9.0.rc2'
+  gem 'launchy'    # So you can do Then show me the page
+  gem 'pickle'
+  gem 'factory_girl_rails'
 end
 
 # Use unicorn as the web server
