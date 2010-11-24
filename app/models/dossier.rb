@@ -2,11 +2,10 @@
 class Dossier < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 20
+
   #TODO aggiungere gli attr_accessible
   # Validations
-  validates :n_sicap,
-    :presence => true,
-    :uniqueness => true
+  validates :n_sicap, :presence => true, :uniqueness => true
   validates_presence_of :nom, :acctype_id, :date_appel
   validates_numericality_of :fcs, :ivg, :img, :miu, :geu, :nai
   validates_numericality_of :sa, :less_than => 40, :allow_blank => true
@@ -14,8 +13,13 @@ class Dossier < ActiveRecord::Base
   # Associations
   #TODO aggiungere has_one :patient e popolare con i dati della table dossiers
   belongs_to :profession
-  belongs_to :acctype
+  belongs_to :acctype, :counter_cache => true
+  belongs_to :niveau, :counter_cache => true
   belongs_to :accmod
+  belongs_to :correspondant
+  belongs_to :cat
+  belongs_to :demandeur
+
   has_many :produits, :through => :expositions
   has_many :expositions, :dependent => :destroy
   accepts_nested_attributes_for :expositions, :allow_destroy => true,
@@ -25,22 +29,25 @@ class Dossier < ActiveRecord::Base
   accepts_nested_attributes_for :bebes, :allow_destroy => true,
     :reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? }}
 
-  belongs_to :niveau
-  belongs_to :correspondant
-  belongs_to :cat
-  belongs_to :demandeur
+  before_save :calculate_gestite
 
   # csv export method
   require "csv"
 
   def to_csv
-    CSV.generate_line([
-      n_sicap,
-      date_appel.to_s(:default)
-    ])
+    headers = []
+    CSV_HEADERS.each do |header|
+      if header == "age"
+        headers << self.patient_age
+      else
+        headers << self.send(header)
+      end
+    end
+    CSV.generate_line(headers)
   end
 
   # Constants
+  CSV_HEADERS = %w[n_sicap age sa gestite nai fcs ivg acctype_abbr niveau_name]
   ONI = [["Oui", "0"], ["Non", "1"], ["Inconnu", "2"]]
   TABAC = [["0", "0"], ["0 à 5", "1"], ["5 à 10", "2"], ["Sup. à 10", "3"], ["Inconnu", "4"]]
   ALCOOL = [["0", "0"], ["<= 2", "1"], ["> 2", "2"], ["Inconnu", "3"]]
@@ -50,12 +57,12 @@ class Dossier < ActiveRecord::Base
   scope :autres, where(:expo_type => 'autres')
 
   scope :avec_jumeaux, where(:bebes_count.gt => 1)
-  scope :naissances, joins(:acctypes).where(
-    :acctypes => [:abbr.matches => "%nai%"])
-  scope :fausses_couches, joins(:acctypes).where(
-    :acctypes => [:abbr.matches % "%fcs%" | :abbr.matches % "%miu%"])
-  scope :incomplets, joins(:acctypes).where(
-    :acctypes => [:abbr.matches => "%inc%"])
+  scope :naissances, joins(:acctype).where(
+    :acctype => [:abbr.matches => "%nai%"])
+  scope :fausses_couches, joins(:acctype).where(
+    :acctype => [:abbr.matches % "%fcs%" | :abbr.matches % "%miu%"])
+  scope :incomplets, joins(:acctype).where(
+    :acctype => [:abbr.matches => "%inc%"])
   scope :p1g1, where(
     :fcs => 0, :ivg => 0, :img => 0, :miu => 0, :geu => 0, :nai => 0)
   scope :prematures, where(:terme.lt => 37)
@@ -72,6 +79,8 @@ class Dossier < ActiveRecord::Base
 
   scope :is_malforme, joins(:bebes).where(:bebes => [:malforme => "1"])
   scope :recent, includes([:profession, :acctype, :expositions]).order("updated_at DESC").limit(10)
+  scope :p1g1, where(:gestite => 1, :nai => 0)
+  scope :age_lt_35, where(:age.lt => 35)
 
   # metasearch search methods
   search_methods :is_malforme
@@ -87,6 +96,7 @@ class Dossier < ActiveRecord::Base
   delegate :name, :to => :niveau, :prefix => true, :allow_nil => true
   delegate :name, :to => :cat, :prefix => true, :allow_nil => true
   delegate :name, :to => :acctype, :prefix => true, :allow_nil => true
+  delegate :abbr, :to => :acctype, :prefix => true, :allow_nil => true
 
   # custom methods
   def patient_age
@@ -132,24 +142,24 @@ class Dossier < ActiveRecord::Base
     Math.sqrt(ss / (n - 1))
   end
 
-  def self.avg_terme
-    average(:terme).to_f.round(0)
+  def self.mean(col_name, options={})
+    self.sum(col_name.to_s, options).to_f / self.count
   end
 
-  def self.avg_and_sd(col_name, round=0, options={})
-    mean = self.average(col_name.to_s, options)
-    sd = self.std_deviation(col_name, options)
-    "#{mean.round(round)} (#{sd.round(round)})"
+  def self.mean_and_sd(col_name, round=2, options={})
+    mean = self.mean(col_name, options).round(round)
+    sd = self.std_deviation(col_name, options).round(round)
+    "#{mean} (#{sd})"
   end
 
   def self.variance(col_name, options={})
-    n = self.all.count
-    mean = self.average(col_name.to_sym, options)
-    self.sum("(#{col_name} - #{mean}) * (#{col_name} - #{mean})", options).to_f / (n - 1)
+    n = self.count
+    mean = self.mean(col_name, options)
+    self.sum("(#{col_name} - #{mean}) * (#{col_name} - #{mean})", options) / (n - 1)
   end
 
   def self.std_deviation(col_name, options={})
-    Math.sqrt(variance(col_name, options))
+    Math.sqrt(self.variance(col_name, options))
   end
 
   def short_name
@@ -205,13 +215,13 @@ class Dossier < ActiveRecord::Base
     end
   end
 
-  #TODO creare colonne parite, gestite
-  #TODO aggiungere 2 callback per calcolare parite e gestite
+  #TODO refactor Dossiers#show and #form using gestite and not grsant
   def grsant
     a = [fcs, geu, miu, ivg, img, nai]
     a.sum
   end
 
+  #FIXME: move dossier#gestite_in_words to a helper
   def gestite_in_words
     grs_ant = [fcs, geu, miu, ivg, img, nai]
     abbr = %w{ fcs geu miu ivg img nai } # array des abbreviations
@@ -250,6 +260,13 @@ class Dossier < ActiveRecord::Base
     else
       acctype.name
     end
+  end
+
+  private
+
+  def calculate_gestite
+    a = [fcs, geu, miu, ivg, img, nai]
+    self.gestite = a.sum + 1
   end
 end
 

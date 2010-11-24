@@ -5,25 +5,19 @@ body
   font-size: 13px
   line-height: 18px
 
-
 p, ol, ul, td, th
   font-family: verdana, arial, helvetica, sans-serif
   font-size: 13px
   line-height: 18px
 
-
 h3
   margin-left: -1em
   border-bottom: solid 3px black
-
-
 
 pre
   background-color: #eee
   padding: 10px
   font-size: 11px
-
-
 a
   color: #000
 
@@ -34,36 +28,28 @@ a
     //color: #fff
     background-color: #000
 
-
 label
   font-weight: bold
-
 
 #flash_notice, #flash_error
   padding: 5px 8px
   margin: 10px 0
 
-
 #flash_notice
   background-color: #CFC
   border: solid 1px #6C6
-
 
 #flash_error
   background-color: #FCC
   border: solid 1px #C66
 
-
 .clear
   clear: both
 
-
 .fieldWithErrors
   display: inline
-
   input
     border: 1px solid red
-
 
 #errorExplanation
   width: 400px
@@ -94,19 +80,39 @@ label
       font-size: 12px
       list-style: disc
 
+table
+  border-collapse: collapse
+
 table.grossesse
   float: left
   th
     text-align: right
 
-table
-  border-collapse: collapse
+table.stats
+  th, td
+    padding: 0 1em
+  tr.head
+    th
+      text-align: center
+      border-bottom: 1px solid black
+      border-right: 0
+    th, th.corner
+      background: #EEE
+    th.corner
+      border-bottom: 0
+      border-right: 0
+  th
+    text-align: right
+    border-right: 1px solid black
+    background: #EEE
+  td
+    text-align: center
+
 
 .latex
   th
     text-align: right
     padding-left: 1em
-
   td
     padding-left: 1em
     border-style: solid

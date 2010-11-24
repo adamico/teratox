@@ -13,6 +13,3 @@
         = label_tag :search, "Un dossier par son numéro SICAP : LP"
         = text_field_tag "search[n_sicap_like]", params[:search][:n_sicap_like], :maxlength => 9, :size => 7
         = submit_tag  "Rechercher", :name => nil
-
-  %hr
-  %p= link_to "Bilan - Statistiques", bilan_path

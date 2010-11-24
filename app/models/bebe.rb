@@ -15,6 +15,13 @@ class Bebe < ActiveRecord::Base
   scope :malformes, where(:malforme => 1)
   scope :normaux, where(:malforme => 0)
 
+  scope :with_dossier_solvants, joins(:dossier).where(:dossier => {:expo_type => 'solvants'})
+
+  scope :with_dossier_niveau, lambda { |niveau|
+    joins({:dossier => :niveau}).where(
+      :dossier => {:niveau => {:name => niveau}}
+    )
+  }
 
   def sex
     case sexe

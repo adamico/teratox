@@ -1,0 +1,44 @@
+- title 'Bilan - Issues par niveau'
+
+- content_for :main do
+  %h3 Groupe Solvants
+
+  %h4 Fausses couches (et MIU)
+  %table.stats
+    %tr.head
+      %th.corner &nbsp;
+      %th Naissances
+      %th FCS+MIU
+      %th Total
+    - @niveaux.each do |n|
+      - unless n.id == 0
+        %tr
+          %th{:style => "text-align: right;"}= n.name
+          %td= n.dossiers.solvants.naissances.size
+          %td= n.dossiers.solvants.fausses_couches.size
+          %td= n.dossiers.solvants.size
+    %tr
+      %th{:style => "text-align: right;"} Total
+      %td= @solvants.naissances.count
+      %td= @solvants.fausses_couches.count
+      %td= @solvants.count
+
+  %h4 Malformations
+  %table.stats
+    %tr.head
+      %th.corner &nbsp;
+      %th Normaux
+      %th Malformés
+      %th Total
+    - @niveaux.map(&:name).each do |niveau|
+      - unless niveau == "NE"
+        %tr
+          %th{:style => "text-align: right;"}= niveau
+          %td= Bebe.normaux.with_dossier_niveau(niveau).with_dossier_solvants.count
+          %td= Bebe.malformes.with_dossier_niveau(niveau).with_dossier_solvants.count
+          %td= Bebe.with_dossier_niveau(niveau).with_dossier_solvants.count
+    %tr
+      %th{:style => "text-align: right;"} Total
+      %td= Bebe.normaux.with_dossier_solvants.count
+      %td= Bebe.malformes.with_dossier_solvants.count
+      %td= Bebe.with_dossier_solvants.count

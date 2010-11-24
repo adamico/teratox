@@ -1,0 +1,16 @@
+- title 'Bilan - Issues'
+
+- content_for :main do
+  %table.stats
+    = render :partial => 'header'
+
+    - @evolutions.each do |e|
+      %tr
+        %th= e.abbr
+        %td= e.dossiers.solvants.size
+        %td= e.dossiers.size - e.dossiers.solvants.size
+        %td= e.dossiers.size
+    %th Enfants
+    %td= Bebe.with_dossier_solvants.count
+    %td= @bebes.count - Bebe.with_dossier_solvants.count
+    %td= @bebes.count

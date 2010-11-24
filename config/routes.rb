@@ -1,4 +1,9 @@
 Teratox::Application.routes.draw do
+  get "bilan/donnees_generales"
+  get "bilan/niveaux"
+  get "bilan/issues"
+  get "bilan/stratification"
+
   resources :specialites,
     :qualites,
     :niveaux,
@@ -29,7 +34,6 @@ Teratox::Application.routes.draw do
     get :libelles, :on => :collection
   end
 
-  match 'bilan' => 'home#bilan'
   root :to => 'home#index'
 
   # The priority is based upon order of creation:

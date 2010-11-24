@@ -1,7 +1,6 @@
-%li
-  = link_to "Thesaurus", "#", :class => "anchorclass", :rel => "submenu1"
+%li= link_to "Thesaurus", "#", :class => "anchorclass", :rel => "admin_menu"
 
-.anylinkcss#submenu1
+.anylinkcss#admin_menu
   %ul
     %li= link_to "Professions", professions_path
     %li= link_to "Accmods", accmods_path

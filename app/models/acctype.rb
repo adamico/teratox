@@ -4,6 +4,7 @@ class Acctype < ActiveRecord::Base
     :presence => true,
     :uniqueness => { :case_sensitive => false }
 
+  #TODO: move this to a helper
   def abbrev
     case id
     when 1..5
@@ -16,13 +17,15 @@ end
 
 
 
+
 # == Schema Information
-# Schema version: 20101020134225
+# Schema version: 20101124133728
 #
 # Table name: acctypes
 #
-#  id   :integer         not null, primary key
-#  abbr :string(255)
-#  name :string(255)
+#  id             :integer         not null, primary key
+#  abbr           :string(255)
+#  name           :string(255)
+#  dossiers_count :integer
 #
 

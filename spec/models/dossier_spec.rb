@@ -8,12 +8,13 @@ describe Dossier do
     subject.should_not be_valid
   end
 
-  describe "#grsant" do
-    it "should be equal to previous pregnancies + 1" do
+  describe "when saved" do
+    it "should calculate and assign gestite" do
       %w[miu nai geu fcs ivg img].each do |item|
         subject.send("#{item}=", 1)
       end
-      subject.grsant.should == 6
+      subject.save!
+      subject.gestite.should == 7
     end
   end
 
@@ -24,6 +25,30 @@ describe Dossier do
     end
   end
 
+  describe "statistical methods" do
+    before do
+      %w(13 23 12 44 55).each do |n|
+        Factory(:dossier, :nai => n.to_i)
+      end
+    end
+    describe ".mean(column)" do
+      it "should return mean for column" do
+        Dossier.mean(:nai).should == 29.4
+      end
+    end
+
+    describe ".std_deviation(column)" do
+      it "should return standard deviation for column"  do
+        Dossier.std_deviation(:nai).round(5).should == 19.24318
+      end
+    end
+
+    describe ".mean_and_sd(column)" do
+      it "should return mean and sd for column" do
+        Dossier.mean_and_sd(:nai, round=2).should == "29.4 (19.24)"
+      end
+    end
+  end
 end
 
 # == Schema Information

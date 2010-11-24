@@ -1,0 +1,43 @@
+- title 'Bilan - Données Générales'
+
+- content_for :main do
+  %h3 Données générales
+  %table.stats
+    -#TODO refactorare la tabella con un loop
+    = render :partial => 'header'
+    %tr
+      %th Âge
+      %td= @solvants.mean_and_sd(:age)
+      %td= @autres.mean_and_sd(:age)
+      %td= Dossier.mean_and_sd(:age)
+    %tr
+      %th &lt; 35 ans
+      %td= @solvage_lt35
+      %td= @autres_age_lt35
+      %td= @age_lt35
+    %tr
+      %th P1G1
+      %td= @solv_p1g1
+      %td= @autres_p1g1
+      %td= @p1g1
+    %tr
+      %th Parité
+      %td= @solvants.mean_and_sd(:nai)
+      %td= @autres.mean_and_sd(:nai)
+      %td= Dossier.mean_and_sd(:nai)
+    %tr
+      %th Gestité
+      %td= @solvants.mean_and_sd(:gestite)
+      %td= @autres.mean_and_sd(:gestite)
+      %td= Dossier.mean_and_sd(:gestite)
+    - %w(fcs ivg img miu geu).each do |atcd|
+      %tr
+        %th= atcd.upcase
+        %td= @solvants.sum(atcd)
+        %td= @autres.sum(atcd)
+        %td= Dossier.sum(atcd)
+    %tr
+      %th SA
+      %td= @solvants.mean_and_sd(:sa)
+      %td= @autres.mean_and_sd(:sa)
+      %td= Dossier.mean_and_sd(:sa)

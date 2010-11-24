@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101020134225) do
+ActiveRecord::Schema.define(:version => 20101124133728) do
 
   create_table "accmods", :force => true do |t|
     t.string "abbr"
@@ -18,8 +18,9 @@ ActiveRecord::Schema.define(:version => 20101020134225) do
   end
 
   create_table "acctypes", :force => true do |t|
-    t.string "abbr"
-    t.string "name"
+    t.string  "abbr"
+    t.string  "name"
+    t.integer "dossiers_count"
   end
 
   create_table "bebes", :force => true do |t|
@@ -146,7 +147,8 @@ ActiveRecord::Schema.define(:version => 20101020134225) do
   add_index "malformations", ["ancestry"], :name => "index_malformations_on_ancestry"
 
   create_table "niveaux", :force => true do |t|
-    t.string "name"
+    t.string  "name"
+    t.integer "dossiers_count"
   end
 
   create_table "pathologie_assignments", :force => true do |t|

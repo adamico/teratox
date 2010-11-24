@@ -34,7 +34,8 @@
           %li
             = link_to "Produits", produits_path
             = link_to "+", new_produit_path
-          = render :partial => 'shared/admin_menu'
+          = render 'shared/admin_menu'
+          = render 'shared/bilan_menu'
     #container
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"

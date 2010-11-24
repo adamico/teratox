@@ -72,13 +72,31 @@ label {
       font-size: 12px;
       list-style: disc; }
 
+table {
+  border-collapse: collapse; }
+
 table.grossesse {
   float: left; }
   table.grossesse th {
     text-align: right; }
 
-table {
-  border-collapse: collapse; }
+table.stats th, table.stats td {
+  padding: 0 1em; }
+table.stats tr.head th {
+  text-align: center;
+  border-bottom: 1px solid black;
+  border-right: 0; }
+table.stats tr.head th, table.stats tr.head th.corner {
+  background: #eeeeee; }
+table.stats tr.head th.corner {
+  border-bottom: 0;
+  border-right: 0; }
+table.stats th {
+  text-align: right;
+  border-right: 1px solid black;
+  background: #eeeeee; }
+table.stats td {
+  text-align: center; }
 
 .latex th {
   text-align: right;
