@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101124133728) do
+ActiveRecord::Schema.define(:version => 20101124150327) do
 
   create_table "accmods", :force => true do |t|
     t.string "abbr"
@@ -39,7 +39,8 @@ ActiveRecord::Schema.define(:version => 20101124133728) do
   add_index "bebes", ["dossier_id"], :name => "index_bebes_on_dossier_id"
 
   create_table "cats", :force => true do |t|
-    t.string "name"
+    t.string  "name"
+    t.integer "dossiers_count"
   end
 
   create_table "correspondants", :force => true do |t|

@@ -1,13 +1,12 @@
 - title 'Bilan - Niveaux'
 
 - content_for :main do
-  %h3 Exposition/Niveaux
   %table.stats
     = render :partial => 'header'
     - @niveaux.each do |niveau|
       - unless niveau.name == "NE"
         %tr
-          %th{:style => "text-align: right;"}= niveau.name
+          %th= niveau.name
           %td= niveau.dossiers.solvants.size
           %td= niveau.dossiers.size - niveau.dossiers.solvants.size
           %td= niveau.dossiers.size

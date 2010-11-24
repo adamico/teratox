@@ -2,6 +2,13 @@ class BilanController < ApplicationController
   before_filter :find_dossiers
   before_filter :find_niveaux, :only => [:niveaux, :stratification]
 
+  def cat
+    @cats = Cat.all
+    @no_cat = Dossier.no_cat
+    @no_cat_solvants = @solvants.no_cat
+    @no_cat_autres = @no_cat - @solvants.no_cat
+  end
+
   def donnees_generales
     @age_lt35 = Dossier.age_lt_35.count
     @solvage_lt35 = @solvants.age_lt_35.count

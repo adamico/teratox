@@ -1,0 +1,16 @@
+- title 'Bilan - Conduites à tenir'
+
+- content_for :main do
+  %table.stats
+    = render :partial => "header"
+    - @cats.each do |cat|
+      %tr
+        %th= cat.name
+        %td= cat.dossiers.solvants.size
+        %td= cat.dossiers.size - cat.dossiers.solvants.size
+        %td= cat.dossiers.size
+    %tr
+      %th Non saisie
+      %td= @no_cat_solvants.size
+      %td= @no_cat_autres.size
+      %td= @no_cat.size

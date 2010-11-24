@@ -15,9 +15,9 @@ class Dossier < ActiveRecord::Base
   belongs_to :profession
   belongs_to :acctype, :counter_cache => true
   belongs_to :niveau, :counter_cache => true
+  belongs_to :cat, :counter_cache => true
   belongs_to :accmod
   belongs_to :correspondant
-  belongs_to :cat
   belongs_to :demandeur
 
   has_many :produits, :through => :expositions
@@ -81,6 +81,7 @@ class Dossier < ActiveRecord::Base
   scope :recent, includes([:profession, :acctype, :expositions]).order("updated_at DESC").limit(10)
   scope :p1g1, where(:gestite => 1, :nai => 0)
   scope :age_lt_35, where(:age.lt => 35)
+  scope :no_cat, where(:cat_id => nil)
 
   # metasearch search methods
   search_methods :is_malforme

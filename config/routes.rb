@@ -1,4 +1,5 @@
 Teratox::Application.routes.draw do
+  get "bilan/cat"
   get "bilan/donnees_generales"
   get "bilan/niveaux"
   get "bilan/issues"

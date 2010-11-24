@@ -7,12 +7,14 @@ end
 
 
 
+
 # == Schema Information
-# Schema version: 20101020134225
+# Schema version: 20101124150327
 #
 # Table name: cats
 #
-#  id   :integer         not null, primary key
-#  name :string(255)
+#  id             :integer         not null, primary key
+#  name           :string(255)
+#  dossiers_count :integer
 #
 
