@@ -3,10 +3,18 @@ class Dossier < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 20
 
-  #TODO aggiungere gli attr_accessible
+  attr_accessible :n_sicap, :date_appel, :demandeur_id,
+    :fcs, :geu, :miu, :ivg, :img, :nai, :sa, :ddr, :dg, :dap,
+    :nom, :prenom, :age, :date_naissance, :profession_id,
+    :af, :comm_af, :ap, :comm_ap, :tabac, :alcool,
+    :expo_type, :niveau_id, :cat_id,
+    :acctype_id, :accmod_id, :path_math, :dra, :terme,
+    :anomalie_echo, :rciu, :comm_evol,
+    :comm_expo, :comm_bebe, :commentaire
+
   # Validations
   validates :n_sicap, :presence => true, :uniqueness => true
-  validates_presence_of :nom, :acctype_id, :date_appel
+  validates_presence_of :nom, :acctype_id, :expo_type, :date_appel
   validates_numericality_of :fcs, :ivg, :img, :miu, :geu, :nai
   validates_numericality_of :sa, :less_than => 40, :allow_blank => true
 

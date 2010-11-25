@@ -24,7 +24,8 @@
             = f.text_field :date_appel, :size => "30", :tabindex => autotab
           %li
             = f.label :demandeur_id
-            = f.collection_select :demandeur_id, Demandeur.all, :id, :name, {}, :tabindex => autotab
+            = f.collection_select :demandeur_id, Demandeur.all, :id, :name,
+              {}, :tabindex => autotab
           %li
             = f.label :correspondant_name, "Correspondant"
             = f.text_field :correspondant_name, :size => "30", :tabindex => autotab
@@ -38,7 +39,7 @@
       #expositions
         %ol
           %li
-            = f.label :expo_type, "Type"
+            = f.label :expo_type, "Type Expo"
             = f.select :expo_type, [["solvants"], ["autres"]], {}, :tabindex => autotab
           %li
             = f.label :niveau_id

@@ -3,40 +3,40 @@
     = f.label :assmedproc, "Assistance médicale à la procréation"
     = f.select :assmedproc, Dossier::ONI, {}, :tabindex => autotab
 
-  %table.grossesse
-    %tr
-      %th{:colspan => "3"} Grossesses antérieures :
-      %td#grsant= @dossier.grsant rescue "0"
-    %tr
-      %th= f.label :fcs
-      %td= f.text_field :fcs, :size => "1", :tabindex => autotab
-      %th= f.label :geu
-      %td= f.text_field :geu, :size => "1", :tabindex => autotab
-    %tr
-      %th= f.label :miu
-      %td= f.text_field :miu, :size => "1", :tabindex => autotab
-      %th= f.label :ivg
-      %td= f.text_field :ivg, :size => "1", :tabindex => autotab
-    %tr
-      %th= f.label :img
-      %td= f.text_field :img, :size => "1", :tabindex => autotab
-      %th= f.label :nai
-      %td= f.text_field :nai, :size => "1", :tabindex => autotab
-  %table.grossesse{ :style => "margin-left:1em" }
-    %tr
-      %th= f.label :sa, "Terme (SA)"
-      %td= f.text_field :sa, :size => "3", :tabindex => autotab
-    %tr
-      %th= f.label :ddr,  "DDR"
-      %td= f.text_field :ddr, :tabindex => autotab
-    %tr
-      %th= f.label :dg, "Debut de grossesse"
-      %td= f.text_field :dg, :tabindex => autotab
-    %tr
-      %th= f.label :dap, "Accouchement prévu"
-      %td= f.text_field :dap, :tabindex => autotab
-    %tr
-      %td &nbsp;
-      %td
-        = button_to_function "Calculer", nil, :id => "calc"
-        = button_to_function "Effacer", nil, :id => "reset"
+%table.grossesse
+  %tr
+    %th{:colspan => "3"} Grossesses antérieures :
+    %td#grsant= @dossier.grsant rescue "0"
+  %tr
+    %th= f.label :fcs
+    %td= f.text_field :fcs, :size => "1", :tabindex => autotab
+    %th= f.label :geu
+    %td= f.text_field :geu, :size => "1", :tabindex => autotab
+  %tr
+    %th= f.label :miu
+    %td= f.text_field :miu, :size => "1", :tabindex => autotab
+    %th= f.label :ivg
+    %td= f.text_field :ivg, :size => "1", :tabindex => autotab
+  %tr
+    %th= f.label :img
+    %td= f.text_field :img, :size => "1", :tabindex => autotab
+    %th= f.label :nai
+    %td= f.text_field :nai, :size => "1", :tabindex => autotab
+%table.grossesse{:style => "margin-left:1em"}
+  %tr
+    %th= f.label :sa, "Terme (SA)"
+    %td= f.text_field :sa, :size => "3", :tabindex => autotab
+  %tr
+    %th= f.label :ddr,  "DDR"
+    %td= f.text_field :ddr, :tabindex => autotab
+  %tr
+    %th= f.label :dg, "Debut de grossesse"
+    %td= f.text_field :dg, :tabindex => autotab
+  %tr
+    %th= f.label :dap, "Accouchement prévu"
+    %td= f.text_field :dap, :tabindex => autotab
+  %tr
+    %td &nbsp;
+    %td
+      = button_to_function "Calculer", nil, :id => "calc"
+      = button_to_function "Effacer", nil, :id => "reset"

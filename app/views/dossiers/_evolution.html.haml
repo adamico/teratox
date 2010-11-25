@@ -1,6 +1,6 @@
 %ol
   %li
-    = f.label :acctype_id, "Type"
+    = f.label :acctype_id, "Type Accouchement"
     = f.collection_select :acctype_id, Acctype.all, :id, :abbr, {}, :tabindex => autotab
   %li
     = f.label :accmod_id, "Modalité"
