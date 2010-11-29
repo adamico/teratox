@@ -12,15 +12,15 @@
     - @niveaux.each do |niveau|
       %tr
         %td= link_to niveau.name, niveau
-        %td= niveau.dossiers.solvants.size
-        %td= niveau.dossiers.autres.size
+        %td= niveau.dossiers.solvants.length
+        %td= niveau.dossiers.autres.length
         %td= niveau.dossiers.size
         %td= link_to 'Edit', edit_niveau_path(niveau)
         %td= link_to 'Destroy', niveau, :confirm => 'Are you sure?', :method => :delete
     %tr
       %th Total
-      %td= Dossier.solvants.count
-      %td= Dossier.autres.count
+      %td= Dossier.solvants.length
+      %td= Dossier.autres.length
       %td= Dossier.count
 
   %p= link_to "New Niveau", new_niveau_path

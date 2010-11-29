@@ -10,8 +10,8 @@
     - @professions.each do |profession|
       %tr{:class => cycle("even", "odd")}
         %td= profession.name
-        %td= profession.dossiers.solvants.size
-        %td= profession.dossiers.autres.size
+        %td= profession.dossiers.solvants.length
+        %td= profession.dossiers.autres.length
         %td= profession.dossiers.size
         %td= link_to 'Modifier', edit_profession_path(profession)
         %td= link_to 'Detruire', profession, :confirm => 'Etes-vous sur ?', :method => :delete
