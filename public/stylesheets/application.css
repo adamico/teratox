@@ -221,7 +221,7 @@ th.center {
   background-color: white; }
 
 #container, #header {
-  width: 1024px;
+  width: 900px;
   margin: 0 auto;
   background-color: white;
   padding: 20px 40px;
@@ -232,9 +232,11 @@ th.center {
   color: white;
   overflow: hidden;
   padding: 0px 40px; }
-  #header h1 a:hover {
-    background: black;
-    color: white; }
+  #header h1 {
+    float: left; }
+    #header h1 a:hover {
+      background: black;
+      color: white; }
   #header a {
     color: inherit;
     text-decoration: none;
@@ -242,6 +244,15 @@ th.center {
     #header a:hover {
       background: white;
       color: black; }
+  #header #user_menu {
+    float: right;
+    margin: 1em; }
+    #header #user_menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 0; }
+      #header #user_menu ul li {
+        display: inline; }
   #header #menu {
     float: left; }
     #header #menu ul {

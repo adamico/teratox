@@ -1,5 +1,12 @@
 FactoryGirl.define do
 
+  factory :user do
+    sequence(:login) { |n| "user#{n}"}
+    email { "#{login}@example.com".downcase }
+    password 'secret'
+    password_confirmation { password }
+  end
+
   factory :dossier do
     sequence(:n_sicap) { |n| "LP#{n}" }
     nom 'nom'

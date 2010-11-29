@@ -1,4 +1,6 @@
 Teratox::Application.routes.draw do
+  devise_for :users
+
   get "bilan/cat"
   get "bilan/donnees_generales"
   get "bilan/niveaux"

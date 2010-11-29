@@ -23,6 +23,13 @@
   %body
     #header
       %h1= link_to "TeraTOX", root_path
+      #user_menu
+        - if user_signed_in?
+          Welcome,
+          %em= current_user.login
+          \!
+        = render 'shared/user_menu'
+      .clear
       #menu
         %ul
           %li

@@ -14,6 +14,7 @@ gem "simple_form"
 gem 'will_paginate', '3.0.pre2'
 gem 'ancestry', :git => "http://github.com/thoughtbot/ancestry.git", :branch => "rails3"
 gem 'nested_form', :git => "git@github.com:adamico/nested_form.git"
+gem 'devise'
 
 group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'
@@ -23,6 +24,8 @@ group :development do
   gem "wirble"
   gem "hirb"
   gem 'annotate-models', '1.0.4'
+  gem 'hpricot'
+  gem "ruby_parser"
 end
 
 group :development, :test do
