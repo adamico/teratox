@@ -15,4 +15,4 @@ Feature: manage dossiers
       And I select "solvants" from "Type Expo"
       And I fill in "Date appel" with "25/11/2010"
       And I press "Create Dossier"
-    Then I should see a "dossiers.create" message
+    Then I should see a "flash.create" flash message for "Dossier"
