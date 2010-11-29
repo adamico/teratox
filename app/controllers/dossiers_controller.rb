@@ -1,4 +1,3 @@
-# encoding:utf-8
 class DossiersController < ApplicationController
 
   def index
@@ -37,7 +36,7 @@ class DossiersController < ApplicationController
     @dossier = Dossier.new(params[:dossier])
 
     if @dossier.save
-      flash[:notice] = "Dossier créé avec succès."
+      flash[:notice] = I18n.t("dossiers.create")
       redirect_to dossier_path(@dossier)
     else
       render :action => 'new'
@@ -52,7 +51,7 @@ class DossiersController < ApplicationController
     @dossier = Dossier.find(params[:id])
     @dossier.attributes = params[:dossier]
     if @dossier.save
-      flash[:notice] = "Dossier mis à jour avec succès."
+      flash[:notice] = I18n.t("dossiers.update")
       redirect_to @dossier
     else
        render :action => 'edit'
@@ -62,7 +61,7 @@ class DossiersController < ApplicationController
   def destroy
     @dossier = Dossier.find(params[:id])
     @dossier.destroy
-    flash[:notice] = "Dossier détruit."
+    flash[:notice] = I18n.t("dossiers.destroy")
     redirect_to dossiers_path
   end
 end
