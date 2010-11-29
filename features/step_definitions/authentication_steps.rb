@@ -2,11 +2,11 @@ Given(/^I am not authenticated$/) do
   When %{I go to the logout page}
 end
 
-Given(/^I am a new authenticated user$/) do
+Given(/^I am a new authenticated (\w+)$/) do |user|
   login = 'user'
   password = 'secretpass'
 
-  Given %{a user exists with login: "#{login}", password: "#{password}"}
+  Given %{a #{user} exists with login: "#{login}", password: "#{password}"}
   When %{I go to the login page}
   And %{I fill in "user_login" with "#{login}"}
   And %{I fill in "user_password" with "#{password}"}

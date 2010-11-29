@@ -11,17 +11,17 @@ Feature: Search dossiers
       | LP9999998 | Machin  |
       | LP9999997 | Machine |
       And I am on the dossiers page
-    When I fill in "search[nom_like]" with "<pattern>"
+    When I fill in "Nom patiente" with "<pattern>"
       And I press "Rechercher"
-    Then I should see "Liste des dossiers (<count>)"
+    Then I should see "<resultat>"
       And I should see "<dossier1>"
       And I should see "<dossier2>"
 
     Examples:
-      | pattern | count | dossier1  | dossier2  |
-      | mar     | 1     | LP9999999 |           |
-      | mac     | 2     | LP9999998 | LP9999997 |
-      | gap     | 0     |           |           |
+      | pattern | count | resultat               | dossier1  | dossier2  |
+      | mar     | 1     | 1 dossier              | LP9999999 |           |
+      | mac     | 2     | 2 dossiers sont montrés|LP9999998 | LP9999997 |
+      | gap     | 0     | Aucun résultat         |          |           |
 
   Scenario: search dossiers by evolution type
     Given an acctype: "nai" exists with name: "naissance"
@@ -32,20 +32,20 @@ Feature: Search dossiers
     When I am on the dossiers page
       And I select "naissance" from "search[acctype_id_equals]"
       And I press "Rechercher"
-    Then I should see "Liste des dossiers (2)"
+    Then I should see "2 dossiers sont montrés"
       And I should see "LP1"
       And I should see "LP2"
 
   Scenario: search dossiers by exposition
     Given a produit: "solvants" exists with name: "SOLVANT(S)"
-      And a dossier: "primo" exists with n_sicap: "LP1"
-      And another dossier: "secondo" exists with n_sicap: "LP2"
-      And an exposition exists with dossier: dossier "primo", produit: the produit
-      And another exposition exists with dossier: dossier "secondo", produit: the produit
+      And a dossier exists with n_sicap: "LP1"
+      And another dossier exists with n_sicap: "LP2"
+      And an exposition exists with dossier: the first dossier, produit: the produit
+      And another exposition exists with dossier: the 2nd dossier, produit: the produit
     When I am on the dossiers page
       And I select "SOLVANT(S)" from "search[produits_id_equals]"
       And I press "Rechercher"
-    Then I should see "Liste des dossiers (2)"
+    Then I should see "2 dossiers sont montrés"
       And I should see "LP1"
       And I should see "LP2"
 
@@ -55,5 +55,5 @@ Feature: Search dossiers
     When I am on the dossiers page
       And I select "Technicienne de laboratoire" from "search[profession_id_equals]"
       And I press "Rechercher"
-    Then I should see "Liste des dossiers (1)"
+    Then I should see "1 dossier"
       And I should see "LP1"

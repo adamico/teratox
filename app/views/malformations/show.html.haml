@@ -1,24 +1,25 @@
 - title "Malformation"
 
-%p
-  %strong Code Terme:
-  = @malformation.code_terme
-%p
-  %strong Code Terme Pere:
-  = @malformation.code_terme_pere
-%p
-  %strong Libabr:
-  = @malformation.libabr
-%p
-  %strong Level:
-  = @malformation.level
-%p
-  %strong Libelle:
-  = @malformation.libelle
+= content_for :main do
+  %p
+    %strong Libabr:
+    = @malformation.libabr
+  %p
+    %strong Level:
+    = @malformation.level
+  %p
+    %strong Libelle:
+    = @malformation.libelle
+  %p
+    %strong Parent:
+    = @malformation.parent_id
+  %p
+    %strong Ancestry:
+    = @malformation.ancestry
 
-%p
-  = link_to "Edit", edit_malformation_path(@malformation)
-  |
-  = link_to "Destroy", @malformation, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", malformations_path
+  %p
+    = link_to "Edit", edit_malformation_path(@malformation)
+    |
+    = link_to "Destroy", @malformation, :confirm => 'Are you sure?', :method => :delete
+    |
+    = link_to "View All", malformations_path

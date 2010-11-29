@@ -20,13 +20,14 @@ module LayoutHelper
     content_for(:head) { javascript_include_tag(*args) }
   end
 
-  def link_to_add_record(model, accesskey)
+  def link_to_add_record(model, accesskey="")
     target = model.classify.constantize
-    haml_tag 'span.add_record' do
-      haml_concat(
-        link_to "+",
-        new_polymorphic_path(target),
-        :accesskey => accesskey)
+    if can?(:create, target)
+      haml_tag 'span.add_record' do
+        haml_concat(
+          link_to "+", new_polymorphic_path(target), :accesskey => accesskey
+        )
+      end
     end
   end
 end

@@ -1,7 +1,8 @@
 = simple_form_for resource do |f|
+  = f.error_messages
   .inputs
     - resource.attributes.keys.each do |attribute|
-      = f.input attribute.to_sym
+      = f.input attribute.to_sym unless attribute == 'id' || attribute =~ /count/
   .actions
     = f.button :submit
 

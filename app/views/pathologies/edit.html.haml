@@ -1,8 +1,9 @@
 - title "Edit Pathologie"
 
-= render 'form'
+= content_for :main do
+  = render 'form', :pathologie => @pathologie
 
-%p
-  = link_to "Show", pathologie_path(@pathologie)
-  |
-  = link_to "View All", pathologies_path
+  %p
+    = link_to "Show", pathologie_path(@pathologie)
+    |
+    = link_to "View All", pathologies_path

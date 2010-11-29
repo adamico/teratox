@@ -1,6 +1,6 @@
 #encoding: utf-8
 fr:
-  dossiers:
-    create: "Dossier créé avec succès."
-    update: "Dossier mis à jour avec succès."
-    destroy: "Dossier détruit avec succès."
+  flash:
+    create: "%{resource} créé(e) avec succès."
+    update: "%{resource} mis(e) à jour avec succès."
+    destroy: "%{resource} détruit(e) avec succès."

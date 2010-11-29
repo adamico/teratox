@@ -4,6 +4,8 @@ Teratox::Application.routes.draw do
     get "/logout" => "devise/sessions#destroy"
   end
 
+  resources :users
+
   get "bilan/cat"
   get "bilan/donnees_generales"
   get "bilan/niveaux"

@@ -20,7 +20,7 @@ class Dossier < ActiveRecord::Base
 
   # Associations
   #TODO aggiungere has_one :patient e popolare con i dati della table dossiers
-  belongs_to :profession
+  belongs_to :profession, :counter_cache => true
   belongs_to :acctype, :counter_cache => true
   belongs_to :niveau, :counter_cache => true
   belongs_to :cat, :counter_cache => true

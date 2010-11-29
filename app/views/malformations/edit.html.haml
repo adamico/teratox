@@ -1,8 +1,9 @@
-- title "Edit Malformation"
+- title "Edit Malformation: #{@malformation.libabr}"
 
-= render 'form'
+= content_for :main do
+  = render 'form', :malformation => @malformation
 
-%p
-  = link_to "Show", malformation_path(@malformation)
-  |
-  = link_to "View All", malformations_path
+  %p
+    = link_to "Show", malformation_path(@malformation)
+    |
+    = link_to "View All", malformations_path

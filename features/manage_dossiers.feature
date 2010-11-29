@@ -3,6 +3,9 @@ Feature: manage dossiers
   As a db filler
   I want to manage dossiers
 
+  Background:
+    Given I am a new authenticated admin
+
   Scenario: create a valid dossier
     Given an acctype exist with abbr: "at1" 
     When I go to the new dossier page

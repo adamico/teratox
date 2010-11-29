@@ -1,6 +1,9 @@
 class PathologiesController < ApplicationController
+  load_and_authorize_resource
+
   def index
     respond_to do |format|
+      format.html
       format.json do
         root = Pathologie.find(params[:parent_id]) rescue nil
         nodes = root ? root.children : Pathologie.roots
@@ -25,43 +28,34 @@ class PathologiesController < ApplicationController
   def libelles
     @pathologies = Pathologie.where(:libelle =~ "%#{params[:term]}%")
   end
-  
+
   def show
-    @pathologie = Pathologie.find(params[:id])
   end
-  
+
   def new
-    @pathologie = Pathologie.new
   end
-  
+
   def create
-    @pathologie = Pathologie.new(params[:pathologie])
     if @pathologie.save
-      flash[:notice] = "Successfully created pathologie."
-      redirect_to @pathologie
+      redirect_to @pathologie, :notice => @flash_message
     else
       render :action => 'new'
     end
   end
-  
+
   def edit
-    @pathologie = Pathologie.find(params[:id])
   end
-  
+
   def update
-    @pathologie = Pathologie.find(params[:id])
     if @pathologie.update_attributes(params[:pathologie])
-      flash[:notice] = "Successfully updated pathologie."
-      redirect_to @pathologie
+      redirect_to @pathologie, :notice => @flash_message
     else
       render :action => 'edit'
     end
   end
-  
+
   def destroy
-    @pathologie = Pathologie.find(params[:id])
     @pathologie.destroy
-    flash[:notice] = "Successfully destroyed pathologie."
-    redirect_to pathologies_url
+    redirect_to pathologies_url, :notice => @flash_message
   end
 end

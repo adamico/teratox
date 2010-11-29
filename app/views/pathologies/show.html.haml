@@ -1,24 +1,25 @@
 - title "Pathologie"
 
-%p
-  %strong Libabr:
-  = @pathologie.libabr
-%p
-  %strong Level:
-  = @pathologie.level
-%p
-  %strong Libelle:
-  = @pathologie.libelle
-%p
-  %strong Parent:
-  = @pathologie.parent_id
-%p
-  %strong Ancestry:
-  = @pathologie.ancestry
+= content_for :main do
+  %p
+    %strong Libabr:
+    = @pathologie.libabr
+  %p
+    %strong Level:
+    = @pathologie.level
+  %p
+    %strong Libelle:
+    = @pathologie.libelle
+  %p
+    %strong Parent:
+    = @pathologie.parent_id
+  %p
+    %strong Ancestry:
+    = @pathologie.ancestry
 
-%p
-  = link_to "Edit", edit_pathologie_path(@pathologie)
-  |
-  = link_to "Destroy", @pathologie, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", pathologies_path
+  %p
+    = link_to "Edit", edit_pathologie_path(@pathologie)
+    |
+    = link_to "Destroy", @pathologie, :confirm => 'Are you sure?', :method => :delete
+    |
+    = link_to "View All", pathologies_path

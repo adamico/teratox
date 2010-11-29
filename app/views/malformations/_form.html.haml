@@ -1,24 +1,8 @@
-- form_for @malformation do |f|
+= simple_form_for malformation do |f|
   = f.error_messages
-  %p
-    = f.label :code_terme
-    %br
-    = f.text_field :code_terme
-  %p
-    = f.label :code_terme_pere
-    %br
-    = f.text_field :code_terme_pere
-  %p
-    = f.label :libabr
-    %br
-    = f.text_field :libabr
-  %p
-    = f.label :level
-    %br
-    = f.text_field :level
-  %p
-    = f.label :libelle
-    %br
-    = f.text_field :libelle
-  %p
-    = f.submit
+  .inputs
+    = f.input :libabr
+    = f.input :libelle
+    = f.input :parent_id, :collection => Malformation.all, :label_method => :libelle, :value_method => :id
+  .actions
+    = f.button :submit

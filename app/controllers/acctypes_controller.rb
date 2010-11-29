@@ -1,44 +1,36 @@
 class AcctypesController < ApplicationController
+  load_and_authorize_resource
+
   def index
-    @acctypes = Acctype.all
   end
 
   def show
-    @acctype = Acctype.find(params[:id])
   end
 
   def new
-    @acctype = Acctype.new
   end
-  
+
   def create
-    @acctype = Acctype.new(params[:acctype])
     if @acctype.save
-      flash[:notice] = "Successfully created acctype."
-      redirect_to @acctype
+      redirect_to @acctype, :notice => @flash_message
     else
       render :action => 'new'
     end
   end
 
   def edit
-    @acctype = Acctype.find(params[:id])
   end
 
   def update
-    @acctype = Acctype.find(params[:id])
     if @acctype.update_attributes(params[:acctype])
-      flash[:notice] = "Successfully updated acctype."
-      redirect_to @acctype
+      redirect_to @acctype, :notice => @flash_message
     else
       render :action => 'edit'
     end
   end
 
   def destroy
-    @acctype = Acctype.find(params[:id])
     @acctype.destroy
-    flash[:notice] = "Successfully destroyed acctype."
-    redirect_to acctypes_url
+    redirect_to acctypes_url, :notice => @flash_message
   end
 end

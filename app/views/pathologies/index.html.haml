@@ -1,21 +1,22 @@
 - title "Pathologies"
 
-%table
-  %tr
-    %th Libabr
-    %th Level
-    %th Libelle
-    %th Parent
-    %th Ancestry
-  - for pathologie in @pathologies
+= content_for :main do
+  %table
     %tr
-      %td= pathologie.libabr
-      %td= pathologie.level
-      %td= pathologie.libelle
-      %td= pathologie.parent_id
-      %td= pathologie.ancestry
-      %td= link_to 'Show', pathologie
-      %td= link_to 'Edit', edit_pathologie_path(pathologie)
-      %td= link_to 'Destroy', pathologie, :confirm => 'Are you sure?', :method => :delete
+      %th Libabr
+      %th Level
+      %th Libelle
+      %th Parent
+      %th Ancestry
+    - for pathologie in @pathologies
+      %tr
+        %td= pathologie.libabr
+        %td= pathologie.level
+        %td= pathologie.libelle
+        %td= pathologie.parent_id
+        %td= pathologie.ancestry
+        %td= link_to 'Show', pathologie
+        %td= link_to 'Edit', edit_pathologie_path(pathologie)
+        %td= link_to 'Destroy', pathologie, :confirm => 'Are you sure?', :method => :delete
 
-%p= link_to "New Pathologie", new_pathologie_path
+  %p= link_to "New Pathologie", new_pathologie_path

@@ -1,5 +1,6 @@
 - title "New Malformation"
 
-= render 'form'
+= content_for :main do
+  = render 'form'
 
-%p= link_to "Back to List", malformations_path
+  %p= link_to "Back to List", malformations_path

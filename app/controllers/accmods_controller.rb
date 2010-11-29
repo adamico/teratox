@@ -1,22 +1,18 @@
 class AccmodsController < ApplicationController
-  before_filter :find_accmod, :only => [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
-    @accmods = Accmod.all
   end
 
   def show
   end
 
   def new
-    @accmod = Accmod.new
   end
 
   def create
-    @accmod = Accmod.new(params[:accmod])
     if @accmod.save
-      flash[:notice] = "Successfully created accmod."
-      redirect_to @accmod
+      redirect_to @accmod, :notice => @flash_message
     else
       render :action => 'new'
     end
@@ -28,7 +24,7 @@ class AccmodsController < ApplicationController
   def update
     if @accmod.update_attributes(params[:accmod])
       flash[:notice] = "Successfully updated accmod."
-      redirect_to @accmod
+      redirect_to @accmod, :notice => @flash_message
     else
       render :action => 'edit'
     end
@@ -37,12 +33,6 @@ class AccmodsController < ApplicationController
   def destroy
     @accmod.destroy
     flash[:notice] = "Successfully destroyed accmod."
-    redirect_to accmods_url
-  end
-
-  protected
-
-  def find_accmod
-    @accmod = Accmod.find(params[:id])
+    redirect_to accmods_url, :notice => @flash_message
   end
 end

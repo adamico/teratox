@@ -2,13 +2,10 @@
 
 - content_for :main do
   %table
-    - @produits_paginate.each do |produit|
+    - @produits.each do |produit|
       %tr
         %td= link_to h(produit.name), produit
         %td= link_to 'Edit', edit_produit_path(produit)
         %td= link_to 'Destroy', produit, :confirm => 'Are you sure?', :method => :delete
 
-  %p= will_paginate @produits_paginate, :previous_label => "<--", :next_label => "-->"
-
-- content_for :footer do
-  %p= link_to 'Nouveau produit', new_produit_path
+  %p= will_paginate @produits, :previous_label => "<--", :next_label => "-->"

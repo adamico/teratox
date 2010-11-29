@@ -1,21 +1,22 @@
 - title "Malformations"
 
-%table
-  %tr
-    %th Code terme
-    %th Code terme pere
-    %th Libabr
-    %th Level
-    %th Libelle
-  - for malformation in @malformations
+= content_for :main do
+  %table
     %tr
-      %td= malformation.code_terme
-      %td= malformation.code_terme_pere
-      %td= malformation.libabr
-      %td= malformation.level
-      %td= malformation.libelle
-      %td= link_to 'Show', malformation
-      %td= link_to 'Edit', edit_malformation_path(malformation)
-      %td= link_to 'Destroy', malformation, :confirm => 'Are you sure?', :method => :delete
+      %th Libabr
+      %th Level
+      %th Libelle
+      %th Parent
+      %th Ancestry
+    - for malformation in @malformations
+      %tr
+        %td= malformation.libabr
+        %td= malformation.level
+        %td= malformation.libelle
+        %td= malformation.parent_id
+        %td= malformation.ancestry
+        %td= link_to 'Show', malformation
+        %td= link_to 'Edit', edit_malformation_path(malformation)
+        %td= link_to 'Destroy', malformation, :confirm => 'Are you sure?', :method => :delete
 
-%p= link_to "New Malformation", new_malformation_path
+  %p= link_to "New Malformation", new_malformation_path

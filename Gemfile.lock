@@ -49,6 +49,7 @@ GEM
     autotest (4.4.5)
     bcrypt-ruby (2.1.2)
     builder (2.1.2)
+    cancan (1.4.1)
     capybara (0.4.0)
       celerity (>= 0.7.9)
       culerity (>= 0.2.4)
@@ -201,6 +202,7 @@ DEPENDENCIES
   ancestry!
   annotate-models (= 1.0.4)
   autotest
+  cancan
   capybara
   cucumber
   cucumber-rails

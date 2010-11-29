@@ -1,13 +1,14 @@
 class DossiersController < ApplicationController
+  load_and_authorize_resource
 
   def index
-    @search = Dossier.search(params[:search])
+    @search = Dossier.accessible_by(current_ability).search(params[:search])
     if params[:search]
       @dossiers = @search.includes(
         :profession, :acctype, :expositions, :niveau, :cat).
         paginate(:page => params[:page], :per_page => 20)
     else
-      @dossiers = Dossier.recent
+      @dossiers = Dossier.accessible_by(current_ability).recent
     end
     respond_to do |format|
       format.html
@@ -25,43 +26,33 @@ class DossiersController < ApplicationController
   end
 
   def show
-    @dossier = Dossier.find(params[:id])
   end
 
   def new
-    @dossier = Dossier.new
   end
 
   def create
-    @dossier = Dossier.new(params[:dossier])
-
     if @dossier.save
-      flash[:notice] = I18n.t("dossiers.create")
-      redirect_to dossier_path(@dossier)
+      redirect_to dossier_path(@dossier), :notice => @flash_message
     else
       render :action => 'new'
     end
   end
 
   def edit
-    @dossier = Dossier.find(params[:id])
   end
 
   def update
-    @dossier = Dossier.find(params[:id])
     @dossier.attributes = params[:dossier]
     if @dossier.save
-      flash[:notice] = I18n.t("dossiers.update")
-      redirect_to @dossier
+      redirect_to @dossier, :notice => @flash_message
     else
        render :action => 'edit'
     end
   end
 
   def destroy
-    @dossier = Dossier.find(params[:id])
     @dossier.destroy
-    flash[:notice] = I18n.t("dossiers.destroy")
-    redirect_to dossiers_path
+    redirect_to dossiers_path, :notice => @flash_message
   end
 end

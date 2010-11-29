@@ -7,8 +7,9 @@ class User < ActiveRecord::Base
   attr_accessible :login, :email, :password, :password_confirmation, :remember_me
 end
 
+
 # == Schema Information
-# Schema version: 20101125095155
+# Schema version: 20101129094622
 #
 # Table name: users
 #
@@ -24,5 +25,6 @@ end
 #  login              :string(255)
 #  created_at         :datetime
 #  updated_at         :datetime
+#  admin              :boolean
 #
 

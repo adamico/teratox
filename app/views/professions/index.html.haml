@@ -1,12 +1,18 @@
 - title "Liste des professions"
 
-- content_for :main do
+= content_for :main do
   %table
     %tr
+      %th Profession
+      %th Solvants
+      %th Autres
+      %th Total
     - @professions.each do |profession|
-      %tr{ :class => cycle("even", "odd") }
-        %td= h profession.id
-        %td= h profession.name
+      %tr{:class => cycle("even", "odd")}
+        %td= profession.name
+        %td= profession.dossiers.solvants.size
+        %td= profession.dossiers.autres.size
+        %td= profession.dossiers.size
         %td= link_to 'Modifier', edit_profession_path(profession)
         %td= link_to 'Detruire', profession, :confirm => 'Etes-vous sur ?', :method => :delete
 

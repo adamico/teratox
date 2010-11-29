@@ -1,6 +1,8 @@
 class CorrespondantsController < ApplicationController
+  load_and_authorize_resource
+
   def index
-    @search = Correspondant.search(params[:search])
+    @search = Correspondant.accessible_by(current_ability).search(params[:search])
     @correspondants = @search.
       paginate(:page => params[:page], :order => "LOWER(name) ASC")
   end
@@ -10,41 +12,32 @@ class CorrespondantsController < ApplicationController
   end
 
   def show
-    @correspondant = Correspondant.find(params[:id])
   end
 
   def new
-    @correspondant = Correspondant.new
   end
 
   def create
-    @correspondant = Correspondant.new(params[:correspondant])
     if @correspondant.save
-      flash[:notice] = "Successfully created correspondant."
-      redirect_to correspondants_url
+      redirect_to correspondants_url, :notice => @flash_message
     else
       render :action => 'new'
     end
   end
   
   def edit
-    @correspondant = Correspondant.find(params[:id])
   end
   
   def update
-    @correspondant = Correspondant.find(params[:id])
     if @correspondant.update_attributes(params[:correspondant])
-      flash[:notice] = "Successfully updated correspondant."
-      redirect_to correspondants_url
+      redirect_to correspondants_url, :notice => @flash_message
     else
       render :action => 'edit'
     end
   end
 
   def destroy
-    @correspondant = Correspondant.find(params[:id])
     @correspondant.destroy
-    flash[:notice] = "Successfully destroyed correspondant."
-    redirect_to correspondants_path
+    redirect_to correspondants_url, :notice => @flash_message
   end
 end

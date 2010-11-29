@@ -9,7 +9,7 @@ Feature: authentication
       And I fill in "user_login" with "user"
       And I fill in "user_password" with "secretpass"
       And I press "Sign in"
-    Then I should see "Welcome"
+    Then I should see a "devise.common.hello" message
 
   Scenario: log out
     Given I am a new authenticated user

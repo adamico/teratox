@@ -7,11 +7,21 @@ FactoryGirl.define do
     password_confirmation { password }
   end
 
+  factory :admin, :parent => :user do
+    admin true
+  end
+
   factory :dossier do
     sequence(:n_sicap) { |n| "LP#{n}" }
     nom 'nom'
     date_appel Time.now.to_date
     acctype
+    expo_type 'solvants'
+  end
+
+  factory :exposition do
+    dossier
+    produit
   end
 
   factory :correspondant do

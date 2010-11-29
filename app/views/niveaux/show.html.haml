@@ -1,10 +1,20 @@
 - title @niveau.name
 
-- content_for :main do
+= content_for :main do
   %p
     %strong Name:
     =h @niveau.name
-
+  %h2 Dossiers:
+  %table
+    %tr
+      %th Expo solvants
+      %td= @niveau.dossiers.solvants.size
+    %tr
+      %th Expo autres
+      %td= @niveau.dossiers.autres.size
+    %tr
+      %th Total
+      %td= @niveau.dossiers.size
   %p
     = link_to "Edit", edit_niveau_path(@niveau)
     |

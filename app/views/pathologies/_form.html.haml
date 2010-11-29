@@ -1,24 +1,8 @@
-- form_for @pathologie do |f|
+- simple_form_for pathologie do |f|
   = f.error_messages
-  %p
-    = f.label :libabr
-    %br
-    = f.text_field :libabr
-  %p
-    = f.label :level
-    %br
-    = f.text_field :level
-  %p
-    = f.label :libelle
-    %br
-    = f.text_field :libelle
-  %p
-    = f.label :parent_id
-    %br
-    = f.text_field :parent_id
-  %p
-    = f.label :ancestry
-    %br
-    = f.text_field :ancestry
-  %p
-    = f.submit
+  .inputs
+    = f.input :libabr
+    = f.input :libelle
+    = f.input :parent_id, :collection => Pathologie.all, :label_method => :libelle, :value_method => :id
+  .actions
+    = f.button :submit
