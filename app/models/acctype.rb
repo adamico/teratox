@@ -4,7 +4,7 @@ class Acctype < ActiveRecord::Base
     :presence => true,
     :uniqueness => { :case_sensitive => false }
 
-  #TODO: move this to a helper
+  #TODO: move this to a helper or delete
   def abbrev
     case id
     when 1..5
