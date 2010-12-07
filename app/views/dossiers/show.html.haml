@@ -28,16 +28,16 @@
   #infoatcd
     %p
       %strong Antécédents personnels :
-      = @dossier.atcdp
+      = atcds(@dossier, "ap")
     %p
       %strong Antécédents familiaux :
-      = @dossier.atcdf
+      = atcds(@dossier, "af")
     %p
       %strong Tabac :
-      = @dossier.cigarettes
+      = cigarettes(@dossier)
     %p
       %strong Alcool :
-      = @dossier.boisson
+      = boisson(@dossier)
   %h3 Grossesse
   #infogrs
     %p
@@ -75,7 +75,7 @@
 
   %h3 Evolution
   #infoevol
-    %p= @dossier.evolution
+    %p= evolution(@dossier)
     %p
       Anomalies échographiques :
       = t(@dossier.anomalie_echo.to_s)

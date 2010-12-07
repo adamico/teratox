@@ -86,7 +86,8 @@ class Dossier < ActiveRecord::Base
     :niveaux => [:name.matches % "%important%"])
 
   scope :is_malforme, joins(:bebes).where(:bebes => [:malforme => "1"])
-  scope :recent, includes([:profession, :acctype, :expositions]).order("updated_at DESC").limit(10)
+  scope :recent, includes([:profession, :acctype, :expositions]).
+    order("updated_at DESC").limit(10)
   scope :p1g1, where(:gestite => 1, :nai => 0)
   scope :age_lt_35, where(:age.lt => 35)
   scope :no_cat, where(:cat_id => nil)
@@ -181,60 +182,10 @@ class Dossier < ActiveRecord::Base
     "#{prenom.first}." unless prenom.blank?
   end
 
-  def atcdp
-    case ap
-    when 1; "aucun"
-    when 2; "inconnus"
-    else comm_ap
-    end
-  end
-
-  def atcdf
-    case af
-    when 1; "aucun"
-    when 2; "inconnus"
-    else comm_af
-    end
-  end
-
-  def cigarettes
-    cigJour = [ 
-      'ne fume pas',
-      'jusqu\'à 5 ',
-      '5 à 10 ',
-      'plus de 10 ',
-      'consommation inconnue']
-    unless tabac.nil?
-      case tabac
-        when 0; cigJour[0]
-        when 4; cigJour[4]
-        else "fume " + cigJour[tabac] + "cigarettes par jour"
-      end
-    end
-  end
-
-  def boisson
-    boiJour = [ 
-      'ne boit pas',
-      'occasionnelle (moins de 2 ',
-      'fréquente (plus de 2 ',
-      'inconnue']
-    case alcool
-      when 0; boiJour[0]
-      when 3; boiJour[3]
-      else "consommation " + boiJour[alcool] + "verres par jour)"
-    end
-  end
-
   #TODO refactor Dossiers#form using gestite and not grsant
   def grsant
     a = [fcs, geu, miu, ivg, img, nai]
     a.sum
-  end
-
-  # info sur l'évolution
-  def date_acc
-    "Date d'accouchement : #{dra.strftime("%d-%m-%Y")}" unless dra.nil?
   end
 
   private
@@ -248,8 +199,9 @@ end
 
 
 
+
 # == Schema Information
-# Schema version: 20101020134225
+# Schema version: 20101207134125
 #
 # Table name: dossiers
 #
@@ -267,8 +219,8 @@ end
 #  nom              :string(30)
 #  prenom           :string(30)
 #  age              :integer
-#  ap               :integer
-#  af               :integer
+#  ap               :integer         default(1)
+#  af               :integer         default(1)
 #  assmedproc       :integer
 #  fcs              :integer         default(0)
 #  geu              :integer         default(0)
@@ -279,8 +231,8 @@ end
 #  terme            :integer
 #  accmod_id        :integer
 #  path_mat         :integer
-#  tabac            :integer
-#  alcool           :integer
+#  tabac            :integer         default(0)
+#  alcool           :integer         default(0)
 #  sa               :integer
 #  comm_ap          :text
 #  comm_af          :text

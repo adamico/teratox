@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101129164718) do
+ActiveRecord::Schema.define(:version => 20101207134125) do
 
   create_table "accmods", :force => true do |t|
     t.string "abbr"
@@ -76,8 +76,8 @@ ActiveRecord::Schema.define(:version => 20101129164718) do
     t.string   "nom",              :limit => 30
     t.string   "prenom",           :limit => 30
     t.integer  "age"
-    t.integer  "ap"
-    t.integer  "af"
+    t.integer  "ap",                             :default => 1
+    t.integer  "af",                             :default => 1
     t.integer  "assmedproc"
     t.integer  "fcs",                            :default => 0
     t.integer  "geu",                            :default => 0
@@ -88,8 +88,8 @@ ActiveRecord::Schema.define(:version => 20101129164718) do
     t.integer  "terme"
     t.integer  "accmod_id"
     t.integer  "path_mat"
-    t.integer  "tabac"
-    t.integer  "alcool"
+    t.integer  "tabac",                          :default => 0
+    t.integer  "alcool",                         :default => 0
     t.integer  "sa"
     t.text     "comm_ap"
     t.text     "comm_af"

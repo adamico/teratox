@@ -16,17 +16,17 @@
     = f.collection_select :profession_id, Profession.order(:name), :id, :name, {}, :tabindex => autotab
   %li
     = f.label :af, "Atcds familiaux"
-    = f.select :af, Dossier::ONI, {}, :tabindex => autotab
+    = f.select :af, Dossier::ONI, {:include_blank => true}, :tabindex => autotab
     = f.text_field :comm_af, :size => "67", :tabindex => autotab
   %li
     = f.label :ap, "Atcds personnels"
-    = f.select :ap, Dossier::ONI, {}, :tabindex => autotab
+    = f.select :ap, Dossier::ONI, {:include_blank => true}, :tabindex => autotab
     = f.text_field :comm_ap, :size => "67", :tabindex => autotab
   %li
     = f.label :tabac
-    = f.select :tabac, Dossier::TABAC, {}, :tabindex => autotab
+    = f.select :tabac, Dossier::TABAC, {:include_blank => true}, :tabindex => autotab
     %span.hint cigarettes par jour
   %li
     = f.label :alcool
-    = f.select :alcool, Dossier::ALCOOL, {}, :tabindex => autotab
+    = f.select :alcool, Dossier::ALCOOL, {:include_blank => true}, :tabindex => autotab
     %span.hint verres par jour
