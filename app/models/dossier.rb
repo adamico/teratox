@@ -75,7 +75,7 @@ class Dossier < ActiveRecord::Base
     :fcs => 0, :ivg => 0, :img => 0, :miu => 0, :geu => 0, :nai => 0)
   scope :prematures, where(:terme.lt => 37)
   scope :with_niveau, lambda { |niveau|
-    joins(:niveaux).where(:niveaux => [:name.matches % "%#{niveau}%"])}
+    joins(:niveau).where(:niveaux=> [:name.matches % "%#{niveau}%"])}
   scope :infimes, joins(:niveaux).where(
     :niveaux => [:name.matches % "%infime%"])
   scope :faibles, joins(:niveaux).where(
@@ -115,6 +115,7 @@ class Dossier < ActiveRecord::Base
       age
     end
   end
+
   def correspondant_name
     correspondant.name if correspondant
   end
