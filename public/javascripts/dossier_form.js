@@ -136,6 +136,23 @@ var assignDivToggle = function(element, message) {
   };
 };
 
+function calcGrosAnt() {
+  var sum = 0;
+  // sum the values from fcs, geu, miu, ivg, img, nai fields
+  $.each(['fcs', 'geu', 'miu', 'ivg', 'img', 'nai'], function(index, val) {
+    var $atcd = $('#dossier_' + val)
+    sum += new Number($atcd.val())
+  });
+  // assign the result to th#grsant
+  $('th#grsant').text(sum);
+};
+
+function assign_calcGrosAnt() {
+  $('table.grsant input').change(function () {
+    calcGrosAnt();
+  });
+};
+
 $(function() {
   // malformations/pathologies tree
   $.each(['malformations', 'pathologies'], function(index, val) {
@@ -163,8 +180,8 @@ $(function() {
   add_produit_autocomplete();
   add_malformation_autocomplete();
   add_malformation_autocomplete();
-
-  //loadExistingTrees("malformation");
+  calcGrosAnt();
+  assign_calcGrosAnt();
 
   // grossesse calc
   $('#calc').click(function() {

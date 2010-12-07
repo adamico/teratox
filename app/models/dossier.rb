@@ -182,12 +182,6 @@ class Dossier < ActiveRecord::Base
     "#{prenom.first}." unless prenom.blank?
   end
 
-  #TODO refactor Dossiers#form using gestite and not grsant
-  def grsant
-    a = [fcs, geu, miu, ivg, img, nai]
-    a.sum
-  end
-
   private
 
   def calculate_gestite
