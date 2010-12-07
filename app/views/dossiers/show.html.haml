@@ -1,82 +1,61 @@
-- title ( "Dossier " + @dossier.n_sicap.to_s)
+- title "Dossier " + @dossier.n_sicap.to_s
 
 - content_for :main do
   %p= link_to 'Modifier', edit_dossier_path(@dossier), :accesskey => "M"
   %p#time
     Inclusion :
     = l @dossier.date_appel
-  #infoperso
-    %table
-      %tr
-        %th#right= "Patiente : "
-        %td
-          = @dossier.short_name
-        %th#right
-          Age :
-        %td
-          = @dossier.patient_age
-      %tr
-        %th#right
-          Profession :
-        %td
-          = @dossier.profession_name rescue "Non renseignée"
-  - unless @dossier.correspondant_id.nil?
-    %table
-      %tr
-        %th#right
-          Correspondant :
-        %td
-          = @dossier.correspondant_name
-          %br
-          = @dossier.correspondant_specialite_name
-          \&nbsp;
-          = @dossier.correspondant_qualite_name
-          %br
-          = @dossier.correspondant_adresse
-          %br
-          = @dossier.correspondant_cp
-          \&nbsp;
-          = @dossier.correspondant_ville
-
   %p
     %strong
       Demandeur :
     = @dossier.demandeur_name
+  #infoperso
+    %p
+      %strong Patiente :
+      = @dossier.short_name
+    %p
+      %strong Age :
+      = @dossier.patient_age
+    %p
+      %strong Profession :
+      = @dossier.profession_name rescue "Non renseignée"
+  - unless @dossier.correspondant_id.nil?
+    %p
+      %strong Correspondant :
+      = link_to @dossier.correspondant_name, correspondant_path(@dossier.correspondant)
+      = "(#{@dossier.correspondant_specialite_name}, #{@dossier.correspondant_qualite_name})"
   %h3 Antécédents/facteurs de risque
   #infoatcd
     %p
-      Antécédents personnels :
+      %strong Antécédents personnels :
       = @dossier.atcdp
     %p
-      Antécédents familiaux :
+      %strong Antécédents familiaux :
       = @dossier.atcdf
     %p
-      Tabac :
+      %strong Tabac :
       = @dossier.cigarettes
     %p
-      Alcool :
+      %strong Alcool :
       = @dossier.boisson
   %h3 Grossesse
   #infogrs
     %p
-      Terme à l'inclusion :
+      %strong Terme à l'inclusion :
       = @dossier.sa
       SA
-    %p
-      Gestité :
-      = @dossier.gestite_in_words
-      %br
-      = "Parité : P#{@dossier.nai}"
+    %p= gestite_in_words(@dossier)
+    %p= "Parité : P#{@dossier.nai}"
   %h3 Exposition
   #infoexpo
     %p
-      Type d'exposition:
-      = @dossier.try(:expo_type)
+      %strong Type d'exposition:
+      = @dossier.expo_type
     %p
-      Niveau global d'exposition :
+      %strong Niveau global d'exposition :
       = @dossier.niveau_name
     %p
-      Conduite à tenir préconisée :
+      %strong Conduite à tenir préconisée :
       = @dossier.cat_name
     %table.latex
       %tr
@@ -96,20 +75,18 @@
 
   %h3 Evolution
   #infoevol
+    %p= @dossier.evolution
     %p
-      = @dossier.evolution
+      Anomalies échographiques :
+      = t(@dossier.anomalie_echo.to_s)
     %p
-      = "Anomalies échographiques : #{@dossier.anomalie_echo}"
-    %p
-      = "Retard de croissance in utero : #{@dossier.rciu}"
+      Retard de croissance in utero : 
+      = t(@dossier.rciu.to_s)
     - unless @dossier.comm_evol.blank?
       = raw textilize @dossier.comm_evol
 
   - unless @dossier.bebes.empty?
-    %h3
-      Nouveaux-nés (
-      = @dossier.bebes.count
-      )
+    %h3= "Nouveaux-nés (#{@dossier.bebes.count})"
     #infonn
       %table.latex
         %tr

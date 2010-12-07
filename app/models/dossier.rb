@@ -225,33 +225,10 @@ class Dossier < ActiveRecord::Base
     end
   end
 
-  #TODO refactor Dossiers#show and #form using gestite and not grsant
+  #TODO refactor Dossiers#form using gestite and not grsant
   def grsant
     a = [fcs, geu, miu, ivg, img, nai]
     a.sum
-  end
-
-  #FIXME: move dossier#gestite_in_words to a helper
-  def gestite_in_words
-    grs_ant = [fcs, geu, miu, ivg, img, nai]
-    abbr = %w{ fcs geu miu ivg img nai } # array des abbreviations
-    out = "G" # abbreviation du mot 'gestité'
-    out+= (grsant + 1).to_s # gestite = Gn où n est grs_tot converti en chaine de charactères
-    strings = [nil,nil,nil,nil,nil,nil] # array vide où l'on va mettre les nombre d'évol par type
-    # si nombre grs antérieures = nombre de naissances
-    # on s'arrète là
-    if grsant == nai
-      out
-    # sinon dis moi quelles évolutions et combien de fois
-    else
-      grs_ant.each_with_index do |evol, index|
-        strings[index] = evol.to_s + " " + abbr[index] unless evol == 0 || index == 5
-      end
-      out+= " (dont "
-      out+= strings.compact.join(', ')
-      out+= ")"
-      out
-    end
   end
 
   # info sur l'évolution

@@ -1,11 +1,24 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+# encoding: utf-8
+require 'spec_helper'
 
 describe DossiersHelper do
-
-  #Delete this example and add some real ones or delete this file
-  it "should be included in the object returned by #helper" do
-    included_modules = (class << helper; self; end).send :included_modules
-    included_modules.should include(DossiersHelper)
+  describe "#gestite_in_words" do
+    let(:dossier) {Factory.build(:dossier)}
+    context "when gestite == parite" do
+      it "should return 'Gestité : Gn'" do
+        dossier.nai = 2
+        dossier.save!
+        helper.gestite_in_words(dossier).should == "Gestité : G3"
+      end
+    end
+    context "when gestite != parite" do
+      it "should return 'Gestité : Gn (dont ATCDn)'" do
+        dossier.nai = 1
+        dossier.fcs = 2
+        dossier.ivg = 1
+        dossier.save!
+        helper.gestite_in_words(dossier).should == "Gestité : G5 (dont 2 FCS et 1 IVG)"
+      end
+    end
   end
-
 end

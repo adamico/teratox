@@ -150,4 +150,3 @@ fr:
         odd: "doit être impair"
         even: "doit être pair"
         record_invalid: "L'enregistrement est invalide: %{errors} erreurs"
-
