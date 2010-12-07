@@ -104,6 +104,7 @@ class Dossier < ActiveRecord::Base
   delegate :name, :to => :demandeur, :prefix => true, :allow_nil => true
   delegate :name, :to => :niveau, :prefix => true, :allow_nil => true
   delegate :name, :to => :cat, :prefix => true, :allow_nil => true
+  delegate :name, :to => :accmod, :prefix => true, :allow_nil => true
   delegate :name, :to => :acctype, :prefix => true, :allow_nil => true
   delegate :abbr, :to => :acctype, :prefix => true, :allow_nil => true
 
@@ -234,19 +235,6 @@ class Dossier < ActiveRecord::Base
   # info sur l'évolution
   def date_acc
     "Date d'accouchement : #{dra.strftime("%d-%m-%Y")}" unless dra.nil?
-  end
-
-  def evolution
-    case acctype_id
-    when 1..5
-      a="#{acctype.name} "
-      a+= "à #{terme} SA " unless terme.nil?
-      # FIXME: check for acctype.name and not id!
-      a+= "par #{accmod.name}" if acctype_id==5
-      a
-    else
-      acctype.name
-    end
   end
 
   private

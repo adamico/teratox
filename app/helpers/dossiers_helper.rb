@@ -35,8 +35,14 @@ module DossiersHelper
     end
   end
 
-  def vrai_faux(field)
-    #field ? "vrai" : "faux"
-    t(field.to_s)
+  def evolution(dossier)
+    acctypes = %w(geu fcs ivg img miu nai)
+    if acctypes.include?(dossier.acctype_abbr)
+      a = "#{dossier.acctype_name.humanize}"
+      a+= " à #{dossier.terme} SA " unless dossier.terme.nil?
+      a+= "par #{dossier.accmod_name}" if dossier.acctype_name == "naissance"
+    else
+      dossier.acctype_name
+    end
   end
 end
