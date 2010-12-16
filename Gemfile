@@ -27,6 +27,7 @@ group :development do
   gem 'annotate-models', '1.0.4'
   gem 'hpricot'
   gem "ruby_parser"
+  gem "code_buddy"
 end
 
 group :development, :test do
