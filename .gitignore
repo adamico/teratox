@@ -1,6 +1,7 @@
 *.pdf
 .bundle
 *.*swp
+.*swo
 *~
 *.*~
 log/*.log

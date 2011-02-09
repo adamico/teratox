@@ -16,6 +16,7 @@ gem 'ancestry', :git => "http://github.com/thoughtbot/ancestry.git", :branch => 
 gem 'nested_form', :git => "git@github.com:adamico/nested_form.git"
 gem 'devise'
 gem 'cancan'
+gem 'barista', '>= 0.5.0'
 
 group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'
@@ -27,7 +28,7 @@ group :development do
   gem 'annotate-models', '1.0.4'
   gem 'hpricot'
   gem "ruby_parser"
-  gem "code_buddy"
+  #gem "code_buddy"
 end
 
 group :development, :test do
