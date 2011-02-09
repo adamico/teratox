@@ -20,6 +20,9 @@
             = f.label :n_sicap, "N° SICAP"
             = f.text_field :n_sicap, :tabindex => autotab, :size => "10"
           %li
+            = f.label :included, "Inclu?"
+            = f.check_box :included
+          %li
             = f.label :date_appel
             = f.text_field :date_appel, :size => "30", :tabindex => autotab
           %li

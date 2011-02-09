@@ -3,6 +3,9 @@
     %legend Filtrer
     %ol.formList
       %li
+        = f.label "Inclu?"
+        = f.select :included_equals, [["Oui", 1], ["Non", 0]]
+      %li
         = f.label :nom_contains, "Nom patiente"
         = f.text_field :nom_contains
       %li

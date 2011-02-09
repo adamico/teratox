@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101207134125) do
+ActiveRecord::Schema.define(:version => 20110209134425) do
 
   create_table "accmods", :force => true do |t|
     t.string "abbr"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(:version => 20101207134125) do
     t.date     "date_naissance"
     t.boolean  "anomalie_echo"
     t.boolean  "rciu"
+    t.integer  "included",                       :default => 0
   end
 
   add_index "dossiers", ["accmod_id"], :name => "index_dossiers_on_accmod_id"

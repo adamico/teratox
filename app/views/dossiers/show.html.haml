@@ -2,9 +2,12 @@
 
 - content_for :main do
   %p= link_to 'Modifier', edit_dossier_path(@dossier), :accesskey => "M"
-  %p#time
-    Inclusion :
-    = l @dossier.date_appel
+  - if @dossier.included == 1
+    %p#time
+      Inclusion :
+      = l @dossier.date_appel
+  - else
+    %p Dossier exclu
   %p
     %strong
       Demandeur :
@@ -78,10 +81,10 @@
     %p= evolution(@dossier)
     %p
       Anomalies échographiques :
-      = t(@dossier.anomalie_echo.to_s)
+      = @dossier.anomalie_echo? ? "Oui" : "Non"
     %p
       Retard de croissance in utero : 
-      = t(@dossier.rciu.to_s)
+      = @dossier.rciu? ? "Oui": "Non"
     - unless @dossier.comm_evol.blank?
       = raw textilize @dossier.comm_evol
 

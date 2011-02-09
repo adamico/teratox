@@ -91,9 +91,10 @@ class Dossier < ActiveRecord::Base
   scope :p1g1, where(:gestite => 1, :nai => 0)
   scope :age_lt_35, where(:age.lt => 35)
   scope :no_cat, where(:cat_id => nil)
+  scope :inclus, where(:included => 1)
 
   # metasearch search methods
-  search_methods :is_malforme
+  search_methods :is_malforme, :inclus
 
   # delegations
   delegate :name,
