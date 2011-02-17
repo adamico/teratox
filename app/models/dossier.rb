@@ -75,14 +75,14 @@ class Dossier < ActiveRecord::Base
     :fcs => 0, :ivg => 0, :img => 0, :miu => 0, :geu => 0, :nai => 0)
   scope :prematures, where(:terme.lt => 37)
   scope :with_niveau, lambda { |niveau|
-    joins(:niveau).where(:niveaux=> [:name.matches % "%#{niveau}%"])}
-  scope :infimes, joins(:niveaux).where(
+    joins(:niveau).where(:niveaux => [:name.matches % "%#{niveau}%"])}
+  scope :infimes, joins(:niveau).where(
     :niveaux => [:name.matches % "%infime%"])
-  scope :faibles, joins(:niveaux).where(
+  scope :faibles, joins(:niveau).where(
     :niveaux => [:name.matches % "%faible%"])
-  scope :moderes, joins(:niveaux).where(
+  scope :moderes, joins(:niveau).where(
     :niveaux => [:name.matches % "%modéré%"])
-  scope :importants, joins(:niveaux).where(
+  scope :importants, joins(:niveau).where(
     :niveaux => [:name.matches % "%important%"])
 
   scope :is_malforme, joins(:bebes).where(:bebes => [:malforme => "1"])
