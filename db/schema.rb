@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110209134425) do
+ActiveRecord::Schema.define(:version => 20110303122019) do
 
   create_table "accmods", :force => true do |t|
     t.string "abbr"
@@ -57,6 +57,9 @@ ActiveRecord::Schema.define(:version => 20110209134425) do
     t.string  "email"
     t.integer "sexe"
   end
+
+  add_index "correspondants", ["qualite_id"], :name => "index_correspondants_on_qualite_id"
+  add_index "correspondants", ["specialite_id"], :name => "index_correspondants_on_specialite_id"
 
   create_table "demandeurs", :force => true do |t|
     t.string "name"
@@ -117,6 +120,7 @@ ActiveRecord::Schema.define(:version => 20110209134425) do
   add_index "dossiers", ["cat_id"], :name => "index_dossiers_on_cat_id"
   add_index "dossiers", ["correspondant_id"], :name => "index_dossiers_on_correspondant_id"
   add_index "dossiers", ["demandeur_id"], :name => "index_dossiers_on_demandeur_id"
+  add_index "dossiers", ["expo_type"], :name => "index_dossiers_on_expo_type"
   add_index "dossiers", ["niveau_id"], :name => "index_dossiers_on_niveau_id"
   add_index "dossiers", ["profession_id"], :name => "index_dossiers_on_profession_id"
 
@@ -128,6 +132,9 @@ ActiveRecord::Schema.define(:version => 20110209134425) do
   end
 
   add_index "expositions", ["dossier_id"], :name => "index_expositions_on_dossier_id"
+  add_index "expositions", ["niveau_id"], :name => "index_expositions_on_niveau_id"
+  add_index "expositions", ["produit_id"], :name => "index_expositions_on_produit_id"
+  add_index "expositions", ["terme_id"], :name => "index_expositions_on_terme_id"
 
   create_table "malformation_assignments", :force => true do |t|
     t.integer  "bebe_id"
@@ -135,6 +142,9 @@ ActiveRecord::Schema.define(:version => 20110209134425) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "malformation_assignments", ["bebe_id"], :name => "index_malformation_assignments_on_bebe_id"
+  add_index "malformation_assignments", ["malformation_id"], :name => "index_malformation_assignments_on_malformation_id"
 
   create_table "malformations", :force => true do |t|
     t.string   "libabr"
@@ -160,6 +170,9 @@ ActiveRecord::Schema.define(:version => 20110209134425) do
     t.datetime "updated_at"
   end
 
+  add_index "pathologie_assignments", ["bebe_id"], :name => "index_pathologie_assignments_on_bebe_id"
+  add_index "pathologie_assignments", ["pathologie_id"], :name => "index_pathologie_assignments_on_pathologie_id"
+
   create_table "pathologies", :force => true do |t|
     t.string   "libabr"
     t.integer  "level"
@@ -171,6 +184,7 @@ ActiveRecord::Schema.define(:version => 20110209134425) do
   end
 
   add_index "pathologies", ["ancestry"], :name => "index_pathologies_on_ancestry"
+  add_index "pathologies", ["parent_id"], :name => "index_pathologies_on_parent_id"
 
   create_table "produits", :force => true do |t|
     t.string "name"

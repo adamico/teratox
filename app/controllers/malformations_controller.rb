@@ -1,6 +1,8 @@
 class MalformationsController < ApplicationController
   load_and_authorize_resource
 
+  before_filter :find_parents, :only => [:new, :edit]
+
   def index
     respond_to do |format|
       format.html
@@ -57,5 +59,11 @@ class MalformationsController < ApplicationController
   def destroy
     @malformation.destroy
     redirect_to malformations_url, :notice => @flash_message
+  end
+
+  private
+
+  def find_parents
+    @parents = Malformation.all
   end
 end

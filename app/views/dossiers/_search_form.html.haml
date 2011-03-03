@@ -20,22 +20,22 @@
           :start_year => 1995, :end_year => Time.now.year, :discard_day => true, :discard_month => true, :include_blank => true
       %li
         = f.label :profession_id_equals, "Profession"
-        = f.collection_select :profession_id_equals, Profession.all, :id, :name, :include_blank => true
+        = f.collection_select :profession_id_equals, professions, :id, :name, :include_blank => true
       %li
         = f.label "Correspondant (spécialité)"
-        = f.collection_select :correspondant_specialite_id_equals, Specialite.all, :id, :name, :include_blank => true
+        = f.collection_select :correspondant_specialite_id_equals, specialites, :id, :name, :include_blank => true
       %li
         = f.label "Produits"
-        = f.collection_select :produits_id_equals, Produit.all(:order => "LOWER(name) ASC"), :id, :name, :include_blank => true
+        = f.collection_select :produits_id_equals, produits, :id, :name, :include_blank => true
       %li
         = f.label "Type Exposition"
         = f.select :expo_type_equals, %w[solvants autres], {:include_blank => true}
       %li
         = f.label "Niveau"
-        = f.collection_select :niveau_id_equals, Niveau.all, :id, :name, :include_blank => true
+        = f.collection_select :niveau_id_equals, niveaux, :id, :name, :include_blank => true
       %li
         = f.label "Evolution"
-        = f.collection_select :acctype_id_equals, Acctype.all, :id, :name, :include_blank => true
+        = f.collection_select :acctype_id_equals, acctypes, :id, :name, :include_blank => true
       %li
         = f.label "Malformation"
         = f.select :is_malforme, [["Non", ""], ["Oui", 1]]

@@ -1,6 +1,8 @@
 class PathologiesController < ApplicationController
   load_and_authorize_resource
 
+  before_filter :find_parents, :only => [:new, :edit]
+
   def index
     respond_to do |format|
       format.html
@@ -57,5 +59,11 @@ class PathologiesController < ApplicationController
   def destroy
     @pathologie.destroy
     redirect_to pathologies_url, :notice => @flash_message
+  end
+
+  private
+
+  def find_parents
+    @parents = Pathologie.all
   end
 end

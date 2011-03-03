@@ -11,7 +11,6 @@ class Bebe < ActiveRecord::Base
     :reject_if => proc { |attrs| attrs['pathologie_name'].blank? }
 
   #TODO add validations for poids, taille, pc, apgar1 et apgar5
-  #TODO has_and_belongs_to_many :pathologies (éliminer champ pathologie)
   scope :malformes, where(:malforme => 1)
   scope :normaux, where(:malforme => 0)
 
@@ -38,8 +37,9 @@ class Bebe < ActiveRecord::Base
     end
   end
 
+  #TODO refactor this to return true if pathologies count is > 0
   def path
-    if pathologie 
+    if pathologie
       "oui"
     else "non"
     end

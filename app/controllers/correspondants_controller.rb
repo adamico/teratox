@@ -24,10 +24,10 @@ class CorrespondantsController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
   end
-  
+
   def update
     if @correspondant.update_attributes(params[:correspondant])
       redirect_to correspondants_url, :notice => @flash_message

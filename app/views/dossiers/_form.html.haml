@@ -52,7 +52,7 @@
             = f.collection_select :cat_id, Cat.all, :id, :name, {}, :tabindex => autotab
 
           = f.fields_for :expositions do |expo_form|
-            = render 'exposition_fields', :f => expo_form
+            = render 'exposition_fields', :f => expo_form, :niveaux => @niveaux
           = f.link_to_add 'Rajouter une exposition', :expositions
 
           %ol

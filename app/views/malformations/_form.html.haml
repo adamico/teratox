@@ -3,6 +3,6 @@
   .inputs
     = f.input :libabr
     = f.input :libelle
-    = f.input :parent_id, :collection => Malformation.all, :label_method => :libelle, :value_method => :id
+    = f.input :parent_id, :collection => parents, :label_method => :libelle, :value_method => :id
   .actions
     = f.button :submit

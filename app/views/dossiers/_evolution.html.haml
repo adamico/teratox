@@ -1,10 +1,10 @@
 %ol
   %li
     = f.label :acctype_id, "Type Accouchement"
-    = f.collection_select :acctype_id, Acctype.all, :id, :abbr, {}, :tabindex => autotab
+    = f.collection_select :acctype_id, @acctypes, :id, :abbr, {}, :tabindex => autotab
   %li
     = f.label :accmod_id, "Modalité"
-    = f.collection_select :accmod_id, Accmod.all, :id, :abbr, {}, :tabindex => autotab
+    = f.collection_select :accmod_id, , @accmods, :id, :abbr, {}, :tabindex => autotab
   %li
     = f.label :path_mat, "Path. maternelle"
     = f.select :path_mat, Dossier::ONI, {}, :tabindex => autotab

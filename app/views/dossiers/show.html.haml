@@ -83,7 +83,7 @@
       Anomalies échographiques :
       = @dossier.anomalie_echo? ? "Oui" : "Non"
     %p
-      Retard de croissance in utero : 
+      Retard de croissance in utero :
       = @dossier.rciu? ? "Oui": "Non"
     - unless @dossier.comm_evol.blank?
       = raw textilize @dossier.comm_evol

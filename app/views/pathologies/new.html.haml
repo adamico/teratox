@@ -1,6 +1,6 @@
 - title "New Pathologie"
 
 = content_for :main do
-  = render 'form', :pathologie => @pathologie
+  = render 'form', :parents => @parents, :pathologie => @pathologie
 
   %p= link_to "Back to List", pathologies_path

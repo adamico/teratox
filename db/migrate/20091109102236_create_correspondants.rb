@@ -14,7 +14,7 @@ class CreateCorrespondants < ActiveRecord::Migration
       t.string :email
     end
   end
-  
+
   def self.down
     drop_table :correspondants
   end

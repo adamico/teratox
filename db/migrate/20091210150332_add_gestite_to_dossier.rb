@@ -2,16 +2,15 @@ class AddGestiteToDossier < ActiveRecord::Migration
   def self.up
     add_column :dossiers, :gestite, :integer
 
-    Dossier.all.each do |d|
-      sum = 0
-      puts "Starting: Sum = #{sum}"
-      sum += d.fcs + d.geu + d.miu + d.ivg + d.img + d.nai
-      puts "Sum is now = #{sum}"
-      sum += 1
-      d.update_attribute :gestite, sum
-      puts "Dossier#{d.id} gestite is #{d.gestite}"
+    say_with_time("Populating dossiers table gestite column") do
+      Dossier.all.each do |d|
+        sum = 0
+        sum += d.fcs + d.geu + d.miu + d.ivg + d.img + d.nai
+        sum += 1
+        d.update_attribute :gestite, sum
+        say "Dossier#{d.id} gestite updated to #{d.gestite}"
+      end
     end
-    puts "All done"
   end
 
   def self.down

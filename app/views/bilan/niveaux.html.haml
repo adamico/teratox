@@ -2,7 +2,7 @@
 
 - content_for :main do
   %table.stats
-    = render :partial => 'header'
+    = render "header", :solv_count => @solv_count, :autres_count => @autres_count, :count => @count
     - @niveaux.each do |niveau|
       - unless niveau.name == "NE"
         %tr

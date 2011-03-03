@@ -55,7 +55,7 @@ module DossiersHelper
   end
 
   def cigarettes(dossier)
-    cigJour = [ 
+    cigJour = [
       'ne fume pas',
       "jusqu'à 5 ",
       '5 à 10 ',
@@ -71,7 +71,7 @@ module DossiersHelper
   end
 
   def boisson(dossier)
-    boiJour = [ 
+    boiJour = [
       'ne boit pas',
       'occasionnelle (moins de 2 ',
       'fréquente (plus de 2 ',

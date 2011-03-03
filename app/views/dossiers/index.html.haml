@@ -1,7 +1,12 @@
 - title "Rechercher des dossiers"
 
 - content_for :main do
-  = render 'search_form', :search => @search
+  = render 'search_form', :search => @search,
+    :professions => @professions,
+    :specialites => @specialites,
+    :produits => @produits,
+    :niveaux => @niveaux,
+    :acctypes => @acctypes
 
   %hr/
 

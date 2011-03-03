@@ -1,6 +1,9 @@
 class DossiersController < ApplicationController
   load_and_authorize_resource
 
+  before_filter :find_niveaux, :only => [:new, :edit]
+  before_filter :find_acctypes, :only => [:index, :evoluer]
+
   def index
     @search = Dossier.accessible_by(current_ability).search(params[:search])
     if params[:search]
@@ -10,6 +13,10 @@ class DossiersController < ApplicationController
     else
       @dossiers = Dossier.accessible_by(current_ability).recent
     end
+    @professions = Profession.all
+    @specialites = Specialite.all
+    @produits = Produit.all
+    @niveaux= Niveau.all
     respond_to do |format|
       format.html
       format.csv do
@@ -23,6 +30,7 @@ class DossiersController < ApplicationController
 
   def evoluer
     @dossiers = Dossier.incomplets
+    @accmods = Accmod.all
   end
 
   def show
@@ -54,5 +62,15 @@ class DossiersController < ApplicationController
   def destroy
     @dossier.destroy
     redirect_to dossiers_path, :notice => @flash_message
+  end
+
+  private
+
+  def find_niveaux
+    @niveaux = Niveau.all
+  end
+
+  def find_acctypes
+    @acctypes = Acctype.all
   end
 end

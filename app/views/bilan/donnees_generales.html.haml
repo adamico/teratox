@@ -4,7 +4,7 @@
   %h3 Données générales
   %table.stats
     -#TODO refactorare la tabella con un loop
-    = render :partial => 'header'
+    = render "header", :solv_count => @solv_count, :autres_count => @autres_count, :count => @count
     %tr
       %th Âge
       %td= @solvants.mean_and_sd(:age)

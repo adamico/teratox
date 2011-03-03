@@ -5,7 +5,6 @@ class CreateDemandeurs < ActiveRecord::Migration
 
     end
   end
-  
 
   def self.down
     drop_table :demandeurs
