@@ -9,3 +9,5 @@ tmp/**/*
 private/*.*
 config/database.yml
 db/*.sqlite3
+vendor/ruby
+vendor/cache

@@ -1,7 +1,7 @@
 # teratox Gemfile
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.5'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -34,7 +34,6 @@ end
 group :development, :test do
   gem 'rspec-rails', "~> 2.1"
   gem 'rcov'
-  gem 'ruby-debug19'
 end
 
 group :test do
