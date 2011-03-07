@@ -21,10 +21,10 @@
             = f.text_field :n_sicap, :tabindex => autotab, :size => "10"
           %li
             = f.label :included, "Inclu?"
-            = f.check_box :included
+            = f.check_box :included, :tabindex => autotab
           %li
             = f.label :date_appel
-            = f.text_field :date_appel, :size => "30", :tabindex => autotab
+            = f.text_field :date_appel, :value => date_appel, :size => "30", :tabindex => autotab
           %li
             = f.label :demandeur_id
             = f.collection_select :demandeur_id, Demandeur.all, :id, :name,
@@ -59,7 +59,7 @@
             %li
               = f.text_area :comm_expo, :size => "100x4", :tabindex => autotab
 
-      #evolution= render 'evolution', :f => f
+      #evolution= render 'evolution', :f => f, :acctypes => @acctypes, :accmods => @accmods
 
       #bebes
         %ol.inline.headers

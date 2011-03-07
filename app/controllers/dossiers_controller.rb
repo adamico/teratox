@@ -2,7 +2,14 @@ class DossiersController < ApplicationController
   load_and_authorize_resource
 
   before_filter :find_niveaux, :only => [:new, :edit]
-  before_filter :find_acctypes, :only => [:index, :evoluer]
+  before_filter :find_acctypes, :only => [:index, :evoluer, :new, :edit]
+  before_filter :find_accmods, :only => [:index, :evoluer, :new, :edit]
+
+  helper_method :date_appel
+  helper_method :ddr
+  helper_method :dg
+  helper_method :dap
+  helper_method :dra
 
   def index
     @search = Dossier.accessible_by(current_ability).search(params[:search])
@@ -30,7 +37,6 @@ class DossiersController < ApplicationController
 
   def evoluer
     @dossiers = Dossier.incomplets
-    @accmods = Accmod.all
   end
 
   def show
@@ -72,5 +78,29 @@ class DossiersController < ApplicationController
 
   def find_acctypes
     @acctypes = Acctype.all
+  end
+
+  def find_accmods
+    @accmods = Accmod.all
+  end
+
+  def date_appel
+    @date_appel ||= params[:id] ? l(@dossier.date_appel) : ""
+  end
+
+  def ddr
+    @ddr ||= params[:id] ? l(@dossier.ddr) : ""
+  end
+
+  def dg
+    @dg ||= params[:id] ? l(@dossier.dg) : ""
+  end
+
+  def dap
+    @dap ||= params[:id] ? l(@dossier.dap) : ""
+  end
+
+  def dra
+    @dra ||= params[:id] ? l(@dossier.dra) : ""
   end
 end
