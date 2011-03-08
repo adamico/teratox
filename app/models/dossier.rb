@@ -10,7 +10,7 @@ class Dossier < ActiveRecord::Base
     :expo_type, :niveau_id, :cat_id,
     :acctype_id, :accmod_id, :path_math, :dra, :terme,
     :anomalie_echo, :rciu, :comm_evol,
-    :comm_expo, :comm_bebe, :commentaire, :bebes_attributes, :expositions_attributes, :included
+    :comm_expo, :comm_bebe, :commentaire, :bebes_attributes, :expositions_attributes, :included, :correspondant_name, :assmedproc, :path_mat
 
   # Validations
   validates :n_sicap, :presence => true, :uniqueness => true

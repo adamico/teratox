@@ -69,9 +69,9 @@
       - @dossier.expositions.each do |expo|
         %tr
           %td
-            = expo.produit.name
+            = expo.produit_name
           %td
-            = expo.niveau.name
+            = expo.niveau_name
 
     - unless @dossier.comm_expo.blank?
       = raw textilize @dossier.comm_expo

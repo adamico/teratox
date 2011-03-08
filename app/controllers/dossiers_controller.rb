@@ -1,7 +1,7 @@
 class DossiersController < ApplicationController
   load_and_authorize_resource
 
-  before_filter :find_niveaux, :only => [:new, :edit]
+  before_filter :find_niveaux, :only => [:new, :edit, :index]
   before_filter :find_acctypes, :only => [:index, :evoluer, :new, :edit]
   before_filter :find_accmods, :only => [:index, :evoluer, :new, :edit]
 
@@ -23,7 +23,6 @@ class DossiersController < ApplicationController
     @professions = Profession.all
     @specialites = Specialite.all
     @produits = Produit.all
-    @niveaux= Niveau.all
     respond_to do |format|
       format.html
       format.csv do
@@ -85,22 +84,22 @@ class DossiersController < ApplicationController
   end
 
   def date_appel
-    @date_appel ||= params[:id] ? l(@dossier.date_appel) : ""
+    @date_appel ||= (params[:id] && @dossier.date_appel?) ? l(@dossier.date_appel) : ""
   end
 
   def ddr
-    @ddr ||= params[:id] ? l(@dossier.ddr) : ""
+    @ddr ||= (params[:id] && @dossier.ddr?) ? l(@dossier.ddr) : ""
   end
 
   def dg
-    @dg ||= params[:id] ? l(@dossier.dg) : ""
+    @dg ||= (params[:id] && @dossier.dg?) ? l(@dossier.dg) : ""
   end
 
   def dap
-    @dap ||= params[:id] ? l(@dossier.dap) : ""
+    @dap ||= (params[:id] && @dossier.dap?) ? l(@dossier.dap) : ""
   end
 
   def dra
-    @dra ||= params[:id] ? l(@dossier.dra) : ""
+    @dra ||= (params[:id] && @dossier.dra?) ? l(@dossier.dra) : " "
   end
 end
