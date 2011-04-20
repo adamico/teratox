@@ -1,13 +1,14 @@
 # teratox Gemfile
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.5'
+gem 'rails', '3.0.7'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem "haml"
 gem "RedCloth"
+# migrate to squeel!
 gem "meta_search"
 gem "meta_where"
 gem "simple_form"
@@ -16,7 +17,7 @@ gem 'ancestry', :git => "http://github.com/thoughtbot/ancestry.git", :branch => 
 gem 'nested_form', :git => "git@github.com:adamico/nested_form.git"
 gem 'devise'
 gem 'cancan'
-gem 'barista', '>= 0.5.0'
+gem 'barista', '~> 1.0'
 
 group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'
@@ -39,7 +40,7 @@ end
 group :test do
   gem 'factory_girl_rails', "~> 1.1.beta1"
   gem "autotest"
-  gem 'spork', '0.9.0.rc2'
+  gem 'spork', '~> 0.9.0.rc2'
   gem 'capybara'
   gem 'database_cleaner'
 end
@@ -50,7 +51,7 @@ group :cucumber do
   gem 'cucumber-rails'
   gem 'cucumber'
   gem 'rspec-rails', "~> 2.1"
-  gem 'spork', '0.9.0.rc2'
+  gem 'spork', '~> 0.9.0.rc2'
   gem 'launchy'    # So you can do Then show me the page
   gem 'pickle'
   gem 'factory_girl_rails', "~> 1.1.beta1"
