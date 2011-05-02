@@ -1,4 +1,4 @@
-= simple_form_for resource do |f|
+= simple_form_for resource, :validate => true do |f|
   = f.error_messages
   .inputs
     - resource.attributes.keys.each do |attribute|

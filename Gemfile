@@ -7,17 +7,19 @@ gem 'rails', '3.0.7'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem "haml"
+gem "sass"
 gem "RedCloth"
 # migrate to squeel!
 gem "meta_search"
 gem "meta_where"
 gem "simple_form"
 gem 'will_paginate', '3.0.pre2'
-gem 'ancestry', :git => "http://github.com/thoughtbot/ancestry.git", :branch => "rails3"
-gem 'nested_form', :git => "git@github.com:adamico/nested_form.git"
+gem 'ancestry'
+gem 'nested_form'
 gem 'devise'
 gem 'cancan'
 gem 'barista', '~> 1.0'
+gem 'client_side_validations'
 
 group :development do
   gem 'sqlite3-ruby', :require => 'sqlite3'
