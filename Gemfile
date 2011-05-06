@@ -8,12 +8,15 @@ gem 'rails', '3.0.7'
 
 gem "haml"
 gem "sass"
+
 gem "RedCloth"
-# migrate to squeel!
+#TODO: migrate to squeel!
 gem "meta_search"
 gem "meta_where"
+
 gem "simple_form"
-gem 'will_paginate', '3.0.pre2'
+
+gem 'kaminari'
 gem 'ancestry'
 gem 'nested_form'
 gem 'devise'
@@ -22,7 +25,7 @@ gem 'barista', '~> 1.0'
 gem 'client_side_validations'
 
 group :development do
-  gem 'sqlite3-ruby', :require => 'sqlite3'
+  gem 'sqlite3'
   gem "nifty-generators"
   gem "rails3-generators"
   gem "haml-rails"
@@ -31,7 +34,6 @@ group :development do
   gem 'annotate-models', '1.0.4'
   gem 'hpricot'
   gem "ruby_parser"
-  #gem "code_buddy"
 end
 
 group :development, :test do
@@ -40,7 +42,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'factory_girl_rails', "~> 1.1.beta1"
+  gem 'factory_girl_rails', '~> 1.1.beta1'
   gem "autotest"
   gem 'spork', '~> 0.9.0.rc2'
   gem 'capybara'
@@ -56,7 +58,7 @@ group :cucumber do
   gem 'spork', '~> 0.9.0.rc2'
   gem 'launchy'    # So you can do Then show me the page
   gem 'pickle'
-  gem 'factory_girl_rails', "~> 1.1.beta1"
+  gem 'factory_girl_rails', '~> 1.1.beta1'
 end
 
 # Use unicorn as the web server
