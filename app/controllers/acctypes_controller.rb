@@ -4,15 +4,12 @@ class AcctypesController < ApplicationController
   def index
   end
 
-  def show
-  end
-
   def new
   end
 
   def create
     if @acctype.save
-      redirect_to @acctype, :notice => @flash_message
+      redirect_to acctypes_url, :notice => flash_message(@acctype)
     else
       render :action => 'new'
     end
@@ -23,7 +20,7 @@ class AcctypesController < ApplicationController
 
   def update
     if @acctype.update_attributes(params[:acctype])
-      redirect_to @acctype, :notice => @flash_message
+      redirect_to acctypes_url, :notice => flash_message(@acctype)
     else
       render :action => 'edit'
     end
@@ -31,6 +28,6 @@ class AcctypesController < ApplicationController
 
   def destroy
     @acctype.destroy
-    redirect_to acctypes_url, :notice => @flash_message
+    redirect_to acctypes_url, :notice => flash_message(@acctype)
   end
 end

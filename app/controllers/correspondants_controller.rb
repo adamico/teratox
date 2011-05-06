@@ -2,13 +2,13 @@ class CorrespondantsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @search = Correspondant.accessible_by(current_ability).search(params[:search])
-    @correspondants = @search.
-      paginate(:page => params[:page], :order => "LOWER(name) ASC")
+    @search = Correspondant.accessible_by(current_ability).
+      search(params[:search])
+    @correspondants = @search.page(params[:page])
   end
 
   def names
-    @correspondants = Correspondant.where(:name =~ "%#{params[:term]}%").order(:name)
+    @correspondants = Correspondant.where(:name =~ "%#{params[:term]}%")
   end
 
   def show

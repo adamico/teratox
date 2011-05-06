@@ -5,13 +5,12 @@
     %tr
       %th Abbr
       %th Name
-    - for acctype in @acctypes
+    - @acctypes.each do |acctype|
       %tr
-        %td= h acctype.abbr
-        %td= h acctype.name
-        %td= link_to 'Show', acctype
-        %td= link_to 'Edit', edit_acctype_path(acctype)
-        %td= link_to 'Destroy', acctype, :confirm => 'Are you sure?', :method => :delete
+        %td= acctype.abbr
+        %td= acctype.name
+        %td
+          - actions(acctype)
 
 - content_for :footer do
-  %p= link_to "New Acctype", new_acctype_path
+  %p= link_to "Nouvel Acctype", new_acctype_path

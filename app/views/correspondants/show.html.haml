@@ -1,6 +1,5 @@
 - title @correspondant.name
 
-
 - content_for :main do
   %p=link_to "Modifier", edit_correspondant_path(@correspondant)
   %p
@@ -22,7 +21,7 @@
     = @correspondant.tel
   %h4 Dossiers de ce correspondant :
   %ul
-    - @correspondant.dossiers.each do |d|
-      %li= link_to d.n_sicap, d
+    - @correspondant.dossiers.each do |dossier|
+      %li= link_to dossier.n_sicap, dossier
 
-  %p= link_to "Detruire", @correspondant, :confirm => 'Etes-vous sûr ?', :method => :delete
+  %p= link_to "Détruire", @correspondant, :confirm => 'Etes-vous sûr ?', :method => :delete

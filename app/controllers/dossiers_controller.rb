@@ -5,6 +5,7 @@ class DossiersController < ApplicationController
   before_filter :find_acctypes, :only => [:index, :evoluer, :new, :edit]
   before_filter :find_accmods, :only => [:index, :evoluer, :new, :edit]
 
+  # parse localized date fields
   helper_method :date_appel
   helper_method :ddr
   helper_method :dg
@@ -12,17 +13,17 @@ class DossiersController < ApplicationController
   helper_method :dra
 
   def index
+    @professions = Profession.all
+    @specialites = Specialite.all
+    @produits = Produit.all
     @search = Dossier.accessible_by(current_ability).search(params[:search])
     if params[:search]
       @dossiers = @search.includes(
         :profession, :acctype, :expositions, :niveau, :cat).
-        paginate(:page => params[:page], :per_page => 20)
+        page(params[:page])
     else
       @dossiers = Dossier.accessible_by(current_ability).recent
     end
-    @professions = Profession.all
-    @specialites = Specialite.all
-    @produits = Produit.all
     respond_to do |format|
       format.html
       format.csv do

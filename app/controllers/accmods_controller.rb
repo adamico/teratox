@@ -4,15 +4,12 @@ class AccmodsController < ApplicationController
   def index
   end
 
-  def show
-  end
-
   def new
   end
 
   def create
     if @accmod.save
-      redirect_to @accmod, :notice => @flash_message
+      redirect_to accmods_url, :notice => flash_message(@accmod)
     else
       render :action => 'new'
     end
@@ -23,8 +20,7 @@ class AccmodsController < ApplicationController
 
   def update
     if @accmod.update_attributes(params[:accmod])
-      flash[:notice] = "Successfully updated accmod."
-      redirect_to @accmod, :notice => @flash_message
+      redirect_to accmods_url, :notice => flash_message(@accmod)
     else
       render :action => 'edit'
     end
@@ -32,7 +28,6 @@ class AccmodsController < ApplicationController
 
   def destroy
     @accmod.destroy
-    flash[:notice] = "Successfully destroyed accmod."
-    redirect_to accmods_url, :notice => @flash_message
+    redirect_to accmods_url, :notice => flash_message(@accmod)
   end
 end

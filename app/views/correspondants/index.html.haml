@@ -8,27 +8,27 @@
         = f.text_field :name_like
         = f.submit "Rechercher", :name => nil
 
-  - if @correspondants.count > 0
-    - unless params[:search].blank?
-      %hr
-      %table.collapse
-        %tr
-          %th Nom
-          %th Specialité
-          %th Qualité
-          %th Ville
-        - for correspondant in @correspondants
+  - if params[:search]
+    - if @correspondants.any?
+        %hr
+        %table.collapse
           %tr
-            %td= link_to h(correspondant.name), correspondant
-            %td= h correspondant.specialite_name
-            %td= h correspondant.qualite_name
-            %td= h correspondant.ville
-            %td= link_to "Edit", edit_correspondant_path(correspondant)
-            %td= link_to "Destroy", correspondant, :confirm => 'Etes-vous sur ?', :method => :delete
+            %th Nom
+            %th Specialité
+            %th Qualité
+            %th Ville
+          - @correspondants.each do |correspondant|
+            %tr
+              %td= link_to correspondant.name, correspondant
+              %td= correspondant.specialite_name
+              %td= correspondant.qualite_name
+              %td= correspondant.ville
+              %td= link_to "Modifier", edit_correspondant_path(correspondant)
+              %td= link_to "Détruire", correspondant, :confirm => 'Etes-vous sur ?', :method => :delete
 
-      %p= will_paginate @correspondants, :previous_label => "<--", :next_label => "-->"
-  - else
-    %p Aucun résultat
+        = paginate @correspondants
+    - else
+      %p Aucun résultat
 
 - content_for :footer do
-  %p= link_to "New Correspondant", new_correspondant_path
+  %p= link_to "Nouveau Correspondant", new_correspondant_path

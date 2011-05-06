@@ -10,6 +10,8 @@ class Correspondant < ActiveRecord::Base
   delegate :name, :to => :specialite, :prefix => true, :allow_nil => true
   delegate :name, :to => :qualite, :prefix => true, :allow_nil => true
 
+  default_scope order("LOWER(name) ASC")
+
   def lesexe
     sexes = SEXES.invert
     sexes[sexe]

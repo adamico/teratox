@@ -6,8 +6,7 @@
       %th Name
     - for demandeur in @demandeurs
       %tr
-        %td= h demandeur.name
-        %td= link_to 'Show', demandeur
+        %td= demandeur.name
         %td= link_to 'Edit', edit_demandeur_path(demandeur)
         %td= link_to 'Destroy', demandeur, :confirm => 'Are you sure?', :method => :delete
 

@@ -4,11 +4,10 @@
   %table
     %tr
       %th Name
-    - for cat in @cats
+    - @cats.each do |cat|
       %tr
-        %td= h cat.name
-        %td= link_to 'Show', cat
-        %td= link_to 'Edit', edit_cat_path(cat)
-        %td= link_to 'Destroy', cat, :confirm => 'Are you sure?', :method => :delete
+        %td= cat.name
+        %td= link_to 'Modifier', edit_cat_path(cat)
+        %td= link_to 'Détruire', cat, :confirm => 'Etes-vous sur ?', :method => :delete
 
-  %p= link_to "New Cat", new_cat_path
+  %p= link_to "Nouvelle Cat", new_cat_path
