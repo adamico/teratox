@@ -1,4 +1,4 @@
 = f.label :produit_name, "Produit"
 = f.text_field :produit_name, :class => "produit_autocomplete", :tabindex => autotab
-= f.collection_select :niveau_id, niveaux, :id, :name, {:include_blank => true}, {:tabindex => autotab}
+= f.collection_select :niveau_id, Niveau.all, :id, :name, {:include_blank => true}, {:tabindex => autotab}
 = f.link_to_remove "Détruire cette exposition"

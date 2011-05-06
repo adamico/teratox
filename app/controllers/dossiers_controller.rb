@@ -47,7 +47,7 @@ class DossiersController < ApplicationController
 
   def create
     if @dossier.save
-      redirect_to dossier_path(@dossier), :notice => @flash_message
+      redirect_with_flash(@dossier)
     else
       render :action => 'new'
     end
@@ -59,7 +59,7 @@ class DossiersController < ApplicationController
   def update
     @dossier.attributes = params[:dossier]
     if @dossier.save
-      redirect_to @dossier, :notice => @flash_message
+      redirect_with_flash(@dossier)
     else
        render :action => 'edit'
     end

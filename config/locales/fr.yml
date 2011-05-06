@@ -153,3 +153,8 @@ fr:
     edit: "Modifier"
     destroy: "Détruire"
     confirm: "Etes-vous sur?"
+  helpers:
+    submit:
+      dossier:
+        create: "Créer le Dossier"
+        update: "Mettre à jour le Dossier"

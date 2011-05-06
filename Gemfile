@@ -57,7 +57,7 @@ group :cucumber do
   gem 'rspec-rails', "~> 2.1"
   gem 'spork', '~> 0.9.0.rc2'
   gem 'launchy'    # So you can do Then show me the page
-  gem 'pickle'
+  gem 'pickle', :git => "git@github.com:adamico/pickle.git"
   gem 'factory_girl_rails', '~> 1.1.beta1'
 end
 
