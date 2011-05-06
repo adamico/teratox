@@ -1,0 +1,15 @@
+= simple_form_for(@demandeur) do |f|
+  - if @demandeur.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@demandeur.errors.count, "error")
+        prohibited this demandeur from being saved:
+
+      %ul
+      - @demandeur.errors.full_messages.each do |msg|
+        %li= msg
+
+  .inputs
+
+  .actions
+    = f.button :submit

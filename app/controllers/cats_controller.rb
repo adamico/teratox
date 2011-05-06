@@ -4,15 +4,12 @@ class CatsController < ApplicationController
   def index
   end
 
-  def show
-  end
-
   def new
   end
 
   def create
     if @cat.save
-      redirect_to @cat, :notice => @flash_message
+      redirect_to cats_url, :notice => @flash_message
     else
       render :action => 'new'
     end
@@ -23,7 +20,7 @@ class CatsController < ApplicationController
 
   def update
     if @cat.update_attributes(params[:cat])
-      redirect_to @cat, :notice => @flash_message
+      redirect_to cats_url, :notice => @flash_message
     else
       render :action => 'edit'
     end

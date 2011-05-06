@@ -7,6 +7,7 @@ class CorrespondantsController < ApplicationController
     @correspondants = @search.page(params[:page])
   end
 
+  #TODO: change autocomplete jquery according to http://rwldesign.com/journals/1-solutions/posts/32-using-jquery-ui-autocomplete-with-rails
   def names
     @correspondants = Correspondant.where(:name =~ "%#{params[:term]}%")
   end

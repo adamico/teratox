@@ -1,0 +1,15 @@
+= simple_form_for(@acctype) do |f|
+  - if @acctype.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@acctype.errors.count, "error")
+        prohibited this acctype from being saved:
+
+      %ul
+      - @acctype.errors.full_messages.each do |msg|
+        %li= msg
+
+  .inputs
+
+  .actions
+    = f.button :submit

@@ -4,15 +4,12 @@ class DemandeursController < ApplicationController
   def index
   end
 
-  def show
-  end
-
   def new
   end
 
   def create
     if @demandeur.save
-      redirect_to @demandeur, :notice => @flash_message
+      redirect_to demandeurs_url, :notice => @flash_message
     else
       render :action => 'new'
     end
@@ -23,7 +20,7 @@ class DemandeursController < ApplicationController
 
   def update
     if @demandeur.update_attributes(params[:demandeur])
-      redirect_to @demandeur, :notice => @flash_message
+      redirect_to demandeurs_url, :notice => @flash_message
     else
       render :action => 'edit'
     end
