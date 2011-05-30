@@ -6,6 +6,7 @@ Teratox::Application.routes.draw do
 
   resources :users
 
+  get "/bilan" => "bilan#index"
   get "bilan/cat"
   get "bilan/donnees_generales"
   get "bilan/niveaux"

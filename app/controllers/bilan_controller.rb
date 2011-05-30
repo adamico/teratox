@@ -2,6 +2,8 @@ class BilanController < ApplicationController
   before_filter :find_dossiers
   before_filter :find_niveaux, :only => [:niveaux, :stratification]
 
+  def index
+  end
   def cat
     @cats = Cat.all
     @no_cat = Dossier.no_cat

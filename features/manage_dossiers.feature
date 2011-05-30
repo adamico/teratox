@@ -50,5 +50,10 @@ Feature: manage dossiers
       And I should be on the dossier page
       And I should not see "martin"
 
-  @dossiers-delete @delete
+  @dossiers-delete @delete @javascript
   Scenario: delete dossier
+    Given a dossier exist
+    When I go to the dossier page
+      And I follow "Détruire"
+    Then I should see a "destroy" flash message for "Dossier"
+      And 0 dossiers should exist

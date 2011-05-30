@@ -4,20 +4,9 @@
     %title= yield(:title || "Untitled")
     %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}/
     = csrf_meta_tag
-    = stylesheet_link_tag 'anylinkcssmenu', 'application', 'jquery-ui'
+    = stylesheet_link_tag 'application', 'jquery-ui'
     = javascript_include_tag :defaults, :cache => true
     = javascript_include_tag 'jquery.ui.datepicker-fr', 'jquery.jstree', 'nested_form', "rails.validations"
-    %script{:type => "text/javascript",
-            :src => "/javascripts/anylinkcssmenu.js"}
-      /***********************************************
-      * AnyLink CSS Menu script v2.0- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
-      * This notice MUST stay intact for legal use
-      * Visit Project Page at http://www.dynamicdrive.com/dynamicindex1/anylinkcss.htm for full source code
-      ***********************************************/
-
-    %script{:type => "text/javascript"}
-      //anylinkcssmenu.init("menu_anchors_class") ////Pass in the CSS class of anchor links (that contain a sub menu)
-      anylinkcssmenu.init("anchorclass")
 
     = yield(:head)
   %body
@@ -43,15 +32,17 @@
           %li
             = link_to "Produits", produits_path
             - link_to_add_record("produit")
-          = render 'shared/admin_menu'
-          = render 'shared/bilan_menu'
+          %li= link_to "Malformations", malformations_path
+          %li= link_to "Pathologies", pathologies_path
+          %li= link_to "Thesaurus", "/admin"
+          %li= link_to "Bilan", bilan_path
     #container
       - flash.each do |name, msg|
         = content_tag :div, msg, :id => "flash_#{name}"
       #topbar
         %a{ :name => "top" }
         - if show_title?
-          %h1= h yield(:title)
+          %h1= yield(:title)
       #main
         = yield(:main) || yield
         %hr/

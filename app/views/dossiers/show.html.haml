@@ -1,7 +1,8 @@
 - title "Dossier " + @dossier.n_sicap.to_s
 
 - content_for :main do
-  %p= link_to 'Modifier', edit_dossier_path(@dossier), :accesskey => "M"
+  - actions(@dossier)
+
   - if @dossier.included == 1
     %p#time
       Inclusion :
@@ -73,7 +74,7 @@
           %td
             = expo.niveau_name
 
-    - unless @dossier.comm_expo.blank?
+    - if @dossier.comm_expo?
       = raw textilize @dossier.comm_expo
 
   %h3 Evolution
@@ -85,10 +86,10 @@
     %p
       Retard de croissance in utero :
       = @dossier.rciu? ? "Oui": "Non"
-    - unless @dossier.comm_evol.blank?
+    - if @dossier.comm_evol?
       = raw textilize @dossier.comm_evol
 
-  - unless @dossier.bebes.empty?
+  - if @dossier.bebes.any?
     %h3= "Nouveaux-nés (#{@dossier.bebes.count})"
     #infonn
       %table.latex
@@ -118,9 +119,9 @@
                     %li= m.libelle
             %td= bebe.path
 
-      - unless @dossier.comm_bebe.blank?
+      - if @dossier.comm_bebe?
         = raw textilize @dossier.comm_bebe
 
-  - unless @dossier.commentaire.blank?
+  - if @dossier.commentaire?
     %h3 Commentaire
     = raw textilize @dossier.commentaire

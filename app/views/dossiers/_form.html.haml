@@ -27,7 +27,7 @@
             = f.text_field :date_appel, :value => date_appel, :size => "30", :tabindex => autotab
           %li
             = f.label :demandeur_id
-            = f.collection_select :demandeur_id, Demandeur.all, :id, :name,
+            = f.collection_select :demandeur_id, demandeurs, :id, :name,
               {}, :tabindex => autotab
           %li
             = f.label :correspondant_name, "Correspondant"
@@ -46,20 +46,20 @@
             = f.select :expo_type, [["solvants"], ["autres"]], {}, :tabindex => autotab
           %li
             = f.label :niveau_id
-            = f.collection_select :niveau_id, Niveau.all, :id, :name, {}, :tabindex => autotab
+            = f.collection_select :niveau_id, niveaux, :id, :name, {}, :tabindex => autotab
           %li
             = f.label :cat_id, "CAT"
-            = f.collection_select :cat_id, Cat.all, :id, :name, {}, :tabindex => autotab
+            = f.collection_select :cat_id, cats, :id, :name, {}, :tabindex => autotab
 
           = f.fields_for :expositions do |expo_form|
-            = render 'exposition_fields', :f => expo_form, :niveaux => @niveaux
+            = render 'exposition_fields', :f => expo_form
           = f.link_to_add 'Rajouter une exposition', :expositions
 
           %ol
             %li
               = f.text_area :comm_expo, :size => "100x4", :tabindex => autotab
 
-      #evolution= render 'evolution', :f => f, :acctypes => @acctypes, :accmods => @accmods
+      #evolution= render 'evolution', :f => f
 
       #bebes
         %ol.inline.headers
@@ -99,4 +99,4 @@
           %li
             = f.label :commentaire
             = f.text_area :commentaire
-    = f.submit#, {:accesskey => "S"}
+    = f.submit

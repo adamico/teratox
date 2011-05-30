@@ -26,6 +26,8 @@ a {
 
 label {
   font-weight: bold; }
+  label:after {
+    content: " :"; }
 
 #flash_notice, #flash_error {
   padding: 5px 8px;
@@ -296,7 +298,7 @@ fieldset#search {
 
 .simple_form label {
   float: left;
-  width: 160px;
+  width: 25%;
   text-align: right;
   margin: 2px 5px; }
   .simple_form label:after {

@@ -1,21 +1,12 @@
 class DossiersController < ApplicationController
   load_and_authorize_resource
 
-  before_filter :find_niveaux, :only => [:new, :edit, :index]
-  before_filter :find_acctypes, :only => [:index, :evoluer, :new, :edit]
-  before_filter :find_accmods, :only => [:index, :evoluer, :new, :edit]
-
-  # parse localized date fields
-  helper_method :date_appel
-  helper_method :ddr
-  helper_method :dg
-  helper_method :dap
-  helper_method :dra
+  helper_method :date_appel, :ddr, :dg, :dap, :dra,
+                :demandeurs, :cats,
+                :niveaux, :acctypes, :accmods,
+                :professions, :specialites, :produits
 
   def index
-    @professions = Profession.all
-    @specialites = Specialite.all
-    @produits = Produit.all
     @search = Dossier.accessible_by(current_ability).search(params[:search])
     if params[:search]
       @dossiers = @search.includes(
@@ -49,7 +40,7 @@ class DossiersController < ApplicationController
     if @dossier.save
       redirect_with_flash(@dossier)
     else
-      render :action => 'new'
+      render :new
     end
   end
 
@@ -61,7 +52,7 @@ class DossiersController < ApplicationController
     if @dossier.save
       redirect_with_flash(@dossier)
     else
-       render :action => 'edit'
+       render :edit
     end
   end
 
@@ -72,16 +63,30 @@ class DossiersController < ApplicationController
 
   private
 
-  def find_niveaux
-    @niveaux = Niveau.all
+  def professions
+    @professions ||= Profession.all
+  end
+  def specialites
+    @specialites ||= Specialite.all
+  end
+  def demandeurs
+    @demandeurs ||= Demandeur.all
+  end
+  def produits
+    @produits ||= Produit.all
+  end
+  def niveaux
+    @niveaux ||= Niveau.all
+  end
+  def cats
+    @cats ||= Cat.all
+  end
+  def acctypes
+    @acctypes ||= Acctype.all
   end
 
-  def find_acctypes
-    @acctypes = Acctype.all
-  end
-
-  def find_accmods
-    @accmods = Accmod.all
+  def accmods
+    @accmods ||= Accmod.all
   end
 
   def date_appel

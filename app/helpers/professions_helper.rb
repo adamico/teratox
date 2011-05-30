@@ -1,2 +1,0 @@
-module ProfessionsHelper
-end

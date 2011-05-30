@@ -2,6 +2,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.7'
+gem 'rake', '0.8.7'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -23,6 +24,7 @@ gem 'devise'
 gem 'cancan'
 gem 'barista', '~> 1.0'
 gem 'client_side_validations'
+gem 'rails_admin', :git => 'https://github.com/sferik/rails_admin.git'
 
 group :development do
   gem 'sqlite3'

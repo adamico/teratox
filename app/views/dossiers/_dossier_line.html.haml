@@ -9,5 +9,5 @@
   %td= dossier.niveau_name
   %td= truncate(dossier.cat_name, :length => 10)
   %td= dossier.acctype_name
-  %td= link_to 'Modifier', edit_dossier_path(dossier)
-  %td= link_to 'Detruire', dossier, :confirm => 'Etes-vous sur ?', :method => :delete
+  %td
+    - actions(dossier)
