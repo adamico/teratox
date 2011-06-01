@@ -1,8 +1,7 @@
 # teratox Gemfile
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
-gem 'rake', '0.8.7'
+gem 'rails', '3.0.8.rc4'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

@@ -84,7 +84,7 @@ addTree = (type) ->
       "ajax" :
         "url" : "/#{type}.json"
         "data" : (node) ->
-          {parent_id : if node.attr then node.attr("id") else 0}
+          parent_id : if node.attr then node.attr("id") else 0
     "plugins" : ["themes", "json_data", "ui"]
 
   $element
@@ -130,7 +130,7 @@ calcGrosAnt = ->
 assign_calcGrosAnt = ->
   $('table.grsant input').bind 'change', (event) -> calcGrosAnt()
 
-$ ->
+jQuery ->
   # malformations/pathologies tree
   $.each ['malformations', 'pathologies'], (index, val) ->
     addTree(val)
@@ -159,7 +159,7 @@ $ ->
   })
   add_produit_autocomplete()
   add_malformation_autocomplete()
-  add_malformation_autocomplete()
+  add_pathologie_autocomplete()
   calcGrosAnt()
   assign_calcGrosAnt()
 

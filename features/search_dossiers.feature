@@ -1,5 +1,4 @@
 Feature: Search dossiers
-
   So that I can do stuff to specific dossiers
   As a teratox user
   I want to search dossiers by different fields
@@ -18,10 +17,10 @@ Feature: Search dossiers
       And I should see "<dossier2>"
 
     Examples:
-      | pattern | count | resultat               | dossier1  | dossier2  |
-      | mar     | 1     | 1 dossier              | LP9999999 |           |
-      | mac     | 2     | 2 dossiers sont montrés|LP9999998 | LP9999997 |
-      | gap     | 0     | Aucun résultat         |          |           |
+      |pattern|count|resultat               |dossier1 |dossier2 |
+      |mar    |1    |1 dossier              |LP9999999|         |
+      |mac    |2    |2 dossiers sont montrés|LP9999998|LP9999997|
+      |gap    |0    |Aucun résultat         |         |         |
 
   Scenario: search dossiers by evolution type
     Given an acctype: "nai" exists with name: "naissance"

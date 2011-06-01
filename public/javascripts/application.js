@@ -1,5 +1,7 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+/* DO NOT MODIFY. This file was compiled Wed, 01 Jun 2011 09:39:36 GMT from
+ * /home/ada/rails_projects/teratox/app/coffeescripts/application.coffee
+ */
 
-// datepicker
-$.datepicker.setDefaults($.datepicker.regional['fr']);
+(function() {
+  $.datepicker.setDefaults($.datepicker.regional['fr']);
+}).call(this);

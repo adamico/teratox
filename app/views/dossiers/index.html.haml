@@ -9,7 +9,6 @@
     %h4 Aucun résultat
 
   - else
-    %h4 Résultats de la recherche :
     %table#dossiers.collapse
       %tr
         %th= sort_link @search, :date_appel, 'Année'
@@ -26,6 +25,6 @@
         = render "dossier_line", :dossier => dossier
 
     - if params[:search]
-      %p= "#{@dossiers.offset_value + 1} - #{@dossiers.offset_value + @dossiers.length} de #{@dossiers.total_count}"
+      %p= search_results(@dossiers)
       = paginate @dossiers
       %p= link_to "Exporter les résultats en .csv", dossiers_path(:format => :csv, :utf8 => "✓", :search => params[:search])

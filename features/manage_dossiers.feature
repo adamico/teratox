@@ -50,7 +50,7 @@ Feature: manage dossiers
       And I should be on the dossier page
       And I should not see "martin"
 
-  @dossiers-delete @delete @javascript
+  @dossiers-delete @delete @javascript @wip
   Scenario: delete dossier
     Given a dossier exist
     When I go to the dossier page
