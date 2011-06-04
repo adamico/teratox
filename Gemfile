@@ -1,18 +1,21 @@
 # teratox Gemfile
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.8.rc4'
+gem 'rails', '3.1.0.rc1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+# assets pipeline
 gem "haml"
-gem "sass"
+gem "sass-rails"
+gem "uglifier"
+gem 'coffee-script'
+gem 'jquery-rails'
 
 gem "RedCloth"
-#TODO: migrate to squeel!
 gem "meta_search"
-gem "meta_where"
+gem "squeel", :git => "https://github.com/ernie/squeel.git"
 
 gem "simple_form"
 
@@ -22,8 +25,7 @@ gem 'nested_form'
 gem 'devise'
 gem 'cancan'
 gem 'barista', '~> 1.0'
-gem 'client_side_validations'
-gem 'rails_admin', :git => 'https://github.com/sferik/rails_admin.git'
+gem 'rails_admin', :git => 'git@github.com:adamico/rails_admin.git'
 
 group :development do
   gem 'sqlite3'
