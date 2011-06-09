@@ -1,1 +1,0 @@
-/home/ada/assets/js/jquery/jquery-ui/js/jquery-ui-1.8.9.custom.min.js

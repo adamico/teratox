@@ -1,0 +1,15 @@
+- title "Rechercher des dossiers"
+
+- content_for :main do
+  = render 'search_form', :q => @q
+  - if params[:q]
+    - if @dossiers.empty?
+      %h4 Aucun résultat
+
+    - else
+      = render 'table', :dossiers => @dossiers
+
+      %p= search_results(@dossiers)
+      -#= paginate @dossiers
+      %p= link_to "Exporter les résultats en .csv",
+        dossiers_path(:format => :csv, :utf8 => "✓", :q => params[:q])

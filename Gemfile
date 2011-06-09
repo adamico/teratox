@@ -1,10 +1,10 @@
 # teratox Gemfile
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc1'
+gem 'rails', "3.1.0.rc3"
 
 # Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# gem 'rails', :git => 'https://github.com/rails/rails.git'
 
 # assets pipeline
 gem "haml"
@@ -14,7 +14,7 @@ gem 'coffee-script'
 gem 'jquery-rails'
 
 gem "RedCloth"
-gem "meta_search"
+gem "ransack", :git => "https://github.com/ernie/ransack.git"
 gem "squeel", :git => "https://github.com/ernie/squeel.git"
 
 gem "simple_form"

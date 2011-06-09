@@ -7,9 +7,13 @@ class DossiersController < ApplicationController
                 :professions, :specialites, :produits
 
   def index
-    @search = Dossier.accessible_by(current_ability).search(params[:search])
-    if params[:search]
-      @dossiers = @search.includes(
+    @dossiers = Dossier.accessible_by(current_ability).recent
+  end
+
+  def search
+    @q = Dossier.accessible_by(current_ability).search(params[:q])
+    if params[:q]
+      @dossiers = @q.result.includes(
         :profession, :acctype, :expositions, :niveau, :cat).
         page(params[:page])
     else
@@ -18,7 +22,7 @@ class DossiersController < ApplicationController
     respond_to do |format|
       format.html
       format.csv do
-        @dossiers = @search.all
+        @dossiers = @q.result
         @outfile = "dossiers_" + Time.now.strftime("%d-%m-%Y") + ".csv"
         response.headers["Content-Type"] = "text/csv; charset=UTF-8; header=present"
         response.headers["Content-Disposition"] = "attachment; filename=#{@outfile}"

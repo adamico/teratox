@@ -1,6 +1,6 @@
 %tr{:class => cycle("even", "odd")}
-  %td= h dossier.date_appel.year
-  %td= link_to h(dossier.n_sicap), dossier
+  %td= dossier.date_appel.year
+  %td= link_to dossier.n_sicap, dossier
   %td= dossier.short_name
   %td= dossier.patient_age
   %td= dossier.sa

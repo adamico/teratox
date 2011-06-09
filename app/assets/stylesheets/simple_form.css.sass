@@ -1,0 +1,44 @@
+.field_with_errors
+  display: inline
+  input
+    border: 1px solid red
+
+.simple_form
+  label
+    float: left
+    width: 25%
+    text-align: right
+    margin: 2px 5px
+    &:after
+      content: " : "
+
+  div.input
+    margin-bottom: 10px
+
+  div.boolean, input[type='submit']
+    margin-left: 120px
+
+  div.boolean label, label.collection_radio
+    float: none
+    margin: 0
+    &:after
+      content: ""
+
+  label.collection_radio
+    margin-right: 10px
+    margin-left: 2px
+
+  .error, .hint
+    clear: left
+    margin-left: 120px
+    font-size: 12px
+    display: block
+
+  .error
+    color: #D00
+
+  .hint
+    color: #555
+    font-style: italic
+
+

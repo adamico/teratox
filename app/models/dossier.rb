@@ -93,9 +93,6 @@ class Dossier < ActiveRecord::Base
   scope :no_cat, where(:cat_id => nil)
   scope :inclus, where(:included => 1)
 
-  # metasearch search methods
-  search_methods :is_malforme, :inclus
-
   # delegations
   delegate :name,
     :to => :profession, :prefix => true, :allow_nil => true

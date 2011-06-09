@@ -1,0 +1,14 @@
+%table#dossiers.collapse
+  %tr
+    %th Année
+    %th Dossier
+    %th Patiente
+    %th Âge
+    %th SA
+    %th Profession
+    %th Exposition
+    %th Niveau
+    %th CAT préconisée
+    %th Evolution
+  - dossiers.each do |dossier|
+    = render "dossier_line", :dossier => dossier

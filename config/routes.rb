@@ -24,7 +24,10 @@ Teratox::Application.routes.draw do
     :professions
 
   resources :dossiers do
-    get :evoluer, :on => :collection
+    collection do
+      get :evoluer
+      match 'search' => 'dossiers#search', :via => [:get, :post], :as => :search
+    end
   end
 
   resources :correspondants do
