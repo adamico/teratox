@@ -9,23 +9,34 @@
     %li
       = f.label :commentaire_cont# "Mot(s) dans les commentaire"
       = f.text_field :commentaire_cont
-    -#FIXME: figure out why date_appel search is not working
-      %li
-        = f.label :date_appel_gteq, "Par année"
-        = f.date_select :date_appel_gteq,
-          :start_year => 1995, :end_year => Time.now.year,
-          :discard_day => true, :discard_month => true, :include_blank => true
-        = f.date_select :date_appel_lteq,
-          :start_year => 1995, :end_year => Time.now.year,
-          :discard_day => true, :discard_month => true, :include_blank => true
     %li
-      = f.label :profession_
+      = f.label :date_appel_gteq, "Par année"
+      = f.date_select :date_appel_gteq,
+        :default => {:year => 1995},
+        :start_year => 1995, :end_year => Time.now.year,
+        :discard_day => true, :discard_month => true
+      = f.date_select :date_appel_lteq,
+        :start_year => 1995, :end_year => Time.now.year,
+        :discard_day => true, :discard_month => true
+    %li
+      = f.label :profession_id_eq
       = f.collection_select :profession_id_eq, professions, :id, :name, :include_blank => true
+    %li
+      = f.label :produits_id_eq
+      = f.collection_select :produits_id_eq, produits, :id, :name, :include_blank => true
+    %li
+      = f.label :correspondant_specialite_id_eq
+      = f.collection_select :correspondant_specialite_id_eq, specialites, :id, :name, :include_blank => true
+    %li
+      = f.label :expo_type_eq
+      = f.select :expo_type_eq, [%w(solvants solvants), %w(autres autres)], :include_blank => true
+    %li
+      = f.label :niveau_id_eq
+      = f.collection_select :niveau_id_eq, niveaux, :id, :name, :include_blank => true
+    %li
+      = f.label :acctype_id_eq
+      = f.collection_select :acctype_id_eq, acctypes, :id, :name, :include_blank => true
+    %li
+      = f.label :bebes_malforme_eq
+      = f.select :bebes_malforme_eq, [["Non", 0], ["Oui", 1]], :include_blank => true
     %li= f.submit
-  -#
-    = f.input :correspondant_specialite_id_equals, :label => "Correspondant (spécialité)", :collection => specialites, :input_html => {:include_blank => true}
-    = f.input :produits_id_equals, :label => "Produits", :collection => produits, :input_html => {:include_blank => true}
-    = f.input :expo_type_equals, :label => "Type Exposition", :collection => %w[solvants autres], :input_html => {:include_blank => true}
-    = f.input :niveau_id_equals, :label => "Niveaux", :collection => niveaux, :input_html => {:include_blank => true}
-    = f.input :acctype_id_equals, :label => "Evolution", :collection => acctypes, :input_html => {:include_blank => true}
-    = f.input :is_malforme, :label => "Malformation", :collection => [["Non", ""], ["Oui", 1]], :input_html => {:include_blank => true}
