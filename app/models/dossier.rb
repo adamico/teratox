@@ -64,32 +64,33 @@ class Dossier < ActiveRecord::Base
   scope :solvants, where(:expo_type => 'solvants')
   scope :autres, where(:expo_type => 'autres')
 
-  scope :avec_jumeaux, where(:bebes_count.gt => 1)
-  scope :naissances, joins(:acctype).where(
-    :acctype => [:abbr.matches => "%nai%"])
-  scope :fausses_couches, joins(:acctype).where(
-    :acctype => [:abbr.matches % "%fcs%" | :abbr.matches % "%miu%"])
-  scope :incomplets, joins(:acctype).where(
-    :acctype => [:abbr.matches => "%inc%"])
+  scope :avec_jumeaux, where{bebes_count.gt 1}
+  scope :naissances, joins{acctype}.where{acctype.abbr.like "%nai%"}
+  scope :fausses_couches, joins{acctype}.
+    where{
+      (acctype.abbr.like "%fcs%") |
+      (acctype.abbr.like "%miu%")
+    }
+  scope :incomplets, joins{acctype}.where{acctype.abbr.like '%inc%'}
   scope :p1g1, where(
     :fcs => 0, :ivg => 0, :img => 0, :miu => 0, :geu => 0, :nai => 0)
-  scope :prematures, where(:terme.lt => 37)
+  scope :prematures, where{terme.lt 37}
   scope :with_niveau, lambda { |niveau|
-    joins(:niveau).where(:niveaux => [:name.matches % "%#{niveau}%"])}
-  scope :infimes, joins(:niveau).where(
-    :niveaux => [:name.matches % "%infime%"])
-  scope :faibles, joins(:niveau).where(
-    :niveaux => [:name.matches % "%faible%"])
-  scope :moderes, joins(:niveau).where(
-    :niveaux => [:name.matches % "%modéré%"])
-  scope :importants, joins(:niveau).where(
-    :niveaux => [:name.matches % "%important%"])
+    joins{niveau}.where{niveau.name.like "%#{niveau}%"}}
+  scope :infimes, joins{niveau}.where{
+    niveaux.name.like "%infime%"}
+  scope :faibles, joins{niveau}.where{
+    niveaux.name.like "%faible%"}
+  scope :moderes, joins{niveau}.where{
+    niveaux.name.like "%modéré%"}
+  scope :importants, joins{niveau}.where{
+    niveaux.name.like "%important%"}
 
-  scope :is_malforme, joins(:bebes).where(:bebes => [:malforme => "1"])
+  scope :is_malforme, joins{bebes}.where{bebes.malforme.eq "1"}
   scope :recent, includes([:profession, :acctype, :expositions]).
     order("updated_at DESC").limit(10)
   scope :p1g1, where(:gestite => 1, :nai => 0)
-  scope :age_lt_35, where(:age.lt => 35)
+  scope :age_lt_35, where{age.lt 35}
   scope :no_cat, where(:cat_id => nil)
   scope :inclus, where(:included => 1)
 
