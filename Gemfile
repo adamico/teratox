@@ -1,7 +1,7 @@
 # teratox Gemfile
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.8.rc4'
+gem 'rails', '3.0.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -16,6 +16,7 @@ gem "meta_where"
 
 gem "simple_form"
 
+gem "jquery-rails"
 gem 'kaminari'
 gem 'ancestry'
 gem 'nested_form'
@@ -23,7 +24,7 @@ gem 'devise'
 gem 'cancan'
 gem 'barista', '~> 1.0'
 gem 'client_side_validations'
-gem 'rails_admin', :git => 'https://github.com/sferik/rails_admin.git'
+gem 'rails_admin', :git => 'https://github.com/sferik/rails_admin.git', :branch => "rails-3.0"
 
 group :development do
   gem 'sqlite3'
@@ -32,7 +33,6 @@ group :development do
   gem "haml-rails"
   gem "wirble"
   gem "hirb"
-  gem 'annotate-models', '1.0.4'
   gem 'hpricot'
   gem "ruby_parser"
 end
@@ -43,23 +43,14 @@ group :development, :test do
 end
 
 group :test do
-  gem 'factory_girl_rails', '~> 1.1.beta1'
-  gem "autotest"
+  gem 'factory_girl_rails'
   gem 'spork', '~> 0.9.0.rc2'
-  gem 'capybara'
-  gem 'database_cleaner'
-end
-
-group :cucumber do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'cucumber-rails'
   gem 'cucumber'
-  gem 'rspec-rails', "~> 2.1"
-  gem 'spork', '~> 0.9.0.rc2'
   gem 'launchy'    # So you can do Then show me the page
-  gem 'pickle', :git => "git@github.com:adamico/pickle.git"
-  gem 'factory_girl_rails', '~> 1.1.beta1'
+  gem 'pickle'
 end
 
 # Use unicorn as the web server
